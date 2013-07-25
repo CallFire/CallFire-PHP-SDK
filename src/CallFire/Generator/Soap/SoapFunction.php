@@ -1,12 +1,12 @@
 <?php
 namespace CallFire\Generator\Soap;
 
+use CallFire\Generator\Soap;
+
 use Zend\Code\Generator as CodeGenerator;
 
 class SoapFunction
 {
-    const REQUEST_NAMESPACE_ALIAS = "Request";
-
     protected $methodGenerator;
     
     protected $bodyGenerator;
@@ -81,7 +81,7 @@ class SoapFunction
     protected function generateParameter($requestTypeName, $requestType)
     {
         if($requestNamespace = $this->getRequestNamespace()) {
-            $requestType = self::REQUEST_NAMESPACE_ALIAS.'\\'.$requestType;
+            $requestType = Soap::REQUEST_NAMESPACE_ALIAS.'\\'.$requestType;
         }
     
         $parameter = new SoapParameter;

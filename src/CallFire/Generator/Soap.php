@@ -2,19 +2,24 @@
 namespace CallFire\Generator;
 
 use CallFire\Generator\Soap\SoapFunction;
+use CallFire\Generator\Soap\SoapStructure;
 
 use Zend\Code\Generator as CodeGenerator;
 use SoapClient;
 
 class Soap
 {
+    const REQUEST_NAMESPACE_ALIAS = "Request";
+
     protected $wsdl;
     
     protected $soapClient;
     
+    protected $constructorGenerator;
+    
     protected $functions = array();
     
-    protected $types = array();
+    protected $structures = array();
     
     protected $classGenerator;
     
@@ -38,11 +43,27 @@ class Soap
         }
     }
     
-    public function generateClass($requestNamespace = null)
+    public function generateStructures($requestNamespace = null)
+    {
+        $types = $this->getSoapClient()->__getTypes();
+        foreach($types as $description) {
+            $soapStructure = new SoapStructure;
+            $soapStructure->setNamespace($requestNamespace);
+            $soapStructure->generateFromDescription($description);
+            if($soapStructure->isStructure()) {
+                $this->addStructure($soapStructure);
+            }
+        }
+    }
+    
+    public function generateClasses($requestNamespace = null)
     {
         $classGenerator = $this->getClassGenerator();
+        if($constructorGenerator = $this->getConstructorGenerator()) {
+            $classGenerator->addMethodFromGenerator($constructorGenerator);
+        }
         if($requestNamespace) {
-            $classGenerator->addUse($requestNamespace, SoapFunction::REQUEST_NAMESPACE_ALIAS);
+            $classGenerator->addUse($requestNamespace, self::REQUEST_NAMESPACE_ALIAS);
         }
         foreach($this->getFunctions() as $function) {
             $classGenerator->addMethodFromGenerator($function->getMethodGenerator());
@@ -51,13 +72,24 @@ class Soap
     
     public function generateClassFiles()
     {
-        $fileGenerator = $this->getFileGenerator();
+        $files = array();
+        $fileGenerator = clone $this->getFileGenerator();
         $fileGenerator->setClass($this->getClassGenerator());
+        $files[] = $fileGenerator;
+        
+        return $files;
     }
     
-    public function generateTypeFiles()
+    public function generateStructureFiles() 
     {
+        $files = array();
+        foreach($this->getStructures() as $structure) {
+            $fileGenerator = clone $this->getFileGenerator();
+            $fileGenerator->setClass($structure->getClassGenerator());
+            $files[] = $fileGenerator;
+        }
         
+        return $files;
     }
     
     public function getWsdl() {
@@ -83,6 +115,37 @@ class Soap
         return $this;
     }
     
+    public function getConstructorGenerator() {
+        if(!$this->constructorGenerator && ($extendedClass = $this->getClassGenerator()->getExtendedClass())) {
+            $constructorGenerator = new CodeGenerator\MethodGenerator;
+            $constructorGenerator->setName('__construct');
+            
+            $wsdlParameter = new CodeGenerator\ParameterGenerator;
+            $wsdlParameter->setName('wsdl');
+            $wsdlParameter->setDefaultValue($this->getWsdl());
+            $constructorGenerator->setParameter($wsdlParameter);
+            
+            $optionsParameter = new CodeGenerator\ParameterGenerator;
+            $optionsParameter->setName('options');
+            $optionsParameter->setDefaultValue(array());
+            $constructorGenerator->setParameter($optionsParameter);
+            
+            if(method_exists($extendedClass, "__construct")) {
+                $constructorGenerator->setBody("parent::__construct();");
+            } elseif(method_exists($extendedClass, $extendedClass)) {
+                $constructorGenerator->setBody("parent::{$extendedClass}();");
+            }
+            
+            $this->constructorGenerator = $constructorGenerator;
+        }
+        return $this->constructorGenerator;
+    }
+    
+    public function setConstructorGenerator($constructorGenerator) {
+        $this->constructorGenerator = $constructorGenerator;
+        return $this;
+    }
+    
     public function getFunctions() {
         return $this->functions;
     }
@@ -97,13 +160,18 @@ class Soap
         $this->functions[] = $function;
     }
     
-    public function getTypes() {
-        return $this->types;
+    public function getStructures() {
+        return $this->structures;
     }
     
-    public function setTypes($types) {
-        $this->types = $types;
+    public function setStructures($structures) {
+        $this->structures = $structures;
         return $this;
+    }
+    
+    public function addStructure(SoapStructure $structure)
+    {
+        $this->structures[] = $structure;
     }
     
     public function getClassGenerator() {

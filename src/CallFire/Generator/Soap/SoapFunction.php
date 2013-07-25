@@ -13,6 +13,10 @@ class SoapFunction
     
     protected $requestNamespace;
     
+    protected $requestStructure;
+    
+    protected $responseStructure;
+    
     public function getMethodGenerator() {
         if(!$this->methodGenerator) {
             $this->methodGenerator = new CodeGenerator\MethodGenerator;
@@ -47,6 +51,24 @@ class SoapFunction
         return $this;
     }
     
+    public function getRequestStructure() {
+        return $this->requestStructure;
+    }
+    
+    public function setRequestStructure($requestStructure) {
+        $this->requestStructure = $requestStructure;
+        return $this;
+    }
+    
+    public function getResponseStructure() {
+        return $this->responseStructure;
+    }
+    
+    public function setResponseStructure($responseStructure) {
+        $this->responseStructure = $responseStructure;
+        return $this;
+    }
+    
     /**
      * Generate the method generator from a SOAP function description
      * e.g. "KeywordQueryResult SearchAvailableKeywords(SearchAvailableKeywords $Request)"
@@ -65,6 +87,9 @@ class SoapFunction
         
         $parameter = $this->generateParameter($requestTypeName, $requestType);
         $methodGenerator->setParameter($parameter->getParameterGenerator());
+        $this->setRequestStructure($parameter->getParameterGenerator()->getName());
+        
+        $this->setResponseStructure($returnType);
         
         $body = $this->generateBody($requestTypeName, $requestType);
         $methodGenerator->setBody($body->generate());

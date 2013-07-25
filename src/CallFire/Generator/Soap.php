@@ -10,6 +10,10 @@ use SoapClient;
 class Soap
 {
     const REQUEST_NAMESPACE_ALIAS = "Request";
+    
+    const RESPONSE_NAMESPACE_ALIAS = "Response";
+    
+    const STRUCTURE_NAMESPACE_ALIAS = "Structure";
 
     protected $wsdl;
     
@@ -22,6 +26,8 @@ class Soap
     protected $structures = array();
     
     protected $requestStructures = array();
+    
+    protected $reponseStructures = array();
     
     protected $classGenerator;
     
@@ -41,12 +47,11 @@ class Soap
             $soapFunction = new SoapFunction;
             $soapFunction->setRequestNamespace($requestNamespace);
             $soapFunction->generateFromDescription($description);
-            if($parameters = $soapFunction->getMethodGenerator()->getParameters()) {
-                foreach($parameters as $parameter) {
-                    $typeName = $parameter->getType();
-                    $typeName = end(explode('\\', $typeName));
-                    $this->addRequestStructure($typeName);
-                }
+            if($requestStructure = $soapFunction->getRequestStructure()) {
+                $this->addRequestStructure($requestStructure);
+            }
+            if($responseStructure = $soapFunction->getResponseStructure()) {
+                $this->addResponseStructure($responseStructure);
             }
             $this->addFunction($soapFunction);
         }
@@ -64,7 +69,7 @@ class Soap
         }
     }
     
-    public function generateClasses($requestNamespace = null)
+    public function generateClasses($requestNamespace = null, $responseNamespace = null, $structureNamespace = null)
     {
         $classGenerator = $this->getClassGenerator();
         if($constructorGenerator = $this->getConstructorGenerator()) {
@@ -72,6 +77,12 @@ class Soap
         }
         if($requestNamespace) {
             $classGenerator->addUse($requestNamespace, self::REQUEST_NAMESPACE_ALIAS);
+        }
+        if($responseNamespace) {
+            $classGenerator->addUse($responseNamespace, self::RESPONSE_NAMESPACE_ALIAS);
+        }
+        if($structureNamespace) {
+            $classGenerator->addUse($structureNamespace, self::STRUCTURE_NAMESPACE_ALIAS);
         }
         foreach($this->getFunctions() as $function) {
             $classGenerator->addMethodFromGenerator($function->getMethodGenerator());
@@ -193,6 +204,19 @@ class Soap
     
     public function addRequestStructure($structureName) {
         $this->requestStructures[] = $structureName;
+    }
+    
+    public function getResponseStructures() {
+        return $this->responseStructures;
+    }
+    
+    public function setResponseStructures($responseStructures) {
+        $this->responseStructures = $responseStructures;
+        return $this;
+    }
+    
+    public function addResponseStructure($responseStructure) {
+        $this->responseStructures[] = $responseStructure;
     }
     
     public function getClassGenerator() {

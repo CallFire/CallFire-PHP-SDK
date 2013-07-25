@@ -7,6 +7,4 @@ class SendText
 
     public $TextBroadcastConfig = null;
 
-
 }
-

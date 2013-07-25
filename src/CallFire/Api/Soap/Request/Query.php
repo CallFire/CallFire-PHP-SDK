@@ -9,6 +9,4 @@ class Query
 
     public $FirstResult = null;
 
-
 }
-

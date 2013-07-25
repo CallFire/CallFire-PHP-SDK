@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class AutoReply
 {
@@ -15,6 +15,4 @@ class AutoReply
 
     public $id = null;
 
-
 }
-

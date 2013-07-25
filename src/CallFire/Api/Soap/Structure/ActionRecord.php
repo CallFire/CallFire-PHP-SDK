@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class ActionRecord
 {
@@ -15,6 +15,4 @@ class ActionRecord
 
     public $id = null;
 
-
 }
-

@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class Subscription
 {
@@ -17,6 +17,4 @@ class Subscription
 
     public $id = null;
 
-
 }
-

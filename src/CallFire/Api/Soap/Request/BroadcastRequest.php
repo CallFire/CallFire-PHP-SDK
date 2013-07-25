@@ -9,6 +9,4 @@ class BroadcastRequest
 
     public $Broadcast = null;
 
-
 }
-

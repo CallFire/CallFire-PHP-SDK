@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class Broadcast
 {
@@ -21,6 +21,4 @@ class Broadcast
 
     public $id = null;
 
-
 }
-

@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class NumberOrder
 {
@@ -19,6 +19,4 @@ class NumberOrder
 
     public $id = null;
 
-
 }
-

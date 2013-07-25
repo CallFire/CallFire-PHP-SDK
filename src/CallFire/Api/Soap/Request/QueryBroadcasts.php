@@ -11,6 +11,4 @@ class QueryBroadcasts
 
     public $LabelName = null;
 
-
 }
-

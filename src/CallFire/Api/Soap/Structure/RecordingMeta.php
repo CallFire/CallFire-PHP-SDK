@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class RecordingMeta
 {
@@ -13,6 +13,4 @@ class RecordingMeta
 
     public $id = null;
 
-
 }
-

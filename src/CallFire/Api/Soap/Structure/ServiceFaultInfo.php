@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class ServiceFaultInfo
 {
@@ -11,6 +11,4 @@ class ServiceFaultInfo
 
     public $Detail = null;
 
-
 }
-

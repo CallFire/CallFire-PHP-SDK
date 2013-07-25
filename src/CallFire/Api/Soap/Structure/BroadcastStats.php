@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class BroadcastStats
 {
@@ -9,6 +9,4 @@ class BroadcastStats
 
     public $ResultStat = null;
 
-
 }
-

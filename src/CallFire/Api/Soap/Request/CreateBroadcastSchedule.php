@@ -11,6 +11,4 @@ class CreateBroadcastSchedule
 
     public $BroadcastSchedule = null;
 
-
 }
-

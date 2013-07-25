@@ -7,6 +7,4 @@ class QueryNumbers
 
     public $LabelName = null;
 
-
 }
-

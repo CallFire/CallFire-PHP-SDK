@@ -7,6 +7,4 @@ class IdRequest
 
     public $Id = null;
 
-
 }
-

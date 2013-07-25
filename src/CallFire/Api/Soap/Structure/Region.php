@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class Region
 {
@@ -25,6 +25,4 @@ class Region
 
     public $TimeZone = null;
 
-
 }
-

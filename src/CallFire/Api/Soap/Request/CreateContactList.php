@@ -11,6 +11,4 @@ class CreateContactList
 
     public $ContactSource = null;
 
-
 }
-

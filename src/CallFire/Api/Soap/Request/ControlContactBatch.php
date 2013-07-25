@@ -9,6 +9,4 @@ class ControlContactBatch
 
     public $Enabled = null;
 
-
 }
-

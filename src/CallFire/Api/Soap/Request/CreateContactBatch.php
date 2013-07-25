@@ -17,6 +17,4 @@ class CreateContactBatch
 
     public $ScrubBroadcastDuplicates = null;
 
-
 }
-

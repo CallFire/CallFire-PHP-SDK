@@ -9,6 +9,4 @@ class CreateAutoReply
 
     public $AutoReply = null;
 
-
 }
-

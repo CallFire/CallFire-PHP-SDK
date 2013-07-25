@@ -7,6 +7,4 @@ class IdLabelRequest
 
     public $LabelName = null;
 
-
 }
-

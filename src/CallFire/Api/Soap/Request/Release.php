@@ -9,6 +9,4 @@ class Release
 
     public $Keywords = null;
 
-
 }
-

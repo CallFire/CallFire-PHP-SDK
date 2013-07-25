@@ -11,6 +11,4 @@ class QueryContacts
 
     public $String = null;
 
-
 }
-

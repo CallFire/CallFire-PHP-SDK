@@ -9,6 +9,4 @@ class ContactListRequest
 
     public $ContactSource = null;
 
-
 }
-

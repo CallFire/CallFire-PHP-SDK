@@ -9,6 +9,4 @@ class SendCall
 
     public $IvrBroadcastConfig = null;
 
-
 }
-

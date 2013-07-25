@@ -7,6 +7,4 @@ class RemoveContacts
 
     public $ContactId = null;
 
-
 }
-

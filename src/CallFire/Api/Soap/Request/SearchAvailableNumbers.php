@@ -11,6 +11,4 @@ class SearchAvailableNumbers
 
     public $Count = null;
 
-
 }
-

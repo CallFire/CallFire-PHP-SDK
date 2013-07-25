@@ -9,6 +9,4 @@ class GetBroadcastStats
 
     public $IntervalEnd = null;
 
-
 }
-

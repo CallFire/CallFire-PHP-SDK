@@ -25,6 +25,4 @@ class ActionQuery
 
     public $LabelName = null;
 
-
 }
-

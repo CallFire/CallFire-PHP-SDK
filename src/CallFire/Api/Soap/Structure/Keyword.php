@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class Keyword
 {
@@ -13,6 +13,4 @@ class Keyword
 
     public $LeaseInfo = null;
 
-
 }
-

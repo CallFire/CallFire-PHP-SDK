@@ -9,6 +9,4 @@ class NumberLabelRequest
 
     public $LabelName = null;
 
-
 }
-

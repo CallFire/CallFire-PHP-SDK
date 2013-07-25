@@ -13,6 +13,4 @@ class CreateNumberOrder
 
     public $BulkTollFree = null;
 
-
 }
-

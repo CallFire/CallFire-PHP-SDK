@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class SoundMeta
 {
@@ -15,6 +15,4 @@ class SoundMeta
 
     public $id = null;
 
-
 }
-

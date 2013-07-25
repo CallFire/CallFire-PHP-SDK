@@ -1,7 +1,8 @@
 {
     "require-dev": {
         "zendframework/zend-soap": "~2.2.1",
-        "zendframework/zend-code": "~2.2.1"
+        "zendframework/zend-code": "~2.2.1",
+        "fabpot/php-cs-fixer": "v0.2.0"
     },
     "autoload": {
         "psr-0": {

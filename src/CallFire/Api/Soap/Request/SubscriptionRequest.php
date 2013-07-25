@@ -9,6 +9,4 @@ class SubscriptionRequest
 
     public $Subscription = null;
 
-
 }
-

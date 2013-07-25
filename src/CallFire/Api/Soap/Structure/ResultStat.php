@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class ResultStat
 {
@@ -11,6 +11,4 @@ class ResultStat
 
     public $Actions = null;
 
-
 }
-

@@ -373,6 +373,4 @@ class Client extends SoapClient
         parent::$method();
     }
 
-
 }
-

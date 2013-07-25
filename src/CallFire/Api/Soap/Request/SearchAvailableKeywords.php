@@ -7,6 +7,4 @@ class SearchAvailableKeywords
 
     public $Keywords = null;
 
-
 }
-

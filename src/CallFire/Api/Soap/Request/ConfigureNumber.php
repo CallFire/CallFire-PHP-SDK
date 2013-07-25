@@ -9,6 +9,4 @@ class ConfigureNumber
 
     public $NumberConfiguration = null;
 
-
 }
-

@@ -7,6 +7,4 @@ class GetNumber
 
     public $Number = null;
 
-
 }
-

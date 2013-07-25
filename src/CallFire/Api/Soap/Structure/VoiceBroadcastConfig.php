@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class VoiceBroadcastConfig
 {
@@ -23,6 +23,4 @@ class VoiceBroadcastConfig
 
     public $MaxActiveTransfers = null;
 
-
 }
-

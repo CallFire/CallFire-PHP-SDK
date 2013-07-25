@@ -7,6 +7,4 @@ class DeleteLabel
 
     public $LabelName = null;
 
-
 }
-

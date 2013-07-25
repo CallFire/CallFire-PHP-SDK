@@ -7,6 +7,4 @@ class QueryContactBatches
 
     public $BroadcastId = null;
 
-
 }
-

@@ -7,6 +7,4 @@ class UpdateContacts
 
     public $Contact = null;
 
-
 }
-

@@ -9,8 +9,6 @@ class SoapStructure
 {
     protected $classGenerator;
     
-    protected $namespace;
-    
     protected $isStructure = false;
     
     protected $properties = array();
@@ -36,7 +34,6 @@ class SoapStructure
         
         $classGenerator = $this->getClassGenerator();
         $classGenerator->setName($structName);
-        $classGenerator->setNamespaceName($this->getNamespace());
         $classGenerator->addProperties($this->getProperties());
     }
     
@@ -54,15 +51,6 @@ class SoapStructure
     
     public function setClassGenerator($classGenerator) {
         $this->classGenerator = $classGenerator;
-        return $this;
-    }
-    
-    public function getNamespace() {
-        return $this->namespace;
-    }
-    
-    public function setNamespace($namespace) {
-        $this->namespace = $namespace;
         return $this;
     }
     

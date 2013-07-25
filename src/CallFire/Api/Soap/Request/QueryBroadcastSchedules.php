@@ -7,6 +7,4 @@ class QueryBroadcastSchedules
 
     public $BroadcastId = null;
 
-
 }
-

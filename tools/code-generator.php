@@ -15,6 +15,9 @@ $wsdlURL = "http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl";
 $requestNamespacePart = "Request";
 $requestNamespace = "{$namespace}\\{$requestNamespacePart}";
 
+$structureNamespacePart = "Structure";
+$structureNamespace = "{$namespace}\\{$structureNamespacePart}";
+
 $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $namespace);
 
 $requestTypes = array();
@@ -38,8 +41,8 @@ if(!is_dir($sourceDirectory)) {
 if(!is_dir("{$sourceDirectory}/{$requestNamespacePart}")) {
     mkdir("{$sourceDirectory}/{$requestNamespacePart}", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/Structure")) {
-    mkdir("{$sourceDirectory}/Structure", 0777, true);
+if(!is_dir("{$sourceDirectory}/{$structureNamespacePart}")) {
+    mkdir("{$sourceDirectory}/{$structureNamespacePart}", 0777, true);
 }
 
 foreach($classFiles as $classFile) {
@@ -50,8 +53,10 @@ foreach($classFiles as $classFile) {
 foreach($structureFiles as $structureFile) {
     if(in_array($structureFile->getClass()->getName(), $requestTypes)) {
         $type = $requestNamespacePart;
+        $structureFile->getClass()->setNamespaceName($requestNamespace);
     } else {
-        $type = "Structure";
+        $type = $structureNamespacePart;
+        $structureFile->getClass()->setNamespaceName($structureNamespace);
     }
     $structureFile->setFilename("{$sourceDirectory}/{$type}/{$structureFile->getClass()->getName()}.php");
     $structureFile->write();

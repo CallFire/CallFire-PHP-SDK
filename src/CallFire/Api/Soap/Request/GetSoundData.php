@@ -7,6 +7,4 @@ class GetSoundData
 
     public $Format = null;
 
-
 }
-

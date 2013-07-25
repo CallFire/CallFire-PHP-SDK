@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class ContactQueryResult
 {
@@ -9,6 +9,4 @@ class ContactQueryResult
 
     public $Contact = null;
 
-
 }
-

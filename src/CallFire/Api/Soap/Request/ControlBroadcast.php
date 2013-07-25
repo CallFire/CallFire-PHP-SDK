@@ -11,6 +11,4 @@ class ControlBroadcast
 
     public $MaxActive = null;
 
-
 }
-

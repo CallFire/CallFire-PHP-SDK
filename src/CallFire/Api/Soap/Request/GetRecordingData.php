@@ -13,6 +13,4 @@ class GetRecordingData
 
     public $Format = null;
 
-
 }
-

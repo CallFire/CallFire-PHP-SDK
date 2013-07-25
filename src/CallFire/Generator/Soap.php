@@ -57,7 +57,6 @@ class Soap
         $types = $this->getSoapClient()->__getTypes();
         foreach($types as $description) {
             $soapStructure = new SoapStructure;
-            $soapStructure->setNamespace($requestNamespace);
             $soapStructure->generateFromDescription($description);
             if($soapStructure->isStructure()) {
                 $this->addStructure($soapStructure);

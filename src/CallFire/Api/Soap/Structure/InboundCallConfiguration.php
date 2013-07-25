@@ -1,6 +1,6 @@
 <?php
 
-namespace CallFire\Api\Soap\Request;
+namespace CallFire\Api\Soap\Structure;
 
 class InboundCallConfiguration
 {
@@ -9,6 +9,4 @@ class InboundCallConfiguration
 
     public $IvrInboundConfig = null;
 
-
 }
-

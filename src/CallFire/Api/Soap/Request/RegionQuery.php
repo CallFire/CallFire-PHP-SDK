@@ -7,6 +7,4 @@ class RegionQuery
 
     public $Region = null;
 
-
 }
-

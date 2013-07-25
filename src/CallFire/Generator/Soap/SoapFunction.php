@@ -28,7 +28,7 @@ class SoapFunction
     public function getBodyGenerator() {
         if(!$this->bodyGenerator) {
             $this->bodyGenerator = new CodeGenerator\BodyGenerator;
-            $this->bodyGenerator->setContent('$method = __FUNCTION__;'.PHP_EOL.'parent::$method();');
+            $this->bodyGenerator->setContent('$method = __FUNCTION__;'.PHP_EOL.'return parent::$method();');
         }
         return $this->bodyGenerator;
     }

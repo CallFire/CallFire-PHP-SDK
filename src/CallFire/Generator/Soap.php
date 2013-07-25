@@ -139,9 +139,9 @@ class Soap
             $constructorGenerator->setParameter($optionsParameter);
             
             if(method_exists($extendedClass, "__construct")) {
-                $constructorGenerator->setBody("parent::__construct();");
+                $constructorGenerator->setBody("parent::__construct(\$wsdl, \$options);");
             } elseif(method_exists($extendedClass, $extendedClass)) {
-                $constructorGenerator->setBody("parent::{$extendedClass}();");
+                $constructorGenerator->setBody("parent::{$extendedClass}(\$wsdl, \$options);");
             }
             
             $this->constructorGenerator = $constructorGenerator;

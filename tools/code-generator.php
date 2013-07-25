@@ -4,6 +4,7 @@ namespace CallFire\Generator;
 use CallFire\Generator\Soap as SoapGenerator;
 use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Generator\FileGenerator;
+use Zend\Code\Generator\ValueGenerator;
 
 require __DIR__."/../vendor/autoload.php";
 
@@ -50,6 +51,8 @@ foreach($classFiles as $classFile) {
     $classFile->write();
 }
 
+$classmap = array();
+
 foreach($structureFiles as $structureFile) {
     if(in_array($structureFile->getClass()->getName(), $requestTypes)) {
         $type = $requestNamespacePart;
@@ -60,6 +63,14 @@ foreach($structureFiles as $structureFile) {
     }
     $structureFile->setFilename("{$sourceDirectory}/{$type}/{$structureFile->getClass()->getName()}.php");
     $structureFile->write();
+    
+    $classmap[$structureFile->getClass()->getName()] = $structureFile->getClass()->getNamespaceName().'\\'.$structureFile->getClass()->getName();
 }
+
+$classmapValueGenerator = new ValueGenerator($classmap);
+$classmapFileGenerator = new FileGenerator;
+$classmapFileGenerator->setBody('return '.$classmapValueGenerator->generate().';');
+$classmapFileGenerator->setFilename("{$sourceDirectory}/classmap.php");
+$classmapFileGenerator->write();
 
 passthru('php '.__DIR__.'/../vendor/fabpot/php-cs-fixer/php-cs-fixer fix '.__DIR__.'/../src/CallFire/Api/Soap/ --level=all');

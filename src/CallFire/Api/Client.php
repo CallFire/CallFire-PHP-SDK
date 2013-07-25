@@ -5,16 +5,20 @@ use CallFire\Api\Soap\Client as SoapClient;
 
 class Client
 {
-    public static function Soap($username, $password, $version = 'SOAP_1_2')
+    public static function Soap($username, $password, $version = 'SOAP_1_2', $wsdl = 'http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl')
     {
-        $headers = array(
+        $options = array(
             'soap_version' => $version,
             'login' => $username,
             'password' => $password
         );
+        
+        $classmap = include __DIR__.'/Soap/classmap.php';
+        if(is_array($classmap)) {
+            $options['classmap'] = $classmap;
+        }
     
-        $client = new SoapClient;
-        $client->__setSoapHeaders($headers);
+        $client = new SoapClient($wsdl, $options);
         
         return $client;
     }

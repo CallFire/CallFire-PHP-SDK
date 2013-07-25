@@ -15,7 +15,7 @@ $wsdlURL = "http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl";
 $requestNamespacePart = "Request";
 $requestNamespace = "{$namespace}\\{$requestNamespacePart}";
 
-$sourceDirectory = realpath(__DIR__."/../src/CallFire")."/Soap";
+$sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $namespace);
 
 $requestTypes = array();
 

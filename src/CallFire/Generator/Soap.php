@@ -27,7 +27,7 @@ class Soap
     
     protected $requestStructures = array();
     
-    protected $reponseStructures = array();
+    protected $responseStructures = array();
     
     protected $classGenerator;
     

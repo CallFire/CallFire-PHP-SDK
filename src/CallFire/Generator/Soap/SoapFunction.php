@@ -87,7 +87,7 @@ class SoapFunction
         
         $parameter = $this->generateParameter($requestTypeName, $requestType);
         $methodGenerator->setParameter($parameter->getParameterGenerator());
-        $this->setRequestStructure($parameter->getParameterGenerator()->getName());
+        $this->setRequestStructure($requestType);
         
         $this->setResponseStructure($returnType);
         

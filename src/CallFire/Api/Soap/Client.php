@@ -3,7 +3,7 @@
 namespace CallFire\Api\Soap;
 
 use SoapClient;
-use CallFire\Api\Soap\Request as Request;
+use CallFire\Api\Request as Request;
 
 class Client extends SoapClient
 {

@@ -12,14 +12,14 @@ class Client
             'login' => $username,
             'password' => $password
         );
-        
-        $classmap = include __DIR__.'/Soap/classmap.php';
-        if(is_array($classmap)) {
+
+        $classmap = include __DIR__.'/classmap.php';
+        if (is_array($classmap)) {
             $options['classmap'] = $classmap;
         }
-    
+
         $client = new SoapClient($wsdl, $options);
-        
+
         return $client;
     }
 

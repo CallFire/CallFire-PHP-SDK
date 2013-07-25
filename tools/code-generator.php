@@ -9,7 +9,8 @@ use Zend\Code\Generator\ValueGenerator;
 require __DIR__."/../vendor/autoload.php";
 
 $name = "Client";
-$namespace = "CallFire\Api\Soap";
+$namespace = "CallFire\Api";
+$soapNamespace = "Soap";
 $extendedClass = "SoapClient";
 $wsdlURL = "http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl";
 
@@ -26,7 +27,7 @@ $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $names
 
 $generator = new SoapGenerator($wsdlURL);
 
-$classGenerator = new ClassGenerator($name, $namespace, null, $extendedClass);
+$classGenerator = new ClassGenerator($name, "{$namespace}\\{$soapNamespace}", null, $extendedClass);
 $classGenerator->addUse($extendedClass);
 $generator->setClassGenerator($classGenerator);
 
@@ -41,6 +42,9 @@ $structureFiles = $generator->generateStructureFiles();
 if(!is_dir($sourceDirectory)) {
     mkdir($sourceDirectory, 0777, true);
 }
+if(!is_dir("{$sourceDirectory}/{$soapNamespace}")) {
+    mkdir("{$sourceDirectory}/{$soapNamespace}", 0777, true);
+}
 if(!is_dir("{$sourceDirectory}/{$requestNamespacePart}")) {
     mkdir("{$sourceDirectory}/{$requestNamespacePart}", 0777, true);
 }
@@ -52,7 +56,7 @@ if(!is_dir("{$sourceDirectory}/{$structureNamespacePart}")) {
 }
 
 foreach($classFiles as $classFile) {
-    $classFile->setFilename("{$sourceDirectory}/{$classFile->getClass()->getName()}.php");
+    $classFile->setFilename("{$sourceDirectory}/{$soapNamespace}/{$classFile->getClass()->getName()}.php");
     $classFile->write();
 }
 
@@ -81,4 +85,4 @@ $classmapFileGenerator->setBody('return '.$classmapValueGenerator->generate().';
 $classmapFileGenerator->setFilename("{$sourceDirectory}/classmap.php");
 $classmapFileGenerator->write();
 
-passthru('php '.__DIR__.'/../vendor/fabpot/php-cs-fixer/php-cs-fixer fix '.__DIR__.'/../src/CallFire/Api/Soap/ --level=all');
+passthru('php '.__DIR__.'/../vendor/fabpot/php-cs-fixer/php-cs-fixer fix '.__DIR__.'/../src/CallFire/Api/ --level=all');

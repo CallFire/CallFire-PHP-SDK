@@ -17,6 +17,8 @@ $requestNamespace = "{$namespace}\\{$requestNamespacePart}";
 
 $sourceDirectory = realpath(__DIR__."/../src/CallFire")."/Soap";
 
+$requestTypes = array();
+
 $generator = new SoapGenerator($wsdlURL);
 
 $classGenerator = new ClassGenerator($name, $namespace, null, $extendedClass);
@@ -25,6 +27,7 @@ $generator->setClassGenerator($classGenerator);
 
 $generator->generateFunctions($requestNamespace);
 $generator->generateStructures($requestNamespace);
+$requestTypes = $generator->getRequestStructures();
 $generator->generateClasses($requestNamespace);
 $classFiles = $generator->generateClassFiles();
 $structureFiles = $generator->generateStructureFiles();
@@ -35,6 +38,9 @@ if(!is_dir($sourceDirectory)) {
 if(!is_dir("{$sourceDirectory}/{$requestNamespacePart}")) {
     mkdir("{$sourceDirectory}/{$requestNamespacePart}", 0777, true);
 }
+if(!is_dir("{$sourceDirectory}/Structure")) {
+    mkdir("{$sourceDirectory}/Structure", 0777, true);
+}
 
 foreach($classFiles as $classFile) {
     $classFile->setFilename("{$sourceDirectory}/{$classFile->getClass()->getName()}.php");
@@ -42,6 +48,11 @@ foreach($classFiles as $classFile) {
 }
 
 foreach($structureFiles as $structureFile) {
-    $structureFile->setFilename("{$sourceDirectory}/{$requestNamespacePart}/{$structureFile->getClass()->getName()}.php");
+    if(in_array($structureFile->getClass()->getName(), $requestTypes)) {
+        $type = $requestNamespacePart;
+    } else {
+        $type = "Structure";
+    }
+    $structureFile->setFilename("{$sourceDirectory}/{$type}/{$structureFile->getClass()->getName()}.php");
     $structureFile->write();
 }

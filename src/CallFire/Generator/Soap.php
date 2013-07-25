@@ -21,6 +21,8 @@ class Soap
     
     protected $structures = array();
     
+    protected $requestStructures = array();
+    
     protected $classGenerator;
     
     protected $fileGenerator;
@@ -39,6 +41,13 @@ class Soap
             $soapFunction = new SoapFunction;
             $soapFunction->setRequestNamespace($requestNamespace);
             $soapFunction->generateFromDescription($description);
+            if($parameters = $soapFunction->getMethodGenerator()->getParameters()) {
+                foreach($parameters as $parameter) {
+                    $typeName = $parameter->getType();
+                    $typeName = end(explode('\\', $typeName));
+                    $this->addRequestStructure($typeName);
+                }
+            }
             $this->addFunction($soapFunction);
         }
     }
@@ -172,6 +181,19 @@ class Soap
     public function addStructure(SoapStructure $structure)
     {
         $this->structures[] = $structure;
+    }
+    
+    public function getRequestStructures() {
+        return $this->requestStructures;
+    }
+    
+    public function setRequestStructures($requestStructures) {
+        $this->requestStructures = $requestStructures;
+        return $this;
+    }
+    
+    public function addRequestStructure($structureName) {
+        $this->requestStructures[] = $structureName;
     }
     
     public function getClassGenerator() {

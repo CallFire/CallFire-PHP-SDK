@@ -61,3 +61,5 @@ foreach($structureFiles as $structureFile) {
     $structureFile->setFilename("{$sourceDirectory}/{$type}/{$structureFile->getClass()->getName()}.php");
     $structureFile->write();
 }
+
+passthru('php '.__DIR__.'/../vendor/fabpot/php-cs-fixer/php-cs-fixer fix '.__DIR__.'/../src/CallFire/Api/Soap/ --level=all');

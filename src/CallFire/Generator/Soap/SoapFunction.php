@@ -7,15 +7,32 @@ use Zend\Code\Generator as CodeGenerator;
 
 class SoapFunction
 {
+    protected $scalarTypes = array(
+        "void" => "void",
+        "long" => "int",
+        "base64Binary" => "string"
+    );
+
     protected $methodGenerator;
     
     protected $bodyGenerator;
+    
+    protected $docblockGenerator;
     
     protected $requestNamespace;
     
     protected $requestStructure;
     
     protected $responseStructure;
+    
+    public function getScalarTypes() {
+        return $this->scalarTypes;
+    }
+    
+    public function setScalarTypes($scalarTypes) {
+        $this->scalarTypes = $scalarTypes;
+        return $this;
+    }
     
     public function getMethodGenerator() {
         if(!$this->methodGenerator) {
@@ -32,13 +49,24 @@ class SoapFunction
     public function getBodyGenerator() {
         if(!$this->bodyGenerator) {
             $this->bodyGenerator = new CodeGenerator\BodyGenerator;
-            $this->bodyGenerator->setContent('$method = __FUNCTION__;'.PHP_EOL.'return parent::$method();');
         }
         return $this->bodyGenerator;
     }
     
     public function setBodyGenerator($bodyGenerator) {
         $this->bodyGenerator = $bodyGenerator;
+        return $this;
+    }
+    
+    public function getDocblockGenerator() {
+        if(!$this->docblockGenerator) {
+            $this->docblockGenerator = new CodeGenerator\DocBlockGenerator;
+        }
+        return $this->docblockGenerator;
+    }
+    
+    public function setDocblockGenerator($docblockGenerator) {
+        $this->docblockGenerator = $docblockGenerator;
         return $this;
     }
     
@@ -91,8 +119,11 @@ class SoapFunction
         
         $this->setResponseStructure($returnType);
         
-        $body = $this->generateBody($requestTypeName, $requestType);
+        $body = $this->generateBody();
         $methodGenerator->setBody($body->generate());
+        
+        $docblock = $this->generateDocblock($requestTypeName, $requestType, $returnType);
+        $methodGenerator->setDocBlock($docblock);
     }
     
     /**
@@ -115,9 +146,49 @@ class SoapFunction
         return $parameter;
     }
     
-    protected function generateBody($requestTypeName, $requestType) {
+    protected function generateBody() {
         $body = $this->getBodyGenerator();
         
+        $params = $this->getMethodGenerator()->getParameters();
+        $paramNames = array();
+        foreach($params as $param) {
+            $paramNames[] = '$'.$param->getName();
+        }
+        
+        $paramNames = implode(', ', $paramNames);
+        
+        $body->setContent('$method = __FUNCTION__;'.PHP_EOL.'return parent::$method('.$paramNames.');');
+        
         return $body;
+    }
+    
+    protected function generateDocblock($requestTypeName, $requestType, $returnType) {
+        $docblock = $this->getDocblockGenerator();
+        
+        $scalarTypes = $this->getScalarTypes();
+        $isScalarReturn = false;
+        
+        if(isset($scalarTypes[$returnType])) {
+            $returnType = $scalarTypes[$returnType];
+            $isScalarReturn = true;
+        }
+        
+        if($requestNamespace = $this->getRequestNamespace()) {
+            $requestType = Soap::REQUEST_NAMESPACE_ALIAS.'\\'.$requestType;
+            if(!$isScalarReturn) {
+                $returnType = Soap::RESPONSE_NAMESPACE_ALIAS.'\\'.$returnType;
+            }
+        }
+        
+        $parameterTag = new CodeGenerator\DocBlock\Tag\ParamTag;
+        $parameterTag->setDataType($requestType);
+        $parameterTag->setParamName($requestTypeName);
+        $docblock->setTag($parameterTag);
+        
+        $returnTag = new CodeGenerator\DocBlock\Tag\ReturnTag;
+        $returnTag->setDataType($returnType);
+        $docblock->setTag($returnTag);
+        
+        return $docblock;
     }
 }

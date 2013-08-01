@@ -28,6 +28,9 @@ $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $names
 
 $generator = new RestGenerator($swaggerUrl);
 
+var_dump($generator->getApis());
+exit;
+
 $classGenerator = new ClassGenerator($name, "{$namespace}\\{$restNamespace}", null, $extendedClass);
 $classGenerator->addUse($extendedClass);
 $generator->setClassGenerator($classGenerator);

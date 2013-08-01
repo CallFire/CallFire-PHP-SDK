@@ -96,7 +96,7 @@ class SwaggerOperation
             unset($data['parameters']);
             
             $parameterProto = new SwaggerParameter;
-            if($operationHydrator) {
+            if($parameterHydrator) {
                 $parameterProto->setHydrator($parameterHydrator);
             }
             

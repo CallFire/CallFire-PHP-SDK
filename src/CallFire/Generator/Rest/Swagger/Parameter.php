@@ -1,9 +1,9 @@
 <?php
-namespace CallFire\Generator\Rest;
+namespace CallFire\Generator\Rest\Swagger;
 
 use Zend\Stdlib\Hydrator;
 
-class SwaggerParameter
+class Parameter
 {
     protected $paramType;
 
@@ -86,7 +86,7 @@ class SwaggerParameter
         return $this->allowableValues;
     }
 
-    public function setAllowableValues($allowableValues)
+    public function setAllowableValues(AllowableValues $allowableValues)
     {
         $this->allowableValues = $allowableValues;
 
@@ -105,7 +105,7 @@ class SwaggerParameter
         return $this;
     }
 
-    public function addCondition($condition)
+    public function addCondition(Condition $condition)
     {
         $this->conditions[] = $condition;
 
@@ -133,7 +133,7 @@ class SwaggerParameter
         if (isset($data['allowableValues']) && ($allowableValuesData = $data['allowableValues'])) {
             unset($data['allowableValues']);
 
-            $allowableValues = new SwaggerAllowableValues;
+            $allowableValues = new AllowableValues;
             if ($allowableValuesHydrator) {
                 $allowableValues->setHydrator($allowableValuesHydrator);
             }
@@ -146,7 +146,7 @@ class SwaggerParameter
         if (isset($data['conditions']) && ($conditions = $data['conditions'])) {
             unset($data['conditions']);
 
-            $conditionProto = new SwaggerCondition;
+            $conditionProto = new Condition;
             if ($conditionHydrator) {
                 $conditionProto->setHydrator($conditionHydrator);
             }

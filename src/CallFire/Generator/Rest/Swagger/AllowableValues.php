@@ -1,9 +1,9 @@
 <?php
-namespace CallFire\Generator\Rest;
+namespace CallFire\Generator\Rest\Swagger;
 
 use Zend\Stdlib\Hydrator;
 
-class SwaggerAllowableValues
+class AllowableValues
 {
     protected $valueType;
 

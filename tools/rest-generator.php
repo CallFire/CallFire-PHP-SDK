@@ -12,32 +12,33 @@ require __DIR__."/../vendor/autoload.php";
 $name = "Client";
 $namespace = "CallFire\Api";
 $restNamespace = "Rest";
-$extendedClass = "";
+$extendedClass = "AbstractClient";
 $swaggerUrl = 'https://www.callfire.com/api/1.1/wsdl/swagger';
 
 $requestNamespacePart = SoapGenerator::REQUEST_NAMESPACE_ALIAS;
-$requestNamespace = "{$namespace}\\{$requestNamespacePart}";
+$requestNamespace = "{$namespace}\\Rest\\{$requestNamespacePart}";
 
 $responseNamespacePart = SoapGenerator::RESPONSE_NAMESPACE_ALIAS;
-$responseNamespace = "{$namespace}\\{$responseNamespacePart}";
+$responseNamespace = "{$namespace}\\Rest\\{$responseNamespacePart}";
 
 $structureNamespacePart = SoapGenerator::STRUCTURE_NAMESPACE_ALIAS;
-$structureNamespace = "{$namespace}\\{$structureNamespacePart}";
+$structureNamespace = "{$namespace}\\Rest\\{$structureNamespacePart}";
 
 $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $namespace);
 
 $generator = new RestGenerator($swaggerUrl);
 
-var_dump($generator->getApis());
-exit;
-
 $classGenerator = new ClassGenerator($name, "{$namespace}\\{$restNamespace}", null, $extendedClass);
 $classGenerator->addUse($extendedClass);
 $generator->setClassGenerator($classGenerator);
 
-$generator->generateFunctions($requestNamespace);
 $generator->generateClasses($requestNamespace, $responseNamespace, $structureNamespace);
 $classFiles = $generator->generateClassFiles();
+
+foreach($classFiles as $file) {
+    echo $file->generate();
+}
+exit;
 
 if(!is_dir($sourceDirectory)) {
     mkdir($sourceDirectory, 0777, true);

@@ -1,14 +1,29 @@
 <?php
-namespace CallFire\Generator\Rest;
+namespace CallFire\Generator\Rest\Swagger;
 
 use Zend\Stdlib\Hydrator;
 
-class SwaggerApi
+class Api
 {
+    /**
+     * Path of the action relative to the base
+     * 
+     * @var string
+     */
     protected $path;
-
+    
+    /**
+     * Description of the action
+     * 
+     * @var string
+     */
     protected $description;
 
+    /**
+     * Array of operation descriptions
+     * 
+     * @var Operation[]
+     */
     protected $operations = array();
 
     protected $hydrator;
@@ -77,7 +92,7 @@ class SwaggerApi
         if (isset($data['operations']) && ($operations = $data['operations'])) {
             unset($data['operations']);
 
-            $operationProto = new SwaggerOperation;
+            $operationProto = new Operation;
             if ($operationHydrator) {
                 $operationProto->setHydrator($operationHydrator);
             }

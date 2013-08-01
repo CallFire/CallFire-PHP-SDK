@@ -1,10 +1,14 @@
 <?php
-namespace CallFire\Generator\Rest;
+namespace CallFire\Generator\Rest\Swagger;
 
 use Zend\Stdlib\Hydrator;
 
-class SwaggerOperation
+class Operation
 {
+    const METHOD_GET = 'GET';
+    const METHOD_POST = 'POST';
+    const METHOD_PUT = 'PUT';
+
     protected $httpMethod;
 
     protected $nickname;
@@ -91,7 +95,7 @@ class SwaggerOperation
         return $this;
     }
 
-    public function addParameter(SwaggerParameter $parameter)
+    public function addParameter(Parameter $parameter)
     {
         $this->parameters[] = $parameter;
 
@@ -119,7 +123,7 @@ class SwaggerOperation
         if (isset($data['parameters']) && ($parameters = $data['parameters'])) {
             unset($data['parameters']);
 
-            $parameterProto = new SwaggerParameter;
+            $parameterProto = new Parameter;
             if ($parameterHydrator) {
                 $parameterProto->setHydrator($parameterHydrator);
             }

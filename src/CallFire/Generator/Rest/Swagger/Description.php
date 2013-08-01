@@ -1,21 +1,40 @@
 <?php
-namespace CallFire\Generator\Rest;
-
-use CallFire\Generator\Rest\SwaggerApi;
+namespace CallFire\Generator\Rest\Swagger;
 
 use Zend\Stdlib\Hydrator;
 use InvalidArgumentException;
 
-class SwaggerDescription
+class Description
 {
+    /**
+     * @var string
+     */
     protected $apiVersion;
 
+    /**
+     * @var string
+     */
     protected $swaggerVersion;
-
+    
+    /**
+     * Base URI of the API
+     * 
+     * @var string
+     */
     protected $basePath;
-
+    
+    /**
+     * Path of the API action relative to the base URI
+     * 
+     * @var string
+     */
     protected $resourcePath;
-
+    
+    /**
+     * Array of action descriptions
+     * 
+     * @var Api[]
+     */
     protected $apis = array();
 
     protected $hydrator;
@@ -39,6 +58,18 @@ class SwaggerDescription
         $description->hydrate($json);
 
         return $description;
+    }
+    
+    /**
+     * Derives a name for the service from its resource path
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        $name = ucfirst(str_replace("/", "", $this->getResourcePath()));
+        
+        return $name;
     }
 
     public function getApiVersion()
@@ -101,7 +132,7 @@ class SwaggerDescription
         return $this;
     }
 
-    public function addApi(SwaggerApi $api)
+    public function addApi(Api $api)
     {
         $this->apis[] = $api;
     }
@@ -127,7 +158,7 @@ class SwaggerDescription
         if (isset($data['apis']) && ($apis = $data['apis'])) {
             unset($data['apis']);
 
-            $apiProto = new SwaggerApi;
+            $apiProto = new Api;
             if ($apiHydrator) {
                 $apiProto->setHydrator($apiHydrator);
             }

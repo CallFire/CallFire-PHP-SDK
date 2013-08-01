@@ -2,55 +2,67 @@
 namespace CallFire\Generator\Rest;
 
 use Zend\Stdlib\Hydrator;
-use InvalidArgumentException;
 
 class SwaggerAllowableValues
 {
     protected $valueType;
-    
+
     protected $values = array();
-    
+
     protected $hydrator;
-    
-    public function getValueType() {
+
+    public function getValueType()
+    {
         return $this->valueType;
     }
-    
-    public function setValueType($valueType) {
+
+    public function setValueType($valueType)
+    {
         $this->valueType = $valueType;
+
         return $this;
     }
-    
-    public function getValues() {
+
+    public function getValues()
+    {
         return $this->values;
     }
-    
-    public function setValues($values) {
+
+    public function setValues($values)
+    {
         $this->values = $values;
+
         return $this;
     }
-    
-    public function addValue($value) {
+
+    public function addValue($value)
+    {
         $this->values[] = $value;
+
         return $this;
     }
-    
-    public function getHydrator() {
-        if(!$this->hydrator) {
+
+    public function getHydrator()
+    {
+        if (!$this->hydrator) {
             $this->hydrator = new Hydrator\ClassMethods;
         }
+
         return $this->hydrator;
     }
-    
-    public function setHydrator(Hydrator\HydratorInterface $hydrator) {
+
+    public function setHydrator(Hydrator\HydratorInterface $hydrator)
+    {
         $this->hydrator = $hydrator;
+
         return $this;
     }
-    
-    public function hydrate($data) {
+
+    public function hydrate($data)
+    {
         $hydrator = $this->getHydrator();
         $hydrator->hydrate($data, $this);
-        
+
         return $this;
     }
 }

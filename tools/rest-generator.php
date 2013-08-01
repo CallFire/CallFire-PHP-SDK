@@ -28,17 +28,13 @@ $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $names
 
 $generator = new RestGenerator($swaggerUrl);
 
-$classGenerator = new ClassGenerator($name, "{$namespace}\\{$restNamespace}", null, $extendedClass);
-$classGenerator->addUse($extendedClass);
+$classGenerator = new ClassGenerator($name, "{$namespace}\\{$restNamespace}\\Client", null, $extendedClass);
+$classGenerator->addUse("{$namespace}\\{$restNamespace}\\{$extendedClass}");
 $generator->setClassGenerator($classGenerator);
 
 $generator->generateClasses($requestNamespace, $responseNamespace, $structureNamespace);
 $classFiles = $generator->generateClassFiles();
-
-foreach($classFiles as $file) {
-    echo $file->generate();
-}
-exit;
+$requestClassFiles = $generator->generateRequestClassFiles();
 
 if(!is_dir($sourceDirectory)) {
     mkdir($sourceDirectory, 0777, true);
@@ -46,10 +42,22 @@ if(!is_dir($sourceDirectory)) {
 if(!is_dir("{$sourceDirectory}/{$restNamespace}")) {
     mkdir("{$sourceDirectory}/{$restNamespace}", 0777, true);
 }
+if(!is_dir("{$sourceDirectory}/{$restNamespace}/Client")) {
+    mkdir("{$sourceDirectory}/{$restNamespace}/Client", 0777, true);
+}
+if(!is_dir("{$sourceDirectory}/{$restNamespace}/Request")) {
+    mkdir("{$sourceDirectory}/{$restNamespace}/Request", 0777, true);
+}
 
 foreach($classFiles as $classFile) {
-    $classFile->setFilename("{$sourceDirectory}/{$restNamespace}/{$classFile->getClass()->getName()}.php");
+    $classFile->setFilename("{$sourceDirectory}/{$restNamespace}/Client/{$classFile->getClass()->getName()}.php");
     $classFile->write();
+}
+
+foreach($requestClassFiles as $requestClassFile) {
+    $requestClassFile->getClass()->setNamespacename("{$namespace}\\{$restNamespace}\\Request");
+    $requestClassFile->setFilename("{$sourceDirectory}/{$restNamespace}/Request/{$requestClassFile->getClass()->getName()}.php");
+    $requestClassFile->write();
 }
 
 passthru('php '.__DIR__.'/../vendor/fabpot/php-cs-fixer/php-cs-fixer fix '.__DIR__.'/../src/CallFire/Api/Rest/ --level=all');

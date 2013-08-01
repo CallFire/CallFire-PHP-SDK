@@ -13,7 +13,7 @@ class Service
     
     protected $description;
     
-    protected $functions = array();
+    protected $requestClasses = array();
     
     public function generate()
     {
@@ -26,7 +26,7 @@ class Service
             foreach($api->getOperations() as $operation) {
                 $function = $this->generateFunction($api, $operation);
                 if($function instanceof CodeGenerator\MethodGenerator) {
-                    $this->addFunction($function);
+                    $classGenerator->addMethodFromGenerator($function);
                 }
             }
         }
@@ -52,6 +52,10 @@ class Service
         $function->setOperation($operation);
         $function->generate();
         
+        if(($requestClass = $function->getParameterClassGenerator()) && count($requestClass->getProperties())) {
+            $this->addRequestClass($requestClass);
+        }
+        
         return $function->getMethodGenerator();
     }
     
@@ -76,18 +80,17 @@ class Service
         return $this;
     }
     
-    public function getFunctions() {
-        return $this->functions;
+    public function getRequestClasses() {
+        return $this->requestClasses;
     }
     
-    public function setFunctions($functions) {
-        $this->functions = $functions;
+    public function setRequestClasses($requestClasses) {
+        $this->requestClasses = $requestClasses;
         return $this;
     }
     
-    public function addFunction($function) {
-        $this->functions[] = $function;
+    public function addRequestClass($requestClass) {
+        $this->requestClasses[] = $requestClass;
         return $this;
     }
-    
 }

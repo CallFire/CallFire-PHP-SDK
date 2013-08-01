@@ -12,6 +12,8 @@ class Rest
     
     const STRUCTURE_NAMESPACE_ALIAS = "Structure";
     
+    const ABSTRACT_REQUEST_ALIAS = "AbstractRequest";
+    
     /**
      * URI to the primary API swagger aggregation.
      * E.g. https://www.callfire.com/api/1.1/wsdl/swagger
@@ -97,6 +99,21 @@ class Rest
             $fileGenerator = clone $this->getFileGenerator();
             $fileGenerator->setClass($class->getClassGenerator());
             $files[] = $fileGenerator;
+        }
+        
+        return $files;
+    }
+    
+    public function generateRequestClassFiles()
+    {
+        $files = array();
+        foreach($this->getClasses() as $serviceClass) {
+            $requestClasses = $serviceClass->getRequestClasses();
+            foreach($requestClasses as $requestClass) {
+                $fileGenerator = clone $this->getFileGenerator();
+                $fileGenerator->setClass($requestClass);
+                $files[] = $fileGenerator;
+            }
         }
         
         return $files;

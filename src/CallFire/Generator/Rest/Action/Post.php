@@ -7,8 +7,27 @@ use Zend\Code\Generator as CodeGenerator;
 
 class Post extends AbstractAction
 {
-    public function generate()
+    protected function getBody($routeParams = array(), $queryParameter = null)
     {
-        parent::generate();
+        list($route, $segments) = $this->getRoute();
+        
+        $routeParamsList = array();
+        foreach($routeParams as $parameter) {
+            $routeParamsList[] = '$'.$parameter->getName();
+        }
+        $routeParamsList = implode(', ', $routeParamsList);
+        
+        if($queryParameter instanceof CodeGenerator\ParameterGenerator) {
+            $queryParameterString = ', $'.$queryParameter->getName();
+        } else {
+            $queryParameterString = '';
+        }
+        
+        $body = <<<BODY
+\$uri = \$this->getUri('{$route}', array({$routeParamsList}));
+return \$this->post(\$uri{$queryParameterString});
+BODY;
+
+        return $body;
     }
 }

@@ -1,13 +1,17 @@
 <?php
 namespace CallFire\Generator\Rest;
 
+use CallFire\Generator\Rest as RestGenerator;
 use CallFire\Generator\Rest\Swagger\Api as SwaggerApi;
 use CallFire\Generator\Rest\Swagger\Operation as SwaggerOperation;
 
 use Zend\Code\Generator as CodeGenerator;
 
 abstract class Action {
+    const ROUTE_REGEX = "#(?:\{(\w+)\})#U";
+
     const PARAM_TYPE_QUERY = "query";
+    const PARAM_TYPE_FORM = "form";
     const PARAM_TYPE_PATH = "path";
 
     protected $api;
@@ -30,22 +34,69 @@ abstract class Action {
         $method->setName($operation->getNickname());
         
         $parameterClassGenerator = $this->getParameterClassGenerator();
+        $parameterClassGenerator->setName($operation->getNickname());
+        
         $parameterGenerator = $this->getParameterGenerator();
         $propertyGenerator = $this->getPropertyGenerator();
+        
+        $hasRequired = false;
+        $routeParams = array();
         foreach($operation->getParameters() as $swaggerParameter) {
             switch($swaggerParameter->getParamType()) {
                 case self::PARAM_TYPE_PATH:
+                    if($swaggerParameter->getRequired()) {
+                        $hasRequired = true;
+                    }
+                    $parameters = $method->getParameters();
+                    if(isset($parameters[$swaggerParameter->getName()])) {
+                        continue;
+                    }
                     $parameter = clone $parameterGenerator;
                     $parameter->setName($swaggerParameter->getName());
                     $method->setParameter($parameter);
+                    $routeParams[] = $parameter;
                     break;
                 case self::PARAM_TYPE_QUERY:
+                case self::PARAM_TYPE_FORM:
+                    if($parameterClassGenerator->hasProperty($swaggerParameter->getName())) {
+                        continue;
+                    }
                     $property = clone $propertyGenerator;
                     $property->setName($swaggerParameter->getName());
                     $parameterClassGenerator->addPropertyFromGenerator($property);
                     break;
             }
         }
+        if(count($parameterClassGenerator->getProperties())) {
+            $queryParameter = clone $parameterGenerator;
+            $queryParameter->setName($operation->getNickname());
+            $queryParameter->setType(RestGenerator::REQUEST_NAMESPACE_ALIAS.'\\'.$operation->getNickname());
+            if(!$hasRequired) {
+                $queryParameter->setDefaultValue(new CodeGenerator\ValueGenerator(null));
+            }
+            $method->setParameter($queryParameter);;
+        } else {
+            $queryParameter = null;
+        }
+        
+        $body = $this->getBody($routeParams, $queryParameter);
+        $method->setBody($body);
+    }
+    
+    abstract protected function getBody($routeParams = array(), $queryParameter = null);
+    
+    protected function getRoute()
+    {
+        $api = $this->getApi();
+        preg_match(self::ROUTE_REGEX, $api->getPath(), $segments);
+        array_shift($segments);
+        
+        $route = preg_replace(self::ROUTE_REGEX, "%s", $api->getPath());
+        
+        return array(
+            0 => $route,
+            1 => $segments
+        );
     }
     
     public function getApi() {
@@ -81,7 +132,10 @@ abstract class Action {
     
     public function getParameterClassGenerator() {
         if(!$this->parameterClassGenerator) {
-            $this->parameterClassGenerator = new CodeGenerator\ClassGenerator;
+            $generator = new CodeGenerator\ClassGenerator;
+            $generator->setExtendedClass(RestGenerator::ABSTRACT_REQUEST_ALIAS);
+            
+            $this->parameterClassGenerator = $generator;
         }
         return $this->parameterClassGenerator;
     }

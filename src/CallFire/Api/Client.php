@@ -4,17 +4,15 @@ namespace CallFire\Api;
 use CallFire\Api\Rest\Client as RestClient;
 use CallFire\Api\Soap\Client as SoapClient;
 
-use InvalidArgumentException;
-
 class Client
 {
     public static function Rest($username, $password, $service)
     {
         $client = new RestClient\$service;
-        
+
         $client->setUsername($username);
         $client->setPassword($password);
-        
+
         return $client;
     }
 
@@ -26,7 +24,7 @@ class Client
             'password' => $password
         );
 
-        $classmap = include __DIR__.'/classmap.php';
+        $classmap = include __DIR__.'/Soap/classmap.php';
         if (is_array($classmap)) {
             $options['classmap'] = $classmap;
         }

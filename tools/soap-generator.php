@@ -82,7 +82,7 @@ foreach($structureFiles as $structureFile) {
 $classmapValueGenerator = new ValueGenerator($classmap);
 $classmapFileGenerator = new FileGenerator;
 $classmapFileGenerator->setBody('return '.$classmapValueGenerator->generate().';');
-$classmapFileGenerator->setFilename("{$sourceDirectory}/classmap.php");
+$classmapFileGenerator->setFilename("{$sourceDirectory}/{$soapNamespace}/classmap.php");
 $classmapFileGenerator->write();
 
 passthru('php '.__DIR__.'/../vendor/fabpot/php-cs-fixer/php-cs-fixer fix '.__DIR__.'/../src/CallFire/Api/ --level=all');

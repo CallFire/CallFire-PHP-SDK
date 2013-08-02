@@ -8,7 +8,8 @@ class Client
 {
     public static function Rest($username, $password, $service)
     {
-        $client = new RestClient\$service;
+        $serviceClass = "CallFire\\Api\\Rest\\Client\\{$service}";
+        $client = new $serviceClass;
 
         $client->setUsername($username);
         $client->setPassword($password);

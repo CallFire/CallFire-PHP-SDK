@@ -5,6 +5,11 @@ use PHPUnit_Framework_TestCase as TestCase;
 
 class ClientTest extends TestCase
 {
+    public static $credentials = array(
+        'username',
+        'password'
+    );
+
     public static $restServices = array(
         'Broadcast',
         'Call',
@@ -23,25 +28,30 @@ class ClientTest extends TestCase
      * @param string $username
      * @param string $password
      * @param string $service
-     * @return void
      */
     public function testRest($username, $password, $service)
     {
         $client = Client::Rest($username, $password, $service);
-        $this->assertInstanceOf('CallFire\\Api\\Client', $client);
+        $this->assertInstanceOf("CallFire\\Api\\Rest\\Client\\{$service}", $client);
+    }
+    
+    /**
+     * Test instantiation of the Soap client
+     */
+    public function testSoap()
+    {
+        list($username, $password) = static::$credentials;
+        
+        $client = Client::Soap($username, $password);
+        $this->assertInstanceOf("CallFire\\Api\\Soap\\Client", $client);
     }
     
     public function restProvider()
     {
-        $credentials = array(
-            'username',
-            'password'
-        );
-        
         $data = array();
         
         foreach(static::$restServices as $service) {
-            $parameters = $credentials;
+            $parameters = static::$credentials;
             $parameters[] = $service;
             $data[] = $parameters;
         }

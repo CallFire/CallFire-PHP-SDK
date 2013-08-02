@@ -8,9 +8,140 @@ use DOMXPath;
 
 class ClientTest extends TestCase
 {
+    public function testGet()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+        
+        $http->expects($this->once())
+            ->method('setOption')
+            ->with(
+                CURLOPT_URL,
+                '/test'
+            );
+        $http->expects($this->once())
+            ->method('execute');
+        
+        $client->get('/test');
+    }
+    
+    public function testGetWithRequest()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+        
+        $http->expects($this->once())
+            ->method('setOption')
+            ->with(
+                CURLOPT_URL,
+                '/test?a=a&b=b&c=c'
+            );
+        $http->expects($this->once())
+            ->method('execute');
+        
+        $request = new Request\MockRequest;
+        
+        $client->get('/test', $request);
+    }
+    
+    public function testPost()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+        
+        $http->expects($this->at(0))
+            ->method('setOption')
+            ->with(CURLOPT_POST, true);
+        $http->expects($this->at(1))
+            ->method('setOption')
+            ->with(CURLOPT_URL, '/test');
+        $http->expects($this->once())
+            ->method('execute');
+        
+        $client->post('/test');
+    }
+    
+    public function testPostWithRequest()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+        
+        $http->expects($this->at(0))
+            ->method('setOption')
+            ->with(CURLOPT_POST, true);
+        $http->expects($this->at(1))
+            ->method('setOption')
+            ->with(CURLOPT_URL, '/test');
+        $http->expects($this->at(2))
+            ->method('setOption')
+            ->with(CURLOPT_POSTFIELDS, 'a=a&b=b&c=c');
+        $http->expects($this->once())
+            ->method('execute');
+        
+        $request = new Request\MockRequest;
+        
+        $client->post('/test', $request);
+    }
+    
+    public function testPostWithRequestArray()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+        
+        $http->expects($this->at(0))
+            ->method('setOption')
+            ->with(CURLOPT_POST, true);
+        $http->expects($this->at(1))
+            ->method('setOption')
+            ->with(CURLOPT_URL, '/test');
+        $http->expects($this->at(2))
+            ->method('setOption')
+            ->with(CURLOPT_POSTFIELDS, 'a=a&b=b&b=b2&b=b3&c=c');
+        $http->expects($this->once())
+            ->method('execute');
+        
+        $request = new Request\MockRequest;
+        $request->b = array(
+            'b',
+            'b2',
+            'b3'
+        );
+        
+        $client->post('/test', $request);
+    }
+    
+    public function testBuildQuery()
+    {
+        $client = $this->getMockClient();
+        $request = new Request\MockRequest;
+        
+        $query = $client->buildQuery('foo', (array) $request);
+        
+        $this->assertEquals('foo?a=a&b=b&c=c', $query);
+    }
+    
+    /**
+     * testBuildPostData
+     *
+     * @dataProvider postRequestProvider
+     */
+    public function testBuildPostData($request, $expected)
+    {
+        $client = $this->getMockClient();
+        
+        $query = $client->buildPostData((array) $request);
+        
+        $this->assertEquals($expected, $query);
+    }
+
     public function testBasePath()
     {
-        $client = $this->getClient();
+        $client = $this->getMockClient();
         $client->setBasePath('foo');
         
         $basePath = $client->getBasePath();
@@ -19,7 +150,7 @@ class ClientTest extends TestCase
     
     public function testUsername()
     {
-        $client = $this->getClient();
+        $client = $this->getMockClient();
         $client->setUsername('foo');
         
         $username = $client->getUsername();
@@ -28,7 +159,7 @@ class ClientTest extends TestCase
     
     public function testPassword()
     {
-        $client = $this->getClient();
+        $client = $this->getMockClient();
         $client->setPassword('foo');
         
         $password = $client->getPassword();
@@ -37,12 +168,12 @@ class ClientTest extends TestCase
     
     public function testHttp()
     {
-        $client = $this->getClient();
+        $client = $this->getMockClient();
         
         $http = $client->getHttp();
         $this->assertInstanceOf('CallFire\\Api\\Rest\\Http\Curl', $http);
         
-        $http = $this->getMock("CallFire\\Api\\Rest\\Http\\Request");
+        $http = $this->getMockHttp();
         $client->setHttp($http);
         
         $http = $client->getHttp();
@@ -57,7 +188,7 @@ class ClientTest extends TestCase
      */
     public function testGetUri($path, $parameters, $expected)
     {
-        $client = $this->getClient();
+        $client = $this->getMockClient();
         $result = $client->getUri($path, $parameters);
         
         $this->assertEquals($expected, $result);
@@ -89,8 +220,37 @@ class ClientTest extends TestCase
         return $data;
     }
     
-    protected function getClient()
+    public function postRequestProvider()
+    {
+        $data = array();
+        $request = new Request\MockRequest;
+        
+        $data[] = array(
+            $request,
+            'a=a&b=b&c=c'
+        );
+        
+        $arrayRequest = clone $request;
+        $arrayRequest->b = array(
+            'b',
+            'b2',
+            'b3'
+        );
+        $data[] = array(
+            $arrayRequest,
+            'a=a&b=b&b=b2&b=b3&c=c'
+        );
+        
+        return $data;
+    }
+    
+    protected function getMockClient()
     {
         return $this->getMockForAbstractClass('CallFire\\Api\\Rest\\AbstractClient');
+    }
+    
+    protected function getMockHttp()
+    {
+        return $this->getMock("CallFire\\Api\\Rest\\Http\\Request");
     }
 }

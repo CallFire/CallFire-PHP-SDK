@@ -2,11 +2,15 @@
     "require-dev": {
         "zendframework/zend-stdlib": "~2.2.1",
         "zendframework/zend-code": "~2.2.1",
-        "fabpot/php-cs-fixer": "v0.2.0"
+        "fabpot/php-cs-fixer": "v0.2.0",
+        "phpunit/phpunit": "~3.7.22"
     },
     "autoload": {
         "psr-0": {
             "CallFire": "src/"
-        }
+        },
+        "classmap": [
+            "tests/"
+        ]
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace CallFire\Api\Rest;
 
-use AbstractRequest;
+use CallFire\Api\Rest\Request as AbstractRequest;
 
 abstract class AbstractClient
 {
@@ -13,26 +13,72 @@ abstract class AbstractClient
 
     protected $http;
 
-    public function get($uri, AbstractRequest $request)
+    public function get($uri, AbstractRequest $request = null)
     {
         $http = $this->getHttpClone();
-
-        $queryParameters = http_build_query($request->getQuery());
-        $requestUri = "{$uri}?{$queryParameters}";
+        
+        if($request) {
+            $requestUri = $this->buildQuery($uri, $request->getQuery());
+        } else {
+            $requestUri = $uri;
+        }
 
         $http->setOption(CURLOPT_URL, $requestUri);
 
         return $http->execute();
     }
 
-    public function post($uri, AbstractRequest $request)
+    public function post($uri, AbstractRequest $request = null)
     {
-
+        $http = $this->getHttpClone();
+        
+        $http->setOption(CURLOPT_POST, true);
+        $http->setOption(CURLOPT_URL, $uri);
+        if($request) {
+            $http->setOption(CURLOPT_POSTFIELDS, $this->buildPostData($request->getQuery()));
+        }
+        
+        return $http->execute();
     }
 
-    public function put($uri, AbstractRequest $request)
+    public function put($uri, AbstractRequest $request = null)
     {
-
+        $http = $this->getHttpClone();
+        
+        $http->setOption(CURLOPT_CUSTOMREQUEST, 'PUT');
+        $http->setOption(CURLOPT_URL, $uri);
+        if($request) {
+            $http->setOption(CURLOPT_POSTFIELDS, $this->buildPostData($request->getQuery()));
+        }
+        
+        return $http->execute();
+    }
+    
+    public function buildQuery($uri, $parameters) {
+        $queryParameters = http_build_query($parameters);
+        return "{$uri}?{$queryParameters}";
+    }
+    
+    public function buildPostData($parameters) {
+        $data = array();
+        foreach($parameters as $key => $value) {
+            if(is_scalar($value)) {
+                $data[] = implode("=", array(
+                    rawurlencode($key),
+                    rawurlencode($value)
+                ));
+            } elseif(is_array($value)) {
+                foreach($value as $innerValue) {
+                    $data[] = implode("=", array(
+                        rawurlencode($key),
+                        rawurlencode($innerValue)
+                    ));
+                }
+            }
+        }
+        $data = implode("&", $data);
+        
+        return $data;
     }
 
     public function getBasePath()

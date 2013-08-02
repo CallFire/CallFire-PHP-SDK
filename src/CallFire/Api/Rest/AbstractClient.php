@@ -10,20 +10,20 @@ abstract class AbstractClient
     protected $username;
 
     protected $password;
-    
+
     protected $curl;
 
     public function get($uri, AbstractRequest $request)
     {
         $curl = $this->getCurlClone();
-        
+
         $queryParameters = http_build_query($request->getQuery());
         $requestUri = "{$uri}?{$queryParameters}";
-        
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => $requestUri
         ));
-        
+
         return curl_exec($curl);
     }
 
@@ -72,15 +72,17 @@ abstract class AbstractClient
 
         return $this;
     }
-    
+
     public function getCurlClone()
     {
         $curl = $this->getCurl();
+
         return curl_copy_handle($curl);
     }
-    
-    public function getCurl() {
-        if($this->curl) {
+
+    public function getCurl()
+    {
+        if ($this->curl) {
             $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_HEADER => false,
@@ -89,11 +91,14 @@ abstract class AbstractClient
             ));
             $this->curl = $curl;
         }
+
         return $this->curl;
     }
-    
-    public function setCurl($curl) {
+
+    public function setCurl($curl)
+    {
         $this->curl = $curl;
+
         return $this;
     }
 

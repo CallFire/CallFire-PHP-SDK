@@ -115,6 +115,75 @@ class ClientTest extends TestCase
         $client->post('/test', $request);
     }
     
+    public function testPut()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+        
+        $http->expects($this->at(0))
+            ->method('setOption')
+            ->with(CURLOPT_CUSTOMREQUEST, 'PUT');
+        $http->expects($this->at(1))
+            ->method('setOption')
+            ->with(CURLOPT_URL, '/test');
+        $http->expects($this->once())
+            ->method('execute');
+        
+        $client->put('/test');
+    }
+    
+    public function testPutWithRequest()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+        
+        $http->expects($this->at(0))
+            ->method('setOption')
+            ->with(CURLOPT_CUSTOMREQUEST, 'PUT');
+        $http->expects($this->at(1))
+            ->method('setOption')
+            ->with(CURLOPT_URL, '/test');
+        $http->expects($this->at(2))
+            ->method('setOption')
+            ->with(CURLOPT_POSTFIELDS, 'a=a&b=b&c=c');
+        $http->expects($this->once())
+            ->method('execute');
+        
+        $request = new Request\MockRequest;
+        
+        $client->put('/test', $request);
+    }
+    
+    public function testPutWithRequestArray()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+        
+        $http->expects($this->at(0))
+            ->method('setOption')
+            ->with(CURLOPT_CUSTOMREQUEST, 'PUT');
+        $http->expects($this->at(1))
+            ->method('setOption')
+            ->with(CURLOPT_URL, '/test');
+        $http->expects($this->at(2))
+            ->method('setOption')
+            ->with(CURLOPT_POSTFIELDS, 'a=a&b=b&b=b2&b=b3&c=c');
+        $http->expects($this->once())
+            ->method('execute');
+        
+        $request = new Request\MockRequest;
+        $request->b = array(
+            'b',
+            'b2',
+            'b3'
+        );
+        
+        $client->put('/test', $request);
+    }
+    
     public function testBuildQuery()
     {
         $client = $this->getMockClient();

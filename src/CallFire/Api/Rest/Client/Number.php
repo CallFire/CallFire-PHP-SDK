@@ -8,6 +8,8 @@ use CallFire\Api\Rest\Request as Request;
 class Number extends AbstractClient
 {
 
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+
     public function QueryRegions(Request\QueryRegions $QueryRegions = null)
     {
         $uri = $this->getUri('/number/regions', array());

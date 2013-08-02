@@ -1,10 +1,23 @@
 <?php
 namespace CallFire\Api;
 
+use CallFire\Api\Rest\Client as RestClient;
 use CallFire\Api\Soap\Client as SoapClient;
+
+use InvalidArgumentException;
 
 class Client
 {
+    public static function Rest($username, $password, $service)
+    {
+        $client = new RestClient\$service;
+        
+        $client->setUsername($username);
+        $client->setPassword($password);
+        
+        return $client;
+    }
+
     public static function Soap($username, $password, $version = 'SOAP_1_2', $wsdl = 'http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl')
     {
         $options = array(

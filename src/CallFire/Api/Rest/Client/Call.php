@@ -8,6 +8,8 @@ use CallFire\Api\Rest\Request as Request;
 class Call extends AbstractClient
 {
 
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+
     public function SendCall(Request\SendCall $SendCall = null)
     {
         $uri = $this->getUri('/call', array());

@@ -8,6 +8,8 @@ use CallFire\Api\Rest\Request as Request;
 class Contact extends AbstractClient
 {
 
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+
     public function CreateContactList(Request\CreateContactList $CreateContactList = null)
     {
         $uri = $this->getUri('/contact/list', array());

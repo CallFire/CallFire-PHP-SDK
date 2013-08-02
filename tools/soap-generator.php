@@ -15,13 +15,13 @@ $extendedClass = "SoapClient";
 $wsdlURL = "http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl";
 
 $requestNamespacePart = SoapGenerator::REQUEST_NAMESPACE_ALIAS;
-$requestNamespace = "{$namespace}\\{$requestNamespacePart}";
+$requestNamespace = "{$namespace}\\{$soapNamespace}\\{$requestNamespacePart}";
 
 $responseNamespacePart = SoapGenerator::RESPONSE_NAMESPACE_ALIAS;
-$responseNamespace = "{$namespace}\\{$responseNamespacePart}";
+$responseNamespace = "{$namespace}\\{$soapNamespace}\\{$responseNamespacePart}";
 
 $structureNamespacePart = SoapGenerator::STRUCTURE_NAMESPACE_ALIAS;
-$structureNamespace = "{$namespace}\\{$structureNamespacePart}";
+$structureNamespace = "{$namespace}\\{$soapNamespace}\\{$structureNamespacePart}";
 
 $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $namespace);
 
@@ -45,14 +45,14 @@ if(!is_dir($sourceDirectory)) {
 if(!is_dir("{$sourceDirectory}/{$soapNamespace}")) {
     mkdir("{$sourceDirectory}/{$soapNamespace}", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$requestNamespacePart}")) {
-    mkdir("{$sourceDirectory}/{$requestNamespacePart}", 0777, true);
+if(!is_dir("{$sourceDirectory}/{$soapNamespace}/{$requestNamespacePart}")) {
+    mkdir("{$sourceDirectory}/{$soapNamespace}/{$requestNamespacePart}", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$responseNamespacePart}")) {
-    mkdir("{$sourceDirectory}/{$responseNamespacePart}", 0777, true);
+if(!is_dir("{$sourceDirectory}/{$soapNamespace}/{$responseNamespacePart}")) {
+    mkdir("{$sourceDirectory}/{$soapNamespace}/{$responseNamespacePart}", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$structureNamespacePart}")) {
-    mkdir("{$sourceDirectory}/{$structureNamespacePart}", 0777, true);
+if(!is_dir("{$sourceDirectory}/{$soapNamespace}/{$structureNamespacePart}")) {
+    mkdir("{$sourceDirectory}/{$soapNamespace}/{$structureNamespacePart}", 0777, true);
 }
 
 foreach($classFiles as $classFile) {
@@ -73,7 +73,7 @@ foreach($structureFiles as $structureFile) {
         $type = $structureNamespacePart;
         $structureFile->getClass()->setNamespaceName($structureNamespace);
     }
-    $structureFile->setFilename("{$sourceDirectory}/{$type}/{$structureFile->getClass()->getName()}.php");
+    $structureFile->setFilename("{$sourceDirectory}/{$soapNamespace}/{$type}/{$structureFile->getClass()->getName()}.php");
     $structureFile->write();
     
     $classmap[$structureFile->getClass()->getName()] = $structureFile->getClass()->getNamespaceName().'\\'.$structureFile->getClass()->getName();

@@ -8,6 +8,8 @@ use CallFire\Api\Rest\Request as Request;
 class Label extends AbstractClient
 {
 
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+
     public function QueryLabels(Request\QueryLabels $QueryLabels = null)
     {
         $uri = $this->getUri('/label', array());

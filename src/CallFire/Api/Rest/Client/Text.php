@@ -8,6 +8,8 @@ use CallFire\Api\Rest\Request as Request;
 class Text extends AbstractClient
 {
 
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+
     public function SendText(Request\SendText $SendText = null)
     {
         $uri = $this->getUri('/text', array());

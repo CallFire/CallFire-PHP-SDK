@@ -8,6 +8,8 @@ use CallFire\Api\Rest\Request as Request;
 class Broadcast extends AbstractClient
 {
 
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+
     public function CreateBroadcast(Request\CreateBroadcast $CreateBroadcast = null)
     {
         $uri = $this->getUri('/broadcast', array());

@@ -22,6 +22,12 @@ class Service
         $description = $this->getDescription();
         
         $classGenerator->setName($description->getName());
+        
+        $basePathProperty = new CodeGenerator\PropertyGenerator;
+        $basePathProperty->setName('basePath');
+        $basePathProperty->setDefaultValue($description->getBasePath());
+        $classGenerator->addPropertyFromGenerator($basePathProperty);
+        
         foreach($description->getApis() as $api) {
             foreach($api->getOperations() as $operation) {
                 $function = $this->generateFunction($api, $operation);

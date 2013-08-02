@@ -3,8 +3,8 @@
 namespace CallFire\Api\Soap;
 
 use SoapClient;
-use CallFire\Api\Request as Request;
-use CallFire\Api\Response as Response;
+use CallFire\Api\Soap\Request as Request;
+use CallFire\Api\Soap\Response as Response;
 
 class Client extends SoapClient
 {
@@ -268,10 +268,10 @@ class Client extends SoapClient
     }
 
     /**
-     * @param  Request\Query                 $Request
+     * @param  Request\QueryAutoReplies      $Request
      * @return Response\AutoReplyQueryResult
      */
-    public function QueryAutoReplies(Request\Query $Request)
+    public function QueryAutoReplies(Request\QueryAutoReplies $Request)
     {
         $method = __FUNCTION__;
 

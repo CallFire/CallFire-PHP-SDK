@@ -1,5 +1,5 @@
 <?php
-namespace CallFire\Api\Rest\Http\Request;
+namespace CallFire\Api\Rest\Http;
 
 interface Request
 {

@@ -55,6 +55,7 @@ abstract class AbstractClient
     public function setUsername($username)
     {
         $this->username = $username;
+        $this->updateCredentials();
 
         return $this;
     }
@@ -67,6 +68,7 @@ abstract class AbstractClient
     public function setPassword($password)
     {
         $this->password = $password;
+        $this->updateCredentials();
 
         return $this;
     }
@@ -79,18 +81,13 @@ abstract class AbstractClient
     
     public function getHttp() {
         if(!$this->http) {
-            $http = new Http\Curl;
-            $http->setOption(CURLOPT_USERPWD, implode(":", array(
-                $this->getUsername(),
-                $this->getPassword()
-            )));
-            
-            $this->http = $http;
+            $this->http = new Http\Curl;
+            $this->updateCredentials();
         }
         return $this->http;
     }
     
-    public function setHttp($http) {
+    public function setHttp(Http\Request $http) {
         $this->http = $http;
         return $this;
     }
@@ -100,5 +97,15 @@ abstract class AbstractClient
         $uri = $this->getBasePath().vsprintf($path, $parameters);
 
         return $uri;
+    }
+    
+    protected function updateCredentials()
+    {
+        if($this->http) {
+            $this->http->setOption(CURLOPT_USERPWD, implode(":", array(
+                $this->getUsername(),
+                $this->getPassword()
+            )));
+        }
     }
 }

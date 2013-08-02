@@ -27,7 +27,7 @@ class Curl implements Request
     
     public function getCurl()
     {
-        if ($this->curl) {
+        if (!$this->curl) {
             $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_HEADER => false,

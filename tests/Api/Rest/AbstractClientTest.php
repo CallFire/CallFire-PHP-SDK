@@ -8,6 +8,48 @@ use DOMXPath;
 
 class ClientTest extends TestCase
 {
+    public function testBasePath()
+    {
+        $client = $this->getClient();
+        $client->setBasePath('foo');
+        
+        $basePath = $client->getBasePath();
+        $this->assertEquals('foo', $basePath);
+    }
+    
+    public function testUsername()
+    {
+        $client = $this->getClient();
+        $client->setUsername('foo');
+        
+        $username = $client->getUsername();
+        $this->assertEquals('foo', $username);
+    }
+    
+    public function testPassword()
+    {
+        $client = $this->getClient();
+        $client->setPassword('foo');
+        
+        $password = $client->getPassword();
+        $this->assertEquals('foo', $password);
+    }
+    
+    public function testHttp()
+    {
+        $client = $this->getClient();
+        
+        $http = $client->getHttp();
+        $this->assertInstanceOf('CallFire\\Api\\Rest\\Http\Curl', $http);
+        
+        $http = $this->getMock("CallFire\\Api\\Rest\\Http\\Request");
+        $client->setHttp($http);
+        
+        $http = $client->getHttp();
+        $this->assertInstanceOf('CallFire\\Api\\Rest\\Http\\Request', $http);
+        $this->assertNotInstanceOf('CallFire\\Api\\Rest\\Http\Curl', $http);
+    }
+
     /**
      * Test construction of parametrized URIs
      * 
@@ -15,7 +57,7 @@ class ClientTest extends TestCase
      */
     public function testGetUri($path, $parameters, $expected)
     {
-        $client = $this->getMockForAbstractClass('CallFire\\Api\\Rest\\AbstractClient');
+        $client = $this->getClient();
         $result = $client->getUri($path, $parameters);
         
         $this->assertEquals($expected, $result);
@@ -45,5 +87,10 @@ class ClientTest extends TestCase
         }
         
         return $data;
+    }
+    
+    protected function getClient()
+    {
+        return $this->getMockForAbstractClass('CallFire\\Api\\Rest\\AbstractClient');
     }
 }

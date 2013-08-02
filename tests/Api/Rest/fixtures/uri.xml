@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fixture>
+    <uri>
+        <path>/broadcast/%s</path>
+        <parameters>
+            <parameter>5</parameter>
+        </parameters>
+        <result>/broadcast/5</result>
+    </uri>
+    <uri>
+        <path>/broadcast/%s</path>
+        <parameters>
+            <parameter>500000000</parameter>
+        </parameters>
+        <result>/broadcast/500000000</result>
+    </uri>
+    <uri>
+        <path>/broadcast/%s/control</path>
+        <parameters>
+            <parameter>5</parameter>
+        </parameters>
+        <result>/broadcast/5/control</result>
+    </uri>
+    <uri>
+        <path>/broadcast/%s/%s</path>
+        <parameters>
+            <parameter>5</parameter>
+            <parameter>foo</parameter>
+        </parameters>
+        <result>/broadcast/5/foo</result>
+    </uri>
+</fixture>

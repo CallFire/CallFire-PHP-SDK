@@ -11,20 +11,18 @@ abstract class AbstractClient
 
     protected $password;
 
-    protected $curl;
+    protected $http;
 
     public function get($uri, AbstractRequest $request)
     {
-        $curl = $this->getCurlClone();
+        $http = $this->getHttpClone();
 
         $queryParameters = http_build_query($request->getQuery());
         $requestUri = "{$uri}?{$queryParameters}";
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $requestUri
-        ));
+        $http->setOption(CURLOPT_URL, $requestUri);
 
-        return curl_exec($curl);
+        return $http->execute();
     }
 
     public function post($uri, AbstractRequest $request)
@@ -72,37 +70,32 @@ abstract class AbstractClient
 
         return $this;
     }
-
-    public function getCurlClone()
+    
+    public function getHttpClone()
     {
-        $curl = $this->getCurl();
-
-        return curl_copy_handle($curl);
+        $http = $this->getHttp();
+        return clone $http;
     }
-
-    public function getCurl()
-    {
-        if ($this->curl) {
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_HEADER => false,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_USERPWD => implode(":", array($this->getUsername(), $this->getPassword()))
-            ));
-            $this->curl = $curl;
+    
+    public function getHttp() {
+        if(!$this->http) {
+            $http = new Http\Curl;
+            $http->setOption(CURLOPT_USERPWD, implode(":", array(
+                $this->getUsername(),
+                $this->getPassword()
+            )));
+            
+            $this->http = $http;
         }
-
-        return $this->curl;
+        return $this->http;
     }
-
-    public function setCurl($curl)
-    {
-        $this->curl = $curl;
-
+    
+    public function setHttp($http) {
+        $this->http = $http;
         return $this;
     }
 
-    protected function getUri($path, $parameters = array())
+    public function getUri($path, $parameters = array())
     {
         $uri = $this->getBasePath().vsprintf($path, $parameters);
 

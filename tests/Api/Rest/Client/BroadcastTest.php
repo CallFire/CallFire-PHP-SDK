@@ -12,6 +12,6 @@ class BroadcastTest extends TestCase
     
     public function testQueryBroadcasts()
     {
-    
+        
     }
 }

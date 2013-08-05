@@ -1,4 +1,7 @@
 {
+    "require": {
+        "zendframework/zend-stdlib": "~2.2.2"
+    },
     "require-dev": {
         "zendframework/zend-stdlib": "~2.2.1",
         "zendframework/zend-code": "~2.2.1",

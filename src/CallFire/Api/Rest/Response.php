@@ -8,6 +8,7 @@ use UnexpectedValueException;
 abstract class Response
 {
     protected static $namespaces = array(
+        '_' => 'http://api.callfire.com/data',
         'r' => 'http://api.callfire.com/resource'
     );
 
@@ -40,7 +41,7 @@ abstract class Response
         return $document;
     }
     
-    protected static function getXPath(DOMDocument $document)
+    protected static function createXPath(DOMDocument $document)
     {
         $xpath = new DOMXPath($document);
         foreach(static::$namespaces as $prefix => $uri) {
@@ -49,4 +50,6 @@ abstract class Response
         
         return $xpath;
     }
+    
+    abstract public function loadXml(DOMDocument $document);
 }

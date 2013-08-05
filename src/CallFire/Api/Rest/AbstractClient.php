@@ -15,15 +15,17 @@ abstract class AbstractClient
     protected $password;
 
     protected $http;
-    
-    public static request($type)
+
+    public static function request($type)
     {
         $requestClass = "CallFire\\Api\\Rest\\Request\\{$type}";
+
         return new $requestClass;
     }
-    
-    public static response($data, $type = 'xml') {
-        switch($type) {
+
+    public static function response($data, $type = 'xml')
+    {
+        switch ($type) {
             case 'xml':
                 return AbstractResponse::fromXml($data);
             case 'json':
@@ -35,8 +37,8 @@ abstract class AbstractClient
     public function get($uri, AbstractRequest $request = null)
     {
         $http = $this->getHttpClone();
-        
-        if($request) {
+
+        if ($request) {
             $requestUri = $this->buildQuery($uri, $request->getQuery());
         } else {
             $requestUri = $uri;
@@ -50,44 +52,47 @@ abstract class AbstractClient
     public function post($uri, AbstractRequest $request = null)
     {
         $http = $this->getHttpClone();
-        
+
         $http->setOption(CURLOPT_POST, true);
         $http->setOption(CURLOPT_URL, $uri);
-        if($request) {
+        if ($request) {
             $http->setOption(CURLOPT_POSTFIELDS, $this->buildPostData($request->getQuery()));
         }
-        
+
         return $http->execute();
     }
 
     public function put($uri, AbstractRequest $request = null)
     {
         $http = $this->getHttpClone();
-        
+
         $http->setOption(CURLOPT_CUSTOMREQUEST, 'PUT');
         $http->setOption(CURLOPT_URL, $uri);
-        if($request) {
+        if ($request) {
             $http->setOption(CURLOPT_POSTFIELDS, $this->buildPostData($request->getQuery()));
         }
-        
+
         return $http->execute();
     }
-    
-    public function buildQuery($uri, $parameters) {
+
+    public function buildQuery($uri, $parameters)
+    {
         $queryParameters = http_build_query($parameters);
+
         return "{$uri}?{$queryParameters}";
     }
-    
-    public function buildPostData($parameters) {
+
+    public function buildPostData($parameters)
+    {
         $data = array();
-        foreach($parameters as $key => $value) {
-            if(is_scalar($value)) {
+        foreach ($parameters as $key => $value) {
+            if (is_scalar($value)) {
                 $data[] = implode("=", array(
                     rawurlencode($key),
                     rawurlencode($value)
                 ));
-            } elseif(is_array($value)) {
-                foreach($value as $innerValue) {
+            } elseif (is_array($value)) {
+                foreach ($value as $innerValue) {
                     $data[] = implode("=", array(
                         rawurlencode($key),
                         rawurlencode($innerValue)
@@ -96,7 +101,7 @@ abstract class AbstractClient
             }
         }
         $data = implode("&", $data);
-        
+
         return $data;
     }
 
@@ -137,23 +142,28 @@ abstract class AbstractClient
 
         return $this;
     }
-    
+
     public function getHttpClone()
     {
         $http = $this->getHttp();
+
         return clone $http;
     }
-    
-    public function getHttp() {
-        if(!$this->http) {
+
+    public function getHttp()
+    {
+        if (!$this->http) {
             $this->http = new Http\Curl;
             $this->updateCredentials();
         }
+
         return $this->http;
     }
-    
-    public function setHttp(Http\Request $http) {
+
+    public function setHttp(Http\Request $http)
+    {
         $this->http = $http;
+
         return $this;
     }
 
@@ -163,10 +173,10 @@ abstract class AbstractClient
 
         return $uri;
     }
-    
+
     protected function updateCredentials()
     {
-        if($this->http) {
+        if ($this->http) {
             $this->http->setOption(CURLOPT_USERPWD, implode(":", array(
                 $this->getUsername(),
                 $this->getPassword()

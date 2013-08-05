@@ -15,13 +15,13 @@ $restNamespace = "Rest";
 $extendedClass = "AbstractClient";
 $swaggerUrl = 'https://www.callfire.com/api/1.1/wsdl/swagger';
 
-$requestNamespacePart = SoapGenerator::REQUEST_NAMESPACE_ALIAS;
+$requestNamespacePart = RestGenerator::REQUEST_NAMESPACE_ALIAS;
 $requestNamespace = "{$namespace}\\Rest\\{$requestNamespacePart}";
 
-$responseNamespacePart = SoapGenerator::RESPONSE_NAMESPACE_ALIAS;
+$responseNamespacePart = RestGenerator::RESPONSE_NAMESPACE_ALIAS;
 $responseNamespace = "{$namespace}\\Rest\\{$responseNamespacePart}";
 
-$structureNamespacePart = SoapGenerator::STRUCTURE_NAMESPACE_ALIAS;
+$structureNamespacePart = RestGenerator::STRUCTURE_NAMESPACE_ALIAS;
 $structureNamespace = "{$namespace}\\Rest\\{$structureNamespacePart}";
 
 $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $namespace);
@@ -56,6 +56,7 @@ foreach($classFiles as $classFile) {
 
 foreach($requestClassFiles as $requestClassFile) {
     $requestClassFile->getClass()->setNamespacename("{$namespace}\\{$restNamespace}\\Request");
+    $requestClassFile->getClass()->addUse("{$namespace}\\{$restNamespace}\\Request", RestGenerator::ABSTRACT_REQUEST_ALIAS);
     $requestClassFile->setFilename("{$sourceDirectory}/{$restNamespace}/Request/{$requestClassFile->getClass()->getName()}.php");
     $requestClassFile->write();
 }

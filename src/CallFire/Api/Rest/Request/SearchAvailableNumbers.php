@@ -2,6 +2,8 @@
 
 namespace CallFire\Api\Rest\Request;
 
+use CallFire\Api\Rest\Request as AbstractRequest;
+
 class SearchAvailableNumbers extends AbstractRequest
 {
 

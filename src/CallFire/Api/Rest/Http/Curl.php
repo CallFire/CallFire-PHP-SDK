@@ -5,26 +5,31 @@ class Curl implements Request
 {
     protected $curl;
 
-    public function setOption($name, $value) {
+    public function setOption($name, $value)
+    {
         curl_setopt($this->getCurl(), $name, $value);
     }
-    
-    public function setOptions($options) {
+
+    public function setOptions($options)
+    {
         curl_setopt_array($this->getCurl(), $options);
     }
 
-    public function execute() {
+    public function execute()
+    {
         return curl_exec($this->getCurl());
     }
 
-    public function getInfo($name) {
+    public function getInfo($name)
+    {
         return curl_getinfo($this->getCurl(), $name);
     }
 
-    public function close() {
+    public function close()
+    {
         curl_close($this->getCurl());
     }
-    
+
     public function getCurl()
     {
         if (!$this->curl) {
@@ -45,7 +50,7 @@ class Curl implements Request
 
         return $this;
     }
-    
+
     public function __clone()
     {
         $this->curl = curl_copy_handle($this->curl);

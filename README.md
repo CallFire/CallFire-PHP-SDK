@@ -16,7 +16,11 @@ require 'vendor/autoload.php';
 $client = CallFire\Api\Client::Rest("<api-login>", "<api-password>", "Broadcast");
 
 $request = new Request\QueryBroadcasts;
-$broadcasts = $client->QueryBroadcasts($request);
+$response = $client->QueryBroadcasts($request);
 
-var_dump($broadcasts);
+$broadcasts = $client::response($response);
+
+foreach($broadcasts as $broadcast) {
+    var_dump($broadcast);
+}
 ```

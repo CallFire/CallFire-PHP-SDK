@@ -1,4 +1,11 @@
 {
+    "name": "callfire/php-sdk",
+    "authors": [
+        {
+            "name": "Justin Martin",
+            "email": "justin@roave.com"
+        }
+    ],
     "require": {
         "zendframework/zend-stdlib": "~2.2.2"
     },

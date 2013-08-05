@@ -11,9 +11,10 @@ use DOMDocument;
 use DOMXPath;
 use DOMNode;
 use LogicException;
-use Iterator;
+use ArrayIterator;
+use IteratorAggregate;
 
-class ResourceList extends AbstractResponse implements Iterator
+class ResourceList extends AbstractResponse implements IteratorAggregate
 {
     protected $resources = array();
     
@@ -24,8 +25,6 @@ class ResourceList extends AbstractResponse implements Iterator
     protected $domHydrator;
     
     protected $queryMap;
-    
-    protected $iteratorValid = false;
 
     public static function fromXml(DOMDocument $document)
     {
@@ -113,32 +112,9 @@ class ResourceList extends AbstractResponse implements Iterator
         return $resource;
     }
     
-    public function current()
+    public function getIterator()
     {
-        return current($this->resources);
-    }
-    
-    public function key()
-    {
-        return key($this->resources);
-    }
-    
-    public function next()
-    {
-        $next = next($this->resources);
-        $this->iteratorValid = (bool) $next;
-        
-        return $next;
-    }
-    
-    public function rewind()
-    {
-        return reset($this->resources);
-    }
-    
-    public function valid()
-    {
-        return $this->iteratorValid;
+        return new ArrayIterator($this->getResources());
     }
     
     public function getResources() {
@@ -147,13 +123,11 @@ class ResourceList extends AbstractResponse implements Iterator
     
     public function setResources($resources) {
         $this->resources = $resources;
-        $this->iteratorValid = !empty($resources);
         return $this;
     }
     
     public function addResource(Resource\AbstractResource $resource) {
         $this->resources[] = $resource;
-        $this->iteratorValid = true;
         return $this;
     }
     

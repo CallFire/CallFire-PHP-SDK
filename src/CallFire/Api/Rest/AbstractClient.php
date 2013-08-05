@@ -2,6 +2,9 @@
 namespace CallFire\Api\Rest;
 
 use CallFire\Api\Rest\Request as AbstractRequest;
+use CallFire\Api\Rest\Response as AbstractResponse;
+
+use InvalidArgumentException;
 
 abstract class AbstractClient
 {
@@ -12,6 +15,22 @@ abstract class AbstractClient
     protected $password;
 
     protected $http;
+    
+    public static request($type)
+    {
+        $requestClass = "CallFire\\Api\\Rest\\Request\\{$type}";
+        return new $requestClass;
+    }
+    
+    public static response($data, $type = 'xml') {
+        switch($type) {
+            case 'xml':
+                return AbstractResponse::fromXml($data);
+            case 'json':
+                return AbstractResponse::fromJson($data);
+        }
+        throw new InvalidArgumentException("Type must be 'xml' or 'json'");
+    }
 
     public function get($uri, AbstractRequest $request = null)
     {

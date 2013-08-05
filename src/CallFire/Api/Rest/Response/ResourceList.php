@@ -107,8 +107,6 @@ class ResourceList extends AbstractResponse
             ), $resource);
         }
         
-        var_dump($resource);
-        
         return $resource;
     }
     
@@ -176,9 +174,8 @@ class ResourceList extends AbstractResponse
     
     private static function loadQueryMap()
     {
-        $queryMap = file_get_contents(dirname(__DIR__).'/querymap.json');
+        $queryMap = include dirname(__DIR__).'/querymap.php';
         if($queryMap) {
-            $queryMap = json_decode($queryMap, true);
             return $queryMap;
         }
         return null;

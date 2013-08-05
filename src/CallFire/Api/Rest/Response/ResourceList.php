@@ -43,7 +43,7 @@ class ResourceList extends AbstractResponse
             $contextNode = $xpath->query('/r:ResourceList')->item(0);
         }
         
-        $resourceNodes = $xpath->query('//*', $contextNode);
+        $resourceNodes = $xpath->query('*', $contextNode);
         
         foreach($resourceNodes as $resourceNode) {
             $resource = $this->parseResourceNode($resourceNode);
@@ -92,7 +92,7 @@ class ResourceList extends AbstractResponse
         $resourceData = $hydrator->extract($resourceNode);
         $resource = $methodsHydrator->hydrate($resourceData, new $resourceClassName);
         foreach($childResourceMap as $key => $query) {
-            $childResourceNode = $xpath->query($query)->item(0);
+            $childResourceNode = $xpath->query($query, $resourceNode)->item(0);
             if(!$childResourceNode) {
                 continue;
             }

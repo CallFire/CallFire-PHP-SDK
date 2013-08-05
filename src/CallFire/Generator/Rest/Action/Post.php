@@ -10,19 +10,19 @@ class Post extends AbstractAction
     protected function getBody($routeParams = array(), $queryParameter = null)
     {
         list($route, $segments) = $this->getRoute();
-        
+
         $routeParamsList = array();
-        foreach($routeParams as $parameter) {
+        foreach ($routeParams as $parameter) {
             $routeParamsList[] = '$'.$parameter->getName();
         }
         $routeParamsList = implode(', ', $routeParamsList);
-        
-        if($queryParameter instanceof CodeGenerator\ParameterGenerator) {
+
+        if ($queryParameter instanceof CodeGenerator\ParameterGenerator) {
             $queryParameterString = ', $'.$queryParameter->getName();
         } else {
             $queryParameterString = '';
         }
-        
+
         $body = <<<BODY
 \$uri = \$this->getUri('{$route}', array({$routeParamsList}));
 return \$this->post(\$uri{$queryParameterString});

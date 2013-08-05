@@ -15,24 +15,24 @@ class Description
      * @var string
      */
     protected $swaggerVersion;
-    
+
     /**
      * Base URI of the API
-     * 
+     *
      * @var string
      */
     protected $basePath;
-    
+
     /**
      * Path of the API action relative to the base URI
-     * 
+     *
      * @var string
      */
     protected $resourcePath;
-    
+
     /**
      * Array of action descriptions
-     * 
+     *
      * @var Api[]
      */
     protected $apis = array();
@@ -59,7 +59,7 @@ class Description
 
         return $description;
     }
-    
+
     /**
      * Derives a name for the service from its resource path
      *
@@ -68,7 +68,7 @@ class Description
     public function getName()
     {
         $name = ucfirst(str_replace("/", "", $this->getResourcePath()));
-        
+
         return $name;
     }
 

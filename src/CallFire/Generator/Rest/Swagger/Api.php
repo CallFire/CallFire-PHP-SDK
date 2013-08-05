@@ -7,21 +7,21 @@ class Api
 {
     /**
      * Path of the action relative to the base
-     * 
+     *
      * @var string
      */
     protected $path;
-    
+
     /**
      * Description of the action
-     * 
+     *
      * @var string
      */
     protected $description;
 
     /**
      * Array of operation descriptions
-     * 
+     *
      * @var Operation[]
      */
     protected $operations = array();

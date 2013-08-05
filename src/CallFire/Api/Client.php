@@ -1,7 +1,6 @@
 <?php
 namespace CallFire\Api;
 
-use CallFire\Api\Rest\Client as RestClient;
 use CallFire\Api\Soap\Client as SoapClient;
 
 class Client

@@ -10,37 +10,37 @@ use Zend\Code\Generator as CodeGenerator;
 class Service
 {
     protected $classGenerator;
-    
+
     protected $description;
-    
+
     protected $requestClasses = array();
-    
+
     public function generate()
     {
         $classGenerator = $this->getClassGenerator();
-        
+
         $description = $this->getDescription();
-        
+
         $classGenerator->setName($description->getName());
-        
+
         $basePathProperty = new CodeGenerator\PropertyGenerator;
         $basePathProperty->setName('basePath');
         $basePathProperty->setDefaultValue($description->getBasePath());
         $classGenerator->addPropertyFromGenerator($basePathProperty);
-        
-        foreach($description->getApis() as $api) {
-            foreach($api->getOperations() as $operation) {
+
+        foreach ($description->getApis() as $api) {
+            foreach ($api->getOperations() as $operation) {
                 $function = $this->generateFunction($api, $operation);
-                if($function instanceof CodeGenerator\MethodGenerator) {
+                if ($function instanceof CodeGenerator\MethodGenerator) {
                     $classGenerator->addMethodFromGenerator($function);
                 }
             }
         }
     }
-    
+
     protected function generateFunction(SwaggerApi $api, SwaggerOperation $operation)
     {
-        switch($operation->getHttpMethod()) {
+        switch ($operation->getHttpMethod()) {
             case SwaggerOperation::METHOD_GET:
                 $function = new Action\Get;
                 break;
@@ -53,50 +53,62 @@ class Service
             default:
                 return false;
         }
-    
+
         $function->setApi($api);
         $function->setOperation($operation);
         $function->generate();
-        
-        if(($requestClass = $function->getParameterClassGenerator()) && count($requestClass->getProperties())) {
+
+        if (($requestClass = $function->getParameterClassGenerator()) && count($requestClass->getProperties())) {
             $this->addRequestClass($requestClass);
         }
-        
+
         return $function->getMethodGenerator();
     }
-    
-    public function getClassGenerator() {
-        if(!$this->classGenerator) {
+
+    public function getClassGenerator()
+    {
+        if (!$this->classGenerator) {
             $this->classGenerator = new CodeGenerator\ClassGenerator;
         }
+
         return $this->classGenerator;
     }
-    
-    public function setClassGenerator(CodeGenerator\ClassGenerator $classGenerator) {
+
+    public function setClassGenerator(CodeGenerator\ClassGenerator $classGenerator)
+    {
         $this->classGenerator = $classGenerator;
+
         return $this;
     }
-    
-    public function getDescription() {
+
+    public function getDescription()
+    {
         return $this->description;
     }
-    
-    public function setDescription(SwaggerDescription $description) {
+
+    public function setDescription(SwaggerDescription $description)
+    {
         $this->description = $description;
+
         return $this;
     }
-    
-    public function getRequestClasses() {
+
+    public function getRequestClasses()
+    {
         return $this->requestClasses;
     }
-    
-    public function setRequestClasses($requestClasses) {
+
+    public function setRequestClasses($requestClasses)
+    {
         $this->requestClasses = $requestClasses;
+
         return $this;
     }
-    
-    public function addRequestClass($requestClass) {
+
+    public function addRequestClass($requestClass)
+    {
         $this->requestClasses[] = $requestClass;
+
         return $this;
     }
 }

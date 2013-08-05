@@ -15,7 +15,7 @@ abstract class Response
     public static function fromXml($document)
     {
         $document = static::getXmlDocument($document);
-                
+
         switch ($document->firstChild->nodeName) {
             case 'r:ResourceList':
                 return Response\ResourceList::fromXml($document);
@@ -28,7 +28,7 @@ abstract class Response
     {
         throw new UnexpectedValueException('JSON is not yet supported');
     }
-    
+
     protected static function getXmlDocument($document)
     {
         if (is_string($document)) {
@@ -37,19 +37,19 @@ abstract class Response
             $document->loadXML($data);
             unset($data);
         }
-        
+
         return $document;
     }
-    
+
     protected static function createXPath(DOMDocument $document)
     {
         $xpath = new DOMXPath($document);
-        foreach(static::$namespaces as $prefix => $uri) {
+        foreach (static::$namespaces as $prefix => $uri) {
             $xpath->registerNamespace($prefix, $uri);
         }
-        
+
         return $xpath;
     }
-    
+
     abstract public function loadXml(DOMDocument $document);
 }

@@ -1,74 +1,95 @@
 <?php
 namespace CallFire\Common\Resource;
 
-class CallRecord extends AbstractResource {
-	protected $result;
-	protected $finishTime;
-	protected $billedAmount;
-	protected $questionResponses;
-	protected $answerTime;
-	protected $duration;
-	
-	public function getResult() {
-		return $this->result;
-	}
+class CallRecord extends AbstractResource
+{
+    protected $result;
+    protected $finishTime;
+    protected $billedAmount;
+    protected $questionResponses;
+    protected $answerTime;
+    protected $duration;
 
-	public function setResult($result) {
-		$this->result = $result;
-		return $this;
-	}
+    public function getResult()
+    {
+        return $this->result;
+    }
 
-	public function getFinishTime() {
-		return $this->finishTime;
-	}
+    public function setResult($result)
+    {
+        $this->result = $result;
 
-	public function setFinishTime($finishTime) {
-		$this->finishTime = $finishTime;
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getBilledAmount() {
-		return $this->billedAmount;
-	}
+    public function getFinishTime()
+    {
+        return $this->finishTime;
+    }
 
-	public function setBilledAmount($billedAmount) {
-		$this->billedAmount = $billedAmount;
-		return $this;
-	}
-	
-	public function getQuestionResponse($question) {
-		foreach($this->getQuestionResponses() as $questionResponse) {
-			if($questionResponse->getQuestion() == $question)
-				return $questionResponse->getResponse();
-		}
-		
-		return null;
-	}
+    public function setFinishTime($finishTime)
+    {
+        $this->finishTime = $finishTime;
 
-	public function getQuestionResponses() {
-		return $this->questionResponses?:array();
-	}
+        return $this;
+    }
 
-	public function setQuestionResponses($questionResponses) {
-		$this->questionResponses = $questionResponses;
-		return $this;
-	}
+    public function getBilledAmount()
+    {
+        return $this->billedAmount;
+    }
 
-	public function getAnswerTime() {
-		return $this->answerTime;
-	}
+    public function setBilledAmount($billedAmount)
+    {
+        $this->billedAmount = $billedAmount;
 
-	public function setAnswerTime($answerTime) {
-		$this->answerTime = $answerTime;
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getDuration() {
-		return $this->duration;
-	}
+    public function getQuestionResponse($question)
+    {
+        foreach ($this->getQuestionResponses() as $questionResponse) {
+            if($questionResponse->getQuestion() == $question)
 
-	public function setDuration($duration) {
-		$this->duration = $duration;
-		return $this;
-	}
+                return $questionResponse->getResponse();
+        }
+
+        return null;
+    }
+
+    public function getQuestionResponses()
+    {
+        return $this->questionResponses?:array();
+    }
+
+    public function setQuestionResponses($questionResponses)
+    {
+        $this->questionResponses = $questionResponses;
+
+        return $this;
+    }
+
+    public function getAnswerTime()
+    {
+        return $this->answerTime;
+    }
+
+    public function setAnswerTime($answerTime)
+    {
+        $this->answerTime = $answerTime;
+
+        return $this;
+    }
+
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
 }

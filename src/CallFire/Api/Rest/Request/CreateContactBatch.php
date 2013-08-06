@@ -13,6 +13,9 @@ class CreateContactBatch extends AbstractRequest
 
     public $Name = null;
 
+    /**
+     * List of E.164 11 digit numbers space seperated
+     */
     public $To = null;
 
     public $ContactListId = null;

@@ -11,8 +11,14 @@ class CreateContactList extends AbstractRequest
 
     public $Name = null;
 
+    /**
+     * List of existing contact ids
+     */
     public $ContactId = null;
 
+    /**
+     * Csv file attachment containing list of contacts or numbers
+     */
     public $File = null;
 
 }

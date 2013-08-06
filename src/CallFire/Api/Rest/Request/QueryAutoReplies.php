@@ -7,10 +7,19 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class QueryAutoReplies extends AbstractRequest
 {
 
+    /**
+     * Max number of results to return limited to 1000 (default: 1000)
+     */
     public $MaxResults = null;
 
+    /**
+     * Start of next result set (default: 0)
+     */
     public $FirstResult = null;
 
+    /**
+     * E.164 11 digit number
+     */
     public $Number = null;
 
 }

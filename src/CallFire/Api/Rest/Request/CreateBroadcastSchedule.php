@@ -11,14 +11,31 @@ class CreateBroadcastSchedule extends AbstractRequest
 
     public $BroadcastId = null;
 
+    /**
+     * Earliest time a client can be contacted in the timezone associated with the
+     * number's NPA/NXX
+     */
     public $StartTimeOfDay = null;
 
+    /**
+     * Latest time a client can be contacted in the timezone associated with the
+     * number's NPA/NXX
+     */
     public $StopTimeOfDay = null;
 
+    /**
+     * Time Zone
+     */
     public $TimeZone = null;
 
+    /**
+     * Start date of Campaign
+     */
     public $BeginDate = null;
 
+    /**
+     * End date of Campaign
+     */
     public $EndDate = null;
 
     public $DaysOfWeek = null;

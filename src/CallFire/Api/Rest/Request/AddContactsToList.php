@@ -7,10 +7,19 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class AddContactsToList extends AbstractRequest
 {
 
+    /**
+     * Unique ID of ContactList
+     */
     public $ContactListId = null;
 
+    /**
+     * List of existing contact ids
+     */
     public $ContactId = null;
 
+    /**
+     * Csv file attachment containing list of contacts or numbers
+     */
     public $File = null;
 
 }

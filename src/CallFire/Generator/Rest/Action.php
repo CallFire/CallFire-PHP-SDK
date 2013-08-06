@@ -65,6 +65,14 @@ abstract class Action
                     }
                     $property = clone $propertyGenerator;
                     $property->setName($swaggerParameter->getName());
+                    
+                    $propertyDocblock = new CodeGenerator\DocBlockGenerator;
+                    $propertyDocblock->setShortDescription($swaggerParameter->getDescription());
+                    
+                    if(!$this->isDocBlockEmpty($propertyDocblock)) {
+                        $property->setDocBlock($propertyDocblock);
+                    }
+                    
                     $parameterClassGenerator->addPropertyFromGenerator($property);
                     break;
             }
@@ -190,5 +198,14 @@ abstract class Action
         $this->propertyGenerator = $propertyGenerator;
 
         return $this;
+    }
+    
+    protected function isDocBlockEmpty(CodeGenerator\DocBlockGenerator $docblock) {
+        if(
+            !empty($docblock->getShortDescription())
+            || !empty($docblock->getLongDescription())
+            || !empty($docblock->getTags())
+        ) return false;
+        return true;
     }
 }

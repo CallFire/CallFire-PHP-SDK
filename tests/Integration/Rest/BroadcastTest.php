@@ -17,6 +17,20 @@ class BroadcastTest extends TestCase
         $this->assertStringStartsWith("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<r:ResourceList", $response);
         
         $broadcasts = $client::response($response);
+        $this->assertInstanceOf('CallFire\\Api\\Rest\\Response\\ResourceList', $broadcasts);
+        
+        $this->validateBroadcasts($broadcasts);
+    }
+
+    public function getBroadcastClient()
+    {
+        $client = Client::Rest($this->getUsername(), $this->getPassword(), 'Broadcast');
+        
+        return $client;
+    }
+    
+    protected function validateBroadcasts($broadcasts)
+    {
         foreach($broadcasts as $broadcast) {
             $this->assertInstanceOf('CallFire\\Common\\Resource\\Broadcast', $broadcast);
             $this->assertNotEmpty($broadcast->getId());
@@ -36,12 +50,5 @@ class BroadcastTest extends TestCase
                 }
             }
         }
-    }
-
-    public function getBroadcastClient()
-    {
-        $client = Client::Rest($this->getUsername(), $this->getPassword(), 'Broadcast');
-        
-        return $client;
     }
 }

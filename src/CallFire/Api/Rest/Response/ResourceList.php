@@ -15,6 +15,8 @@ use IteratorAggregate;
 
 class ResourceList extends AbstractResponse implements IteratorAggregate
 {
+    protected $totalResults = 0;    
+    
     protected $resources = array();
 
     protected $xpath;
@@ -43,6 +45,9 @@ class ResourceList extends AbstractResponse implements IteratorAggregate
         if (!$contextNode) {
             $contextNode = $xpath->query('/r:ResourceList')->item(0);
         }
+        
+        $totalResults = $xpath->query('@totalResults', $contextNode)->item(0)->textContent;
+        $this->setTotalResults($totalResults);
 
         $resourceNodes = $xpath->query('*', $contextNode);
 
@@ -114,6 +119,15 @@ class ResourceList extends AbstractResponse implements IteratorAggregate
     public function getIterator()
     {
         return new ArrayIterator($this->getResources());
+    }
+    
+    public function getTotalResults() {
+        return $this->totalResults;
+    }
+    
+    public function setTotalResults($totalResults) {
+        $this->totalResults = $totalResults;
+        return $this;
     }
 
     public function getResources()

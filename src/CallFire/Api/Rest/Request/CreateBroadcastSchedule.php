@@ -38,6 +38,10 @@ class CreateBroadcastSchedule extends AbstractRequest
      */
     public $EndDate = null;
 
+    /**
+     * Allowable values: [SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY,
+     * SATURDAY]
+     */
     public $DaysOfWeek = null;
 
 }

@@ -9,10 +9,19 @@ class ConfigureNumber extends AbstractRequest
 
     public $Number = null;
 
+    /**
+     * Allowable values: [UNSUPPORTED, PENDING, DISABLED, ENABLED]
+     */
     public $CallFeature = null;
 
+    /**
+     * Allowable values: [UNSUPPORTED, PENDING, DISABLED, ENABLED]
+     */
     public $TextFeature = null;
 
+    /**
+     * Allowable values: [TRACKING, IVR]
+     */
     public $InboundCallConfigurationType = null;
 
     public $TransferNumber = null;

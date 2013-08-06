@@ -26,6 +26,8 @@ abstract class Action
     protected $parameterGenerator;
 
     protected $propertyGenerator;
+    
+    protected $docBlockGenerator;
 
     public function generate()
     {
@@ -40,6 +42,10 @@ abstract class Action
 
         $parameterGenerator = $this->getParameterGenerator();
         $propertyGenerator = $this->getPropertyGenerator();
+        $docBlockGenerator = $this->getDocblockGenerator();
+        
+        $docBlockGenerator->setShortDescription($operation->getSummary());
+        $docBlockGenerator->setLongDescription(strip_tags($operation->getNotes()));
 
         $hasRequired = false;
         $routeParams = array();
@@ -56,6 +62,16 @@ abstract class Action
                     $parameter = clone $parameterGenerator;
                     $parameter->setName($swaggerParameter->getName());
                     $method->setParameter($parameter);
+                    
+                    $paramTag = new CodeGenerator\DocBlock\Tag\ParamTag;
+                    $paramTag->setDataType($swaggerParameter::getType($swaggerParameter->getDataType()));
+                    $paramTag->setParamName($swaggerParameter->getName());
+                    
+                    $paramDescription = $swaggerParameter->getDescription();
+                    
+                    $paramTag->setDescription($paramDescription);
+                    $docBlockGenerator->setTag($paramTag);
+                    
                     $routeParams[] = $parameter;
                     break;
                 case self::PARAM_TYPE_QUERY:
@@ -68,6 +84,15 @@ abstract class Action
                     
                     $propertyDocblock = new CodeGenerator\DocBlockGenerator;
                     $propertyDocblock->setShortDescription($swaggerParameter->getDescription());
+                    
+                    $propertyDescription = '';
+                    if($allowableValues = $swaggerParameter->getAllowableValues()) {
+                        if($allowableValues->getValueType() == 'LIST') {
+                            $propertyDescription .= 'Allowable values: ['.implode(', ', $allowableValues->getValues()).']'.PHP_EOL;
+                        }
+                    }
+                    
+                    $propertyDocblock->setLongDescription($propertyDescription);
                     
                     if(!$this->isDocBlockEmpty($propertyDocblock)) {
                         $property->setDocBlock($propertyDocblock);
@@ -84,11 +109,24 @@ abstract class Action
             if (!$hasRequired) {
                 $queryParameter->setDefaultValue(new CodeGenerator\ValueGenerator(null));
             }
+            
+            $paramTag = new CodeGenerator\DocBlock\Tag\ParamTag;
+            $paramTag->setDataType(RestGenerator::REQUEST_NAMESPACE_ALIAS.'\\'.$operation->getNickname());
+            $paramTag->setParamName($operation->getNickname());
+            if (!$hasRequired) {
+                $paramTag->setDescription(' = null');
+            }
+            $docBlockGenerator->setTag($paramTag);
+            
             $method->setParameter($queryParameter);;
         } else {
             $queryParameter = null;
         }
-
+        
+        if(!$this->isDocBlockEmpty($docBlockGenerator)) {
+            $method->setDocBlock($docBlockGenerator);
+        }
+        
         $body = $this->getBody($routeParams, $queryParameter);
         $method->setBody($body);
     }
@@ -197,6 +235,18 @@ abstract class Action
     {
         $this->propertyGenerator = $propertyGenerator;
 
+        return $this;
+    }
+    
+    public function getDocBlockGenerator() {
+        if(!$this->docBlockGenerator) {
+            $this->docBlockGenerator = new CodeGenerator\DocBlockGenerator;
+        }
+        return $this->docBlockGenerator;
+    }
+    
+    public function setDocBlockGenerator($docBlockGenerator) {
+        $this->docBlockGenerator = $docBlockGenerator;
         return $this;
     }
     

@@ -14,6 +14,9 @@ class ControlBroadcast extends AbstractRequest
 
     public $RequestId = null;
 
+    /**
+     * Allowable values: [START, STOP, ARCHIVE]
+     */
     public $Command = null;
 
     /**

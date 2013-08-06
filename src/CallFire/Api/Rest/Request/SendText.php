@@ -14,6 +14,8 @@ class SendText extends AbstractRequest
 
     /**
      * Type of Broadcast
+     *
+     * Allowable values: [VOICE, IVR, TEXT]
      */
     public $Type = null;
 
@@ -56,6 +58,10 @@ class SendText extends AbstractRequest
      */
     public $MinutesBetweenAttempts = null;
 
+    /**
+     * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
+     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
+     */
     public $RetryResults = null;
 
     /**
@@ -66,6 +72,8 @@ class SendText extends AbstractRequest
 
     /**
      * Set strategy if message is over 160 chars (default: SEND_MULTIPLE)
+     *
+     * Allowable values: [SEND_MULTIPLE, DO_NOT_SEND, TRIM]
      */
     public $BigMessageStrategy = null;
 

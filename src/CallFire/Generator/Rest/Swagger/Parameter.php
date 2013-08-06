@@ -5,6 +5,15 @@ use Zend\Stdlib\Hydrator;
 
 class Parameter
 {
+    /**
+     * Maps swagger types to PHP types. All
+     * types default to string if not found.
+     * 
+     * @static
+     * @var array
+     */
+    protected static $typeMap = array();
+
     protected $paramType;
 
     protected $name;
@@ -20,6 +29,26 @@ class Parameter
     protected $conditions = array();
 
     protected $hydrator;
+    
+    public static function getTypeMap() {
+        if(!self::$typeMap) {
+            self::$typeMap = include(__DIR__.'/typemap.php');
+        }
+        return self::$typeMap;
+    }
+    
+    public static function setTypeMap($typeMap) {
+        self::$typeMap = $typeMap;
+        return $this;
+    }
+    
+    public static function getType($type) {
+        $map = self::getTypeMap();
+        if(isset($map[$type])) {
+            return $map[$type];
+        }
+        return "string";
+    }
 
     public function getParamType()
     {

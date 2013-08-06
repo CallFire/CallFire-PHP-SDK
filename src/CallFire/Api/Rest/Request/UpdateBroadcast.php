@@ -19,6 +19,8 @@ class UpdateBroadcast extends AbstractRequest
 
     /**
      * Type of Broadcast (required for create)
+     *
+     * Allowable values: [VOICE, IVR, TEXT]
      */
     public $Type = null;
 
@@ -46,10 +48,16 @@ class UpdateBroadcast extends AbstractRequest
      */
     public $MinutesBetweenAttempts = null;
 
+    /**
+     * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
+     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
+     */
     public $RetryResults = null;
 
     /**
      * Action to take if machine answers
+     *
+     * Allowable values: [AM_ONLY, AM_AND_LIVE, LIVE_WITH_AMD, LIVE_IMMEDIATE]
      */
     public $AnsweringMachineConfig = null;
 
@@ -101,6 +109,8 @@ class UpdateBroadcast extends AbstractRequest
 
     /**
      * Set strategy if message is over 160 chars (default: SEND_MULTIPLE)
+     *
+     * Allowable values: [SEND_MULTIPLE, DO_NOT_SEND, TRIM]
      */
     public $BigMessageStrategy = null;
 

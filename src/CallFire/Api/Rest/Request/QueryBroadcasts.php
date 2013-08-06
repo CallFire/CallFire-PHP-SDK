@@ -17,6 +17,9 @@ class QueryBroadcasts extends AbstractRequest
      */
     public $FirstResult = null;
 
+    /**
+     * Allowable values: [VOICE, IVR, TEXT]
+     */
     public $Type = null;
 
     /**

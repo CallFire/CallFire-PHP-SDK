@@ -29,11 +29,16 @@ class QueryTexts extends AbstractRequest
 
     /**
      * List of Action States to query on
+     *
+     * Allowable values: [READY, SELECTED, FINISHED, DNC, DUP, INVALID, TIMEOUT]
      */
     public $State = null;
 
     /**
      * List of Results to query on
+     *
+     * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
+     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
      */
     public $Result = null;
 

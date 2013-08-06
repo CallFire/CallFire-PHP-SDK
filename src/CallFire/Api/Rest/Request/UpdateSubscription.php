@@ -22,10 +22,17 @@ class UpdateSubscription extends AbstractRequest
      */
     public $Endpoint = null;
 
+    /**
+     * Allowable values: [XML, JSON, SOAP, EMAIL]
+     */
     public $NotificationFormat = null;
 
     /**
      * Event to trigger on
+     *
+     * Allowable values: [UNDEFINED_EVENT, INBOUND_CALL_FINISHED,
+     * INBOUND_TEXT_FINISHED, OUTBOUND_CALL_FINISHED, OUTBOUND_TEXT_FINISHED,
+     * CAMPAIGN_STARTED, CAMPAIGN_STOPPED, CAMPAIGN_FINISHED]
      */
     public $TriggerEvent = null;
 

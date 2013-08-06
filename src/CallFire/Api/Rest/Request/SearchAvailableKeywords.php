@@ -7,6 +7,18 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class SearchAvailableKeywords extends AbstractRequest
 {
 
-    public $Keywords = null;
+    protected $keywords = null;
+
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
 
 }

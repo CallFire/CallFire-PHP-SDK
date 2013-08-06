@@ -10,6 +10,18 @@ class GetNumber extends AbstractRequest
     /**
      * 11 digit telephone number
      */
-    public $Number = null;
+    protected $number = null;
+
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
 
 }

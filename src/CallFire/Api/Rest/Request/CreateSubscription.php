@@ -10,22 +10,22 @@ class CreateSubscription extends AbstractRequest
     /**
      * Unique ID of web request needed for de-duping
      */
-    public $RequestId = null;
+    protected $requestId = null;
 
     /**
      * Enable publishing of postback notifications for subscribed events.
      */
-    public $Enabled = null;
+    protected $enabled = null;
 
     /**
      * Email or URI endpoint to publish notification event to.
      */
-    public $Endpoint = null;
+    protected $endpoint = null;
 
     /**
      * Allowable values: [XML, JSON, SOAP, EMAIL]
      */
-    public $NotificationFormat = null;
+    protected $notificationFormat = null;
 
     /**
      * Event to trigger on
@@ -34,31 +34,151 @@ class CreateSubscription extends AbstractRequest
      * INBOUND_TEXT_FINISHED, OUTBOUND_CALL_FINISHED, OUTBOUND_TEXT_FINISHED,
      * CAMPAIGN_STARTED, CAMPAIGN_STOPPED, CAMPAIGN_FINISHED]
      */
-    public $TriggerEvent = null;
+    protected $triggerEvent = null;
 
     /**
      * Broadcast ID to filter on
      */
-    public $BroadcastId = null;
+    protected $broadcastId = null;
 
     /**
      * Batch ID to filter on
      */
-    public $BatchId = null;
+    protected $batchId = null;
 
     /**
      * From number (11 digit) or shortcode to filter on
      */
-    public $FromNumber = null;
+    protected $fromNumber = null;
 
     /**
      * E.164 11 digit phone number
      */
-    public $ToNumber = null;
+    protected $toNumber = null;
 
     /**
      * Deprecated, use TriggerEvent
      */
-    public $Inbound = null;
+    protected $inbound = null;
+
+    public function getRequestId()
+    {
+        return $this->requestId;
+    }
+
+    public function setRequestId($requestId)
+    {
+        $this->requestId = $requestId;
+
+        return $this;
+    }
+
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getEndpoint()
+    {
+        return $this->endpoint;
+    }
+
+    public function setEndpoint($endpoint)
+    {
+        $this->endpoint = $endpoint;
+
+        return $this;
+    }
+
+    public function getNotificationFormat()
+    {
+        return $this->notificationFormat;
+    }
+
+    public function setNotificationFormat($notificationFormat)
+    {
+        $this->notificationFormat = $notificationFormat;
+
+        return $this;
+    }
+
+    public function getTriggerEvent()
+    {
+        return $this->triggerEvent;
+    }
+
+    public function setTriggerEvent($triggerEvent)
+    {
+        $this->triggerEvent = $triggerEvent;
+
+        return $this;
+    }
+
+    public function getBroadcastId()
+    {
+        return $this->broadcastId;
+    }
+
+    public function setBroadcastId($broadcastId)
+    {
+        $this->broadcastId = $broadcastId;
+
+        return $this;
+    }
+
+    public function getBatchId()
+    {
+        return $this->batchId;
+    }
+
+    public function setBatchId($batchId)
+    {
+        $this->batchId = $batchId;
+
+        return $this;
+    }
+
+    public function getFromNumber()
+    {
+        return $this->fromNumber;
+    }
+
+    public function setFromNumber($fromNumber)
+    {
+        $this->fromNumber = $fromNumber;
+
+        return $this;
+    }
+
+    public function getToNumber()
+    {
+        return $this->toNumber;
+    }
+
+    public function setToNumber($toNumber)
+    {
+        $this->toNumber = $toNumber;
+
+        return $this;
+    }
+
+    public function getInbound()
+    {
+        return $this->inbound;
+    }
+
+    public function setInbound($inbound)
+    {
+        $this->inbound = $inbound;
+
+        return $this;
+    }
 
 }

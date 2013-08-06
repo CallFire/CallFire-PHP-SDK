@@ -10,16 +10,52 @@ class CreateSound extends AbstractRequest
     /**
      * The name of your sound.
      */
-    public $Name = null;
+    protected $name = null;
 
     /**
      * MP3 or WAV bytes.
      */
-    public $Data = null;
+    protected $data = null;
 
     /**
      * E.164 11 digit number to call to record a new sound.
      */
-    public $ToNumber = null;
+    protected $toNumber = null;
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    public function getToNumber()
+    {
+        return $this->toNumber;
+    }
+
+    public function setToNumber($toNumber)
+    {
+        $this->toNumber = $toNumber;
+
+        return $this;
+    }
 
 }

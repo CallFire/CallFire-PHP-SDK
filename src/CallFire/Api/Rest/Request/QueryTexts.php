@@ -10,29 +10,29 @@ class QueryTexts extends AbstractRequest
     /**
      * Max number of results to return limited to 1000 (default: 1000)
      */
-    public $MaxResults = null;
+    protected $maxResults = null;
 
     /**
      * Start of next result set (default: 0)
      */
-    public $FirstResult = null;
+    protected $firstResult = null;
 
     /**
      * BroadcastId to query on
      */
-    public $BroadcastId = null;
+    protected $broadcastId = null;
 
     /**
      * BatchId to query on
      */
-    public $BatchId = null;
+    protected $batchId = null;
 
     /**
      * List of Action States to query on
      *
      * Allowable values: [READY, SELECTED, FINISHED, DNC, DUP, INVALID, TIMEOUT]
      */
-    public $State = null;
+    protected $state = null;
 
     /**
      * List of Results to query on
@@ -40,36 +40,180 @@ class QueryTexts extends AbstractRequest
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
      * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
      */
-    public $Result = null;
+    protected $result = null;
 
     /**
      * Is call inbound
      */
-    public $Inbound = null;
+    protected $inbound = null;
 
     /**
      * Beginning of DateTime interval to search on
      */
-    public $IntervalBegin = null;
+    protected $intervalBegin = null;
 
     /**
      * End of DateTime interval to search on
      */
-    public $IntervalEnd = null;
+    protected $intervalEnd = null;
 
     /**
      * E.164 11 digit number
      */
-    public $FromNumber = null;
+    protected $fromNumber = null;
 
     /**
      * E.164 11 digit number
      */
-    public $ToNumber = null;
+    protected $toNumber = null;
 
     /**
      * Label that result must have to be included
      */
-    public $LabelName = null;
+    protected $labelName = null;
+
+    public function getMaxResults()
+    {
+        return $this->maxResults;
+    }
+
+    public function setMaxResults($maxResults)
+    {
+        $this->maxResults = $maxResults;
+
+        return $this;
+    }
+
+    public function getFirstResult()
+    {
+        return $this->firstResult;
+    }
+
+    public function setFirstResult($firstResult)
+    {
+        $this->firstResult = $firstResult;
+
+        return $this;
+    }
+
+    public function getBroadcastId()
+    {
+        return $this->broadcastId;
+    }
+
+    public function setBroadcastId($broadcastId)
+    {
+        $this->broadcastId = $broadcastId;
+
+        return $this;
+    }
+
+    public function getBatchId()
+    {
+        return $this->batchId;
+    }
+
+    public function setBatchId($batchId)
+    {
+        $this->batchId = $batchId;
+
+        return $this;
+    }
+
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    public function getInbound()
+    {
+        return $this->inbound;
+    }
+
+    public function setInbound($inbound)
+    {
+        $this->inbound = $inbound;
+
+        return $this;
+    }
+
+    public function getIntervalBegin()
+    {
+        return $this->intervalBegin;
+    }
+
+    public function setIntervalBegin($intervalBegin)
+    {
+        $this->intervalBegin = $intervalBegin;
+
+        return $this;
+    }
+
+    public function getIntervalEnd()
+    {
+        return $this->intervalEnd;
+    }
+
+    public function setIntervalEnd($intervalEnd)
+    {
+        $this->intervalEnd = $intervalEnd;
+
+        return $this;
+    }
+
+    public function getFromNumber()
+    {
+        return $this->fromNumber;
+    }
+
+    public function setFromNumber($fromNumber)
+    {
+        $this->fromNumber = $fromNumber;
+
+        return $this;
+    }
+
+    public function getToNumber()
+    {
+        return $this->toNumber;
+    }
+
+    public function setToNumber($toNumber)
+    {
+        $this->toNumber = $toNumber;
+
+        return $this;
+    }
+
+    public function getLabelName()
+    {
+        return $this->labelName;
+    }
+
+    public function setLabelName($labelName)
+    {
+        $this->labelName = $labelName;
+
+        return $this;
+    }
 
 }

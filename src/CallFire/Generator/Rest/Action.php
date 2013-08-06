@@ -24,6 +24,10 @@ abstract class Action
     protected $parameterClassGenerator;
 
     protected $parameterGenerator;
+    
+    protected $parameterGetterGenerator;
+    
+    protected $parameterSetterGenerator;
 
     protected $propertyGenerator;
     
@@ -76,11 +80,14 @@ abstract class Action
                     break;
                 case self::PARAM_TYPE_QUERY:
                 case self::PARAM_TYPE_FORM:
-                    if ($parameterClassGenerator->hasProperty($swaggerParameter->getName())) {
+                    $propertyName = lcfirst($swaggerParameter->getName());
+                    
+                    if ($parameterClassGenerator->hasProperty($propertyName)) {
                         continue;
                     }
+                    
                     $property = clone $propertyGenerator;
-                    $property->setName($swaggerParameter->getName());
+                    $property->setName($propertyName);
                     
                     $propertyDocblock = new CodeGenerator\DocBlockGenerator;
                     $propertyDocblock->setShortDescription($swaggerParameter->getDescription());
@@ -99,6 +106,13 @@ abstract class Action
                     }
                     
                     $parameterClassGenerator->addPropertyFromGenerator($property);
+                    
+                    $getterGenerator = $this->generateParameterGetter($propertyName, $swaggerParameter);
+                    $setterGenerator = $this->generateParameterSetter($propertyName, $swaggerParameter);
+                    $parameterClassGenerator->addMethods(array(
+                        $getterGenerator,
+                        $setterGenerator
+                    ));
                     break;
             }
         }
@@ -118,7 +132,7 @@ abstract class Action
             }
             $docBlockGenerator->setTag($paramTag);
             
-            $method->setParameter($queryParameter);;
+            $method->setParameter($queryParameter);
         } else {
             $queryParameter = null;
         }
@@ -129,6 +143,32 @@ abstract class Action
         
         $body = $this->getBody($routeParams, $queryParameter);
         $method->setBody($body);
+    }
+    
+    public function generateParameterGetter($parameter, $swaggerParameter) {
+        $methodName = 'get'.ucfirst($parameter);
+    
+        $getterGenerator = clone $this->getParameterGetterGenerator();
+        $getterGenerator->setName($methodName);
+        
+        $getterGenerator->setBody("return \$this->{$parameter};");
+        
+        return $getterGenerator;
+    }
+    
+    public function generateParameterSetter($parameterName, $swaggerParameter) {
+        $methodName = 'set'.ucfirst($parameterName);
+        
+        $setterGenerator = clone $this->getParameterSetterGenerator();
+        $setterGenerator->setName($methodName);
+        
+        $parameter = new CodeGenerator\ParameterGenerator;
+        $parameter->setName($parameterName);
+        $setterGenerator->setParameter($parameter);
+        
+        $setterGenerator->setBody("\$this->{$parameterName} = \${$parameterName};\nreturn \$this;");
+        
+        return $setterGenerator;
     }
 
     abstract protected function getBody($routeParams = array(), $queryParameter = null);
@@ -221,11 +261,38 @@ abstract class Action
 
         return $this;
     }
+    
+    public function getParameterGetterGenerator() {
+        if(!$this->parameterGetterGenerator) {
+            $this->parameterGetterGenerator = new CodeGenerator\MethodGenerator;
+        }
+        return $this->parameterGetterGenerator;
+    }
+    
+    public function setParameterGetterGenerator($parameterGetterGenerator) {
+        $this->parameterGetterGenerator = $parameterGetterGenerator;
+        return $this;
+    }
+    
+    public function getParameterSetterGenerator() {
+        if(!$this->parameterSetterGenerator) {
+            $this->parameterSetterGenerator = new CodeGenerator\MethodGenerator;
+        }
+        return $this->parameterSetterGenerator;
+    }
+    
+    public function setParameterSetterGenerator($parameterSetterGenerator) {
+        $this->parameterSetterGenerator = $parameterSetterGenerator;
+        return $this;
+    }
 
     public function getPropertyGenerator()
     {
         if (!$this->propertyGenerator) {
-            $this->propertyGenerator = new CodeGenerator\PropertyGenerator;
+            $generator = new CodeGenerator\PropertyGenerator;
+            $generator->setVisibility($generator::VISIBILITY_PROTECTED);
+            
+            $this->propertyGenerator = $generator;
         }
 
         return $this->propertyGenerator;

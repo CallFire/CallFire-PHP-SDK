@@ -10,18 +10,66 @@ class ControlBroadcast extends AbstractRequest
     /**
      * Unique ID of resource
      */
-    public $Id = null;
+    protected $id = null;
 
-    public $RequestId = null;
+    protected $requestId = null;
 
     /**
      * Allowable values: [START, STOP, ARCHIVE]
      */
-    public $Command = null;
+    protected $command = null;
 
     /**
      * Max simultaneous calls
      */
-    public $MaxActive = null;
+    protected $maxActive = null;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getRequestId()
+    {
+        return $this->requestId;
+    }
+
+    public function setRequestId($requestId)
+    {
+        $this->requestId = $requestId;
+
+        return $this;
+    }
+
+    public function getCommand()
+    {
+        return $this->command;
+    }
+
+    public function setCommand($command)
+    {
+        $this->command = $command;
+
+        return $this;
+    }
+
+    public function getMaxActive()
+    {
+        return $this->maxActive;
+    }
+
+    public function setMaxActive($maxActive)
+    {
+        $this->maxActive = $maxActive;
+
+        return $this;
+    }
 
 }

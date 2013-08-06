@@ -10,16 +10,52 @@ class RemoveContactsFromList extends AbstractRequest
     /**
      * Unique ID of ContactList
      */
-    public $ContactListId = null;
+    protected $contactListId = null;
 
     /**
      * List of existing contact ids
      */
-    public $ContactId = null;
+    protected $contactId = null;
 
     /**
      * Csv file attachment containing list of contacts or numbers
      */
-    public $File = null;
+    protected $file = null;
+
+    public function getContactListId()
+    {
+        return $this->contactListId;
+    }
+
+    public function setContactListId($contactListId)
+    {
+        $this->contactListId = $contactListId;
+
+        return $this;
+    }
+
+    public function getContactId()
+    {
+        return $this->contactId;
+    }
+
+    public function setContactId($contactId)
+    {
+        $this->contactId = $contactId;
+
+        return $this;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
 
 }

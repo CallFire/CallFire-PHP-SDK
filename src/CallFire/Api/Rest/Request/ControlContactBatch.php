@@ -10,10 +10,46 @@ class ControlContactBatch extends AbstractRequest
     /**
      * Unique ID of resource
      */
-    public $Id = null;
+    protected $id = null;
 
-    public $Name = null;
+    protected $name = null;
 
-    public $Enabled = null;
+    protected $enabled = null;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
 
 }

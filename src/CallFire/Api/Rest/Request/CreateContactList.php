@@ -7,18 +7,66 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class CreateContactList extends AbstractRequest
 {
 
-    public $RequestId = null;
+    protected $requestId = null;
 
-    public $Name = null;
+    protected $name = null;
 
     /**
      * List of existing contact ids
      */
-    public $ContactId = null;
+    protected $contactId = null;
 
     /**
      * Csv file attachment containing list of contacts or numbers
      */
-    public $File = null;
+    protected $file = null;
+
+    public function getRequestId()
+    {
+        return $this->requestId;
+    }
+
+    public function setRequestId($requestId)
+    {
+        $this->requestId = $requestId;
+
+        return $this;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getContactId()
+    {
+        return $this->contactId;
+    }
+
+    public function setContactId($contactId)
+    {
+        $this->contactId = $contactId;
+
+        return $this;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
 
 }

@@ -7,33 +7,153 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class ConfigureNumber extends AbstractRequest
 {
 
-    public $Number = null;
+    protected $number = null;
 
     /**
      * Allowable values: [UNSUPPORTED, PENDING, DISABLED, ENABLED]
      */
-    public $CallFeature = null;
+    protected $callFeature = null;
 
     /**
      * Allowable values: [UNSUPPORTED, PENDING, DISABLED, ENABLED]
      */
-    public $TextFeature = null;
+    protected $textFeature = null;
 
     /**
      * Allowable values: [TRACKING, IVR]
      */
-    public $InboundCallConfigurationType = null;
+    protected $inboundCallConfigurationType = null;
 
-    public $TransferNumber = null;
+    protected $transferNumber = null;
 
-    public $Screen = null;
+    protected $screen = null;
 
-    public $Record = null;
+    protected $record = null;
 
-    public $IntroSoundId = null;
+    protected $introSoundId = null;
 
-    public $WhisperSoundId = null;
+    protected $whisperSoundId = null;
 
-    public $DialplanXml = null;
+    protected $dialplanXml = null;
+
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getCallFeature()
+    {
+        return $this->callFeature;
+    }
+
+    public function setCallFeature($callFeature)
+    {
+        $this->callFeature = $callFeature;
+
+        return $this;
+    }
+
+    public function getTextFeature()
+    {
+        return $this->textFeature;
+    }
+
+    public function setTextFeature($textFeature)
+    {
+        $this->textFeature = $textFeature;
+
+        return $this;
+    }
+
+    public function getInboundCallConfigurationType()
+    {
+        return $this->inboundCallConfigurationType;
+    }
+
+    public function setInboundCallConfigurationType($inboundCallConfigurationType)
+    {
+        $this->inboundCallConfigurationType = $inboundCallConfigurationType;
+
+        return $this;
+    }
+
+    public function getTransferNumber()
+    {
+        return $this->transferNumber;
+    }
+
+    public function setTransferNumber($transferNumber)
+    {
+        $this->transferNumber = $transferNumber;
+
+        return $this;
+    }
+
+    public function getScreen()
+    {
+        return $this->screen;
+    }
+
+    public function setScreen($screen)
+    {
+        $this->screen = $screen;
+
+        return $this;
+    }
+
+    public function getRecord()
+    {
+        return $this->record;
+    }
+
+    public function setRecord($record)
+    {
+        $this->record = $record;
+
+        return $this;
+    }
+
+    public function getIntroSoundId()
+    {
+        return $this->introSoundId;
+    }
+
+    public function setIntroSoundId($introSoundId)
+    {
+        $this->introSoundId = $introSoundId;
+
+        return $this;
+    }
+
+    public function getWhisperSoundId()
+    {
+        return $this->whisperSoundId;
+    }
+
+    public function setWhisperSoundId($whisperSoundId)
+    {
+        $this->whisperSoundId = $whisperSoundId;
+
+        return $this;
+    }
+
+    public function getDialplanXml()
+    {
+        return $this->dialplanXml;
+    }
+
+    public function setDialplanXml($dialplanXml)
+    {
+        $this->dialplanXml = $dialplanXml;
+
+        return $this;
+    }
 
 }

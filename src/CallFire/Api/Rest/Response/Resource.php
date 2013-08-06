@@ -2,7 +2,7 @@
 namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
-use CallFire\Common\AbstractResource;
+use CallFire\Common\Resource\AbstractResource;
 
 use CallFire\Common\Hydrator\DOM as DomHydrator;
 use Zend\Stdlib\Hydrator\ClassMethods;
@@ -34,10 +34,12 @@ class Resource extends AbstractResponse
             $contextNode = $xpath->query('/r:Resource')->item(0);
         }
 
-        $resourceNode = $xpath->query('*[1]', $contextNode);
-        $resource = $this->parseResourceNode($resourceNode);
-        if ($resource instanceof AbstractResource) {
-            $this->setResource($resource);
+        $resourceNode = $xpath->query('*[1]', $contextNode)->item(0);
+        if($resourceNode instanceof DOMNode) {
+            $resource = $this->parseResourceNode($resourceNode);
+            if ($resource instanceof AbstractResource) {
+                $this->setResource($resource);
+            }
         }
 
         if ($cleanup) {

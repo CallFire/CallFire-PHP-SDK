@@ -4,6 +4,7 @@ namespace CallFire\Api\Rest;
 use CallFire\Api\Rest\AbstractIntegrationTest as TestCase;
 use CallFire\Api\Client;
 use CallFire\Api\Rest\Request;
+use CallFire\Common\Resource;
 
 class BroadcastTest extends TestCase
 {
@@ -20,6 +21,33 @@ class BroadcastTest extends TestCase
         $this->assertInstanceOf('CallFire\\Api\\Rest\\Response\\ResourceList', $broadcasts);
         
         $this->validateBroadcasts($broadcasts);
+    }
+    
+    public function testGetBroadcast()
+    {
+        $client = $this->getBroadcastClient();
+        
+        $request = new Request\QueryBroadcasts;
+        $response = $client->QueryBroadcasts($request);
+        $broadcasts = $client::response($response);
+        $knownBroadcast = reset($broadcasts->getResources());
+        
+        if($knownBroadcast instanceof Resource\Broadcast) {
+            $response = $client->GetBroadcast($knownBroadcast->getId());
+            $this->assertStringStartsWith("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<r:Resource", $response);
+            
+            $resource = $client::response($response);
+            $this->assertInstanceOf('CallFire\\Api\\Rest\\Response\\Resource', $resource);
+            
+            $broadcast = $resource->getResource();
+            $this->assertInstanceOf('CallFire\\Common\\Resource\\Broadcast', $broadcast);
+            
+            $this->validateBroadcasts(array(
+                $broadcast
+            ));
+        } else {
+            $this->markTestSkipped('No broadcasts available to test with.');
+        }
     }
 
     public function getBroadcastClient()

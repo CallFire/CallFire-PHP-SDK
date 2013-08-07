@@ -1,16 +1,42 @@
 <?php
+
 namespace CallFire\Common\Resource;
 
 class BroadcastStats extends AbstractResource
 {
-    protected $stats;
-    
-    public function getStats() {
-        return $this->stats;
+
+    /**
+     * @var UsageStats
+     */
+    public $usageStats = null;
+
+    /**
+     * @var ResultStat[]
+     */
+    public $resultStats = array();
+
+    public function getUsageStats()
+    {
+        return $this->usageStats;
     }
-    
-    public function setStats($stats) {
-        $this->stats = $stats;
+
+    public function setUsageStats($usageStats)
+    {
+        $this->usageStats = $usageStats;
+
         return $this;
     }
+
+    public function getResultStats()
+    {
+        return $this->resultStats;
+    }
+
+    public function setResultStats($resultStats)
+    {
+        $this->resultStats = $resultStats;
+
+        return $this;
+    }
+
 }

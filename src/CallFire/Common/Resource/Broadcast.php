@@ -1,17 +1,34 @@
 <?php
+
 namespace CallFire\Common\Resource;
 
 class Broadcast extends AbstractResource
 {
-    protected $id;
 
-    protected $name;
+    /**
+     * @var long
+     */
+    public $id = null;
 
-    protected $status;
+    /**
+     * @var string
+     */
+    public $name = null;
 
-    protected $type;
+    /**
+     * @var string
+     */
+    public $status = null;
 
-    protected $ivrBroadcastConfig;
+    /**
+     * @var dateTime
+     */
+    public $lastModified = null;
+
+    /**
+     * @var string
+     */
+    public $type = null;
 
     public function getId()
     {
@@ -49,6 +66,18 @@ class Broadcast extends AbstractResource
         return $this;
     }
 
+    public function getLastModified()
+    {
+        return $this->lastModified;
+    }
+
+    public function setLastModified($lastModified)
+    {
+        $this->lastModified = $lastModified;
+
+        return $this;
+    }
+
     public function getType()
     {
         return $this->type;
@@ -61,15 +90,4 @@ class Broadcast extends AbstractResource
         return $this;
     }
 
-    public function getIvrBroadcastConfig()
-    {
-        return $this->ivrBroadcastConfig;
-    }
-
-    public function setIvrBroadcastConfig($ivrBroadcastConfig)
-    {
-        $this->ivrBroadcastConfig = $ivrBroadcastConfig;
-
-        return $this;
-    }
 }

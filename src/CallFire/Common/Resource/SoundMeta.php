@@ -2,7 +2,7 @@
 
 namespace CallFire\Common\Resource;
 
-class ContactBatch extends AbstractResource
+class SoundMeta extends AbstractResource
 {
 
     /**
@@ -13,17 +13,12 @@ class ContactBatch extends AbstractResource
     /**
      * @var string
      */
-    public $name = null;
+    public $status = null;
 
     /**
      * @var string
      */
-    public $status = null;
-
-    /**
-     * @var long
-     */
-    public $broadcastId = null;
+    public $name = null;
 
     /**
      * @var dateTime
@@ -33,12 +28,7 @@ class ContactBatch extends AbstractResource
     /**
      * @var int
      */
-    public $size = null;
-
-    /**
-     * @var int
-     */
-    public $remaining = null;
+    public $lengthInSeconds = null;
 
     public function getId()
     {
@@ -48,18 +38,6 @@ class ContactBatch extends AbstractResource
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
 
         return $this;
     }
@@ -76,14 +54,14 @@ class ContactBatch extends AbstractResource
         return $this;
     }
 
-    public function getBroadcastId()
+    public function getName()
     {
-        return $this->broadcastId;
+        return $this->name;
     }
 
-    public function setBroadcastId($broadcastId)
+    public function setName($name)
     {
-        $this->broadcastId = $broadcastId;
+        $this->name = $name;
 
         return $this;
     }
@@ -100,26 +78,14 @@ class ContactBatch extends AbstractResource
         return $this;
     }
 
-    public function getSize()
+    public function getLengthInSeconds()
     {
-        return $this->size;
+        return $this->lengthInSeconds;
     }
 
-    public function setSize($size)
+    public function setLengthInSeconds($lengthInSeconds)
     {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    public function getRemaining()
-    {
-        return $this->remaining;
-    }
-
-    public function setRemaining($remaining)
-    {
-        $this->remaining = $remaining;
+        $this->lengthInSeconds = $lengthInSeconds;
 
         return $this;
     }

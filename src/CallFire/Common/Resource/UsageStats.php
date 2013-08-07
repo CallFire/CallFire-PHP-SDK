@@ -1,60 +1,93 @@
 <?php
+
 namespace CallFire\Common\Resource;
 
 class UsageStats extends AbstractResource
 {
-    protected $duration;
-    
-    protected $billedDuration;
-    
-    protected $billedAmount;
-    
-    protected $attempts;
-    
-    protected $actions;
-    
-    public function getDuration() {
+
+    /**
+     * @var int
+     */
+    public $duration = null;
+
+    /**
+     * @var int
+     */
+    public $billedDuration = null;
+
+    /**
+     * @var float
+     */
+    public $billedAmount = null;
+
+    /**
+     * @var int
+     */
+    public $attempts = null;
+
+    /**
+     * @var int
+     */
+    public $actions = null;
+
+    public function getDuration()
+    {
         return $this->duration;
     }
-    
-    public function setDuration($duration) {
+
+    public function setDuration($duration)
+    {
         $this->duration = $duration;
+
         return $this;
     }
-    
-    public function getBilledDuration() {
+
+    public function getBilledDuration()
+    {
         return $this->billedDuration;
     }
-    
-    public function setBilledDuration($billedDuration) {
+
+    public function setBilledDuration($billedDuration)
+    {
         $this->billedDuration = $billedDuration;
+
         return $this;
     }
-    
-    public function getBilledAmount() {
+
+    public function getBilledAmount()
+    {
         return $this->billedAmount;
     }
-    
-    public function setBilledAmount($billedAmount) {
+
+    public function setBilledAmount($billedAmount)
+    {
         $this->billedAmount = $billedAmount;
+
         return $this;
     }
-    
-    public function getAttempts() {
+
+    public function getAttempts()
+    {
         return $this->attempts;
     }
-    
-    public function setAttempts($attempts) {
+
+    public function setAttempts($attempts)
+    {
         $this->attempts = $attempts;
+
         return $this;
     }
-    
-    public function getActions() {
+
+    public function getActions()
+    {
         return $this->actions;
     }
-    
-    public function setActions($actions) {
+
+    public function setActions($actions)
+    {
         $this->actions = $actions;
+
         return $this;
     }
+
 }

@@ -30,6 +30,21 @@ class Broadcast extends AbstractResource
      */
     public $type = null;
 
+    /**
+     * @var VoiceBroadcastConfig
+     */
+    public $voiceBroadcastConfig = null;
+
+    /**
+     * @var TextBroadcastConfig
+     */
+    public $textBroadcastConfig = null;
+
+    /**
+     * @var IvrBroadcastConfig
+     */
+    public $ivrBroadcastConfig = null;
+
     public function getId()
     {
         return $this->id;
@@ -86,6 +101,42 @@ class Broadcast extends AbstractResource
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getVoiceBroadcastConfig()
+    {
+        return $this->voiceBroadcastConfig;
+    }
+
+    public function setVoiceBroadcastConfig(VoiceBroadcastConfig $voiceBroadcastConfig)
+    {
+        $this->voiceBroadcastConfig = $voiceBroadcastConfig;
+
+        return $this;
+    }
+
+    public function getTextBroadcastConfig()
+    {
+        return $this->textBroadcastConfig;
+    }
+
+    public function setTextBroadcastConfig(TextBroadcastConfig $textBroadcastConfig)
+    {
+        $this->textBroadcastConfig = $textBroadcastConfig;
+
+        return $this;
+    }
+
+    public function getIvrBroadcastConfig()
+    {
+        return $this->ivrBroadcastConfig;
+    }
+
+    public function setIvrBroadcastConfig(IvrBroadcastConfig $ivrBroadcastConfig)
+    {
+        $this->ivrBroadcastConfig = $ivrBroadcastConfig;
 
         return $this;
     }

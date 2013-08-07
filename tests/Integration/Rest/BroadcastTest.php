@@ -33,8 +33,6 @@ class BroadcastTest extends TestCase
         $broadcasts = $client::response($response);
         $knownBroadcast = reset($broadcasts->getResources());
         
-        var_dump($knownBroadcast);
-        
         if($knownBroadcast instanceof Resource\Broadcast) {
             $response = $client->GetBroadcast($knownBroadcast->getId());
             $this->assertStringStartsWith("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<r:Resource", $response);

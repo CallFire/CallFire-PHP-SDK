@@ -89,12 +89,12 @@ class Resource
             $classGenerator->setAbstract(true);
         }
         
+        // First-class attributes of the resource (e.g. resource identifier)
         $attributesQuery = $isComplexType?'_:attribute[@name]':'_:complexType/_:attribute[@name]';
         if($isSubclass) {
             $attributesQuery = '_:complexType/_:complexContent/_:extension/_:attribute[@name]';
         }
         
-        // First-class attributes of the resource (e.g. resource identifier)
         $attributes = $xpath->query($attributesQuery, $element);
         foreach($attributes as $attribute) {
             $attributeName = $xpath->query('@name', $attribute)->item(0)->textContent;
@@ -138,12 +138,12 @@ class Resource
             ));
         }
         
+        // Second-class attributes of the resource (e.g. name, description)
         $sequenceElementsQuery = $isComplexType?'_:sequence/_:element[@name][@type]':'_:complexType/_:sequence/_:element[@name][@type]';
         if($isSubclass) {
             $sequenceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
         }
         
-        // Second-class attributes of the resource (e.g. name, description)
         $sequenceElements = $xpath->query($sequenceElementsQuery, $element);
         foreach($sequenceElements as $sequenceElement) {
             $sequenceElementName = $xpath->query('@name', $sequenceElement)->item(0)->textContent;
@@ -180,12 +180,45 @@ class Resource
             ));
         }
         
+        // Second-class object attributes of the resource (e.g. IvrBroadcastConfig for Broadcast)
+        $choicesQuery = '_:complexType/_:sequence/_:choice/_:element[@ref]';
+        $choiceElements = $xpath->query($choicesQuery, $element);
+        foreach($choiceElements as $choiceElement) {
+            $choiceClass = substr($xpath->query('@ref', $choiceElement)->item(0)->textContent, 4);
+            $propertyName = lcfirst($choiceClass);
+            
+            $choiceProperty = clone $this->getPropertyGenerator();
+            $choiceProperty->setName($propertyName);
+            
+            $choicePropertyDocblock = clone $this->getPropertyDocblockGenerator();
+            $choiceProperty->setDocBlock($choicePropertyDocblock);
+            
+            $typeTag = new CodeGenerator\DocBlock\Tag;
+            $typeTag->setName('var');
+            $typeTag->setDescription($choiceClass);
+            $choicePropertyDocblock->setTag($typeTag);
+            
+            $classGenerator->addPropertyFromGenerator($choiceProperty);
+            $map["#{$choiceClass}"] = $choiceClass;
+            
+            $getterGenerator = $this->generatePropertyGetter($propertyName);
+            $setterGenerator = $this->generatePropertySetter($propertyName);
+            
+            $setterParam = reset($setterGenerator->getParameters());
+            $setterParam->setType($choiceClass);
+            
+            $classGenerator->addMethods(array(
+                $getterGenerator,
+                $setterGenerator
+            ));
+        }
+        
+        // Complex second-class types (e.g. question-response, broadcast result statistics)
         $secondClassElementsQuery = $isComplexType?'_:sequence/_:element[@name][not(@type)]':'_:complexType/_:sequence/_:element[@name][not(@type)]';
         if($isSubclass) {
             $secondClassElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][not(@type)]';
         }
         
-        // Complex second-class types (e.g. question-response, broadcast result statistics)
         $secondClassElements = $xpath->query($secondClassElementsQuery, $element);
         foreach($secondClassElements as $secondClassElement) {
             $this->generateResource($secondClassElement);

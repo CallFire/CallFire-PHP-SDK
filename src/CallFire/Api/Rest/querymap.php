@@ -50,7 +50,10 @@ return array(
             'Name' => '_:Name',
             'Status' => '_:Status',
             'LastModified' => '_:LastModified',
-            'Type' => '_:Type'
+            'Type' => '_:Type',
+            '#VoiceBroadcastConfig' => 'VoiceBroadcastConfig',
+            '#TextBroadcastConfig' => 'TextBroadcastConfig',
+            '#IvrBroadcastConfig' => 'IvrBroadcastConfig'
             ),
         'VoiceBroadcastConfig' => array(
             'AnsweringMachineConfig' => '_:AnsweringMachineConfig',

@@ -25,12 +25,15 @@ class BroadcastTest extends TestCase
     
     public function testGetBroadcast()
     {
+        $this->expectOutputString(''); // REMOVE
         $client = $this->getBroadcastClient();
         
         $request = new Request\QueryBroadcasts;
         $response = $client->QueryBroadcasts($request);
         $broadcasts = $client::response($response);
         $knownBroadcast = reset($broadcasts->getResources());
+        
+        var_dump($knownBroadcast);
         
         if($knownBroadcast instanceof Resource\Broadcast) {
             $response = $client->GetBroadcast($knownBroadcast->getId());

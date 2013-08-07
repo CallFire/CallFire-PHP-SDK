@@ -99,9 +99,18 @@ abstract class Response
         if (!class_exists($resourceClassName)) {
             return false;
         }
+        
+        $resource = new $resourceClassName;
+        $parentClass = get_parent_class($resource);
+        if($parentClass) {
+            $parentClass = substr($parentClass, strlen('CallFire\\Common\\Resource\\'));
+            if($parentClass != 'AbstractResource' && isset($queryMap[$parentClass])) {
+                $resourceMap += $queryMap[$parentClass];
+            }
+        }
 
         $resourceData = $hydrator->extract($resourceNode);
-        $resource = $methodsHydrator->hydrate($resourceData, new $resourceClassName);
+        $resource = $methodsHydrator->hydrate($resourceData, $resource);
         foreach ($childResourceMap as $key => $query) {
             $childResourceNode = $xpath->query($query, $resourceNode)->item(0);
             if (!$childResourceNode) {

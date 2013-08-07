@@ -41,6 +41,11 @@ class Resource
     {
         $xpath = $this->getXsdXPath();
         
+        $complexTypes = $xpath->query('_:complexType[@name]');
+        foreach($complexTypes as $complexType) {
+            $this->generateResource($complexType);
+        }
+        
         $elements = $xpath->query('_:element[@name]');
         foreach($elements as $element) {
             $this->generateResource($element);
@@ -64,15 +69,33 @@ class Resource
         $classGenerator = clone $this->getClassGenerator();
         $map = array();
         
+        $isComplexType = ($element->nodeName == 'complexType');
+        $extensionNode = $xpath->query('_:complexType/_:complexContent/_:extension[@base]', $element)->item(0);
+        $isSubclass = (bool) $extensionNode;
+        $extendedClass = $isSubclass?substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4):null;
+        
         $resourceName = $xpath->query('@name', $element)->item(0)->textContent;
         if($this->hasResource($resourceName)) {
             continue;
         }
         
         $classGenerator->setName($resourceName);
+        if($isSubclass) {
+            $classGenerator->setExtendedClass($extendedClass);
+        }
+        
+        $abstract = $xpath->query('@abstract', $element)->item(0);
+        if($abstract && $abstract->textContent == 'true') {
+            $classGenerator->setAbstract(true);
+        }
+        
+        $attributesQuery = $isComplexType?'_:attribute[@name]':'_:complexType/_:attribute[@name]';
+        if($isSubclass) {
+            $attributesQuery = '_:complexType/_:complexContent/_:extension/_:attribute[@name]';
+        }
         
         // First-class attributes of the resource (e.g. resource identifier)
-        $attributes = $xpath->query('_:complexType/_:attribute[@name]', $element);
+        $attributes = $xpath->query($attributesQuery, $element);
         foreach($attributes as $attribute) {
             $attributeName = $xpath->query('@name', $attribute)->item(0)->textContent;
             $attributeTypeNode = $xpath->query('@type', $attribute)->item(0);
@@ -105,6 +128,7 @@ class Resource
             }
             
             $classGenerator->addPropertyFromGenerator($attributeProperty);
+            $map[$attributeName] = "@{$attributeName}";
             
             $getterGenerator = $this->generatePropertyGetter($propertyName);
             $setterGenerator = $this->generatePropertySetter($propertyName);
@@ -114,8 +138,13 @@ class Resource
             ));
         }
         
+        $sequenceElementsQuery = $isComplexType?'_:sequence/_:element[@name][@type]':'_:complexType/_:sequence/_:element[@name][@type]';
+        if($isSubclass) {
+            $sequenceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
+        }
+        
         // Second-class attributes of the resource (e.g. name, description)
-        $sequenceElements = $xpath->query('_:complexType/_:sequence/_:element[@name][@type]', $element);
+        $sequenceElements = $xpath->query($sequenceElementsQuery, $element);
         foreach($sequenceElements as $sequenceElement) {
             $sequenceElementName = $xpath->query('@name', $sequenceElement)->item(0)->textContent;
             $sequenceElementTypeNode = $xpath->query('@type', $sequenceElement)->item(0);
@@ -141,6 +170,7 @@ class Resource
             }
             
             $classGenerator->addPropertyFromGenerator($sequenceElementProperty);
+            $map[$sequenceElementName] = "_:{$sequenceElementName}";
             
             $getterGenerator = $this->generatePropertyGetter($propertyName);
             $setterGenerator = $this->generatePropertySetter($propertyName);
@@ -150,8 +180,13 @@ class Resource
             ));
         }
         
+        $secondClassElementsQuery = $isComplexType?'_:sequence/_:element[@name][not(@type)]':'_:complexType/_:sequence/_:element[@name][not(@type)]';
+        if($isSubclass) {
+            $secondClassElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][not(@type)]';
+        }
+        
         // Complex second-class types (e.g. question-response, broadcast result statistics)
-        $secondClassElements = $xpath->query('_:complexType/_:sequence/_:element[@name][not(@type)]', $element);
+        $secondClassElements = $xpath->query($secondClassElementsQuery, $element);
         foreach($secondClassElements as $secondClassElement) {
             $this->generateResource($secondClassElement);
             
@@ -189,6 +224,7 @@ class Resource
             }
             
             $classGenerator->addPropertyFromGenerator($secondClassElementProperty);
+            $map["#{$secondClassElementName}"] = "_:{$secondClassElementName}";
             
             $getterGenerator = $this->generatePropertyGetter($propertyName);
             $setterGenerator = $this->generatePropertySetter($propertyName);

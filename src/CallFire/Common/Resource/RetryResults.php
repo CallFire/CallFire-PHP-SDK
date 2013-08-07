@@ -2,7 +2,7 @@
 
 namespace CallFire\Common\Resource;
 
-class Call extends Action
+class RetryResults extends AbstractResource
 {
 
 }

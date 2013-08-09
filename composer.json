@@ -7,7 +7,12 @@
         }
     ],
     "require": {
+        "php": ">=5.3.3",
+        "ext-curl": "*",
         "zendframework/zend-stdlib": "~2.2.2"
+    },
+    "suggest": {
+        "ext-soap": "*"
     },
     "require-dev": {
         "zendframework/zend-stdlib": "~2.2.1",

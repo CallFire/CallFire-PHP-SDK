@@ -1,0 +1,84 @@
+Getting Started
+===============
+
+The CallFire API provides a fairly robust interface by which to control
+most every bit of functionality available through the regular web interface,
+plus some controls which are not otherwise accessible.
+
+This library provides a set of PHP classes to interface with the
+[CallFire API](http://www.callfire.com/api-documentation). Please refer to the
+[API documentation](http://www.callfire.com/api-documentation) for information
+on finding your API credentials.
+
+There are two separate, but largely equivalent endpoints by which you can
+access the CallFire API. These are the REST and SOAP APIs. Due to limitations
+in the PHP SOAP extension, you should largely aim to use the REST API,
+especially when interacting with the Broadcast services.
+
+Both the SOAP and REST APIs share a common set of resources that they return,
+and share a set of operation "interfaces", they are invoked very differently.
+The benefit of these commonalities is that when you find an issue with one
+API endpoint, you can conceivably fall back in that instance to the other endpoint
+without too much difficulty.
+
+## The REST API
+
+The REST API is the primary API endpoint going forward, having a design
+which aims to make the structure of API requests far more intuitive and
+stable. While it has its own idiosyncracies, they are easily overcome.
+
+### Very basic example
+This example demonstrates how to instantiate the REST API client, create
+a request object, invoke a request, and then parse the response into
+an easily-consumable form.  
+```php
+<?php
+use CallFire\Api\Rest\Request;
+require 'vendor/autoload.php';
+
+$client = CallFire\Api\Client::Rest("<api-login>", "<api-password>", "Broadcast");
+
+$request = new Request\QueryBroadcasts;
+$response = $client->QueryBroadcasts($request);
+
+$broadcasts = $client::response($response);
+
+foreach($broadcasts as $broadcast) {
+    var_dump($broadcast);
+}
+```
+
+Though this code is fairly intuitive, there are a few clarifications that
+might be necessary.
+
+First, each request is codified into a request object
+(a sort of "criteria object"). Any parameters in the request object
+which are left null will not be specified to the API. Not all
+operations require a request object, and some operations require
+additional parameters before the request object (e.g. a resource identifier).
+This cleanly separates *required* parameters from optional/context-dependent
+parameters, to avoid confusion.
+
+The return value from any given operation method is the unmodified response
+body of the API request. This allows you to process the response in other ways,
+should you need to bypass this library's response parsing.
+
+### Responses
+
+The `$client::response()` method is in fact a static method call to
+`CallFire\Api\Rest\AbstractClient::response()`, which intuits the type of the
+response and instantiates, and populates, an appropriate response object.
+
+For methods which are returning lists of resources (e.g. QueryBroadcasts),
+this is a `CallFire\Api\Rest\Response\ResourceList` object. This object
+is an iterable set of resources (ordinarily all of the same type), such as
+`CallFire\Common\Resource\Broadcast` objects.
+
+If an operation is returning one of a resource, instead of several, then
+it will instead be parsed into a `CallFire\Api\Rest\Response\Resource` object,
+upon which you can then call the `getResource()` method to obtain the actual
+resource.
+
+It is also possible that an operation can return "exception" type responses,
+or nothing at all. Be sure to check the type of response that you are receiving,
+to ensure that it's what you expect.

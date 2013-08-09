@@ -9,7 +9,7 @@ class AbstractResourceTest extends TestCase
     {
         foreach(glob(__DIR__.'/../../../src/Common/Resource/*.php') as $filename)
         {
-            $className = basename($filename);
+            $className = basename($filename, ".xml");
             if($className == 'AbstractResource') {
                 continue;
             }

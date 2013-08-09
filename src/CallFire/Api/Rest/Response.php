@@ -57,7 +57,7 @@ abstract class Response
         return $document;
     }
 
-    protected static function createXPath(DOMDocument $document)
+    public static function createXPath(DOMDocument $document)
     {
         $xpath = new DOMXPath($document);
         foreach (static::$namespaces as $prefix => $uri) {

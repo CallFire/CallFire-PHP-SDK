@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<r:Resource xmlns="http://api.callfire.com/data" xmlns:r="http://api.callfire.com/resource">
+      <Broadcast id="1057444001">
+            <Name>Testing Broadcast</Name>
+            <Status>FINISHED</Status>
+            <Type>IVR</Type>
+            <IvrBroadcastConfig>
+                  <FromNumber>15555555555</FromNumber>
+                  <RetryConfig>
+                        <MaxAttempts>1</MaxAttempts>
+                        <MinutesBetweenAttempts>60</MinutesBetweenAttempts>
+                        <RetryResults>NO_ANS BUSY</RetryResults>
+                  </RetryConfig>
+                  <DialplanXml>&lt;dialplan&gt; 	&lt;play type=&quot;tts&quot;&gt; 		Congratulations! You have successfully configured a CallFire I V R. 	&lt;/play&gt; &lt;/dialplan&gt;</DialplanXml>
+            </IvrBroadcastConfig>
+      </Broadcast>
+</r:Resource>

@@ -1,8 +1,12 @@
 CallFire PHP SDK
 ================
 
-* [Getting Started](/docs/en/getting.started.md)
+* [Getting Started](/docs/en/00.getting.started.md)
 * [Composer Package](https://packagist.org/packages/callfire/php-sdk)
+* Examples
+    * [Voice Broadcasts](/docs/en/01.voice.broadcasts.md)
+    * [Text Broadcasts](/docs/en/02.text.broadcasts.md)
+    * [Postbacks](/docs/en/03.postbacks.md)
 
 ## Installation
 

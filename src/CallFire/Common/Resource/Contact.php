@@ -8,37 +8,37 @@ class Contact extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $firstName = null;
+    protected $firstName = null;
 
     /**
      * @var string
      */
-    public $lastName = null;
+    protected $lastName = null;
 
     /**
      * @var string
      */
-    public $zipcode = null;
+    protected $zipcode = null;
 
     /**
      * @var string
      */
-    public $homePhone = null;
+    protected $homePhone = null;
 
     /**
      * @var string
      */
-    public $workPhone = null;
+    protected $workPhone = null;
 
     /**
      * @var string
      */
-    public $mobilePhone = null;
+    protected $mobilePhone = null;
 
     public function getId()
     {

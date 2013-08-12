@@ -8,32 +8,32 @@ class Subscription extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var boolean
      */
-    public $enabled = null;
+    protected $enabled = null;
 
     /**
      * @var anyURI
      */
-    public $endpoint = null;
+    protected $endpoint = null;
 
     /**
      * @var string
      */
-    public $notificationFormat = null;
+    protected $notificationFormat = null;
 
     /**
      * @var string
      */
-    public $triggerEvent = null;
+    protected $triggerEvent = null;
 
     /**
      * @var SubscriptionFilter
      */
-    public $subscriptionFilter = null;
+    protected $subscriptionFilter = null;
 
     public function getId()
     {

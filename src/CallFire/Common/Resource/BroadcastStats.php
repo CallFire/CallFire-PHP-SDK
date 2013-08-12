@@ -8,12 +8,12 @@ class BroadcastStats extends AbstractResource
     /**
      * @var UsageStats
      */
-    public $usageStats = null;
+    protected $usageStats = null;
 
     /**
      * @var ResultStat[]
      */
-    public $resultStats = array();
+    protected $resultStats = array();
 
     public function getUsageStats()
     {

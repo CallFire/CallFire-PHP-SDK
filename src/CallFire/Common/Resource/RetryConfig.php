@@ -8,17 +8,17 @@ class RetryConfig extends AbstractResource
     /**
      * @var int
      */
-    public $maxAttempts = null;
+    protected $maxAttempts = null;
 
     /**
      * @var int
      */
-    public $minutesBetweenAttempts = null;
+    protected $minutesBetweenAttempts = null;
 
     /**
      * @var RetryResults
      */
-    public $retryResults = null;
+    protected $retryResults = null;
 
     public function getMaxAttempts()
     {

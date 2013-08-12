@@ -8,42 +8,42 @@ class Broadcast extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $name = null;
+    protected $name = null;
 
     /**
      * @var string
      */
-    public $status = null;
+    protected $status = null;
 
     /**
      * @var dateTime
      */
-    public $lastModified = null;
+    protected $lastModified = null;
 
     /**
      * @var string
      */
-    public $type = null;
+    protected $type = null;
 
     /**
      * @var VoiceBroadcastConfig
      */
-    public $voiceBroadcastConfig = null;
+    protected $voiceBroadcastConfig = null;
 
     /**
      * @var TextBroadcastConfig
      */
-    public $textBroadcastConfig = null;
+    protected $textBroadcastConfig = null;
 
     /**
      * @var IvrBroadcastConfig
      */
-    public $ivrBroadcastConfig = null;
+    protected $ivrBroadcastConfig = null;
 
     public function getId()
     {

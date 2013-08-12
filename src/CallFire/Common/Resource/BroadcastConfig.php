@@ -8,22 +8,22 @@ abstract class BroadcastConfig extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var dateTime
      */
-    public $created = null;
+    protected $created = null;
 
     /**
      * @var string
      */
-    public $fromNumber = null;
+    protected $fromNumber = null;
 
     /**
      * @var RetryConfig
      */
-    public $retryConfig = null;
+    protected $retryConfig = null;
 
     public function getId()
     {

@@ -8,22 +8,22 @@ class Number extends AbstractResource
     /**
      * @var string
      */
-    public $number = null;
+    protected $number = null;
 
     /**
      * @var string
      */
-    public $nationalFormat = null;
+    protected $nationalFormat = null;
 
     /**
      * @var boolean
      */
-    public $tollFree = null;
+    protected $tollFree = null;
 
     /**
      * @var string
      */
-    public $status = null;
+    protected $status = null;
 
     public function getNumber()
     {

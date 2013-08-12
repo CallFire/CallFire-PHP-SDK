@@ -8,27 +8,27 @@ class SoundMeta extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $status = null;
+    protected $status = null;
 
     /**
      * @var string
      */
-    public $name = null;
+    protected $name = null;
 
     /**
      * @var dateTime
      */
-    public $created = null;
+    protected $created = null;
 
     /**
      * @var int
      */
-    public $lengthInSeconds = null;
+    protected $lengthInSeconds = null;
 
     public function getId()
     {

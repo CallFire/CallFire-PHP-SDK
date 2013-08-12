@@ -8,37 +8,37 @@ class ContactBatch extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $name = null;
+    protected $name = null;
 
     /**
      * @var string
      */
-    public $status = null;
+    protected $status = null;
 
     /**
      * @var long
      */
-    public $broadcastId = null;
+    protected $broadcastId = null;
 
     /**
      * @var dateTime
      */
-    public $created = null;
+    protected $created = null;
 
     /**
      * @var int
      */
-    public $size = null;
+    protected $size = null;
 
     /**
      * @var int
      */
-    public $remaining = null;
+    protected $remaining = null;
 
     public function getId()
     {

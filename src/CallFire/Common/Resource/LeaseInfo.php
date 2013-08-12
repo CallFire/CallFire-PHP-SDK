@@ -8,17 +8,17 @@ class LeaseInfo extends AbstractResource
     /**
      * @var date
      */
-    public $leaseBegin = null;
+    protected $leaseBegin = null;
 
     /**
      * @var date
      */
-    public $leaseEnd = null;
+    protected $leaseEnd = null;
 
     /**
      * @var boolean
      */
-    public $autoRenew = null;
+    protected $autoRenew = null;
 
     public function getLeaseBegin()
     {

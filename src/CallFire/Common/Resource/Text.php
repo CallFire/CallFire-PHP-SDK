@@ -8,7 +8,7 @@ class Text extends Action
     /**
      * @var string
      */
-    public $message = null;
+    protected $message = null;
 
     public function getMessage()
     {

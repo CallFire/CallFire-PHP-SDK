@@ -8,7 +8,7 @@ class Label extends AbstractResource
     /**
      * @var string
      */
-    public $name = null;
+    protected $name = null;
 
     public function getName()
     {

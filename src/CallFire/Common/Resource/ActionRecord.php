@@ -8,27 +8,27 @@ abstract class ActionRecord extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $result = null;
+    protected $result = null;
 
     /**
      * @var dateTime
      */
-    public $finishTime = null;
+    protected $finishTime = null;
 
     /**
      * @var float
      */
-    public $billedAmount = null;
+    protected $billedAmount = null;
 
     /**
      * @var QuestionResponse[]
      */
-    public $questionResponses = array();
+    protected $questionResponses = array();
 
     public function getId()
     {

@@ -8,22 +8,22 @@ class ContactList extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $name = null;
+    protected $name = null;
 
     /**
      * @var integer
      */
-    public $size = null;
+    protected $size = null;
 
     /**
      * @var dateTime
      */
-    public $created = null;
+    protected $created = null;
 
     public function getId()
     {

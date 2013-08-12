@@ -365,7 +365,10 @@ class Resource
     
     public function getPropertyGenerator() {
         if(!$this->propertyGenerator) {
-            $this->propertyGenerator = new CodeGenerator\PropertyGenerator;
+            $generator = new CodeGenerator\PropertyGenerator;
+            $generator->setVisibility($generator::VISIBILITY_PROTECTED);
+            
+            $this->propertyGenerator = $generator;
         }
         return $this->propertyGenerator;
     }

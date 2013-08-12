@@ -8,12 +8,12 @@ class LocalTimeZoneRestriction extends AbstractResource
     /**
      * @var time
      */
-    public $beginTime = null;
+    protected $beginTime = null;
 
     /**
      * @var time
      */
-    public $endTime = null;
+    protected $endTime = null;
 
     public function getBeginTime()
     {

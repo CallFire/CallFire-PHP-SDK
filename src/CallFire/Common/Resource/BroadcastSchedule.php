@@ -8,37 +8,37 @@ class BroadcastSchedule extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var time
      */
-    public $startTimeOfDay = null;
+    protected $startTimeOfDay = null;
 
     /**
      * @var time
      */
-    public $stopTimeOfDay = null;
+    protected $stopTimeOfDay = null;
 
     /**
      * @var string
      */
-    public $timeZone = null;
+    protected $timeZone = null;
 
     /**
      * @var date
      */
-    public $beginDate = null;
+    protected $beginDate = null;
 
     /**
      * @var date
      */
-    public $endDate = null;
+    protected $endDate = null;
 
     /**
      * @var DaysOfWeek
      */
-    public $daysOfWeek = null;
+    protected $daysOfWeek = null;
 
     public function getId()
     {

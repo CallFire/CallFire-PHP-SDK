@@ -8,7 +8,7 @@ class IvrInboundConfig extends InboundConfig
     /**
      * @var string
      */
-    public $dialplanXml = null;
+    protected $dialplanXml = null;
 
     public function getDialplanXml()
     {

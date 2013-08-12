@@ -8,27 +8,27 @@ class AutoReply extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $number = null;
+    protected $number = null;
 
     /**
      * @var string
      */
-    public $keyword = null;
+    protected $keyword = null;
 
     /**
      * @var string
      */
-    public $match = null;
+    protected $match = null;
 
     /**
      * @var string
      */
-    public $message = null;
+    protected $message = null;
 
     public function getId()
     {

@@ -8,7 +8,7 @@ class IvrBroadcastConfig extends BroadcastConfig
     /**
      * @var string
      */
-    public $dialplanXml = null;
+    protected $dialplanXml = null;
 
     public function getDialplanXml()
     {

@@ -8,7 +8,7 @@ abstract class InboundConfig extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     public function getId()
     {

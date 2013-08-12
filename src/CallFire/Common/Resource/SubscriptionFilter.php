@@ -8,27 +8,27 @@ class SubscriptionFilter extends AbstractResource
     /**
      * @var long
      */
-    public $broadcastId = null;
+    protected $broadcastId = null;
 
     /**
      * @var long
      */
-    public $batchId = null;
+    protected $batchId = null;
 
     /**
      * @var string
      */
-    public $fromNumber = null;
+    protected $fromNumber = null;
 
     /**
      * @var string
      */
-    public $toNumber = null;
+    protected $toNumber = null;
 
     /**
      * @var boolean
      */
-    public $inbound = null;
+    protected $inbound = null;
 
     public function getBroadcastId()
     {

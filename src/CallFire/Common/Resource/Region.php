@@ -8,52 +8,52 @@ class Region extends AbstractResource
     /**
      * @var string
      */
-    public $prefix = null;
+    protected $prefix = null;
 
     /**
      * @var string
      */
-    public $city = null;
+    protected $city = null;
 
     /**
      * @var string
      */
-    public $state = null;
+    protected $state = null;
 
     /**
      * @var string
      */
-    public $zipcode = null;
+    protected $zipcode = null;
 
     /**
      * @var string
      */
-    public $country = null;
+    protected $country = null;
 
     /**
      * @var string
      */
-    public $lata = null;
+    protected $lata = null;
 
     /**
      * @var string
      */
-    public $rateCenter = null;
+    protected $rateCenter = null;
 
     /**
      * @var float
      */
-    public $latitude = null;
+    protected $latitude = null;
 
     /**
      * @var float
      */
-    public $longitude = null;
+    protected $longitude = null;
 
     /**
      * @var string
      */
-    public $timeZone = null;
+    protected $timeZone = null;
 
     public function getPrefix()
     {

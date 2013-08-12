@@ -8,37 +8,37 @@ class NumberOrder extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $status = null;
+    protected $status = null;
 
     /**
      * @var dateTime
      */
-    public $created = null;
+    protected $created = null;
 
     /**
      * @var float
      */
-    public $totalCost = null;
+    protected $totalCost = null;
 
     /**
      * @var string
      */
-    public $localNumbers = null;
+    protected $localNumbers = null;
 
     /**
      * @var string
      */
-    public $tollFreeNumbers = null;
+    protected $tollFreeNumbers = null;
 
     /**
      * @var string
      */
-    public $keywords = null;
+    protected $keywords = null;
 
     public function getId()
     {

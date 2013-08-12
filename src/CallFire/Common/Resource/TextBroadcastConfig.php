@@ -8,12 +8,12 @@ class TextBroadcastConfig extends BroadcastConfig
     /**
      * @var string
      */
-    public $message = null;
+    protected $message = null;
 
     /**
      * @var string
      */
-    public $bigMessageStrategy = null;
+    protected $bigMessageStrategy = null;
 
     public function getMessage()
     {

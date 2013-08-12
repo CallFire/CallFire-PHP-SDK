@@ -8,57 +8,57 @@ class Action extends AbstractResource
     /**
      * @var long
      */
-    public $id = null;
+    protected $id = null;
 
     /**
      * @var string
      */
-    public $fromNumber = null;
+    protected $fromNumber = null;
 
     /**
      * @var string
      */
-    public $toNumber = null;
+    protected $toNumber = null;
 
     /**
      * @var string
      */
-    public $state = null;
+    protected $state = null;
 
     /**
      * @var long
      */
-    public $batchId = null;
+    protected $batchId = null;
 
     /**
      * @var long
      */
-    public $broadcastId = null;
+    protected $broadcastId = null;
 
     /**
      * @var long
      */
-    public $contactId = null;
+    protected $contactId = null;
 
     /**
      * @var boolean
      */
-    public $inbound = null;
+    protected $inbound = null;
 
     /**
      * @var dateTime
      */
-    public $created = null;
+    protected $created = null;
 
     /**
      * @var dateTime
      */
-    public $modified = null;
+    protected $modified = null;
 
     /**
      * @var string
      */
-    public $finalResult = null;
+    protected $finalResult = null;
 
     public function getId()
     {

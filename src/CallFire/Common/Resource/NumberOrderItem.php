@@ -8,17 +8,17 @@ class NumberOrderItem extends AbstractResource
     /**
      * @var int
      */
-    public $ordered = null;
+    protected $ordered = null;
 
     /**
      * @var float
      */
-    public $unitCost = null;
+    protected $unitCost = null;
 
     /**
      * @var Fulfilled
      */
-    public $fulfilled = null;
+    protected $fulfilled = null;
 
     public function getOrdered()
     {

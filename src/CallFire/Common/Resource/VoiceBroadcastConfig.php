@@ -8,47 +8,47 @@ class VoiceBroadcastConfig extends BroadcastConfig
     /**
      * @var string
      */
-    public $answeringMachineConfig = null;
+    protected $answeringMachineConfig = null;
 
     /**
      * @var long
      */
-    public $liveSoundId = null;
+    protected $liveSoundId = null;
 
     /**
      * @var long
      */
-    public $machineSoundId = null;
+    protected $machineSoundId = null;
 
     /**
      * @var long
      */
-    public $transferSoundId = null;
+    protected $transferSoundId = null;
 
     /**
      * @var string
      */
-    public $transferDigit = null;
+    protected $transferDigit = null;
 
     /**
      * @var string
      */
-    public $transferNumber = null;
+    protected $transferNumber = null;
 
     /**
      * @var long
      */
-    public $dncSoundId = null;
+    protected $dncSoundId = null;
 
     /**
      * @var string
      */
-    public $dncDigit = null;
+    protected $dncDigit = null;
 
     /**
      * @var int
      */
-    public $maxActiveTransfers = null;
+    protected $maxActiveTransfers = null;
 
     public function getAnsweringMachineConfig()
     {

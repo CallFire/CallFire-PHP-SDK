@@ -8,22 +8,22 @@ class NumberConfiguration extends AbstractResource
     /**
      * @var string
      */
-    public $callFeature = null;
+    protected $callFeature = null;
 
     /**
      * @var string
      */
-    public $textFeature = null;
+    protected $textFeature = null;
 
     /**
      * @var string
      */
-    public $inboundCallConfigurationType = null;
+    protected $inboundCallConfigurationType = null;
 
     /**
      * @var InboundCallConfiguration
      */
-    public $inboundCallConfiguration = null;
+    protected $inboundCallConfiguration = null;
 
     public function getCallFeature()
     {

@@ -8,27 +8,27 @@ class UsageStats extends AbstractResource
     /**
      * @var int
      */
-    public $duration = null;
+    protected $duration = null;
 
     /**
      * @var int
      */
-    public $billedDuration = null;
+    protected $billedDuration = null;
 
     /**
      * @var float
      */
-    public $billedAmount = null;
+    protected $billedAmount = null;
 
     /**
      * @var int
      */
-    public $attempts = null;
+    protected $attempts = null;
 
     /**
      * @var int
      */
-    public $actions = null;
+    protected $actions = null;
 
     public function getDuration()
     {

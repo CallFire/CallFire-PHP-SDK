@@ -8,27 +8,27 @@ class CallTrackingConfig extends InboundConfig
     /**
      * @var boolean
      */
-    public $screen = null;
+    protected $screen = null;
 
     /**
      * @var boolean
      */
-    public $record = null;
+    protected $record = null;
 
     /**
      * @var long
      */
-    public $introSoundId = null;
+    protected $introSoundId = null;
 
     /**
      * @var long
      */
-    public $whisperSoundId = null;
+    protected $whisperSoundId = null;
 
     /**
      * @var TransferNumber
      */
-    public $transferNumber = null;
+    protected $transferNumber = null;
 
     public function getScreen()
     {

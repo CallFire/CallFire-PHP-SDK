@@ -8,17 +8,17 @@ class CallRecord extends ActionRecord
     /**
      * @var dateTime
      */
-    public $originateTime = null;
+    protected $originateTime = null;
 
     /**
      * @var dateTime
      */
-    public $answerTime = null;
+    protected $answerTime = null;
 
     /**
      * @var int
      */
-    public $duration = null;
+    protected $duration = null;
 
     public function getOriginateTime()
     {

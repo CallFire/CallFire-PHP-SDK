@@ -8,12 +8,12 @@ class QuestionResponse extends AbstractResource
     /**
      * @var string
      */
-    public $question = null;
+    protected $question = null;
 
     /**
      * @var string
      */
-    public $response = null;
+    protected $response = null;
 
     public function getQuestion()
     {

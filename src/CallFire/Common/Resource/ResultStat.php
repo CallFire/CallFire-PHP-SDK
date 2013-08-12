@@ -8,17 +8,17 @@ class ResultStat extends AbstractResource
     /**
      * @var string
      */
-    public $result = null;
+    protected $result = null;
 
     /**
      * @var int
      */
-    public $attempts = null;
+    protected $attempts = null;
 
     /**
      * @var int
      */
-    public $actions = null;
+    protected $actions = null;
 
     public function getResult()
     {

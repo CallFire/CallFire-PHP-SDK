@@ -8,17 +8,17 @@ class Keyword extends AbstractResource
     /**
      * @var string
      */
-    public $shortCode = null;
+    protected $shortCode = null;
 
     /**
      * @var string
      */
-    public $keyword = null;
+    protected $keyword = null;
 
     /**
      * @var string
      */
-    public $status = null;
+    protected $status = null;
 
     public function getShortCode()
     {

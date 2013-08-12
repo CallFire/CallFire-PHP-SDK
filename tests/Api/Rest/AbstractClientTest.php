@@ -36,7 +36,7 @@ class ClientTest extends TestCase
             ->method('setOption')
             ->with(
                 CURLOPT_URL,
-                '/test?a=a&b=b&c=c'
+                '/test?A=a&B=b&C=c'
             );
         $http->expects($this->once())
             ->method('execute');
@@ -78,7 +78,7 @@ class ClientTest extends TestCase
             ->with(CURLOPT_URL, '/test');
         $http->expects($this->at(2))
             ->method('setOption')
-            ->with(CURLOPT_POSTFIELDS, 'a=a&b=b&c=c');
+            ->with(CURLOPT_POSTFIELDS, 'A=a&B=b&C=c');
         $http->expects($this->once())
             ->method('execute');
         
@@ -101,16 +101,16 @@ class ClientTest extends TestCase
             ->with(CURLOPT_URL, '/test');
         $http->expects($this->at(2))
             ->method('setOption')
-            ->with(CURLOPT_POSTFIELDS, 'a=a&b=b&b=b2&b=b3&c=c');
+            ->with(CURLOPT_POSTFIELDS, 'A=a&B=b+b2+b3&C=c');
         $http->expects($this->once())
             ->method('execute');
         
         $request = new Request\MockRequest;
-        $request->b = array(
+        $request->setB(array(
             'b',
             'b2',
             'b3'
-        );
+        ));
         
         $client->post('/test', $request);
     }
@@ -147,7 +147,7 @@ class ClientTest extends TestCase
             ->with(CURLOPT_URL, '/test');
         $http->expects($this->at(2))
             ->method('setOption')
-            ->with(CURLOPT_POSTFIELDS, 'a=a&b=b&c=c');
+            ->with(CURLOPT_POSTFIELDS, 'A=a&B=b&C=c');
         $http->expects($this->once())
             ->method('execute');
         
@@ -170,16 +170,16 @@ class ClientTest extends TestCase
             ->with(CURLOPT_URL, '/test');
         $http->expects($this->at(2))
             ->method('setOption')
-            ->with(CURLOPT_POSTFIELDS, 'a=a&b=b&b=b2&b=b3&c=c');
+            ->with(CURLOPT_POSTFIELDS, 'A=a&B=b+b2+b3&C=c');
         $http->expects($this->once())
             ->method('execute');
         
         $request = new Request\MockRequest;
-        $request->b = array(
+        $request->setB(array(
             'b',
             'b2',
             'b3'
-        );
+        ));
         
         $client->put('/test', $request);
     }
@@ -189,9 +189,9 @@ class ClientTest extends TestCase
         $client = $this->getMockClient();
         $request = new Request\MockRequest;
         
-        $query = $client->buildQuery('foo', (array) $request);
+        $query = $client->buildQuery('foo', $request->getQuery());
         
-        $this->assertEquals('foo?a=a&b=b&c=c', $query);
+        $this->assertEquals('foo?A=a&B=b&C=c', $query);
     }
     
     /**
@@ -203,7 +203,7 @@ class ClientTest extends TestCase
     {
         $client = $this->getMockClient();
         
-        $query = $client->buildPostData((array) $request);
+        $query = $client->buildPostData($request->getQuery());
         
         $this->assertEquals($expected, $query);
     }
@@ -296,18 +296,18 @@ class ClientTest extends TestCase
         
         $data[] = array(
             $request,
-            'a=a&b=b&c=c'
+            'A=a&B=b&C=c'
         );
         
         $arrayRequest = clone $request;
-        $arrayRequest->b = array(
+        $arrayRequest->setB(array(
             'b',
             'b2',
             'b3'
-        );
+        ));
         $data[] = array(
             $arrayRequest,
-            'a=a&b=b&b=b2&b=b3&c=c'
+            'A=a&B=b+b2+b3&C=c'
         );
         
         return $data;

@@ -90,20 +90,13 @@ abstract class AbstractClient
         $data = array();
         foreach ($parameters as $key => $value) {
             if (is_scalar($value)) {
-                $data[] = implode("=", array(
-                    rawurlencode($key),
-                    rawurlencode($value)
-                ));
+                $data[$key] = $value;
             } elseif (is_array($value)) {
-                $data[] = implode("=", array(
-                    $key,
-                    implode(' ', $value)
-                ));
+                $data[$key] = implode(' ', $value);
             }
         }
-        $data = implode("&", $data);
 
-        return $data;
+        return http_build_query($data);
     }
 
     public function getBasePath()

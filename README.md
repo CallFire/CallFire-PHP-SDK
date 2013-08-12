@@ -4,8 +4,10 @@ CallFire PHP SDK
 * [Getting Started](/docs/en/00.getting.started.md)
 * [Composer Package](https://packagist.org/packages/callfire/php-sdk)
 * Examples
-    * [Voice Broadcasts](/docs/en/01.voice.broadcasts.md)
-    * [Text Broadcasts](/docs/en/02.text.broadcasts.md)
+    * [Broadcasts](/docs/en/01.broadcasts.md)
+        * [IVR Broadcasts](/docs/en/broadcasts/01.ivr.md)
+        * [Voice Broadcasts](/docs/en/broadcasts/02.voice.md)
+        * [Text Broadcasts](/docs/en/broadcasts/03.text.md)
     * [Postbacks](/docs/en/03.postbacks.md)
 
 ## Installation

@@ -2,7 +2,7 @@
 namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
-use CallFire\Common\Resource;
+use CallFire\Common\Resource\AbstractResource;
 
 use DOMDocument;
 use DOMNode;
@@ -41,7 +41,7 @@ class ResourceList extends AbstractResponse implements IteratorAggregate
 
         foreach ($resourceNodes as $resourceNode) {
             $resource = $this->parseResourceNode($resourceNode);
-            if ($resource instanceof Resource\AbstractResource) {
+            if ($resource instanceof AbstractResource) {
                 $this->addResource($resource);
             }
         }
@@ -81,7 +81,7 @@ class ResourceList extends AbstractResponse implements IteratorAggregate
         return $this;
     }
 
-    public function addResource(Resource\AbstractResource $resource)
+    public function addResource(AbstractResource $resource)
     {
         $this->resources[] = $resource;
 

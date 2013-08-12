@@ -12,6 +12,23 @@ use DOMXPath;
 class ResponseTest extends TestCase
 {
     /**
+     * Test resolving/parsing of response XML into response
+     * objects.
+     *
+     * @dataProvider provideResponseFixtures
+     * 
+     * @param string $responseType
+     * @param string $fixture
+     */
+    public function testResponseFixtures($responseType, $fixture)
+    {
+        $client = $this->getMockClient();
+        
+        $response = $client::response($fixture);
+        $this->assertInstanceOf("CallFire\\Api\\Rest\\Response\\{$responseType}", $response);
+    }
+
+    /**
      * Tests parsing of fixtures into resource nodes
      *
      * @dataProvider provideResourceFixtures
@@ -30,6 +47,19 @@ class ResponseTest extends TestCase
         } else {
             $this->assertFalse($resource);
         }
+    }
+    
+    public function provideResponseFixtures()
+    {
+        $data = array();
+        foreach(glob(__DIR__.'/Response/fixtures/*.response.xml') as $fixture) {
+            $data[] = array(
+                basename($fixture, '.response.xml'),
+                file_get_contents($fixture)
+            );
+        }
+        
+        return $data;
     }
     
     public function provideResourceFixtures()
@@ -54,6 +84,13 @@ class ResponseTest extends TestCase
         }
         
         return $data;
+    }
+    
+    public function getMockClient()
+    {
+        $client = $this->getMockForAbstractClass('CallFire\\Api\\Rest\\AbstractClient');
+        
+        return $client;
     }
     
     public function getMockResponse()

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<r:ResourceReference xmlns="http://api.callfire.com/data" xmlns:r="http://api.callfire.com/resource">
+      <r:Id>1234</r:Id>
+      <r:Location>https://www.callfire.com/api/1.1/rest/broadcast/1234</r:Location>
+</r:ResourceReference>

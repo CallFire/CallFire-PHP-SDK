@@ -268,6 +268,7 @@ class Resource
         }
         
         $this->addResource($resourceName, $classGenerator);
+        $this->transformResource($resourceName, $classGenerator, $map);
         $this->setQueryMapEntry($resourceName, $map);
     }
     
@@ -295,6 +296,17 @@ class Resource
         $setterGenerator->setBody("\$this->{$propertyName} = \${$propertyName};\nreturn \$this;");
         
         return $setterGenerator;
+    }
+    
+    public function transformResource($resourceName, $classGenerator, &$map) {
+        $transformName = "CallFire\\Generator\\Resource\\Transform\\{$resourceName}";
+        if(!class_exists($transformName)) {
+            return;
+        }
+        
+        $transform = new $transformName($classGenerator, $map);
+        $transform->setPropertyGenerator($this->getPropertyGenerator());
+        return $transform->transform();
     }
     
     public function getResources() {

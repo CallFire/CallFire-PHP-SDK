@@ -40,6 +40,8 @@ class Contact extends AbstractResource
      */
     protected $mobilePhone = null;
 
+    protected $attributes = array();
+
     public function getId()
     {
         return $this->id;
@@ -122,6 +124,55 @@ class Contact extends AbstractResource
         $this->mobilePhone = $mobilePhone;
 
         return $this;
+    }
+
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    public function setAttributes($attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    public function addAttribute($attribute, $value)
+    {
+        $this->attributes[$attribute] = $value;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        $attributes = array($this->id);
+        if (!empty($this->firstName)) {
+            $attributes[] = "firstName={$this->firstName}";
+        }
+        if (!empty($this->lastName)) {
+            $attributes[] = "lastName={$this->lastName}";
+        }
+        if (!empty($this->zipcode)) {
+            $attributes[] = "zipcode={$this->zipcode}";
+        }
+        if (!empty($this->homePhone)) {
+            $attributes[] = "homePhone={$this->homePhone}";
+        }
+        if (!empty($this->workPhone)) {
+            $attributes[] = "workPhone={$this->workPhone}";
+        }
+        if (!empty($this->mobilePhone)) {
+            $attributes[] = "mobilePhone={$this->mobilePhone}";
+        }
+        foreach ($this->attributes as $attributeName => $value) {
+            if (!empty($value)) {
+                $attributes[] = "{$attributeName}={$value}";
+            }
+        }
+
+        return implode('!', $attributes);
     }
 
 }

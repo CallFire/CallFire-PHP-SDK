@@ -2,19 +2,17 @@
 namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
-
-use CallFire\Common\Hydrator\DOM as DomHydrator;
-use Zend\Stdlib\Hydrator\ClassMethods;
+use CallFire\Common\Resource\AbstractResource;
 
 use DOMDocument;
 use DOMNode;
 
-class ResourceException extends AbstractResponse
+class ResourceReference extends AbstractResponse
 {
-    protected $httpStatus;
-
-    protected $message;
-
+    protected $id;
+    
+    protected $location;
+    
     public static function fromXml(DOMDocument $document)
     {
         $resourceList = new self;
@@ -31,14 +29,14 @@ class ResourceException extends AbstractResponse
         }
 
         if (!$contextNode) {
-            $contextNode = $xpath->query('/r:ResourceException')->item(0);
+            $contextNode = $xpath->query('/r:ResourceReference')->item(0);
         }
-        
+
         $queryMap = $this->getQueryMap();
         $hydrator = $this->getDomHydrator();
         $hydrator->setQueryMap($queryMap);
         $methodsHydrator = $this->getHydrator();
-
+        
         $data = $hydrator->extract($contextNode);
         $methodsHydrator->hydrate($data, $this);
 
@@ -48,36 +46,31 @@ class ResourceException extends AbstractResponse
         }
     }
 
-    public function getHttpStatus()
-    {
-        return $this->httpStatus;
+    
+    public function getId() {
+        return $this->id;
     }
-
-    public function setHttpStatus($httpStatus)
-    {
-        $this->httpStatus = $httpStatus;
-
+    
+    public function setId($id) {
+        $this->id = $id;
         return $this;
     }
-
-    public function getMessage()
-    {
-        return $this->message;
+    
+    public function getLocation() {
+        return $this->location;
     }
-
-    public function setMessage($message)
-    {
-        $this->message = $message;
-
+    
+    public function setLocation($location) {
+        $this->location = $location;
         return $this;
     }
-
+    
     public function getQueryMap()
     {
         if (!$this->queryMap) {
             $this->queryMap = array(
-                'HttpStatus' => 'r:HttpStatus',
-                'Message' => 'r:Message'
+                'Id' => 'r:Id',
+                'Location' => 'r:Location'
             );
         }
 

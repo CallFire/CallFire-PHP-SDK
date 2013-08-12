@@ -35,6 +35,8 @@ abstract class Response
                 return Response\ResourceList::fromXml($document);
             case 'r:Resource':
                 return Response\Resource::fromXml($document);
+            case 'r:ResourceReference':
+                return Response\ResourceReference::fromXml($document);
         }
 
         throw new UnexpectedValueException('Response type not recognized');

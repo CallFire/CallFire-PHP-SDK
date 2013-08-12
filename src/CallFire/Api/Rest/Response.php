@@ -17,7 +17,7 @@ abstract class Response
         '_' => 'http://api.callfire.com/data',
         'r' => 'http://api.callfire.com/resource'
     );
-    
+
     protected $xpath;
 
     protected $hydrator;
@@ -68,7 +68,7 @@ abstract class Response
     }
 
     abstract public function loadXml(DOMDocument $document);
-    
+
     public function parseResourceNode(DOMNode $resourceNode)
     {
         $xpath = $this->getXPath();
@@ -99,12 +99,12 @@ abstract class Response
         if (!class_exists($resourceClassName)) {
             return false;
         }
-        
+
         $resource = new $resourceClassName;
         $parentClass = get_parent_class($resource);
-        if($parentClass) {
+        if ($parentClass) {
             $parentClass = substr($parentClass, strlen('CallFire\\Common\\Resource\\'));
-            if($parentClass != 'AbstractResource' && isset($queryMap[$parentClass])) {
+            if ($parentClass != 'AbstractResource' && isset($queryMap[$parentClass])) {
                 $resourceMap += $queryMap[$parentClass];
             }
         }
@@ -129,7 +129,7 @@ abstract class Response
 
         return $resource;
     }
-    
+
     public function getXPath()
     {
         return $this->xpath;

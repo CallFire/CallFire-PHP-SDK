@@ -25,7 +25,7 @@ abstract class AbstractClient
 
     public static function response($data, $type = 'xml')
     {
-        if(is_string($data) && strlen($data) === 0) {
+        if (is_string($data) && strlen($data) === 0) {
             return true; // Many operations return an empty string for success
         }
         switch ($type) {

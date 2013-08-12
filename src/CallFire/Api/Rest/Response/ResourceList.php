@@ -4,19 +4,15 @@ namespace CallFire\Api\Rest\Response;
 use CallFire\Api\Rest\Response as AbstractResponse;
 use CallFire\Common\Resource;
 
-use CallFire\Common\Hydrator\DOM as DomHydrator;
-use Zend\Stdlib\Hydrator\ClassMethods;
-
 use DOMDocument;
 use DOMNode;
-use LogicException;
 use ArrayIterator;
 use IteratorAggregate;
 
 class ResourceList extends AbstractResponse implements IteratorAggregate
 {
-    protected $totalResults = 0;    
-    
+    protected $totalResults = 0;
+
     protected $resources = array();
 
     public static function fromXml(DOMDocument $document)
@@ -37,7 +33,7 @@ class ResourceList extends AbstractResponse implements IteratorAggregate
         if (!$contextNode) {
             $contextNode = $xpath->query('/r:ResourceList')->item(0);
         }
-        
+
         $totalResults = $xpath->query('@totalResults', $contextNode)->item(0)->textContent;
         $this->setTotalResults($totalResults);
 
@@ -60,13 +56,16 @@ class ResourceList extends AbstractResponse implements IteratorAggregate
     {
         return new ArrayIterator($this->getResources());
     }
-    
-    public function getTotalResults() {
+
+    public function getTotalResults()
+    {
         return $this->totalResults;
     }
-    
-    public function setTotalResults($totalResults) {
+
+    public function setTotalResults($totalResults)
+    {
         $this->totalResults = $totalResults;
+
         return $this;
     }
 

@@ -95,12 +95,10 @@ abstract class AbstractClient
                     rawurlencode($value)
                 ));
             } elseif (is_array($value)) {
-                foreach ($value as $innerValue) {
-                    $data[] = implode("=", array(
-                        rawurlencode($key),
-                        rawurlencode($innerValue)
-                    ));
-                }
+                $data[] = implode("=", array(
+                    $key,
+                    implode(' ', $value)
+                ));
             }
         }
         $data = implode("&", $data);

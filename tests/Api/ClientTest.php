@@ -35,6 +35,15 @@ class ClientTest extends TestCase
         $this->assertInstanceOf("CallFire\\Api\\Rest\\Client\\{$service}", $client);
     }
     
+    public function testRestArray()
+    {
+        $clients = Client::Rest(static::$credentials[0], static::$credentials[1], static::$restServices);
+        foreach($clients as $key => $client) {
+            $matchingServiceName = static::$restServices[$key];
+            $this->assertInstanceOf("CallFire\\Api\\Rest\\Client\\{$matchingServiceName}", $client);
+        }
+    }
+    
     /**
      * Test instantiation of the Soap client
      */

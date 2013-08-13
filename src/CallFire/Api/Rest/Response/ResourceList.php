@@ -15,7 +15,7 @@ class ResourceList extends AbstractResponse implements IteratorAggregate
 
     protected $resources = array();
 
-    public static function fromXml(DOMDocument $document)
+    public static function fromXml($document)
     {
         $resourceList = new self;
         $resourceList->loadXml($document);

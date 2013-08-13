@@ -30,8 +30,8 @@ class BroadcastTest extends TestCase
         
         $request = new Request\QueryBroadcasts;
         $response = $client->QueryBroadcasts($request);
-        $broadcasts = $client::response($response);
-        $knownBroadcast = reset($broadcasts->getResources());
+        $broadcasts = $client::response($response)->getResources();
+        $knownBroadcast = reset($broadcasts);
         
         if($knownBroadcast instanceof Resource\Broadcast) {
             $response = $client->GetBroadcast($knownBroadcast->getId());

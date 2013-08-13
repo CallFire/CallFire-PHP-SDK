@@ -13,7 +13,7 @@ class ResourceReference extends AbstractResponse
     
     protected $location;
     
-    public static function fromXml(DOMDocument $document)
+    public static function fromXml($document)
     {
         $resourceList = new self;
         $resourceList->loadXml($document);

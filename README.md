@@ -8,7 +8,7 @@ CallFire PHP SDK
         * [IVR Broadcasts](/docs/en/broadcasts/01.ivr.md)
         * [Voice Broadcasts](/docs/en/broadcasts/02.voice.md)
         * [Text Broadcasts](/docs/en/broadcasts/03.text.md)
-    * [Postbacks](/docs/en/03.postbacks.md)
+    * [Subscriptions (Postbacks)](/docs/en/02.subscriptions.md)
 
 ## Installation
 

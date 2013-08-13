@@ -8,6 +8,19 @@ use PHPUnit_Framework_TestCase as TestCase;
 class SubscriptionTest extends TestCase
 {
     /**
+     * Test event request validity verification
+     *
+     * @dataProvider provideRequestData
+     * 
+     * @param array $requestData
+     */
+    public function testIsEventRequest($requestData, $expected)
+    {
+        $result = Subscription::is_event_request($requestData);
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
      * Test instantiation of each subscription notification
      * type.
      *
@@ -21,6 +34,20 @@ class SubscriptionTest extends TestCase
     {
         $event = Subscription::event($fixture, $format);
         $this->assertInstanceOf("CallFire\\Common\\Subscription\\{$notificationType}", $event);
+    }
+
+    public function provideRequestData()
+    {
+        $data = array();
+        
+        foreach(glob(__DIR__.'/Subscription/fixtures/*.request-data.php') as $filename) {
+            $data[] = array(
+                include $filename,
+                Subscription::FORMAT_XML
+            );
+        }
+        
+        return $data;
     }
     
     public function provideNotificationFixtures()

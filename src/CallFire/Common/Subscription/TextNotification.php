@@ -6,8 +6,6 @@ use CallFire\Common\Resource;
 
 class TextNotification extends AbstractSubscription
 {
-    protected $subscriptionId;
-    
     protected $text;
 
     public static function fromXml($document)
@@ -24,15 +22,6 @@ class TextNotification extends AbstractSubscription
     
     public function setResource($resource) {
         return $this->setText($resource);
-    }
-    
-    public function getSubscriptionId() {
-        return $this->subscriptionId;
-    }
-    
-    public function setSubscriptionId($subscriptionId) {
-        $this->subscriptionId = $subscriptionId;
-        return $this;
     }
     
     public function getText() {

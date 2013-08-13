@@ -26,6 +26,8 @@ abstract class Subscription
         self::FORMAT_XML => 'text/xml; charset=UTF-8'
     );
     
+    protected $subscriptionId;
+    
     protected $xpath;
 
     protected $hydrator;
@@ -83,6 +85,8 @@ abstract class Subscription
         switch ($document->firstChild->nodeName) {
             case 'n:TextNotification':
                 return Subscription\TextNotification::fromXml($document);
+            case 'n:CallFinished':
+                return Subscription\CallFinished::fromXml($document);
         }
 
         throw new UnexpectedValueException('Event type not recognized');
@@ -201,6 +205,15 @@ abstract class Subscription
         }
 
         return $resource;
+    }
+        
+    public function getSubscriptionId() {
+        return $this->subscriptionId;
+    }
+    
+    public function setSubscriptionId($subscriptionId) {
+        $this->subscriptionId = $subscriptionId;
+        return $this;
     }
     
     public function getXPath()

@@ -54,7 +54,7 @@ abstract class Subscription
         }
         
         switch(false) { // All of these things must be true
-            case isset($requestData['REQUEST_METHD']):
+            case isset($requestData['REQUEST_METHOD']):
             case $requestData['REQUEST_METHOD'] == 'POST':
             case isset($requestData['CONTENT_TYPE']):
             case in_array($requestData['CONTENT_TYPE'], $contentTypes):

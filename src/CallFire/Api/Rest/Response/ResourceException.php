@@ -15,7 +15,7 @@ class ResourceException extends AbstractResponse
 
     protected $message;
 
-    public static function fromXml(DOMDocument $document)
+    public static function fromXml($document)
     {
         $resourceList = new self;
         $resourceList->loadXml($document);

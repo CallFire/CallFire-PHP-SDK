@@ -50,7 +50,7 @@ abstract class Subscription
         }
         
         if(!$contentTypes) {
-            $contenTypes = static::$eventContentTypes;
+            $contentTypes = static::$eventContentTypes;
         }
         
         switch(false) { // All of these things must be true

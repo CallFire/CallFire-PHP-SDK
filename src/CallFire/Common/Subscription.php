@@ -278,7 +278,7 @@ abstract class Subscription
 
     private static function loadQueryMap()
     {
-        $queryMap = include __DIR__.'/subscription-querymap.php';
+        $queryMap = include __DIR__.'/../Api/Rest/querymap.php';
         if ($queryMap) {
             return $queryMap;
         }

@@ -10,7 +10,7 @@ class TextNotification extends AbstractSubscription
     
     protected $text;
 
-    public static function fromXml(DOMDocument $document)
+    public static function fromXml($document)
     {
         $textNotification = new self;
         $textNotification->loadXml($document);

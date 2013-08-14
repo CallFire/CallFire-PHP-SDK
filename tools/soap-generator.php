@@ -39,34 +39,34 @@ $generator->generateClasses($requestNamespace, $responseNamespace, $structureNam
 $classFiles = $generator->generateClassFiles();
 $structureFiles = $generator->generateStructureFiles();
 
-if(!is_dir($sourceDirectory)) {
+if (!is_dir($sourceDirectory)) {
     mkdir($sourceDirectory, 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$soapNamespace}")) {
+if (!is_dir("{$sourceDirectory}/{$soapNamespace}")) {
     mkdir("{$sourceDirectory}/{$soapNamespace}", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$soapNamespace}/{$requestNamespacePart}")) {
+if (!is_dir("{$sourceDirectory}/{$soapNamespace}/{$requestNamespacePart}")) {
     mkdir("{$sourceDirectory}/{$soapNamespace}/{$requestNamespacePart}", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$soapNamespace}/{$responseNamespacePart}")) {
+if (!is_dir("{$sourceDirectory}/{$soapNamespace}/{$responseNamespacePart}")) {
     mkdir("{$sourceDirectory}/{$soapNamespace}/{$responseNamespacePart}", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$soapNamespace}/{$structureNamespacePart}")) {
+if (!is_dir("{$sourceDirectory}/{$soapNamespace}/{$structureNamespacePart}")) {
     mkdir("{$sourceDirectory}/{$soapNamespace}/{$structureNamespacePart}", 0777, true);
 }
 
-foreach($classFiles as $classFile) {
+foreach ($classFiles as $classFile) {
     $classFile->setFilename("{$sourceDirectory}/{$soapNamespace}/{$classFile->getClass()->getName()}.php");
     $classFile->write();
 }
 
 $classmap = array();
 
-foreach($structureFiles as $structureFile) {
-    if(in_array($structureFile->getClass()->getName(), $requestTypes)) {
+foreach ($structureFiles as $structureFile) {
+    if (in_array($structureFile->getClass()->getName(), $requestTypes)) {
         $type = $requestNamespacePart;
         $structureFile->getClass()->setNamespaceName($requestNamespace);
-    } elseif(in_array($structureFile->getClass()->getName(), $responseTypes)) {
+    } elseif (in_array($structureFile->getClass()->getName(), $responseTypes)) {
         $type = $responseNamespacePart;
         $structureFile->getClass()->setNamespaceName($responseNamespace);
     } else {
@@ -75,7 +75,7 @@ foreach($structureFiles as $structureFile) {
     }
     $structureFile->setFilename("{$sourceDirectory}/{$soapNamespace}/{$type}/{$structureFile->getClass()->getName()}.php");
     $structureFile->write();
-    
+
     $classmap[$structureFile->getClass()->getName()] = $structureFile->getClass()->getNamespaceName().'\\'.$structureFile->getClass()->getName();
 }
 

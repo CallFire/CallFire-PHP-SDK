@@ -35,11 +35,11 @@ $resourceGenerator->generate();
 $resourceFiles = $resourceGenerator->generateResourceFiles();
 $queryMap = $resourceGenerator->getQueryMap();
 
-if(!is_dir($sourceDirectory)) {
+if (!is_dir($sourceDirectory)) {
     mkdir($sourceDirectory, 0777, true);
 }
 
-foreach($resourceFiles as $resourceFile) {
+foreach ($resourceFiles as $resourceFile) {
     $resourceFile->setFilename("{$sourceDirectory}/{$resourceFile->getClass()->getName()}.php");
     $resourceFile->write();
 }

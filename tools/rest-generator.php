@@ -1,11 +1,8 @@
 <?php
 namespace CallFire\Generator;
 
-use CallFire\Generator\Soap as SoapGenerator;
 use CallFire\Generator\Rest as RestGenerator;
 use Zend\Code\Generator\ClassGenerator;
-use Zend\Code\Generator\FileGenerator;
-use Zend\Code\Generator\ValueGenerator;
 
 require __DIR__."/../vendor/autoload.php";
 
@@ -36,25 +33,25 @@ $generator->generateClasses($requestNamespace, $responseNamespace, $structureNam
 $classFiles = $generator->generateClassFiles();
 $requestClassFiles = $generator->generateRequestClassFiles();
 
-if(!is_dir($sourceDirectory)) {
+if (!is_dir($sourceDirectory)) {
     mkdir($sourceDirectory, 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$restNamespace}")) {
+if (!is_dir("{$sourceDirectory}/{$restNamespace}")) {
     mkdir("{$sourceDirectory}/{$restNamespace}", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$restNamespace}/Client")) {
+if (!is_dir("{$sourceDirectory}/{$restNamespace}/Client")) {
     mkdir("{$sourceDirectory}/{$restNamespace}/Client", 0777, true);
 }
-if(!is_dir("{$sourceDirectory}/{$restNamespace}/Request")) {
+if (!is_dir("{$sourceDirectory}/{$restNamespace}/Request")) {
     mkdir("{$sourceDirectory}/{$restNamespace}/Request", 0777, true);
 }
 
-foreach($classFiles as $classFile) {
+foreach ($classFiles as $classFile) {
     $classFile->setFilename("{$sourceDirectory}/{$restNamespace}/Client/{$classFile->getClass()->getName()}.php");
     $classFile->write();
 }
 
-foreach($requestClassFiles as $requestClassFile) {
+foreach ($requestClassFiles as $requestClassFile) {
     $requestClassFile->getClass()->setNamespacename("{$namespace}\\{$restNamespace}\\Request");
     $requestClassFile->getClass()->addUse("{$namespace}\\{$restNamespace}\\Request", RestGenerator::ABSTRACT_REQUEST_ALIAS);
     $requestClassFile->setFilename("{$sourceDirectory}/{$restNamespace}/Request/{$requestClassFile->getClass()->getName()}.php");

@@ -1,6 +1,7 @@
 <?php
 
 return array(
+        'TextToSpeech' => array(),
         'InboundConfig' => array('id' => '@id'),
         'RetryResults' => array(),
         'RetryConfig' => array(
@@ -57,14 +58,18 @@ return array(
             ),
         'VoiceBroadcastConfig' => array(
             'AnsweringMachineConfig' => '_:AnsweringMachineConfig',
-            'LiveSoundId' => '_:LiveSoundId',
-            'MachineSoundId' => '_:MachineSoundId',
-            'TransferSoundId' => '_:TransferSoundId',
             'TransferDigit' => '_:TransferDigit',
             'TransferNumber' => '_:TransferNumber',
-            'DncSoundId' => '_:DncSoundId',
             'DncDigit' => '_:DncDigit',
-            'MaxActiveTransfers' => '_:MaxActiveTransfers'
+            'MaxActiveTransfers' => '_:MaxActiveTransfers',
+            'LiveSoundText' => '_:LiveSoundText',
+            'LiveSoundId' => '_:LiveSoundId',
+            'MachineSoundText' => '_:MachineSoundText',
+            'MachineSoundId' => '_:MachineSoundId',
+            'TransferSoundText' => '_:TransferSoundText',
+            'TransferSoundId' => '_:TransferSoundId',
+            'DncSoundText' => '_:DncSoundText',
+            'DncSoundId' => '_:DncSoundId'
             ),
         'TextBroadcastConfig' => array(
             'Message' => '_:Message',

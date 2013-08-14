@@ -6,6 +6,7 @@ use CallFire\Common\Resource\AbstractResource;
 
 use DOMDocument;
 use DOMNode;
+use DOMNodeList;
 use DOMXPath;
 
 class Resource
@@ -75,9 +76,6 @@ class Resource
         $extendedClass = $isSubclass?substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4):null;
         
         $resourceName = $xpath->query('@name', $element)->item(0)->textContent;
-        if($this->hasResource($resourceName)) {
-            continue;
-        }
         
         $classGenerator->setName($resourceName);
         if($isSubclass) {
@@ -96,6 +94,47 @@ class Resource
         }
         
         $attributes = $xpath->query($attributesQuery, $element);
+        $this->handleFirstClassAttributes($classGenerator, $map, $attributes, $element, $xpath);
+        
+        // Second-class attributes of the resource (e.g. name, description)
+        $sequenceElementsQuery = $isComplexType?'_:sequence/_:element[@name][@type]':'_:complexType/_:sequence/_:element[@name][@type]';
+        if($isSubclass) {
+            $sequenceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
+        }
+        
+        $sequenceElements = $xpath->query($sequenceElementsQuery, $element);
+        $this->handleSecondClassAttributes($classGenerator, $map, $sequenceElements, $element, $xpath);
+        
+        if($isSubclass) {
+            $sequenceChoiceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:choice/_:element[@name][@type]';
+            $sequenceChoiceElements = $xpath->query($sequenceChoiceElementsQuery, $element);
+            foreach($sequenceChoiceElements as $tmp) echo $xpath->query('@name', $tmp)->item(0)->textContent.PHP_EOL;
+            $this->handleSecondClassAttributes($classGenerator, $map, $sequenceChoiceElements, $element, $xpath);
+        }
+        
+        // Second-class object attributes of the resource (e.g. IvrBroadcastConfig for Broadcast)
+        $choicesQuery = '_:complexType/_:sequence/_:choice/_:element[@ref]';
+        $choiceElements = $xpath->query($choicesQuery, $element);
+        $this->handleChoiceElements($classGenerator, $map, $choiceElements, $element, $xpath);
+        
+        // Complex second-class types (e.g. question-response, broadcast result statistics)
+        $secondClassElementsQuery = $isComplexType?'_:sequence/_:element[@name][not(@type)]':'_:complexType/_:sequence/_:element[@name][not(@type)]';
+        if($isSubclass) {
+            $secondClassElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][not(@type)]';
+        }
+        
+        $secondClassElements = $xpath->query($secondClassElementsQuery, $element);
+        $this->handleSecondClassElements($classGenerator, $map, $secondClassElements, $element, $xpath);
+        
+        if(!$this->hasResource($resourceName)) {
+            $this->addResource($resourceName, $classGenerator);
+            $this->transformResource($resourceName, $classGenerator, $map);
+            $this->setQueryMapEntry($resourceName, $map);
+        }
+    }
+    
+    protected function handleFirstClassAttributes(CodeGenerator\ClassGenerator $classGenerator, array &$map, DOMNodeList $attributes, DOMNode $element, DOMXPath $xpath)
+    {
         foreach($attributes as $attribute) {
             $attributeName = $xpath->query('@name', $attribute)->item(0)->textContent;
             $attributeTypeNode = $xpath->query('@type', $attribute)->item(0);
@@ -137,14 +176,10 @@ class Resource
                 $setterGenerator
             ));
         }
-        
-        // Second-class attributes of the resource (e.g. name, description)
-        $sequenceElementsQuery = $isComplexType?'_:sequence/_:element[@name][@type]':'_:complexType/_:sequence/_:element[@name][@type]';
-        if($isSubclass) {
-            $sequenceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
-        }
-        
-        $sequenceElements = $xpath->query($sequenceElementsQuery, $element);
+    }
+    
+    protected function handleSecondClassAttributes(CodeGenerator\ClassGenerator $classGenerator, array &$map, DOMNodeList $sequenceElements, DOMNode $element, DOMXPath $xpath)
+    {
         foreach($sequenceElements as $sequenceElement) {
             $sequenceElementName = $xpath->query('@name', $sequenceElement)->item(0)->textContent;
             $sequenceElementTypeNode = $xpath->query('@type', $sequenceElement)->item(0);
@@ -179,10 +214,10 @@ class Resource
                 $setterGenerator
             ));
         }
-        
-        // Second-class object attributes of the resource (e.g. IvrBroadcastConfig for Broadcast)
-        $choicesQuery = '_:complexType/_:sequence/_:choice/_:element[@ref]';
-        $choiceElements = $xpath->query($choicesQuery, $element);
+    }
+    
+    protected function handleChoiceElements(CodeGenerator\ClassGenerator $classGenerator, array &$map, DOMNodeList $choiceElements, DOMNode $element, DOMXPath $xpath)
+    {
         foreach($choiceElements as $choiceElement) {
             $choiceClass = substr($xpath->query('@ref', $choiceElement)->item(0)->textContent, 4);
             $propertyName = lcfirst($choiceClass);
@@ -204,7 +239,8 @@ class Resource
             $getterGenerator = $this->generatePropertyGetter($propertyName);
             $setterGenerator = $this->generatePropertySetter($propertyName);
             
-            $setterParam = reset($setterGenerator->getParameters());
+            $setterParams = $setterGenerator->getParameters();
+            $setterParam = reset($setterParams);
             $setterParam->setType($choiceClass);
             
             $classGenerator->addMethods(array(
@@ -212,22 +248,29 @@ class Resource
                 $setterGenerator
             ));
         }
-        
-        // Complex second-class types (e.g. question-response, broadcast result statistics)
-        $secondClassElementsQuery = $isComplexType?'_:sequence/_:element[@name][not(@type)]':'_:complexType/_:sequence/_:element[@name][not(@type)]';
-        if($isSubclass) {
-            $secondClassElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][not(@type)]';
-        }
-        
-        $secondClassElements = $xpath->query($secondClassElementsQuery, $element);
+    }
+    
+    protected function handleSecondClassElements(CodeGenerator\ClassGenerator $classGenerator, array &$map, DOMNodeList $secondClassElements, DOMNode $element, DOMXPath $xpath)
+    {
         foreach($secondClassElements as $secondClassElement) {
-            $this->generateResource($secondClassElement);
-            
             $maxOccursNode = $xpath->query('@maxOccurs', $secondClassElement)->item(0);
             $maxOccurs = $maxOccursNode?$maxOccursNode->textContent:null;
             $unbounded = ($maxOccurs == 'unbounded');
             
-            $secondClassElementName = $xpath->query('@name', $secondClassElement)->item(0)->textContent;
+            $secondClassElementName = null;
+            $secondClassElementNameNode = $xpath->query('@name', $secondClassElement)->item(0);
+            if($secondClassElementNameNode) {
+                $secondClassElementName = $secondClassElementNameNode->textContent;
+                $this->generateResource($secondClassElement);
+            } else {
+                $secondClassElementNameNode = $xpath->query('@ref', $secondClassElement)->item(0);
+                if($secondClassElementNameNode) {
+                    $secondClassElementName = substr($secondClassElementNameNode->textContent, 4);
+                }
+            }
+            if(!$secondClassElementName) {
+                continue;
+            }
             $secondClassElementType = $secondClassElementName;
             if($unbounded) {
                 $secondClassElementType .= "[]";
@@ -257,19 +300,15 @@ class Resource
             }
             
             $classGenerator->addPropertyFromGenerator($secondClassElementProperty);
-            $map["#{$secondClassElementName}"] = "_:{$secondClassElementName}";
-            
             $getterGenerator = $this->generatePropertyGetter($propertyName);
             $setterGenerator = $this->generatePropertySetter($propertyName);
             $classGenerator->addMethods(array(
                 $getterGenerator,
                 $setterGenerator
             ));
+            
+            $map["#{$secondClassElementName}"] = "_:{$secondClassElementName}";
         }
-        
-        $this->addResource($resourceName, $classGenerator);
-        $this->transformResource($resourceName, $classGenerator, $map);
-        $this->setQueryMapEntry($resourceName, $map);
     }
     
     public function generatePropertyGetter($propertyName) {

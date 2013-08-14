@@ -85,4 +85,4 @@ $classmapFileGenerator->setBody('return '.$classmapValueGenerator->generate().';
 $classmapFileGenerator->setFilename("{$sourceDirectory}/{$soapNamespace}/classmap.php");
 $classmapFileGenerator->write();
 
-passthru('php '.__DIR__.'/../vendor/fabpot/php-cs-fixer/php-cs-fixer fix '.__DIR__.'/../src/CallFire/Api/ --level=all');
+passthru('php '.__DIR__.'/../vendor/fabpot/php-cs-fixer/php-cs-fixer fix '.__DIR__.'/../src/CallFire/Api/Soap/ --level=all');

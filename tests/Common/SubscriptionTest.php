@@ -11,7 +11,7 @@ class SubscriptionTest extends TestCase
      * Test event request validity verification
      *
      * @dataProvider provideRequestData
-     * 
+     *
      * @param array $requestData
      */
     public function testIsEventRequest($requestData, $expected)
@@ -25,7 +25,7 @@ class SubscriptionTest extends TestCase
      * type.
      *
      * @dataProvider provideNotificationFixtures
-     * 
+     *
      * @param string $notificationType
      * @param string $fixture
      * @param string $format
@@ -39,24 +39,24 @@ class SubscriptionTest extends TestCase
     public function provideRequestData()
     {
         $data = array();
-        
-        foreach(glob(__DIR__.'/Subscription/fixtures/*.request-data.php') as $filename) {
+
+        foreach (glob(__DIR__.'/Subscription/fixtures/*.request-data.php') as $filename) {
             $data[] = array(
                 include $filename,
                 Subscription::FORMAT_XML
             );
         }
-        
+
         return $data;
     }
-    
+
     public function provideNotificationFixtures()
     {
         $data = array();
-        foreach(glob(__DIR__.'/Subscription/fixtures/*.notification.xml') as $filename) {
+        foreach (glob(__DIR__.'/Subscription/fixtures/*.notification.xml') as $filename) {
             $data[] = array(basename($filename, '.notification.xml'), file_get_contents($filename), Subscription::FORMAT_XML);
         }
-        
+
         return $data;
     }
 }

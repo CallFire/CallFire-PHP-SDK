@@ -8,31 +8,40 @@ class MockRequest extends AbstractRequest
     protected $a = "a";
     protected $b = "b";
     protected $c = "c";
-    
-    public function getA() {
+
+    public function getA()
+    {
         return $this->a;
     }
-    
-    public function setA($a) {
+
+    public function setA($a)
+    {
         $this->a = $a;
+
         return $this;
     }
-    
-    public function getB() {
+
+    public function getB()
+    {
         return $this->b;
     }
-    
-    public function setB($b) {
+
+    public function setB($b)
+    {
         $this->b = $b;
+
         return $this;
     }
-    
-    public function getC() {
+
+    public function getC()
+    {
         return $this->c;
     }
-    
-    public function setC($c) {
+
+    public function setC($c)
+    {
         $this->c = $c;
+
         return $this;
     }
 }

@@ -19,10 +19,10 @@ class ClientTest extends TestCase
         'Subscription',
         'Text'
     );
-    
+
     /**
      * Test instantiation of the Rest client
-     * 
+     *
      * @dataProvider restProvider
      *
      * @param string $username
@@ -34,37 +34,37 @@ class ClientTest extends TestCase
         $client = Client::Rest($username, $password, $service);
         $this->assertInstanceOf("CallFire\\Api\\Rest\\Client\\{$service}", $client);
     }
-    
+
     public function testRestArray()
     {
         $clients = Client::Rest(static::$credentials[0], static::$credentials[1], static::$restServices);
-        foreach($clients as $key => $client) {
+        foreach ($clients as $key => $client) {
             $matchingServiceName = static::$restServices[$key];
             $this->assertInstanceOf("CallFire\\Api\\Rest\\Client\\{$matchingServiceName}", $client);
         }
     }
-    
+
     /**
      * Test instantiation of the Soap client
      */
     public function testSoap()
     {
         list($username, $password) = static::$credentials;
-        
+
         $client = Client::Soap($username, $password);
         $this->assertInstanceOf("CallFire\\Api\\Soap\\Client", $client);
     }
-    
+
     public function restProvider()
     {
         $data = array();
-        
-        foreach(static::$restServices as $service) {
+
+        foreach (static::$restServices as $service) {
             $parameters = static::$credentials;
             $parameters[] = $service;
             $data[] = $parameters;
         }
-        
+
         return $data;
     }
 }

@@ -85,7 +85,7 @@ class Rest
             $serviceGenerator->setClassGenerator(clone $classGenerator);
             $serviceGenerator->setDescription($service);
             $serviceGenerator->generate();
-            
+
             $this->transformService($serviceGenerator);
 
             $this->addClass($serviceGenerator);
@@ -120,16 +120,17 @@ class Rest
 
         return $files;
     }
-    
+
     public function transformService(Rest\Service $service)
     {
         $serviceName = $service->getClassGenerator()->getName();
         $transformName = "CallFire\\Generator\\Rest\\Transform\\Client\\{$serviceName}";
-        if(!class_exists($transformName)) {
+        if (!class_exists($transformName)) {
             return;
         }
-        
+
         $transform = new $transformName($service);
+
         return $transform->transform();
     }
 

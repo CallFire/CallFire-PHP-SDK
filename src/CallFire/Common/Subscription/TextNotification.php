@@ -15,21 +15,26 @@ class TextNotification extends AbstractSubscription
 
         return $textNotification;
     }
-    
-    public function getResource() {
+
+    public function getResource()
+    {
         return $this->getText();
     }
-    
-    public function setResource($resource) {
+
+    public function setResource($resource)
+    {
         return $this->setText($resource);
     }
-    
-    public function getText() {
+
+    public function getText()
+    {
         return $this->text;
     }
-    
-    public function setText(Resource\Text $text) {
+
+    public function setText(Resource\Text $text)
+    {
         $this->text = $text;
+
         return $this;
     }
 }

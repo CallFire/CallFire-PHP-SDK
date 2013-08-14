@@ -7,19 +7,19 @@ class Client
 {
     public static function Rest($username, $password, $service)
     {
-        if(is_string($service)) {
+        if (is_string($service)) {
             return static::createRestClient($username, $password, $service);
-        } elseif(is_array($service)) {
+        } elseif (is_array($service)) {
             $services = array();
-            
-            foreach($service as $serviceName) {
+
+            foreach ($service as $serviceName) {
                 $services[] = static::createRestClient($username, $password, $serviceName);
             }
-            
+
             return $services;
         }
     }
-    
+
     protected static function createRestClient($username, $password, $service)
     {
         $serviceClass = "CallFire\\Api\\Rest\\Client\\{$service}";

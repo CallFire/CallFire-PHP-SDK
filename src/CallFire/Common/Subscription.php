@@ -16,18 +16,18 @@ abstract class Subscription
 {
     const FORMAT_XML = 'xml';
     const FORMAT_JSON = 'json';
-    
+
     protected static $namespaces = array(
         '_' => 'http://api.callfire.com/data',
         'n' => 'http://api.callfire.com/notification/xsd'
     );
-    
+
     public static $eventContentTypes = array(
         self::FORMAT_XML => 'text/xml; charset=UTF-8'
     );
-    
+
     protected $subscriptionId;
-    
+
     protected $xpath;
 
     protected $hydrator;
@@ -35,49 +35,49 @@ abstract class Subscription
     protected $domHydrator;
 
     protected $queryMap;
-    
+
     /**
      * Determines if the request is an event notification,
      * and returns the corresponding format identifier.
      *
      * @static
-     * @param array $requestData = null
-     * @param array $contentTypes = null
+     * @param  array  $requestData  = null
+     * @param  array  $contentTypes = null
      * @return string
      */
     public static function is_event_request($requestData = null, $contentTypes = null)
     {
-        if(!$requestData) {
+        if (!$requestData) {
             $requestData = $_SERVER;
         }
-        
-        if(!$contentTypes) {
+
+        if (!$contentTypes) {
             $contentTypes = static::$eventContentTypes;
         }
-        
-        switch(false) { // All of these things must be true
+
+        switch (false) { // All of these things must be true
             case isset($requestData['REQUEST_METHOD']):
             case $requestData['REQUEST_METHOD'] == 'POST':
             case isset($requestData['CONTENT_TYPE']):
             case in_array($requestData['CONTENT_TYPE'], $contentTypes):
                 return false;
         }
-        
+
         return array_search($requestData['CONTENT_TYPE'], $contentTypes);
     }
-    
+
     public static function event($postData, $format)
     {
-        switch($format) {
+        switch ($format) {
             case self::FORMAT_XML:
                 return static::fromXml($postData);
             case self::FORMAT_JSON:
                 return static::fromJson($postData);
         }
-        
+
         throw new UnexpectedValueException('Event format not recognized');
     }
-    
+
     public static function fromXml($document)
     {
         $document = static::getXmlDocument($document);
@@ -96,7 +96,7 @@ abstract class Subscription
     {
         throw new UnexpectedValueException('JSON is not yet supported');
     }
-    
+
     protected static function getXmlDocument($document)
     {
         if (is_string($document)) {
@@ -118,7 +118,7 @@ abstract class Subscription
 
         return $xpath;
     }
-    
+
     public function loadXml(DOMDocument $document, DOMNode $contextNode = null, $cleanup = true)
     {
         if (!($xpath = $this->getXPath())) {
@@ -132,7 +132,7 @@ abstract class Subscription
 
         $subscriptionId = $xpath->query('n:SubscriptionId', $contextNode)->item(0)->textContent;
         $this->setSubscriptionId($subscriptionId);
-        
+
         $resourceNode = $xpath->query('*[1]', $contextNode)->item(0);
         if ($resourceNode instanceof DOMNode) {
             $resource = $this->parseResourceNode($resourceNode);
@@ -145,7 +145,7 @@ abstract class Subscription
             $this->cleanup();
         }
     }
-    
+
     public function parseResourceNode(DOMNode $resourceNode)
     {
         $xpath = $this->getXPath();
@@ -206,16 +206,19 @@ abstract class Subscription
 
         return $resource;
     }
-        
-    public function getSubscriptionId() {
+
+    public function getSubscriptionId()
+    {
         return $this->subscriptionId;
     }
-    
-    public function setSubscriptionId($subscriptionId) {
+
+    public function setSubscriptionId($subscriptionId)
+    {
         $this->subscriptionId = $subscriptionId;
+
         return $this;
     }
-    
+
     public function getXPath()
     {
         return $this->xpath;
@@ -278,11 +281,11 @@ abstract class Subscription
 
         return $this;
     }
-    
+
     abstract public function getResource();
-    
+
     abstract public function setResource($resource);
-    
+
     protected function cleanup()
     {
         $this->setXPath(null);

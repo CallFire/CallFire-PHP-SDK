@@ -7,7 +7,7 @@ use CallFire\Common\Resource;
 class CallFinished extends AbstractSubscription
 {
     protected $call;
-    
+
     public static function fromXml($document)
     {
         $callNotification = new self;
@@ -15,21 +15,26 @@ class CallFinished extends AbstractSubscription
 
         return $callNotification;
     }
-    
-    public function getResource() {
+
+    public function getResource()
+    {
         return $this->getCall();
     }
-    
-    public function setResource($resource) {
+
+    public function setResource($resource)
+    {
         return $this->setCall($resource);
     }
-    
-    public function getCall() {
+
+    public function getCall()
+    {
         return $this->call;
     }
-    
-    public function setCall(Resource\Call $call) {
+
+    public function setCall(Resource\Call $call)
+    {
         $this->call = $call;
+
         return $this;
     }
 }

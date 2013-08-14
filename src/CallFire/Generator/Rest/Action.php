@@ -24,13 +24,13 @@ abstract class Action
     protected $parameterClassGenerator;
 
     protected $parameterGenerator;
-    
+
     protected $parameterGetterGenerator;
-    
+
     protected $parameterSetterGenerator;
 
     protected $propertyGenerator;
-    
+
     protected $docBlockGenerator;
 
     public function generate()
@@ -47,7 +47,7 @@ abstract class Action
         $parameterGenerator = $this->getParameterGenerator();
         $propertyGenerator = $this->getPropertyGenerator();
         $docBlockGenerator = $this->getDocblockGenerator();
-        
+
         $docBlockGenerator->setShortDescription($operation->getSummary());
         $docBlockGenerator->setLongDescription(strip_tags($operation->getNotes()));
 
@@ -66,47 +66,47 @@ abstract class Action
                     $parameter = clone $parameterGenerator;
                     $parameter->setName($swaggerParameter->getName());
                     $method->setParameter($parameter);
-                    
+
                     $paramTag = new CodeGenerator\DocBlock\Tag\ParamTag;
                     $paramTag->setDataType($swaggerParameter::getType($swaggerParameter->getDataType()));
                     $paramTag->setParamName($swaggerParameter->getName());
-                    
+
                     $paramDescription = $swaggerParameter->getDescription();
-                    
+
                     $paramTag->setDescription($paramDescription);
                     $docBlockGenerator->setTag($paramTag);
-                    
+
                     $routeParams[] = $parameter;
                     break;
                 case self::PARAM_TYPE_QUERY:
                 case self::PARAM_TYPE_FORM:
                     $propertyName = lcfirst($swaggerParameter->getName());
-                    
+
                     if ($parameterClassGenerator->hasProperty($propertyName)) {
                         continue;
                     }
-                    
+
                     $property = clone $propertyGenerator;
                     $property->setName($propertyName);
-                    
+
                     $propertyDocblock = new CodeGenerator\DocBlockGenerator;
                     $propertyDocblock->setShortDescription($swaggerParameter->getDescription());
-                    
+
                     $propertyDescription = '';
-                    if($allowableValues = $swaggerParameter->getAllowableValues()) {
-                        if($allowableValues->getValueType() == 'LIST') {
+                    if ($allowableValues = $swaggerParameter->getAllowableValues()) {
+                        if ($allowableValues->getValueType() == 'LIST') {
                             $propertyDescription .= 'Allowable values: ['.implode(', ', $allowableValues->getValues()).']'.PHP_EOL;
                         }
                     }
-                    
+
                     $propertyDocblock->setLongDescription($propertyDescription);
-                    
-                    if(!$this->isDocBlockEmpty($propertyDocblock)) {
+
+                    if (!$this->isDocBlockEmpty($propertyDocblock)) {
                         $property->setDocBlock($propertyDocblock);
                     }
-                    
+
                     $parameterClassGenerator->addPropertyFromGenerator($property);
-                    
+
                     $getterGenerator = $this->generateParameterGetter($propertyName, $swaggerParameter);
                     $setterGenerator = $this->generateParameterSetter($propertyName, $swaggerParameter);
                     $parameterClassGenerator->addMethods(array(
@@ -123,7 +123,7 @@ abstract class Action
             if (!$hasRequired) {
                 $queryParameter->setDefaultValue(new CodeGenerator\ValueGenerator(null));
             }
-            
+
             $paramTag = new CodeGenerator\DocBlock\Tag\ParamTag;
             $paramTag->setDataType(RestGenerator::REQUEST_NAMESPACE_ALIAS.'\\'.$operation->getNickname());
             $paramTag->setParamName($operation->getNickname());
@@ -131,43 +131,45 @@ abstract class Action
                 $paramTag->setDescription(' = null');
             }
             $docBlockGenerator->setTag($paramTag);
-            
+
             $method->setParameter($queryParameter);
         } else {
             $queryParameter = null;
         }
-        
-        if(!$this->isDocBlockEmpty($docBlockGenerator)) {
+
+        if (!$this->isDocBlockEmpty($docBlockGenerator)) {
             $method->setDocBlock($docBlockGenerator);
         }
-        
+
         $body = $this->getBody($routeParams, $queryParameter);
         $method->setBody($body);
     }
-    
-    public function generateParameterGetter($parameter, $swaggerParameter) {
+
+    public function generateParameterGetter($parameter, $swaggerParameter)
+    {
         $methodName = 'get'.ucfirst($parameter);
-    
+
         $getterGenerator = clone $this->getParameterGetterGenerator();
         $getterGenerator->setName($methodName);
-        
+
         $getterGenerator->setBody("return \$this->{$parameter};");
-        
+
         return $getterGenerator;
     }
-    
-    public function generateParameterSetter($parameterName, $swaggerParameter) {
+
+    public function generateParameterSetter($parameterName, $swaggerParameter)
+    {
         $methodName = 'set'.ucfirst($parameterName);
-        
+
         $setterGenerator = clone $this->getParameterSetterGenerator();
         $setterGenerator->setName($methodName);
-        
+
         $parameter = new CodeGenerator\ParameterGenerator;
         $parameter->setName($parameterName);
         $setterGenerator->setParameter($parameter);
-        
+
         $setterGenerator->setBody("\$this->{$parameterName} = \${$parameterName};\nreturn \$this;");
-        
+
         return $setterGenerator;
     }
 
@@ -261,28 +263,36 @@ abstract class Action
 
         return $this;
     }
-    
-    public function getParameterGetterGenerator() {
-        if(!$this->parameterGetterGenerator) {
+
+    public function getParameterGetterGenerator()
+    {
+        if (!$this->parameterGetterGenerator) {
             $this->parameterGetterGenerator = new CodeGenerator\MethodGenerator;
         }
+
         return $this->parameterGetterGenerator;
     }
-    
-    public function setParameterGetterGenerator($parameterGetterGenerator) {
+
+    public function setParameterGetterGenerator($parameterGetterGenerator)
+    {
         $this->parameterGetterGenerator = $parameterGetterGenerator;
+
         return $this;
     }
-    
-    public function getParameterSetterGenerator() {
-        if(!$this->parameterSetterGenerator) {
+
+    public function getParameterSetterGenerator()
+    {
+        if (!$this->parameterSetterGenerator) {
             $this->parameterSetterGenerator = new CodeGenerator\MethodGenerator;
         }
+
         return $this->parameterSetterGenerator;
     }
-    
-    public function setParameterSetterGenerator($parameterSetterGenerator) {
+
+    public function setParameterSetterGenerator($parameterSetterGenerator)
+    {
         $this->parameterSetterGenerator = $parameterSetterGenerator;
+
         return $this;
     }
 
@@ -291,7 +301,7 @@ abstract class Action
         if (!$this->propertyGenerator) {
             $generator = new CodeGenerator\PropertyGenerator;
             $generator->setVisibility($generator::VISIBILITY_PROTECTED);
-            
+
             $this->propertyGenerator = $generator;
         }
 
@@ -304,25 +314,31 @@ abstract class Action
 
         return $this;
     }
-    
-    public function getDocBlockGenerator() {
-        if(!$this->docBlockGenerator) {
+
+    public function getDocBlockGenerator()
+    {
+        if (!$this->docBlockGenerator) {
             $this->docBlockGenerator = new CodeGenerator\DocBlockGenerator;
         }
+
         return $this->docBlockGenerator;
     }
-    
-    public function setDocBlockGenerator($docBlockGenerator) {
+
+    public function setDocBlockGenerator($docBlockGenerator)
+    {
         $this->docBlockGenerator = $docBlockGenerator;
+
         return $this;
     }
-    
-    protected function isDocBlockEmpty(CodeGenerator\DocBlockGenerator $docblock) {
+
+    protected function isDocBlockEmpty(CodeGenerator\DocBlockGenerator $docblock)
+    {
         if(
             !empty($docblock->getShortDescription())
             || !empty($docblock->getLongDescription())
             || !empty($docblock->getTags())
         ) return false;
+
         return true;
     }
 }

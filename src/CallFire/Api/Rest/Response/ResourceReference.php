@@ -2,7 +2,6 @@
 namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
-use CallFire\Common\Resource\AbstractResource;
 
 use DOMDocument;
 use DOMNode;
@@ -10,9 +9,9 @@ use DOMNode;
 class ResourceReference extends AbstractResponse
 {
     protected $id;
-    
+
     protected $location;
-    
+
     public static function fromXml($document)
     {
         $resourceList = new self;
@@ -36,7 +35,7 @@ class ResourceReference extends AbstractResponse
         $hydrator = $this->getDomHydrator();
         $hydrator->setQueryMap($queryMap);
         $methodsHydrator = $this->getHydrator();
-        
+
         $data = $hydrator->extract($contextNode);
         $methodsHydrator->hydrate($data, $this);
 
@@ -46,25 +45,30 @@ class ResourceReference extends AbstractResponse
         }
     }
 
-    
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
-    
-    public function setId($id) {
+
+    public function setId($id)
+    {
         $this->id = $id;
+
         return $this;
     }
-    
-    public function getLocation() {
+
+    public function getLocation()
+    {
         return $this->location;
     }
-    
-    public function setLocation($location) {
+
+    public function setLocation($location)
+    {
         $this->location = $location;
+
         return $this;
     }
-    
+
     public function getQueryMap()
     {
         if (!$this->queryMap) {

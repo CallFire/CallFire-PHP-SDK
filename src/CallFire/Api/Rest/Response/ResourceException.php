@@ -3,9 +3,6 @@ namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
 
-use CallFire\Common\Hydrator\DOM as DomHydrator;
-use Zend\Stdlib\Hydrator\ClassMethods;
-
 use DOMDocument;
 use DOMNode;
 
@@ -33,7 +30,7 @@ class ResourceException extends AbstractResponse
         if (!$contextNode) {
             $contextNode = $xpath->query('/r:ResourceException')->item(0);
         }
-        
+
         $queryMap = $this->getQueryMap();
         $hydrator = $this->getDomHydrator();
         $hydrator->setQueryMap($queryMap);

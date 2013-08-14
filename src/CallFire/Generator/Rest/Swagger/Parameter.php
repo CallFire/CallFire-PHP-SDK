@@ -8,7 +8,7 @@ class Parameter
     /**
      * Maps swagger types to PHP types. All
      * types default to string if not found.
-     * 
+     *
      * @static
      * @var array
      */
@@ -29,24 +29,30 @@ class Parameter
     protected $conditions = array();
 
     protected $hydrator;
-    
-    public static function getTypeMap() {
-        if(!self::$typeMap) {
+
+    public static function getTypeMap()
+    {
+        if (!self::$typeMap) {
             self::$typeMap = include(__DIR__.'/typemap.php');
         }
+
         return self::$typeMap;
     }
-    
-    public static function setTypeMap($typeMap) {
+
+    public static function setTypeMap($typeMap)
+    {
         self::$typeMap = $typeMap;
+
         return $this;
     }
-    
-    public static function getType($type) {
+
+    public static function getType($type)
+    {
         $map = self::getTypeMap();
-        if(isset($map[$type])) {
+        if (isset($map[$type])) {
             return $map[$type];
         }
+
         return "string";
     }
 

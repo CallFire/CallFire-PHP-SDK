@@ -10,6 +10,7 @@ CallFire PHP SDK
         * [Text Broadcasts](/docs/en/broadcasts/03.text.md)
     * [Subscriptions (Postbacks)](/docs/en/02.subscriptions.md)
     * [Texts](/docs/en/03.texts.md)
+    * [Calls](/docs/en/04.calls.md)
 
 ## Installation
 

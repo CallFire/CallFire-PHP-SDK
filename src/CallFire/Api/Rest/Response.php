@@ -89,7 +89,6 @@ abstract class Response
             return false;
         }
         $resourceMap = $queryMap[$resourceName];
-        $hydrator->setQueryMap($resourceMap);
 
         $childResourceMap = array();
         foreach ($resourceMap as $key => $query) {
@@ -112,6 +111,7 @@ abstract class Response
                 $resourceMap += $queryMap[$parentClass];
             }
         }
+        $hydrator->setQueryMap($resourceMap);
 
         $resourceData = $hydrator->extract($resourceNode);
         $resource = $methodsHydrator->hydrate($resourceData, $resource);

@@ -108,7 +108,6 @@ class Resource
         if($isSubclass) {
             $sequenceChoiceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:choice/_:element[@name][@type]';
             $sequenceChoiceElements = $xpath->query($sequenceChoiceElementsQuery, $element);
-            foreach($sequenceChoiceElements as $tmp) echo $xpath->query('@name', $tmp)->item(0)->textContent.PHP_EOL;
             $this->handleSecondClassAttributes($classGenerator, $map, $sequenceChoiceElements, $element, $xpath);
         }
         
@@ -125,6 +124,11 @@ class Resource
         
         $secondClassElements = $xpath->query($secondClassElementsQuery, $element);
         $this->handleSecondClassElements($classGenerator, $map, $secondClassElements, $element, $xpath);
+        
+        // Complex second-class object attributes (e.g. CallRecord for call)
+        $secondClassAttributesQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@ref]';
+        $secondClassAttributes = $xpath->query($secondClassAttributesQuery, $element);
+        $this->handleSecondClassElements($classGenerator, $map, $secondClassAttributes, $element, $xpath);
         
         if(!$this->hasResource($resourceName)) {
             $this->addResource($resourceName, $classGenerator);

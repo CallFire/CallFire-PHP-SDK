@@ -127,9 +127,10 @@ return array(
         'CallRecord' => array(
             'OriginateTime' => '_:OriginateTime',
             'AnswerTime' => '_:AnswerTime',
-            'Duration' => '_:Duration'
+            'Duration' => '_:Duration',
+            '#RecordingMeta' => '_:RecordingMeta'
             ),
-        'Call' => array(),
+        'Call' => array('#CallRecord' => '_:CallRecord'),
         'SoundMeta' => array(
             'id' => '@id',
             'Status' => '_:Status',
@@ -144,7 +145,10 @@ return array(
             'LengthInSeconds' => '_:LengthInSeconds'
             ),
         'TextRecord' => array('Message' => '_:Message'),
-        'Text' => array('Message' => '_:Message'),
+        'Text' => array(
+            'Message' => '_:Message',
+            '#TextRecord' => '_:TextRecord'
+            ),
         'AutoReply' => array(
             'id' => '@id',
             'Number' => '_:Number',

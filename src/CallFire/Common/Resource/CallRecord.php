@@ -20,6 +20,11 @@ class CallRecord extends ActionRecord
      */
     protected $duration = null;
 
+    /**
+     * @var RecordingMeta[]
+     */
+    protected $recordingMetas = array();
+
     public function getOriginateTime()
     {
         return $this->originateTime;
@@ -52,6 +57,18 @@ class CallRecord extends ActionRecord
     public function setDuration($duration)
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getRecordingMetas()
+    {
+        return $this->recordingMetas;
+    }
+
+    public function setRecordingMetas($recordingMetas)
+    {
+        $this->recordingMetas = $recordingMetas;
 
         return $this;
     }

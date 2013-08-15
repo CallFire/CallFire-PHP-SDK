@@ -5,7 +5,7 @@
         <target>phpdoc-data/</target>
     </parser>
     <transformer>
-        <target>docs/reference/</target>
+        <target>reference-docs/</target>
     </transformer>
     <files>
         <directory>src/CallFire/Common</directory>

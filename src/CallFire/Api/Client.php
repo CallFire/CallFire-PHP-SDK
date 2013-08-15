@@ -4,6 +4,8 @@ namespace CallFire\Api;
 use CallFire\Api\Rest\AbstractClient as RestClient;
 use CallFire\Api\Soap\Client as SoapClient;
 
+use InvalidArgumentException;
+
 abstract class Client
 {
     /**
@@ -28,6 +30,8 @@ abstract class Client
 
             return $services;
         }
+        
+        throw new InvalidArgumentException('Client::Rest accepts either a service name, or an array of service names');
     }
 
     /**

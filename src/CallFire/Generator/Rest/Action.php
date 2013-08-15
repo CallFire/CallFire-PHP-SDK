@@ -137,9 +137,7 @@ abstract class Action
             $queryParameter = null;
         }
 
-        if (!$this->isDocBlockEmpty($docBlockGenerator)) {
-            $method->setDocBlock($docBlockGenerator);
-        }
+        $method->setDocBlock($docBlockGenerator);
 
         $body = $this->getBody($routeParams, $queryParameter);
         $method->setBody($body);
@@ -318,7 +316,11 @@ abstract class Action
     public function getDocBlockGenerator()
     {
         if (!$this->docBlockGenerator) {
-            $this->docBlockGenerator = new CodeGenerator\DocBlockGenerator;
+             $generator = new CodeGenerator\DocBlockGenerator;
+             $apiTag = new CodeGenerator\DocBlock\Tag;
+             $apiTag->setName('api');
+             $generator->setTag($apiTag);
+             $this->docBlockGenerator = $generator;
         }
 
         return $this->docBlockGenerator;
@@ -330,7 +332,7 @@ abstract class Action
 
         return $this;
     }
-
+    
     protected function isDocBlockEmpty(CodeGenerator\DocBlockGenerator $docblock)
     {
         if(

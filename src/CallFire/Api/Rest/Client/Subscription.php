@@ -21,6 +21,7 @@ class Subscription extends AbstractClient
      * need to be provided that can handle the HTTP notification events coming from
      * CallFire.com.
      *
+     * @api
      * @param Request\CreateSubscription $CreateSubscription = null
      */
     public function CreateSubscription(Request\CreateSubscription $CreateSubscription = null)
@@ -36,6 +37,7 @@ class Subscription extends AbstractClient
      * Return a list of all subscriptions registered to an account. Subscriptions
      * returned contain info like id, enabled, endpoint, filter, etc...
      *
+     * @api
      * @param Request\QuerySubscriptions $QuerySubscriptions = null
      */
     public function QuerySubscriptions(Request\QuerySubscriptions $QuerySubscriptions = null)
@@ -52,6 +54,7 @@ class Subscription extends AbstractClient
      * from CreateSubscription request. Subscription returned contain info like id,
      * enabled, endpoint, filter, etc...
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetSubscription($Id)
@@ -69,6 +72,7 @@ class Subscription extends AbstractClient
      * receive notification for a subset of events.  UpdateSubscription service call
      * returns no response.
      *
+     * @api
      * @param int                        $Id
      * @param Request\UpdateSubscription $UpdateSubscription
      */
@@ -85,6 +89,7 @@ class Subscription extends AbstractClient
      * Delete subscription to stop receiving CallFire notification events at the
      * registered URI postback endpoint.
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function DeleteSubscription($Id)

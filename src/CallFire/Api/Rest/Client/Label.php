@@ -15,6 +15,7 @@ class Label extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\DeleteLabel $DeleteLabel = null
      */
     public function DeleteLabel(Request\DeleteLabel $DeleteLabel = null)
@@ -29,6 +30,7 @@ class Label extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\QueryLabels $QueryLabels = null
      */
     public function QueryLabels(Request\QueryLabels $QueryLabels = null)
@@ -43,6 +45,7 @@ class Label extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\LabelBroadcast $LabelBroadcast = null
      */
     public function LabelBroadcast(Request\LabelBroadcast $LabelBroadcast = null)
@@ -57,6 +60,7 @@ class Label extends AbstractClient
      *
      *
      *
+     * @api
      * @param int                      $Id               Unique ID of resource
      * @param Request\UnlabelBroadcast $UnlabelBroadcast
      */
@@ -72,6 +76,7 @@ class Label extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\LabelNumber $LabelNumber = null
      */
     public function LabelNumber(Request\LabelNumber $LabelNumber = null)
@@ -86,6 +91,7 @@ class Label extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\UnlabelNumber $UnlabelNumber = null
      */
     public function UnlabelNumber(Request\UnlabelNumber $UnlabelNumber = null)

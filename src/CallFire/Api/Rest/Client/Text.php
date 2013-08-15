@@ -23,6 +23,7 @@ class Text extends AbstractClient
      * characters or less. If the message is over 160 characters then a
      * BigMessageStrategy should be selected in the TextBroadcastConfig.
      *
+     * @api
      * @param Request\SendText $SendText = null
      */
     public function SendText(Request\SendText $SendText = null)
@@ -39,6 +40,7 @@ class Text extends AbstractClient
      * broadcastId, toNumber, etc... Returns a list of text messages and all associated
      * info. See GetText to return just a single text action by id.
      *
+     * @api
      * @param Request\QueryTexts $QueryTexts = null
      */
     public function QueryTexts(Request\QueryTexts $QueryTexts = null)
@@ -57,6 +59,7 @@ class Text extends AbstractClient
      * textIds of text messages created. This GetText can then be called with unique
      * textId to determine info and state of text message.
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetText($Id)
@@ -74,6 +77,7 @@ class Text extends AbstractClient
      * a campaign. A keyword will need to have been purchased before an Auto-Reply can
      * be created.
      *
+     * @api
      * @param Request\CreateAutoReply $CreateAutoReply = null
      */
     public function CreateAutoReply(Request\CreateAutoReply $CreateAutoReply = null)
@@ -88,6 +92,7 @@ class Text extends AbstractClient
      *
      * Query for autoreplies using optional number
      *
+     * @api
      * @param Request\QueryAutoReplies $QueryAutoReplies = null
      */
     public function QueryAutoReplies(Request\QueryAutoReplies $QueryAutoReplies = null)
@@ -102,6 +107,7 @@ class Text extends AbstractClient
      *
      * Returns autoreply by id or error if doesn't exist
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetAutoReply($Id)
@@ -116,6 +122,7 @@ class Text extends AbstractClient
      *
      * Delete autoreply by id if exists. Returns error if doesn't exist
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function DeleteAutoReply($Id)

@@ -8,6 +8,9 @@ use InvalidArgumentException;
 
 abstract class AbstractClient
 {
+    const FORMAT_XML = 'xml';
+    const FORMAT_JSON = 'json';
+    
     protected $basePath;
 
     protected $username;
@@ -38,15 +41,15 @@ abstract class AbstractClient
      * @param  string $type = 'xml' Response format
      * @return mixed  Response object
      */
-    public static function response($data, $type = 'xml')
+    public static function response($data, $type = self::FORMAT_XML)
     {
         if (is_string($data) && strlen($data) === 0) {
             return true; // Many operations return an empty string for success
         }
         switch ($type) {
-            case 'xml':
+            case static::FORMAT_XML:
                 return AbstractResponse::fromXml($data);
-            case 'json':
+            case static::FORMAT_JSON:
                 return AbstractResponse::fromJson($data);
         }
         throw new InvalidArgumentException("Type must be 'xml' or 'json'");

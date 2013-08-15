@@ -20,8 +20,8 @@ abstract class AbstractClient
      * Instantiate a request object of the given type
      *
      * @static
-     * @param string $type Request type
-     * @return mixed Request object
+     * @param  string $type Request type
+     * @return mixed  Request object
      */
     public static function request($type)
     {
@@ -34,9 +34,9 @@ abstract class AbstractClient
      * Parse a response into a response type
      *
      * @static
-     * @param string $data Response data to be parsed
-     * @param string $type = 'xml' Response format
-     * @return mixed Response object
+     * @param  string $data Response data to be parsed
+     * @param  string $type = 'xml' Response format
+     * @return mixed  Response object
      */
     public static function response($data, $type = 'xml')
     {
@@ -56,9 +56,9 @@ abstract class AbstractClient
      * Execute a GET request against an API endpoint,
      * optionally with a given Request object as parameters
      *
-     * @param string $uri Endpoint URL
-     * @param AbstractRequest $request = null Request object for parameters
-     * @return string Response data
+     * @param  string          $uri     Endpoint URL
+     * @param  AbstractRequest $request = null Request object for parameters
+     * @return string          Response data
      */
     public function get($uri, AbstractRequest $request = null)
     {
@@ -79,9 +79,9 @@ abstract class AbstractClient
      * Execute a POST request against an API endpoint,
      * optionally with a given Request object as parameters
      *
-     * @param string $uri Endpoint URL
-     * @param AbstractRequest $request = null Request object for parameters
-     * @return string Response data
+     * @param  string          $uri     Endpoint URL
+     * @param  AbstractRequest $request = null Request object for parameters
+     * @return string          Response data
      */
     public function post($uri, AbstractRequest $request = null)
     {
@@ -100,9 +100,9 @@ abstract class AbstractClient
      * Execute a PUT request against an API endpoint,
      * optionally with a given Request object as parameters
      *
-     * @param string $uri Endpoint URL
-     * @param AbstractRequest $request = null Request object for parameters
-     * @return string Response data
+     * @param  string          $uri     Endpoint URL
+     * @param  AbstractRequest $request = null Request object for parameters
+     * @return string          Response data
      */
     public function put($uri, AbstractRequest $request = null)
     {
@@ -120,8 +120,8 @@ abstract class AbstractClient
     /**
      * Build a request URI for a GET request
      *
-     * @param string $uri Endpoint URI
-     * @param array $parameters Key-value query parameters
+     * @param  string $uri        Endpoint URI
+     * @param  array  $parameters Key-value query parameters
      * @return string The resulting URL
      */
     public function buildQuery($uri, $parameters)
@@ -134,13 +134,13 @@ abstract class AbstractClient
     /**
      * Construct the POST fields data for a POST/PUT
      * request, according to CallFire conventions
-     * 
+     *
      * Reformats any array parameters to be a
      * space-concatenated list of items. Any object
      * parameters will be casted to a string, as
      * possible.
      *
-     * @param array $parameters POST data
+     * @param  array  $parameters POST data
      * @return string Encoded POST data
      */
     public function buildPostData($parameters)

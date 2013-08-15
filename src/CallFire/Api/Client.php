@@ -9,9 +9,9 @@ class Client
      * Create one or more REST service clients
      *
      * @static
-     * @param string $username API Login
-     * @param string $password API Password
-     * @param string|array $service Service name(s)
+     * @param  string                                              $username API Login
+     * @param  string                                              $password API Password
+     * @param  string|array                                        $service  Service name(s)
      * @return CallFire\Api\Rest\Client|CallFire\Api\Rest\Client[] REST API client(s)
      */
     public static function Rest($username, $password, $service)
@@ -28,14 +28,14 @@ class Client
             return $services;
         }
     }
-    
+
     /**
      * Instantiate a REST service client
      *
      * @static
-     * @param string $username API Login
-     * @param string $password API Password
-     * @param string $service Service name
+     * @param  string                   $username API Login
+     * @param  string                   $password API Password
+     * @param  string                   $service  Service name
      * @return CallFire\Api\Rest\Client REST API client
      */
     protected static function createRestClient($username, $password, $service)
@@ -48,15 +48,15 @@ class Client
 
         return $client;
     }
-    
+
     /**
      * Create a SOAP client
      *
      * @static
-     * @param string $username API Login
-     * @param string $password API Password
-     * @param string $version = 'SOAP_1_2' SOAP version
-     * @param string $wsdl = 'http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl' SOAP WSDL
+     * @param  string                   $username API Login
+     * @param  string                   $password API Password
+     * @param  string                   $version  = 'SOAP_1_2' SOAP version
+     * @param  string                   $wsdl     = 'http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl' SOAP WSDL
      * @return CallFire\Api\Soap\Client SOAP API client
      */
     public static function Soap($username, $password, $version = 'SOAP_1_2', $wsdl = 'http://callfire.com/api/1.1/wsdl/callfire-service-http-soap12.wsdl')

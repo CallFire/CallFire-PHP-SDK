@@ -1,6 +1,8 @@
 <?php
 namespace CallFire\Api;
 
+use CallFire\Api\Rest\AbstractClient as RestClient;
+
 use PHPUnit_Framework_TestCase as TestCase;
 
 class ClientTest extends TestCase
@@ -32,7 +34,7 @@ class ClientTest extends TestCase
     public function testRest($username, $password, $service)
     {
         $client = Client::Rest($username, $password, $service);
-        $this->assertInstanceOf("CallFire\Api\Rest\Client\\{$service}", $client);
+        $this->assertInstanceOf(RestClient::ns()."\\{$service}", $client);
     }
 
     public function testRestArray()
@@ -40,7 +42,7 @@ class ClientTest extends TestCase
         $clients = Client::Rest(static::$credentials[0], static::$credentials[1], static::$restServices);
         foreach ($clients as $key => $client) {
             $matchingServiceName = static::$restServices[$key];
-            $this->assertInstanceOf("CallFire\Api\Rest\Client\\{$matchingServiceName}", $client);
+            $this->assertInstanceOf(RestClient::ns()."\\{$matchingServiceName}", $client);
         }
     }
     

@@ -46,8 +46,8 @@ class ClientTest extends TestCase
     
     public function testRestInvalid()
     {
-    	$this->setExpectedException('InvalidArgumentException');
-    	Client::Rest(static::$credentials[0], static::$credentials[1], true);
+        $this->setExpectedException('InvalidArgumentException');
+        Client::Rest(static::$credentials[0], static::$credentials[1], true);
     }
 
     /**

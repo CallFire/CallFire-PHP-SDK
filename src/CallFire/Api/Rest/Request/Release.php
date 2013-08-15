@@ -7,36 +7,30 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class Release extends AbstractRequest
 {
 
-    /**
-     * List of E.164 11 digit numbers to release (space seperated)
-     */
-    protected $numbers = null;
+    protected $number = null;
 
-    /**
-     * List of keywords to release (space seperated)
-     */
-    protected $keywords = null;
+    protected $keyword = null;
 
-    public function getNumbers()
+    public function getNumber()
     {
-        return $this->numbers;
+        return $this->number;
     }
 
-    public function setNumbers($numbers)
+    public function setNumber($number)
     {
-        $this->numbers = $numbers;
+        $this->number = $number;
 
         return $this;
     }
 
-    public function getKeywords()
+    public function getKeyword()
     {
-        return $this->keywords;
+        return $this->keyword;
     }
 
-    public function setKeywords($keywords)
+    public function setKeyword($keyword)
     {
-        $this->keywords = $keywords;
+        $this->keyword = $keyword;
 
         return $this;
     }

@@ -14,7 +14,7 @@ class CreateContactBatch extends AbstractRequest
     protected $name = null;
 
     /**
-     * List of E.164 11 digit numbers space seperated
+     * List of E.164 11 digit numbers space or comma separated
      */
     protected $to = null;
 

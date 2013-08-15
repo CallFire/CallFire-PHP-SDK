@@ -22,6 +22,8 @@ class CreateSound extends AbstractRequest
      */
     protected $toNumber = null;
 
+    protected $soundText = null;
+
     public function getName()
     {
         return $this->name;
@@ -54,6 +56,18 @@ class CreateSound extends AbstractRequest
     public function setToNumber($toNumber)
     {
         $this->toNumber = $toNumber;
+
+        return $this;
+    }
+
+    public function getSoundText()
+    {
+        return $this->soundText;
+    }
+
+    public function setSoundText($soundText)
+    {
+        $this->soundText = $soundText;
 
         return $this;
     }

@@ -213,8 +213,7 @@ class Broadcast extends AbstractClient
      * operation to attach a list of contacts to an existing Campaign. A list of
      * ToNumbers or an existing Contact List ID is required to create and attach the
      * Contact List. Returned is the unique contactListId that can be used in
-     * ControlContactBatch to enable or disable this batch.  Attaching an existing
-     * Contact List by ID is currently unavailable, coming soon.
+     * ControlContactBatch to enable or disable this batch.
      *
      * @param Request\CreateContactBatch $CreateContactBatch = null
      * @param int                        $id

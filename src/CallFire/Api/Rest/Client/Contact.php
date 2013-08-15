@@ -11,6 +11,65 @@ class Contact extends AbstractClient
     public $basePath = 'https://www.callfire.com/api/1.1/rest';
 
     /**
+     * Lists existing contacts
+     *
+     *
+     *
+     * @param Request\QueryContacts $QueryContacts = null
+     */
+    public function QueryContacts(Request\QueryContacts $QueryContacts = null)
+    {
+        $uri = $this->getUri('/contact', array());
+
+        return $this->get($uri, $QueryContacts);
+    }
+
+    /**
+     * Updates existing contacts
+     *
+     * REST service parameters:Accepts string of the form-encoded key-value contact
+     * pairs. Each contact's value contains URL-encoded (using UTF-8 encoding)
+     * attribute name and value separated by collon. Each attribute pair separated by
+     * semicolon.Format:contact=attributeName:attributeValue[;attributeName:attributeValue;...][&contact=attributeName:attributeValue[;attributeName:attributeValue;...]&...]Example:contact=id:1;firstName:John;customAttribute:value&contact=id:2;secondName:Doe
+     *
+     * @param int $Id
+     */
+    public function UpdateContacts($Id)
+    {
+        $uri = $this->getUri('/contact', array($Id));
+
+        return $this->put($uri);
+    }
+
+    /**
+     * Gets the contact by ID
+     *
+     *
+     *
+     * @param int $Id Unique ID of resource
+     */
+    public function GetContact($Id)
+    {
+        $uri = $this->getUri('/contact/%s', array($Id));
+
+        return $this->get($uri);
+    }
+
+    /**
+     * Gets a contact's history by contact ID
+     *
+     *
+     *
+     * @param Request\GetContactHistory $GetContactHistory = null
+     */
+    public function GetContactHistory(Request\GetContactHistory $GetContactHistory = null)
+    {
+        $uri = $this->getUri('/contact/%s/history', array());
+
+        return $this->get($uri, $GetContactHistory);
+    }
+
+    /**
      * Create new contact list and add to account
      *
      * Add contact list to account using 1 of 4 inputs: list of contacts, numbers
@@ -34,6 +93,20 @@ class Contact extends AbstractClient
         $uri = $this->getUri('/contact/list', array());
 
         return $this->post($uri, $CreateContactList);
+    }
+
+    /**
+     * Lists existing contact lists
+     *
+     *
+     *
+     * @param Request\QueryContactLists $QueryContactLists = null
+     */
+    public function QueryContactLists(Request\QueryContactLists $QueryContactLists = null)
+    {
+        $uri = $this->getUri('/contact/list', array());
+
+        return $this->get($uri, $QueryContactLists);
     }
 
     /**

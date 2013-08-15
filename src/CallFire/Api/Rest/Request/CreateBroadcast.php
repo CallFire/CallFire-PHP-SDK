@@ -18,7 +18,7 @@ class CreateBroadcast extends AbstractRequest
     protected $name = null;
 
     /**
-     * Type of Broadcast (required for create)
+     * Type of Broadcast
      *
      * Allowable values: [VOICE, IVR, TEXT]
      */
@@ -61,15 +61,21 @@ class CreateBroadcast extends AbstractRequest
      */
     protected $answeringMachineConfig = null;
 
+    protected $liveSoundText = null;
+
     /**
      * ID of Sound to play if call answered by live person
      */
     protected $liveSoundId = null;
 
+    protected $machineSoundText = null;
+
     /**
      * ID of Sound to play if call answered by machine
      */
     protected $machineSoundId = null;
+
+    protected $transferSoundText = null;
 
     /**
      * ID of Sound to play if call transfered
@@ -85,6 +91,8 @@ class CreateBroadcast extends AbstractRequest
      * Number to transfer call to
      */
     protected $transferNumber = null;
+
+    protected $dncSoundText = null;
 
     /**
      * Do Not Call unique ID of sound
@@ -239,6 +247,18 @@ class CreateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getLiveSoundText()
+    {
+        return $this->liveSoundText;
+    }
+
+    public function setLiveSoundText($liveSoundText)
+    {
+        $this->liveSoundText = $liveSoundText;
+
+        return $this;
+    }
+
     public function getLiveSoundId()
     {
         return $this->liveSoundId;
@@ -251,6 +271,18 @@ class CreateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getMachineSoundText()
+    {
+        return $this->machineSoundText;
+    }
+
+    public function setMachineSoundText($machineSoundText)
+    {
+        $this->machineSoundText = $machineSoundText;
+
+        return $this;
+    }
+
     public function getMachineSoundId()
     {
         return $this->machineSoundId;
@@ -259,6 +291,18 @@ class CreateBroadcast extends AbstractRequest
     public function setMachineSoundId($machineSoundId)
     {
         $this->machineSoundId = $machineSoundId;
+
+        return $this;
+    }
+
+    public function getTransferSoundText()
+    {
+        return $this->transferSoundText;
+    }
+
+    public function setTransferSoundText($transferSoundText)
+    {
+        $this->transferSoundText = $transferSoundText;
 
         return $this;
     }
@@ -295,6 +339,18 @@ class CreateBroadcast extends AbstractRequest
     public function setTransferNumber($transferNumber)
     {
         $this->transferNumber = $transferNumber;
+
+        return $this;
+    }
+
+    public function getDncSoundText()
+    {
+        return $this->dncSoundText;
+    }
+
+    public function setDncSoundText($dncSoundText)
+    {
+        $this->dncSoundText = $dncSoundText;
 
         return $this;
     }

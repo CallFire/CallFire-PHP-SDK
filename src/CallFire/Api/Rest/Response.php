@@ -26,7 +26,7 @@ abstract class Response
     protected $domHydrator;
 
     protected $queryMap;
-    
+
     public static function ns()
     {
         return __CLASS__;

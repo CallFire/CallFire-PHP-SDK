@@ -183,6 +183,47 @@ class ClientTest extends TestCase
 
         $client->put('/test', $request);
     }
+    
+    public function testDelete()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+
+        $http->expects($this->at(0))
+            ->method('setOption')
+            ->with(CURLOPT_CUSTOMREQUEST, 'DELETE');
+        $http->expects($this->at(1))
+            ->method('setOption')
+            ->with(CURLOPT_URL, '/test');
+        $http->expects($this->once())
+            ->method('execute');
+
+        $client->delete('/test');
+    }
+    
+    public function testDeleteWithRequest()
+    {
+        $client = $this->getMockClient();
+        $http = $this->getMockHttp();
+        $client->setHttp($http);
+
+        $http->expects($this->at(0))
+            ->method('setOption')
+            ->with(CURLOPT_CUSTOMREQUEST, 'DELETE');
+        $http->expects($this->at(1))
+            ->method('setOption')
+            ->with(CURLOPT_URL, '/test');
+        $http->expects($this->at(2))
+            ->method('setOption')
+            ->with(CURLOPT_POSTFIELDS, 'A=a&B=b&C=c');
+        $http->expects($this->once())
+            ->method('execute');
+
+        $request = new Request\MockRequest;
+
+        $client->delete('/test', $request);
+    }
 
     public function testBuildQuery()
     {

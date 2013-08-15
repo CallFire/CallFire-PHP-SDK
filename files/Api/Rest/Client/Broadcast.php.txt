@@ -21,6 +21,7 @@ class Broadcast extends AbstractClient
      * Service operations (ex: SendCall) over this operation when managing simple text
      * and call campaigns since those operations are simpler and more concise.
      *
+     * @api
      * @param Request\CreateBroadcast $CreateBroadcast = null
      */
     public function CreateBroadcast(Request\CreateBroadcast $CreateBroadcast = null)
@@ -37,6 +38,7 @@ class Broadcast extends AbstractClient
      * campaign whether currently running. Returns a list of Broadcast info such as
      * campaign name, type, status, ect...
      *
+     * @api
      * @param Request\QueryBroadcasts $QueryBroadcasts = null
      */
     public function QueryBroadcasts(Request\QueryBroadcasts $QueryBroadcasts = null)
@@ -53,6 +55,7 @@ class Broadcast extends AbstractClient
      * information on indivual Broadcast. Include info such as campaign name, type,
      * status, ect...
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetBroadcast($Id)
@@ -71,6 +74,7 @@ class Broadcast extends AbstractClient
      * specify broadcast. Need to provide dummy 'Name' field Broadcast even though the
      * field will not be overwritten.
      *
+     * @api
      * @param int                     $Id
      * @param Request\UpdateBroadcast $UpdateBroadcast
      */
@@ -88,6 +92,7 @@ class Broadcast extends AbstractClient
      * information like billed amount, billed duration, actions count, attempt count,
      * etc...
      *
+     * @api
      * @param int                       $Id                Unique ID of resource
      * @param Request\GetBroadcastStats $GetBroadcastStats
      */
@@ -104,6 +109,7 @@ class Broadcast extends AbstractClient
      * Apply command START, STOP, or ARCHIVE to Broadcast. Also can change the max
      * active count of Broadcast.
      *
+     * @api
      * @param int                      $Id
      * @param Request\ControlBroadcast $ControlBroadcast
      */
@@ -121,6 +127,7 @@ class Broadcast extends AbstractClient
      * contactBatchIds returned from this campaign can then be used to enable, disable,
      * or delete the individual Batches.
      *
+     * @api
      * @param Request\QueryContactBatches $QueryContactBatches = null
      */
     public function QueryContactBatches(Request\QueryContactBatches $QueryContactBatches = null)
@@ -136,6 +143,7 @@ class Broadcast extends AbstractClient
      * Retrieve info on individual Contact Batch using contactId returned from
      * CreateContactBatch
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetContactBatch($Id)
@@ -151,6 +159,7 @@ class Broadcast extends AbstractClient
      * This operation provides the ability to enable or disable on a Broadcast the list
      * of contacts associated with a ContactBatch.
      *
+     * @api
      * @param int                         $Id
      * @param Request\ControlContactBatch $ControlContactBatch
      */
@@ -169,6 +178,7 @@ class Broadcast extends AbstractClient
      * Returns broadcastScheduleId that can be used in GetBroadcastSchedule and
      * DeleteBroadcastSchedule
      *
+     * @api
      * @param Request\CreateBroadcastSchedule $CreateBroadcastSchedule = null
      */
     public function CreateBroadcastSchedule(Request\CreateBroadcastSchedule $CreateBroadcastSchedule = null)
@@ -183,6 +193,7 @@ class Broadcast extends AbstractClient
      *
      * List information about Broadcast Schedules attached to a Broadcast.
      *
+     * @api
      * @param Request\QueryBroadcastSchedule $QueryBroadcastSchedule = null
      */
     public function QueryBroadcastSchedule(Request\QueryBroadcastSchedule $QueryBroadcastSchedule = null)
@@ -197,6 +208,7 @@ class Broadcast extends AbstractClient
      *
      * List information about individual Broadcast Schedule attached to a Broadcast.
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetBroadcastSchedule($Id)
@@ -211,6 +223,7 @@ class Broadcast extends AbstractClient
      *
      * Delete BroadcastSchedule associated with a Broadcast.
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function DeleteBroadcastSchedule($Id)
@@ -229,6 +242,7 @@ class Broadcast extends AbstractClient
      * Contact List. Returned is the unique contactListId that can be used in
      * ControlContactBatch to enable or disable this batch.
      *
+     * @api
      * @param Request\CreateContactBatch $CreateContactBatch = null
      * @param int                        $id
      */

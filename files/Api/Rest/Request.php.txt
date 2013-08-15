@@ -7,7 +7,7 @@ use Zend\Stdlib\Hydrator\Filter;
 abstract class Request
 {
     protected $hydrator;
-    
+
     public static function ns()
     {
         return __CLASS__;

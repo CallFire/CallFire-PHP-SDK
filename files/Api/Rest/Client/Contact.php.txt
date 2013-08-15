@@ -15,6 +15,7 @@ class Contact extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\QueryContacts $QueryContacts = null
      */
     public function QueryContacts(Request\QueryContacts $QueryContacts = null)
@@ -32,6 +33,7 @@ class Contact extends AbstractClient
      * attribute name and value separated by collon. Each attribute pair separated by
      * semicolon.Format:contact=attributeName:attributeValue[;attributeName:attributeValue;...][&contact=attributeName:attributeValue[;attributeName:attributeValue;...]&...]Example:contact=id:1;firstName:John;customAttribute:value&contact=id:2;secondName:Doe
      *
+     * @api
      * @param int $Id
      */
     public function UpdateContacts($Id)
@@ -46,6 +48,7 @@ class Contact extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\RemoveContacts $RemoveContacts = null
      */
     public function RemoveContacts(Request\RemoveContacts $RemoveContacts = null)
@@ -60,6 +63,7 @@ class Contact extends AbstractClient
      *
      *
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetContact($Id)
@@ -74,6 +78,7 @@ class Contact extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\GetContactHistory $GetContactHistory = null
      */
     public function GetContactHistory(Request\GetContactHistory $GetContactHistory = null)
@@ -100,6 +105,7 @@ class Contact extends AbstractClient
      * LIST_HAS_CONTACT_CONFLICTSResolution MERGE LIST_HAS_INVALID_NUMBERSResolution
      * SCRUB
      *
+     * @api
      * @param Request\CreateContactList $CreateContactList = null
      */
     public function CreateContactList(Request\CreateContactList $CreateContactList = null)
@@ -114,6 +120,7 @@ class Contact extends AbstractClient
      *
      *
      *
+     * @api
      * @param Request\QueryContactLists $QueryContactLists = null
      */
     public function QueryContactLists(Request\QueryContactLists $QueryContactLists = null)
@@ -128,6 +135,7 @@ class Contact extends AbstractClient
      *
      *
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function DeleteContactList($Id)
@@ -143,6 +151,7 @@ class Contact extends AbstractClient
      * See CreateContactList. Currently only supports adding ContactSource numbers, not
      * contact lists, contactId lists, or csv files.
      *
+     * @api
      * @param Request\AddContactsToList $AddContactsToList = null
      */
     public function AddContactsToList(Request\AddContactsToList $AddContactsToList = null)
@@ -159,6 +168,7 @@ class Contact extends AbstractClient
      * lists, contactId lists, or csv files. Just specify the contact list ID and the
      * numbers to remove from list.
      *
+     * @api
      * @param Request\RemoveContactsFromList $RemoveContactsFromList = null
      */
     public function RemoveContactsFromList(Request\RemoveContactsFromList $RemoveContactsFromList = null)

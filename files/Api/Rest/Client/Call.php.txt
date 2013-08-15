@@ -21,6 +21,7 @@ class Call extends AbstractClient
      * information about the call campaign, such as BilledAmount, Duration, State,
      * etc...
      *
+     * @api
      * @param Request\SendCall $SendCall = null
      */
     public function SendCall(Request\SendCall $SendCall = null)
@@ -37,6 +38,7 @@ class Call extends AbstractClient
      * broadcastId, toNumber, etc... Returns a list of calls and all associated info.
      * See GetCall to return just a single call action by id.
      *
+     * @api
      * @param Request\QueryCalls $QueryCalls = null
      */
     public function QueryCalls(Request\QueryCalls $QueryCalls = null)
@@ -55,6 +57,7 @@ class Call extends AbstractClient
      * callIds of call actions created. This GetCall can then be called with unique
      * callId to determine info and state of call action.
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetCall($Id)
@@ -77,6 +80,7 @@ class Call extends AbstractClient
      * GetSoundMeta until Status = 'ACTIVE'.  Use the returned soundId in a subsequent
      * SendCall request.
      *
+     * @api
      * @param Request\CreateSound $CreateSound = null
      */
     public function CreateSound(Request\CreateSound $CreateSound = null)
@@ -93,6 +97,7 @@ class Call extends AbstractClient
      * This operation only returns meta info, not the actual sound data. The raw binary
      * sound data can be obtained from the GetSoundData.
      *
+     * @api
      * @param Request\QuerySoundMeta $QuerySoundMeta = null
      */
     public function QuerySoundMeta(Request\QuerySoundMeta $QuerySoundMeta = null)
@@ -109,6 +114,7 @@ class Call extends AbstractClient
      * length, etc... This operation only returns meta info, not the actual sound data.
      * The raw binary sound data can be obtained from the GetSoundData.
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetSoundMeta($Id)

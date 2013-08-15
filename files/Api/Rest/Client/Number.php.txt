@@ -18,6 +18,7 @@ class Number extends AbstractClient
      * region. Example, if you know the city you can query for phone number prefixes,
      * rate-centers, etc... associated with that city.
      *
+     * @api
      * @param Request\QueryRegions $QueryRegions = null
      */
     public function QueryRegions(Request\QueryRegions $QueryRegions = null)
@@ -34,6 +35,7 @@ class Number extends AbstractClient
      * prefix, city, state, zipcode, rate center, etc... Returns info on the numbers in
      * your account such as status, lease info, configuration, etc...
      *
+     * @api
      * @param Request\QueryNumbers $QueryNumbers = null
      */
     public function QueryNumbers(Request\QueryNumbers $QueryNumbers = null)
@@ -50,6 +52,7 @@ class Number extends AbstractClient
      * account. Returns info on the number in your account such as status, lease info,
      * configuration, etc...
      *
+     * @api
      * @param Request\GetNumber $GetNumber = null
      */
     public function GetNumber(Request\GetNumber $GetNumber = null)
@@ -65,6 +68,7 @@ class Number extends AbstractClient
      * Update number configuration, such as ENABLE / DISABLE or turn call recording on,
      * using 11 diget E.164 format to select number. No response is returned.
      *
+     * @api
      * @param int                     $Id
      * @param Request\ConfigureNumber $ConfigureNumber
      */
@@ -82,6 +86,7 @@ class Number extends AbstractClient
      * info, such as prefix, city, zipcode, etc... The max count of numbers to return
      * must also be specified.
      *
+     * @api
      * @param Request\SearchAvailableNumbers $SearchAvailableNumbers = null
      */
     public function SearchAvailableNumbers(Request\SearchAvailableNumbers $SearchAvailableNumbers = null)
@@ -96,6 +101,7 @@ class Number extends AbstractClient
      *
      * Get info such as status, lease dates, etc... on keywords owned by your account.
      *
+     * @api
      * @param Request\QueryKeywords $QueryKeywords = null
      */
     public function QueryKeywords(Request\QueryKeywords $QueryKeywords = null)
@@ -113,6 +119,7 @@ class Number extends AbstractClient
      * will not be returned in result.  Once available keywords are found they can be
      * purchase using CreateNumberOrder
      *
+     * @api
      * @param Request\SearchAvailableKeywords $SearchAvailableKeywords = null
      */
     public function SearchAvailableKeywords(Request\SearchAvailableKeywords $SearchAvailableKeywords = null)
@@ -136,6 +143,7 @@ class Number extends AbstractClient
      * poll but to use a Postback. See SubscriptionService for information on
      * registering a postback using subscriptions.
      *
+     * @api
      * @param Request\CreateNumberOrder $CreateNumberOrder = null
      */
     public function CreateNumberOrder(Request\CreateNumberOrder $CreateNumberOrder = null)
@@ -154,6 +162,7 @@ class Number extends AbstractClient
      * to determine when the order is in a terminal state of FINISHED or ERRORED. Order
      * will be in 'PROCESSING' status untill finished.
      *
+     * @api
      * @param int $Id Unique ID of resource
      */
     public function GetNumberOrder($Id)
@@ -175,6 +184,7 @@ class Number extends AbstractClient
      * able to use it until April 29th. However, you will not be able to repurchase it
      * until May 29th. Therefore, please be sure of your decision before releasing.
      *
+     * @api
      * @param int             $Id
      * @param Request\Release $Release
      */

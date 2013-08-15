@@ -40,7 +40,7 @@ class Client
      */
     protected static function createRestClient($username, $password, $service)
     {
-        $serviceClass = "CallFire\\Api\\Rest\\Client\\{$service}";
+        $serviceClass = "CallFire\Api\Rest\Client\\{$service}";
         $client = new $serviceClass;
 
         $client->setUsername($username);

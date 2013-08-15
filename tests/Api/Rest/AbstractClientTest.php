@@ -281,14 +281,14 @@ class ClientTest extends TestCase
         $client = $this->getMockClient();
 
         $http = $client->getHttp();
-        $this->assertInstanceOf('CallFire\\Api\\Rest\\Http\Curl', $http);
+        $this->assertInstanceOf('CallFire\Api\Rest\Http\Curl', $http);
 
         $http = $this->getMockHttp();
         $client->setHttp($http);
 
         $http = $client->getHttp();
-        $this->assertInstanceOf('CallFire\\Api\\Rest\\Http\\Request', $http);
-        $this->assertNotInstanceOf('CallFire\\Api\\Rest\\Http\Curl', $http);
+        $this->assertInstanceOf('CallFire\Api\Rest\Http\Request', $http);
+        $this->assertNotInstanceOf('CallFire\Api\Rest\Http\Curl', $http);
     }
 
     /**
@@ -356,11 +356,11 @@ class ClientTest extends TestCase
 
     protected function getMockClient()
     {
-        return $this->getMockForAbstractClass('CallFire\\Api\\Rest\\AbstractClient');
+        return $this->getMockForAbstractClass('CallFire\Api\Rest\AbstractClient');
     }
 
     protected function getMockHttp()
     {
-        return $this->getMock("CallFire\\Api\\Rest\\Http\\Request");
+        return $this->getMock("CallFire\Api\Rest\Http\Request");
     }
 }

@@ -22,7 +22,7 @@ class ResponseTest extends TestCase
         $client = $this->getMockClient();
 
         $response = $client::response($fixture);
-        $this->assertInstanceOf("CallFire\\Api\\Rest\\Response\\{$responseType}", $response);
+        $this->assertInstanceOf("CallFire\Api\Rest\Response\\{$responseType}", $response);
     }
 
     /**
@@ -66,7 +66,7 @@ class ResponseTest extends TestCase
         foreach (glob(__DIR__.'/Response/fixtures/*.resource.xml') as $fixture) {
             $fixtureName = basename($fixture, ".xml");
             list($className, $resourceType) = (explode('.', $fixtureName) + array_fill(0, 2, null));
-            $qualifiedClassName = "CallFire\\Common\\Resource\\{$className}";
+            $qualifiedClassName = "CallFire\Common\Resource\\{$className}";
 
             $document = new DOMDocument;
             $document->load($fixture);
@@ -85,14 +85,14 @@ class ResponseTest extends TestCase
 
     public function getMockClient()
     {
-        $client = $this->getMockForAbstractClass('CallFire\\Api\\Rest\\AbstractClient');
+        $client = $this->getMockForAbstractClass('CallFire\Api\Rest\AbstractClient');
 
         return $client;
     }
 
     public function getMockResponse()
     {
-        $response = $this->getMockForAbstractClass('CallFire\\Api\\Rest\\Response');
+        $response = $this->getMockForAbstractClass('CallFire\Api\Rest\Response');
 
         return $response;
     }

@@ -172,7 +172,7 @@ abstract class Subscription
             }
         }
 
-        $resourceClassName = "CallFire\\Common\\Resource\\{$resourceName}";
+        $resourceClassName = "CallFire\Common\Resource\\{$resourceName}";
         if (!class_exists($resourceClassName)) {
             return false;
         }
@@ -180,7 +180,7 @@ abstract class Subscription
         $resource = new $resourceClassName;
         $parentClass = get_parent_class($resource);
         if ($parentClass) {
-            $parentClass = substr($parentClass, strlen('CallFire\\Common\\Resource\\'));
+            $parentClass = substr($parentClass, strlen('CallFire\Common\Resource\\'));
             if ($parentClass != 'AbstractResource' && isset($queryMap[$parentClass])) {
                 $resourceMap += $queryMap[$parentClass];
             }

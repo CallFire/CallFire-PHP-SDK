@@ -124,7 +124,7 @@ class Rest
     public function transformService(Rest\Service $service)
     {
         $serviceName = $service->getClassGenerator()->getName();
-        $transformName = "CallFire\\Generator\\Rest\\Transform\\Client\\{$serviceName}";
+        $transformName = "CallFire\Generator\Rest\Transform\Client\\{$serviceName}";
         if (!class_exists($transformName)) {
             return;
         }

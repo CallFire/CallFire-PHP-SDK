@@ -13,19 +13,19 @@ $extendedClass = "AbstractClient";
 $swaggerUrl = 'https://www.callfire.com/api/1.1/wsdl/swagger';
 
 $requestNamespacePart = RestGenerator::REQUEST_NAMESPACE_ALIAS;
-$requestNamespace = "{$namespace}\\Rest\\{$requestNamespacePart}";
+$requestNamespace = "{$namespace}\Rest\\{$requestNamespacePart}";
 
 $responseNamespacePart = RestGenerator::RESPONSE_NAMESPACE_ALIAS;
-$responseNamespace = "{$namespace}\\Rest\\{$responseNamespacePart}";
+$responseNamespace = "{$namespace}\Rest\\{$responseNamespacePart}";
 
 $structureNamespacePart = RestGenerator::STRUCTURE_NAMESPACE_ALIAS;
-$structureNamespace = "{$namespace}\\Rest\\{$structureNamespacePart}";
+$structureNamespace = "{$namespace}\Rest\\{$structureNamespacePart}";
 
 $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $namespace);
 
 $generator = new RestGenerator($swaggerUrl);
 
-$classGenerator = new ClassGenerator($name, "{$namespace}\\{$restNamespace}\\Client", null, $extendedClass);
+$classGenerator = new ClassGenerator($name, "{$namespace}\\{$restNamespace}\Client", null, $extendedClass);
 $classGenerator->addUse("{$namespace}\\{$restNamespace}\\{$extendedClass}");
 $generator->setClassGenerator($classGenerator);
 
@@ -52,8 +52,8 @@ foreach ($classFiles as $classFile) {
 }
 
 foreach ($requestClassFiles as $requestClassFile) {
-    $requestClassFile->getClass()->setNamespacename("{$namespace}\\{$restNamespace}\\Request");
-    $requestClassFile->getClass()->addUse("{$namespace}\\{$restNamespace}\\Request", RestGenerator::ABSTRACT_REQUEST_ALIAS);
+    $requestClassFile->getClass()->setNamespacename("{$namespace}\\{$restNamespace}\Request");
+    $requestClassFile->getClass()->addUse("{$namespace}\\{$restNamespace}\Request", RestGenerator::ABSTRACT_REQUEST_ALIAS);
     $requestClassFile->setFilename("{$sourceDirectory}/{$restNamespace}/Request/{$requestClassFile->getClass()->getName()}.php");
     $requestClassFile->write();
 }

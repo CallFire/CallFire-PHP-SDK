@@ -345,7 +345,7 @@ class Resource
 
     public function transformResource($resourceName, $classGenerator, &$map)
     {
-        $transformName = "CallFire\\Generator\\Resource\\Transform\\{$resourceName}";
+        $transformName = "CallFire\Generator\Resource\Transform\\{$resourceName}";
         if (!class_exists($transformName)) {
             return;
         }

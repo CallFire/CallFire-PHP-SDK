@@ -25,7 +25,7 @@ abstract class AbstractClient
      */
     public static function request($type)
     {
-        $requestClass = "CallFire\\Api\\Rest\\Request\\{$type}";
+        $requestClass = "CallFire\Api\Rest\Request\\{$type}";
 
         return new $requestClass;
     }

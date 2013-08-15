@@ -33,7 +33,7 @@ class SubscriptionTest extends TestCase
     public function testNotificationInstantiation($notificationType, $fixture, $format)
     {
         $event = Subscription::event($fixture, $format);
-        $this->assertInstanceOf("CallFire\\Common\\Subscription\\{$notificationType}", $event);
+        $this->assertInstanceOf("CallFire\Common\Subscription\\{$notificationType}", $event);
     }
 
     public function provideRequestData()

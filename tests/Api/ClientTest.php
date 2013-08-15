@@ -32,7 +32,7 @@ class ClientTest extends TestCase
     public function testRest($username, $password, $service)
     {
         $client = Client::Rest($username, $password, $service);
-        $this->assertInstanceOf("CallFire\\Api\\Rest\\Client\\{$service}", $client);
+        $this->assertInstanceOf("CallFire\Api\Rest\Client\\{$service}", $client);
     }
 
     public function testRestArray()
@@ -40,7 +40,7 @@ class ClientTest extends TestCase
         $clients = Client::Rest(static::$credentials[0], static::$credentials[1], static::$restServices);
         foreach ($clients as $key => $client) {
             $matchingServiceName = static::$restServices[$key];
-            $this->assertInstanceOf("CallFire\\Api\\Rest\\Client\\{$matchingServiceName}", $client);
+            $this->assertInstanceOf("CallFire\Api\Rest\Client\\{$matchingServiceName}", $client);
         }
     }
 
@@ -52,7 +52,7 @@ class ClientTest extends TestCase
         list($username, $password) = static::$credentials;
 
         $client = Client::Soap($username, $password);
-        $this->assertInstanceOf("CallFire\\Api\\Soap\\Client", $client);
+        $this->assertInstanceOf("CallFire\Api\Soap\Client", $client);
     }
 
     public function restProvider()

@@ -13,7 +13,7 @@ class AbstractResourceTest extends TestCase
                 continue;
             }
 
-            $qualifiedClassName = "CallFire\\Common\\Resource\\{$className}";
+            $qualifiedClassName = "CallFire\Common\Resource\\{$className}";
 
             $resource = new $qualifiedClassName;
             $this->assertInstanceOf($qualifiedClassName, $resource);

@@ -2,6 +2,7 @@
 namespace CallFire\Api\Rest;
 
 use CallFire\Common\Resource;
+use CallFire\Common\Resource\AbstractResource;
 
 use CallFire\Common\Hydrator\DOM as DomHydrator;
 use Zend\Stdlib\Hydrator\ClassMethods;
@@ -25,6 +26,11 @@ abstract class Response
     protected $domHydrator;
 
     protected $queryMap;
+    
+    public static function ns()
+    {
+        return __CLASS__;
+    }
 
     public static function fromXml($document)
     {
@@ -98,7 +104,7 @@ abstract class Response
             }
         }
 
-        $resourceClassName = "CallFire\Common\Resource\\{$resourceName}";
+        $resourceClassName = AbstractResource::ns()."\\{$resourceName}";
         if (!class_exists($resourceClassName)) {
             return false;
         }
@@ -106,7 +112,7 @@ abstract class Response
         $resource = new $resourceClassName;
         $parentClass = get_parent_class($resource);
         if ($parentClass) {
-            $parentClass = substr($parentClass, strlen('CallFire\Common\Resource\\'));
+            $parentClass = substr($parentClass, strlen(AbstractResource::ns().'\\'));
             if ($parentClass != 'AbstractResource' && isset($queryMap[$parentClass])) {
                 $resourceMap += $queryMap[$parentClass];
             }

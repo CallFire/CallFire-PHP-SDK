@@ -1,6 +1,7 @@
 <?php
 namespace CallFire\Api;
 
+use CallFire\Api\Rest\AbstractClient as RestClient;
 use CallFire\Api\Soap\Client as SoapClient;
 
 class Client
@@ -40,7 +41,7 @@ class Client
      */
     protected static function createRestClient($username, $password, $service)
     {
-        $serviceClass = "CallFire\Api\Rest\Client\\{$service}";
+        $serviceClass = RestClient::ns()."\\{$service}";
         $client = new $serviceClass;
 
         $client->setUsername($username);

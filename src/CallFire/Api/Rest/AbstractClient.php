@@ -15,6 +15,14 @@ abstract class AbstractClient
     protected $password;
 
     protected $http;
+    
+    public static function ns()
+    {
+        $ns = explode('\\', __CLASS__);
+        array_pop($ns);
+        $ns = implode('\\', $ns);
+        return "{$ns}\\Client";
+    }
 
     /**
      * Instantiate a request object of the given type
@@ -25,7 +33,7 @@ abstract class AbstractClient
      */
     public static function request($type)
     {
-        $requestClass = "CallFire\Api\Rest\Request\\{$type}";
+        $requestClass = AbstractRequest::ns()."\\{$type}";
 
         return new $requestClass;
     }

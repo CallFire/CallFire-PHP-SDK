@@ -16,6 +16,13 @@ abstract class AbstractClient
 
     protected $http;
 
+    /**
+     * Instantiate a request object of the given type
+     *
+     * @static
+     * @param string $type Request type
+     * @return mixed Request object
+     */
     public static function request($type)
     {
         $requestClass = "CallFire\\Api\\Rest\\Request\\{$type}";
@@ -23,6 +30,14 @@ abstract class AbstractClient
         return new $requestClass;
     }
 
+    /**
+     * Parse a response into a response type
+     *
+     * @static
+     * @param string $data Response data to be parsed
+     * @param string $type = 'xml' Response format
+     * @return mixed Response object
+     */
     public static function response($data, $type = 'xml')
     {
         if (is_string($data) && strlen($data) === 0) {
@@ -37,6 +52,14 @@ abstract class AbstractClient
         throw new InvalidArgumentException("Type must be 'xml' or 'json'");
     }
 
+    /**
+     * Execute a GET request against an API endpoint,
+     * optionally with a given Request object as parameters
+     *
+     * @param string $uri Endpoint URL
+     * @param AbstractRequest $request = null Request object for parameters
+     * @return string Response data
+     */
     public function get($uri, AbstractRequest $request = null)
     {
         $http = $this->getHttpClone();
@@ -52,6 +75,14 @@ abstract class AbstractClient
         return $http->execute();
     }
 
+    /**
+     * Execute a POST request against an API endpoint,
+     * optionally with a given Request object as parameters
+     *
+     * @param string $uri Endpoint URL
+     * @param AbstractRequest $request = null Request object for parameters
+     * @return string Response data
+     */
     public function post($uri, AbstractRequest $request = null)
     {
         $http = $this->getHttpClone();
@@ -65,6 +96,14 @@ abstract class AbstractClient
         return $http->execute();
     }
 
+    /**
+     * Execute a PUT request against an API endpoint,
+     * optionally with a given Request object as parameters
+     *
+     * @param string $uri Endpoint URL
+     * @param AbstractRequest $request = null Request object for parameters
+     * @return string Response data
+     */
     public function put($uri, AbstractRequest $request = null)
     {
         $http = $this->getHttpClone();
@@ -78,6 +117,13 @@ abstract class AbstractClient
         return $http->execute();
     }
 
+    /**
+     * Build a request URI for a GET request
+     *
+     * @param string $uri Endpoint URI
+     * @param array $parameters Key-value query parameters
+     * @return string The resulting URL
+     */
     public function buildQuery($uri, $parameters)
     {
         $queryParameters = http_build_query($parameters);
@@ -85,12 +131,24 @@ abstract class AbstractClient
         return "{$uri}?{$queryParameters}";
     }
 
+    /**
+     * Construct the POST fields data for a POST/PUT
+     * request, according to CallFire conventions
+     * 
+     * Reformats any array parameters to be a
+     * space-concatenated list of items. Any object
+     * parameters will be casted to a string, as
+     * possible.
+     *
+     * @param array $parameters POST data
+     * @return string Encoded POST data
+     */
     public function buildPostData($parameters)
     {
         $data = array();
         foreach ($parameters as $key => $value) {
             if (is_scalar($value)) {
-                $data[$key] = $value;
+                $data[$key] = (string) $value;
             } elseif (is_array($value)) {
                 $data[$key] = implode(' ', $value);
             }
@@ -168,6 +226,12 @@ abstract class AbstractClient
         return $uri;
     }
 
+    /**
+     * Rehashes the HTTP Basic Authentication on the HTTP
+     * client
+     *
+     * @return void
+     */
     protected function updateCredentials()
     {
         if ($this->http) {

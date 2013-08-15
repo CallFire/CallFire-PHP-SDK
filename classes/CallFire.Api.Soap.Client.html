@@ -1,0 +1,3063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/CallFire.html">\CallFire</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-418220568"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-418220568" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-454613583"></a>
+                                <a href="../namespaces/CallFire.html" style="margin-left: 30px; padding-left: 0">CallFire</a>
+            </div>
+            <div id="namespace-454613583" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-855050017"></a>
+                                <a href="../namespaces/CallFire.Api.html" style="margin-left: 30px; padding-left: 0">Api</a>
+            </div>
+            <div id="namespace-855050017" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-343628953"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.html" style="margin-left: 30px; padding-left: 0">Rest</a>
+            </div>
+            <div id="namespace-343628953" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-607262544"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-607262544" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceException.html">ResourceException</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.Resource.html">Resource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceReference.html">ResourceReference</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceList.html">ResourceList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1952692512"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-1952692512" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateSound.html">CreateSound</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryBroadcasts.html">QueryBroadcasts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContactLists.html">QueryContactLists</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UpdateSubscription.html">UpdateSubscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ControlContactBatch.html">ControlContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateBroadcastSchedule.html">CreateBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SearchAvailableKeywords.html">SearchAvailableKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateContactBatch.html">CreateContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryNumbers.html">QueryNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.AddContactsToList.html">AddContactsToList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateBroadcast.html">CreateBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateContactList.html">CreateContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryBroadcastSchedule.html">QueryBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryAutoReplies.html">QueryAutoReplies</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UnlabelBroadcast.html">UnlabelBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContactBatches.html">QueryContactBatches</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SendCall.html">SendCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.Release.html">Release</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ConfigureNumber.html">ConfigureNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateSubscription.html">CreateSubscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.RemoveContactsFromList.html">RemoveContactsFromList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryRegions.html">QueryRegions</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SearchAvailableNumbers.html">SearchAvailableNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UpdateBroadcast.html">UpdateBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryTexts.html">QueryTexts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QuerySoundMeta.html">QuerySoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryLabels.html">QueryLabels</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateNumberOrder.html">CreateNumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SendText.html">SendText</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetNumber.html">GetNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UnlabelNumber.html">UnlabelNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QuerySubscriptions.html">QuerySubscriptions</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryKeywords.html">QueryKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContacts.html">QueryContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryCalls.html">QueryCalls</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateAutoReply.html">CreateAutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetBroadcastStats.html">GetBroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.RemoveContacts.html">RemoveContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetContactHistory.html">GetContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ControlBroadcast.html">ControlBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.LabelBroadcast.html">LabelBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.DeleteLabel.html">DeleteLabel</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.LabelNumber.html">LabelNumber</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1371308015"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Client.html" style="margin-left: 30px; padding-left: 0">Client</a>
+            </div>
+            <div id="namespace-1371308015" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Contact.html">Contact</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2115859937"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-2115859937" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/CallFire.Api.Rest.Http.Request.html">Request</a></li>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Http.Curl.html">Curl</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.html">Response</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.AbstractClient.html">AbstractClient</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-978140197"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.html" style="margin-left: 30px; padding-left: 0">Soap</a>
+            </div>
+            <div id="namespace-978140197" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-652260860"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Structure.html" style="margin-left: 30px; padding-left: 0">Structure</a>
+            </div>
+            <div id="namespace-652260860" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.InboundConfig.html">InboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.TextBroadcastConfig.html">TextBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.QueryResult.html">QueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RetryConfig.html">RetryConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ServiceFaultInfo.html">ServiceFaultInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Region.html">Region</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ToNumber.html">ToNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ContactSource.html">ContactSource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.NumberOrderItem.html">NumberOrderItem</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.IvrBroadcastConfig.html">IvrBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ResultStat.html">ResultStat</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.VoiceBroadcastConfig.html">VoiceBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ActionRecord.html">ActionRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.UsageStats.html">UsageStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BulkTollFree.html">BulkTollFree</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BroadcastConfig.html">BroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.NumberConfiguration.html">NumberConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Keyword.html">Keyword</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RecordingCall.html">RecordingCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.LeaseInfo.html">LeaseInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.IvrInboundConfig.html">IvrInboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.QuestionResponse.html">QuestionResponse</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.description.html">description</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.restOperation.html">restOperation</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ContactList.html">ContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.SubscriptionFilter.html">SubscriptionFilter</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.CallTrackingConfig.html">CallTrackingConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.InboundCallConfiguration.html">InboundCallConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.CallRecord.html">CallRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Action.html">Action</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.docGeneration.html">docGeneration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.LocalTimeZoneRestriction.html">LocalTimeZoneRestriction</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.TextRecord.html">TextRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.SendRequest.html">SendRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Numbers.html">Numbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RecordingMeta.html">RecordingMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BulkLocal.html">BulkLocal</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.condition.html">condition</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-589051359"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-589051359" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateBroadcastSchedule.html">CreateBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.UpdateContacts.html">UpdateContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.BroadcastRequest.html">BroadcastRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ControlContactBatch.html">ControlContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.IdLabelRequest.html">IdLabelRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.NumberLabelRequest.html">NumberLabelRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.RemoveContacts.html">RemoveContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.RegionQuery.html">RegionQuery</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ControlBroadcast.html">ControlBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryBroadcastSchedules.html">QueryBroadcastSchedules</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ActionQuery.html">ActionQuery</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SendCall.html">SendCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetBroadcastStats.html">GetBroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetSoundData.html">GetSoundData</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryAutoReplies.html">QueryAutoReplies</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ConfigureNumber.html">ConfigureNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SendText.html">SendText</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateSound.html">CreateSound</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryNumbers.html">QueryNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ContactListRequest.html">ContactListRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SubscriptionRequest.html">SubscriptionRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetRecordingData.html">GetRecordingData</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryContactBatches.html">QueryContactBatches</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryBroadcasts.html">QueryBroadcasts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.Query.html">Query</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SearchAvailableKeywords.html">SearchAvailableKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.Release.html">Release</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryContacts.html">QueryContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetNumber.html">GetNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateContactBatch.html">CreateContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateAutoReply.html">CreateAutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SearchAvailableNumbers.html">SearchAvailableNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">IdRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.DeleteLabel.html">DeleteLabel</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateNumberOrder.html">CreateNumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateContactList.html">CreateContactList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1483197195"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-1483197195" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.NumberQueryResult.html">NumberQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactBatchQueryResult.html">ContactBatchQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactBatch.html">ContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SoundMetaQueryResult.html">SoundMetaQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactHistory.html">ContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactListQueryResult.html">ContactListQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.AutoReplyQueryResult.html">AutoReplyQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.RegionQueryResult.html">RegionQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastScheduleQueryResult.html">BroadcastScheduleQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SoundMeta.html">SoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastSchedule.html">BroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastStats.html">BroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.KeywordQueryResult.html">KeywordQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Contact.html">Contact</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SubscriptionQueryResult.html">SubscriptionQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.LabelQueryResult.html">LabelQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.NumberOrder.html">NumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.AutoReply.html">AutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactQueryResult.html">ContactQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.TextQueryResult.html">TextQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.CallQueryResult.html">CallQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastQueryResult.html">BroadcastQueryResult</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Client.html">Client</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Client.html">Client</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1125369387"></a>
+                                <a href="../namespaces/CallFire.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
+            </div>
+            <div id="namespace-1125369387" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-663651845"></a>
+                                <a href="../namespaces/CallFire.Common.Subscription.html" style="margin-left: 30px; padding-left: 0">Subscription</a>
+            </div>
+            <div id="namespace-663651845" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.CallFinished.html">CallFinished</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.TextNotification.html">TextNotification</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-93468368"></a>
+                                <a href="../namespaces/CallFire.Common.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-93468368" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Action.html">Action</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.InboundConfig.html">InboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.LocalTimeZoneRestriction.html">LocalTimeZoneRestriction</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.UsageStats.html">UsageStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Region.html">Region</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.SoundMeta.html">SoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastConfig.html">BroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Fulfilled.html">Fulfilled</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextToSpeech.html">TextToSpeech</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.AbstractResource.html">AbstractResource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactHistory.html">ContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ResultStat.html">ResultStat</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.AutoReply.html">AutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.InboundCallConfiguration.html">InboundCallConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.IvrBroadcastConfig.html">IvrBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Contact.html">Contact</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RetryConfig.html">RetryConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.QuestionResponse.html">QuestionResponse</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastSchedule.html">BroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.DaysOfWeek.html">DaysOfWeek</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextRecord.html">TextRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextBroadcastConfig.html">TextBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.IvrInboundConfig.html">IvrInboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TransferNumber.html">TransferNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberConfiguration.html">NumberConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastStats.html">BroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.VoiceBroadcastConfig.html">VoiceBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.SubscriptionFilter.html">SubscriptionFilter</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RecordingMeta.html">RecordingMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.LeaseInfo.html">LeaseInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ToNumber.html">ToNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberOrder.html">NumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactBatch.html">ContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ActionRecord.html">ActionRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberOrderItem.html">NumberOrderItem</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.CallRecord.html">CallRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactList.html">ContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RetryResults.html">RetryResults</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Keyword.html">Keyword</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.CallTrackingConfig.html">CallTrackingConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-666746606"></a>
+                                <a href="../namespaces/CallFire.Common.Hydrator.html" style="margin-left: 30px; padding-left: 0">Hydrator</a>
+            </div>
+            <div id="namespace-666746606" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Hydrator.DOM.html">DOM</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.html">Subscription</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/CallFire.Api.Soap.html">\CallFire\Api\Soap</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\CallFire\Api\Soap</small>Client</h1>
+                    <p><em></em></p>
+                    
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_CreateBroadcast" class="">CreateBroadcast()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryBroadcasts" class="">QueryBroadcasts()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetBroadcast" class="">GetBroadcast()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_UpdateBroadcast" class="">UpdateBroadcast()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetBroadcastStats" class="">GetBroadcastStats()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_ControlBroadcast" class="">ControlBroadcast()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_CreateContactBatch" class="">CreateContactBatch()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryContactBatches" class="">QueryContactBatches()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetContactBatch" class="">GetContactBatch()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_ControlContactBatch" class="">ControlContactBatch()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_CreateBroadcastSchedule" class="">CreateBroadcastSchedule()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryBroadcastSchedule" class="">QueryBroadcastSchedule()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetBroadcastSchedule" class="">GetBroadcastSchedule()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_DeleteBroadcastSchedule" class="">DeleteBroadcastSchedule()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_CreateSubscription" class="">CreateSubscription()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QuerySubscriptions" class="">QuerySubscriptions()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetSubscription" class="">GetSubscription()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_UpdateSubscription" class="">UpdateSubscription()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_DeleteSubscription" class="">DeleteSubscription()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_SendText" class="">SendText()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryTexts" class="">QueryTexts()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetText" class="">GetText()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_CreateAutoReply" class="">CreateAutoReply()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryAutoReplies" class="">QueryAutoReplies()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetAutoReply" class="">GetAutoReply()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_DeleteAutoReply" class="">DeleteAutoReply()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_SendCall" class="">SendCall()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryCalls" class="">QueryCalls()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetCall" class="">GetCall()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_CreateSound" class="">CreateSound()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QuerySoundMeta" class="">QuerySoundMeta()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetSoundMeta" class="">GetSoundMeta()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetSoundData" class="">GetSoundData()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetRecordingData" class="">GetRecordingData()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryContacts" class="">QueryContacts()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_UpdateContacts" class="">UpdateContacts()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_RemoveContacts" class="">RemoveContacts()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetContact" class="">GetContact()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetContactHistory" class="">GetContactHistory()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_CreateContactList" class="">CreateContactList()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryContactLists" class="">QueryContactLists()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_DeleteContactList" class="">DeleteContactList()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_AddContactsToList" class="">AddContactsToList()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_RemoveContactsFromList" class="">RemoveContactsFromList()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryRegions" class="">QueryRegions()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryNumbers" class="">QueryNumbers()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetNumber" class="">GetNumber()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_ConfigureNumber" class="">ConfigureNumber()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_SearchAvailableNumbers" class="">SearchAvailableNumbers()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryKeywords" class="">QueryKeywords()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_SearchAvailableKeywords" class="">SearchAvailableKeywords()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_CreateNumberOrder" class="">CreateNumberOrder()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_GetNumberOrder" class="">GetNumberOrder()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_Release" class="">Release()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_DeleteLabel" class="">DeleteLabel()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_QueryLabels" class="">QueryLabels()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_LabelBroadcast" class="">LabelBroadcast()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_UnlabelBroadcast" class="">UnlabelBroadcast()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_LabelNumber" class="">LabelNumber()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Soap.Client.html#method_UnlabelNumber" class="">UnlabelNumber()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Api.Soap.Client.php.html"><div class="path-wrapper">Api/Soap/Client.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\SoapClient</div>
+                                                                                                    <div class="namespace-wrapper">\CallFire\Api\Soap\Client</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct( <span class="argument">$wsdl</span>,  <span class="argument">$options</span>)</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$wsdl</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$options</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateBroadcast" name="method_CreateBroadcast" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateBroadcast()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateBroadcast(\CallFire\Api\Soap\Request\BroadcastRequest <span class="argument">$Create</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.BroadcastRequest.html">\CallFire\Api\Soap\Request\BroadcastRequest</a></td>
+                                <td>$Create</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryBroadcasts" name="method_QueryBroadcasts" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryBroadcasts()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryBroadcasts(\CallFire\Api\Soap\Request\QueryBroadcasts <span class="argument">$Query</span>) : \CallFire\Api\Soap\Response\BroadcastQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.QueryBroadcasts.html">\CallFire\Api\Soap\Request\QueryBroadcasts</a></td>
+                                <td>$Query</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.BroadcastQueryResult.html">\CallFire\Api\Soap\Response\BroadcastQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetBroadcast" name="method_GetBroadcast" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetBroadcast()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetBroadcast(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\Broadcast</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.Broadcast.html">\CallFire\Api\Soap\Response\Broadcast</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_UpdateBroadcast" name="method_UpdateBroadcast" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">UpdateBroadcast()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">UpdateBroadcast(\CallFire\Api\Soap\Request\BroadcastRequest <span class="argument">$Update</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.BroadcastRequest.html">\CallFire\Api\Soap\Request\BroadcastRequest</a></td>
+                                <td>$Update</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetBroadcastStats" name="method_GetBroadcastStats" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetBroadcastStats()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetBroadcastStats(\CallFire\Api\Soap\Request\GetBroadcastStats <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\BroadcastStats</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.GetBroadcastStats.html">\CallFire\Api\Soap\Request\GetBroadcastStats</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.BroadcastStats.html">\CallFire\Api\Soap\Response\BroadcastStats</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ControlBroadcast" name="method_ControlBroadcast" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ControlBroadcast()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ControlBroadcast(\CallFire\Api\Soap\Request\ControlBroadcast <span class="argument">$Control</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.ControlBroadcast.html">\CallFire\Api\Soap\Request\ControlBroadcast</a></td>
+                                <td>$Control</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateContactBatch" name="method_CreateContactBatch" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateContactBatch()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateContactBatch(\CallFire\Api\Soap\Request\CreateContactBatch <span class="argument">$Create</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.CreateContactBatch.html">\CallFire\Api\Soap\Request\CreateContactBatch</a></td>
+                                <td>$Create</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryContactBatches" name="method_QueryContactBatches" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryContactBatches()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryContactBatches(\CallFire\Api\Soap\Request\QueryContactBatches <span class="argument">$Query</span>) : \CallFire\Api\Soap\Response\ContactBatchQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.QueryContactBatches.html">\CallFire\Api\Soap\Request\QueryContactBatches</a></td>
+                                <td>$Query</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.ContactBatchQueryResult.html">\CallFire\Api\Soap\Response\ContactBatchQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetContactBatch" name="method_GetContactBatch" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetContactBatch()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetContactBatch(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\ContactBatch</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.ContactBatch.html">\CallFire\Api\Soap\Response\ContactBatch</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ControlContactBatch" name="method_ControlContactBatch" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ControlContactBatch()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ControlContactBatch(\CallFire\Api\Soap\Request\ControlContactBatch <span class="argument">$Update</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.ControlContactBatch.html">\CallFire\Api\Soap\Request\ControlContactBatch</a></td>
+                                <td>$Update</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateBroadcastSchedule" name="method_CreateBroadcastSchedule" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateBroadcastSchedule()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateBroadcastSchedule(\CallFire\Api\Soap\Request\CreateBroadcastSchedule <span class="argument">$Create</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.CreateBroadcastSchedule.html">\CallFire\Api\Soap\Request\CreateBroadcastSchedule</a></td>
+                                <td>$Create</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryBroadcastSchedule" name="method_QueryBroadcastSchedule" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryBroadcastSchedule()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryBroadcastSchedule(\CallFire\Api\Soap\Request\QueryBroadcastSchedules <span class="argument">$Query</span>) : \CallFire\Api\Soap\Response\BroadcastScheduleQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.QueryBroadcastSchedules.html">\CallFire\Api\Soap\Request\QueryBroadcastSchedules</a></td>
+                                <td>$Query</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.BroadcastScheduleQueryResult.html">\CallFire\Api\Soap\Response\BroadcastScheduleQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetBroadcastSchedule" name="method_GetBroadcastSchedule" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetBroadcastSchedule()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetBroadcastSchedule(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\BroadcastSchedule</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.BroadcastSchedule.html">\CallFire\Api\Soap\Response\BroadcastSchedule</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteBroadcastSchedule" name="method_DeleteBroadcastSchedule" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteBroadcastSchedule()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteBroadcastSchedule(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Delete</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Delete</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateSubscription" name="method_CreateSubscription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateSubscription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateSubscription(\CallFire\Api\Soap\Request\SubscriptionRequest <span class="argument">$Request</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.SubscriptionRequest.html">\CallFire\Api\Soap\Request\SubscriptionRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QuerySubscriptions" name="method_QuerySubscriptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QuerySubscriptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QuerySubscriptions(\CallFire\Api\Soap\Request\Query <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\SubscriptionQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.Query.html">\CallFire\Api\Soap\Request\Query</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.SubscriptionQueryResult.html">\CallFire\Api\Soap\Response\SubscriptionQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetSubscription" name="method_GetSubscription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetSubscription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetSubscription(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\Subscription</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.Subscription.html">\CallFire\Api\Soap\Response\Subscription</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_UpdateSubscription" name="method_UpdateSubscription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">UpdateSubscription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">UpdateSubscription(\CallFire\Api\Soap\Request\SubscriptionRequest <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.SubscriptionRequest.html">\CallFire\Api\Soap\Request\SubscriptionRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteSubscription" name="method_DeleteSubscription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteSubscription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteSubscription(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_SendText" name="method_SendText" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">SendText()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">SendText(\CallFire\Api\Soap\Request\SendText <span class="argument">$Request</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.SendText.html">\CallFire\Api\Soap\Request\SendText</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryTexts" name="method_QueryTexts" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryTexts()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryTexts(\CallFire\Api\Soap\Request\ActionQuery <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\TextQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.ActionQuery.html">\CallFire\Api\Soap\Request\ActionQuery</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.TextQueryResult.html">\CallFire\Api\Soap\Response\TextQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetText" name="method_GetText" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetText()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetText(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\Text</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.Text.html">\CallFire\Api\Soap\Response\Text</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateAutoReply" name="method_CreateAutoReply" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateAutoReply()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateAutoReply(\CallFire\Api\Soap\Request\CreateAutoReply <span class="argument">$Request</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.CreateAutoReply.html">\CallFire\Api\Soap\Request\CreateAutoReply</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryAutoReplies" name="method_QueryAutoReplies" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryAutoReplies()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryAutoReplies(\CallFire\Api\Soap\Request\QueryAutoReplies <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\AutoReplyQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.QueryAutoReplies.html">\CallFire\Api\Soap\Request\QueryAutoReplies</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.AutoReplyQueryResult.html">\CallFire\Api\Soap\Response\AutoReplyQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetAutoReply" name="method_GetAutoReply" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetAutoReply()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetAutoReply(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\AutoReply</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.AutoReply.html">\CallFire\Api\Soap\Response\AutoReply</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteAutoReply" name="method_DeleteAutoReply" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteAutoReply()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteAutoReply(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_SendCall" name="method_SendCall" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">SendCall()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">SendCall(\CallFire\Api\Soap\Request\SendCall <span class="argument">$Request</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.SendCall.html">\CallFire\Api\Soap\Request\SendCall</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryCalls" name="method_QueryCalls" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryCalls()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryCalls(\CallFire\Api\Soap\Request\ActionQuery <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\CallQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.ActionQuery.html">\CallFire\Api\Soap\Request\ActionQuery</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.CallQueryResult.html">\CallFire\Api\Soap\Response\CallQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetCall" name="method_GetCall" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetCall()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetCall(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\Call</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.Call.html">\CallFire\Api\Soap\Response\Call</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateSound" name="method_CreateSound" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateSound()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateSound(\CallFire\Api\Soap\Request\CreateSound <span class="argument">$Create</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.CreateSound.html">\CallFire\Api\Soap\Request\CreateSound</a></td>
+                                <td>$Create</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QuerySoundMeta" name="method_QuerySoundMeta" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QuerySoundMeta()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QuerySoundMeta(\CallFire\Api\Soap\Request\Query <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\SoundMetaQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.Query.html">\CallFire\Api\Soap\Request\Query</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.SoundMetaQueryResult.html">\CallFire\Api\Soap\Response\SoundMetaQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetSoundMeta" name="method_GetSoundMeta" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetSoundMeta()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetSoundMeta(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\SoundMeta</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.SoundMeta.html">\CallFire\Api\Soap\Response\SoundMeta</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetSoundData" name="method_GetSoundData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetSoundData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetSoundData(\CallFire\Api\Soap\Request\GetSoundData <span class="argument">$Get</span>) : string</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.GetSoundData.html">\CallFire\Api\Soap\Request\GetSoundData</a></td>
+                                <td>$Get</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetRecordingData" name="method_GetRecordingData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetRecordingData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetRecordingData(\CallFire\Api\Soap\Request\GetRecordingData <span class="argument">$Get</span>) : string</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.GetRecordingData.html">\CallFire\Api\Soap\Request\GetRecordingData</a></td>
+                                <td>$Get</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryContacts" name="method_QueryContacts" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryContacts()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryContacts(\CallFire\Api\Soap\Request\QueryContacts <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\ContactQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.QueryContacts.html">\CallFire\Api\Soap\Request\QueryContacts</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.ContactQueryResult.html">\CallFire\Api\Soap\Response\ContactQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_UpdateContacts" name="method_UpdateContacts" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">UpdateContacts()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">UpdateContacts(\CallFire\Api\Soap\Request\UpdateContacts <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.UpdateContacts.html">\CallFire\Api\Soap\Request\UpdateContacts</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_RemoveContacts" name="method_RemoveContacts" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">RemoveContacts()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">RemoveContacts(\CallFire\Api\Soap\Request\RemoveContacts <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.RemoveContacts.html">\CallFire\Api\Soap\Request\RemoveContacts</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetContact" name="method_GetContact" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetContact()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetContact(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\Contact</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.Contact.html">\CallFire\Api\Soap\Response\Contact</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetContactHistory" name="method_GetContactHistory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetContactHistory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetContactHistory(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\ContactHistory</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.ContactHistory.html">\CallFire\Api\Soap\Response\ContactHistory</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateContactList" name="method_CreateContactList" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateContactList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateContactList(\CallFire\Api\Soap\Request\CreateContactList <span class="argument">$Request</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.CreateContactList.html">\CallFire\Api\Soap\Request\CreateContactList</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryContactLists" name="method_QueryContactLists" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryContactLists()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryContactLists(\CallFire\Api\Soap\Request\Query <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\ContactListQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.Query.html">\CallFire\Api\Soap\Request\Query</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.ContactListQueryResult.html">\CallFire\Api\Soap\Response\ContactListQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteContactList" name="method_DeleteContactList" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteContactList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteContactList(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_AddContactsToList" name="method_AddContactsToList" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">AddContactsToList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">AddContactsToList(\CallFire\Api\Soap\Request\ContactListRequest <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.ContactListRequest.html">\CallFire\Api\Soap\Request\ContactListRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_RemoveContactsFromList" name="method_RemoveContactsFromList" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">RemoveContactsFromList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">RemoveContactsFromList(\CallFire\Api\Soap\Request\ContactListRequest <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.ContactListRequest.html">\CallFire\Api\Soap\Request\ContactListRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryRegions" name="method_QueryRegions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryRegions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryRegions(\CallFire\Api\Soap\Request\RegionQuery <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\RegionQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.RegionQuery.html">\CallFire\Api\Soap\Request\RegionQuery</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.RegionQueryResult.html">\CallFire\Api\Soap\Response\RegionQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryNumbers" name="method_QueryNumbers" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryNumbers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryNumbers(\CallFire\Api\Soap\Request\QueryNumbers <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\NumberQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.QueryNumbers.html">\CallFire\Api\Soap\Request\QueryNumbers</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.NumberQueryResult.html">\CallFire\Api\Soap\Response\NumberQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetNumber" name="method_GetNumber" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetNumber()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetNumber(\CallFire\Api\Soap\Request\GetNumber <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\Number</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.GetNumber.html">\CallFire\Api\Soap\Request\GetNumber</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.Number.html">\CallFire\Api\Soap\Response\Number</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ConfigureNumber" name="method_ConfigureNumber" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ConfigureNumber()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ConfigureNumber(\CallFire\Api\Soap\Request\ConfigureNumber <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.ConfigureNumber.html">\CallFire\Api\Soap\Request\ConfigureNumber</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_SearchAvailableNumbers" name="method_SearchAvailableNumbers" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">SearchAvailableNumbers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">SearchAvailableNumbers(\CallFire\Api\Soap\Request\SearchAvailableNumbers <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\NumberQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.SearchAvailableNumbers.html">\CallFire\Api\Soap\Request\SearchAvailableNumbers</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.NumberQueryResult.html">\CallFire\Api\Soap\Response\NumberQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryKeywords" name="method_QueryKeywords" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryKeywords()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryKeywords(\CallFire\Api\Soap\Request\Query <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\KeywordQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.Query.html">\CallFire\Api\Soap\Request\Query</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.KeywordQueryResult.html">\CallFire\Api\Soap\Response\KeywordQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_SearchAvailableKeywords" name="method_SearchAvailableKeywords" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">SearchAvailableKeywords()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">SearchAvailableKeywords(\CallFire\Api\Soap\Request\SearchAvailableKeywords <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\KeywordQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.SearchAvailableKeywords.html">\CallFire\Api\Soap\Request\SearchAvailableKeywords</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.KeywordQueryResult.html">\CallFire\Api\Soap\Response\KeywordQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateNumberOrder" name="method_CreateNumberOrder" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateNumberOrder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateNumberOrder(\CallFire\Api\Soap\Request\CreateNumberOrder <span class="argument">$Request</span>) : int</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.CreateNumberOrder.html">\CallFire\Api\Soap\Request\CreateNumberOrder</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetNumberOrder" name="method_GetNumberOrder" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetNumberOrder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetNumberOrder(\CallFire\Api\Soap\Request\IdRequest <span class="argument">$Request</span>) : \CallFire\Api\Soap\Response\NumberOrder</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">\CallFire\Api\Soap\Request\IdRequest</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.NumberOrder.html">\CallFire\Api\Soap\Response\NumberOrder</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_Release" name="method_Release" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">Release()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">Release(\CallFire\Api\Soap\Request\Release <span class="argument">$Request</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.Release.html">\CallFire\Api\Soap\Request\Release</a></td>
+                                <td>$Request</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteLabel" name="method_DeleteLabel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteLabel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteLabel(\CallFire\Api\Soap\Request\DeleteLabel <span class="argument">$DeleteLabel</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.DeleteLabel.html">\CallFire\Api\Soap\Request\DeleteLabel</a></td>
+                                <td>$DeleteLabel</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QueryLabels" name="method_QueryLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QueryLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QueryLabels(\CallFire\Api\Soap\Request\Query <span class="argument">$QueryLabels</span>) : \CallFire\Api\Soap\Response\LabelQueryResult</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.Query.html">\CallFire\Api\Soap\Request\Query</a></td>
+                                <td>$QueryLabels</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/CallFire.Api.Soap.Response.LabelQueryResult.html">\CallFire\Api\Soap\Response\LabelQueryResult</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_LabelBroadcast" name="method_LabelBroadcast" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">LabelBroadcast()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">LabelBroadcast(\CallFire\Api\Soap\Request\IdLabelRequest <span class="argument">$LabelBroadcast</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdLabelRequest.html">\CallFire\Api\Soap\Request\IdLabelRequest</a></td>
+                                <td>$LabelBroadcast</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_UnlabelBroadcast" name="method_UnlabelBroadcast" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">UnlabelBroadcast()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">UnlabelBroadcast(\CallFire\Api\Soap\Request\IdLabelRequest <span class="argument">$UnlabelBroadcast</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.IdLabelRequest.html">\CallFire\Api\Soap\Request\IdLabelRequest</a></td>
+                                <td>$UnlabelBroadcast</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_LabelNumber" name="method_LabelNumber" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">LabelNumber()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">LabelNumber(\CallFire\Api\Soap\Request\NumberLabelRequest <span class="argument">$LabelNumber</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.NumberLabelRequest.html">\CallFire\Api\Soap\Request\NumberLabelRequest</a></td>
+                                <td>$LabelNumber</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_UnlabelNumber" name="method_UnlabelNumber" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">UnlabelNumber()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">UnlabelNumber(\CallFire\Api\Soap\Request\NumberLabelRequest <span class="argument">$UnlabelNumber</span>) : void</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Soap.Request.NumberLabelRequest.html">\CallFire\Api\Soap\Request\NumberLabelRequest</a></td>
+                                <td>$UnlabelNumber</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Client.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Api/Soap/Client.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/CallFire.html">\CallFire</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 15th, 2013 at 19:06.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

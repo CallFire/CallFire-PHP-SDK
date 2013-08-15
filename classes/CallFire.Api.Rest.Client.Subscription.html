@@ -1,0 +1,3193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/CallFire.html">\CallFire</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1580031316"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1580031316" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1450637130"></a>
+                                <a href="../namespaces/CallFire.html" style="margin-left: 30px; padding-left: 0">CallFire</a>
+            </div>
+            <div id="namespace-1450637130" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1600869553"></a>
+                                <a href="../namespaces/CallFire.Api.html" style="margin-left: 30px; padding-left: 0">Api</a>
+            </div>
+            <div id="namespace-1600869553" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1284777485"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.html" style="margin-left: 30px; padding-left: 0">Rest</a>
+            </div>
+            <div id="namespace-1284777485" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-862555556"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-862555556" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceException.html">ResourceException</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.Resource.html">Resource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceReference.html">ResourceReference</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceList.html">ResourceList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1052470634"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-1052470634" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateSound.html">CreateSound</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryBroadcasts.html">QueryBroadcasts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContactLists.html">QueryContactLists</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UpdateSubscription.html">UpdateSubscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ControlContactBatch.html">ControlContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateBroadcastSchedule.html">CreateBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SearchAvailableKeywords.html">SearchAvailableKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateContactBatch.html">CreateContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryNumbers.html">QueryNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.AddContactsToList.html">AddContactsToList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateBroadcast.html">CreateBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateContactList.html">CreateContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryBroadcastSchedule.html">QueryBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryAutoReplies.html">QueryAutoReplies</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UnlabelBroadcast.html">UnlabelBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContactBatches.html">QueryContactBatches</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SendCall.html">SendCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.Release.html">Release</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ConfigureNumber.html">ConfigureNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateSubscription.html">CreateSubscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.RemoveContactsFromList.html">RemoveContactsFromList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryRegions.html">QueryRegions</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SearchAvailableNumbers.html">SearchAvailableNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UpdateBroadcast.html">UpdateBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryTexts.html">QueryTexts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QuerySoundMeta.html">QuerySoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryLabels.html">QueryLabels</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateNumberOrder.html">CreateNumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SendText.html">SendText</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetNumber.html">GetNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UnlabelNumber.html">UnlabelNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QuerySubscriptions.html">QuerySubscriptions</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryKeywords.html">QueryKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContacts.html">QueryContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryCalls.html">QueryCalls</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateAutoReply.html">CreateAutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetBroadcastStats.html">GetBroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.RemoveContacts.html">RemoveContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetContactHistory.html">GetContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ControlBroadcast.html">ControlBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.LabelBroadcast.html">LabelBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.DeleteLabel.html">DeleteLabel</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.LabelNumber.html">LabelNumber</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-634210623"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Client.html" style="margin-left: 30px; padding-left: 0">Client</a>
+            </div>
+            <div id="namespace-634210623" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Contact.html">Contact</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1601944016"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-1601944016" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/CallFire.Api.Rest.Http.Request.html">Request</a></li>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Http.Curl.html">Curl</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.html">Response</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.AbstractClient.html">AbstractClient</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1543329721"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.html" style="margin-left: 30px; padding-left: 0">Soap</a>
+            </div>
+            <div id="namespace-1543329721" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-23054629"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Structure.html" style="margin-left: 30px; padding-left: 0">Structure</a>
+            </div>
+            <div id="namespace-23054629" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.InboundConfig.html">InboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.TextBroadcastConfig.html">TextBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.QueryResult.html">QueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RetryConfig.html">RetryConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ServiceFaultInfo.html">ServiceFaultInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Region.html">Region</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ToNumber.html">ToNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ContactSource.html">ContactSource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.NumberOrderItem.html">NumberOrderItem</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.IvrBroadcastConfig.html">IvrBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ResultStat.html">ResultStat</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.VoiceBroadcastConfig.html">VoiceBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ActionRecord.html">ActionRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.UsageStats.html">UsageStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BulkTollFree.html">BulkTollFree</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BroadcastConfig.html">BroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.NumberConfiguration.html">NumberConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Keyword.html">Keyword</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RecordingCall.html">RecordingCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.LeaseInfo.html">LeaseInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.IvrInboundConfig.html">IvrInboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.QuestionResponse.html">QuestionResponse</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.description.html">description</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.restOperation.html">restOperation</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ContactList.html">ContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.SubscriptionFilter.html">SubscriptionFilter</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.CallTrackingConfig.html">CallTrackingConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.InboundCallConfiguration.html">InboundCallConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.CallRecord.html">CallRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Action.html">Action</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.docGeneration.html">docGeneration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.LocalTimeZoneRestriction.html">LocalTimeZoneRestriction</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.TextRecord.html">TextRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.SendRequest.html">SendRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Numbers.html">Numbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RecordingMeta.html">RecordingMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BulkLocal.html">BulkLocal</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.condition.html">condition</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-149790391"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-149790391" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateBroadcastSchedule.html">CreateBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.UpdateContacts.html">UpdateContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.BroadcastRequest.html">BroadcastRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ControlContactBatch.html">ControlContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.IdLabelRequest.html">IdLabelRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.NumberLabelRequest.html">NumberLabelRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.RemoveContacts.html">RemoveContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.RegionQuery.html">RegionQuery</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ControlBroadcast.html">ControlBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryBroadcastSchedules.html">QueryBroadcastSchedules</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ActionQuery.html">ActionQuery</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SendCall.html">SendCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetBroadcastStats.html">GetBroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetSoundData.html">GetSoundData</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryAutoReplies.html">QueryAutoReplies</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ConfigureNumber.html">ConfigureNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SendText.html">SendText</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateSound.html">CreateSound</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryNumbers.html">QueryNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ContactListRequest.html">ContactListRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SubscriptionRequest.html">SubscriptionRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetRecordingData.html">GetRecordingData</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryContactBatches.html">QueryContactBatches</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryBroadcasts.html">QueryBroadcasts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.Query.html">Query</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SearchAvailableKeywords.html">SearchAvailableKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.Release.html">Release</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryContacts.html">QueryContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetNumber.html">GetNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateContactBatch.html">CreateContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateAutoReply.html">CreateAutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SearchAvailableNumbers.html">SearchAvailableNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">IdRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.DeleteLabel.html">DeleteLabel</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateNumberOrder.html">CreateNumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateContactList.html">CreateContactList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1699771368"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-1699771368" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.NumberQueryResult.html">NumberQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactBatchQueryResult.html">ContactBatchQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactBatch.html">ContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SoundMetaQueryResult.html">SoundMetaQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactHistory.html">ContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactListQueryResult.html">ContactListQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.AutoReplyQueryResult.html">AutoReplyQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.RegionQueryResult.html">RegionQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastScheduleQueryResult.html">BroadcastScheduleQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SoundMeta.html">SoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastSchedule.html">BroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastStats.html">BroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.KeywordQueryResult.html">KeywordQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Contact.html">Contact</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SubscriptionQueryResult.html">SubscriptionQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.LabelQueryResult.html">LabelQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.NumberOrder.html">NumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.AutoReply.html">AutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactQueryResult.html">ContactQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.TextQueryResult.html">TextQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.CallQueryResult.html">CallQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastQueryResult.html">BroadcastQueryResult</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Client.html">Client</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Client.html">Client</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1390702526"></a>
+                                <a href="../namespaces/CallFire.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
+            </div>
+            <div id="namespace-1390702526" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1017650689"></a>
+                                <a href="../namespaces/CallFire.Common.Subscription.html" style="margin-left: 30px; padding-left: 0">Subscription</a>
+            </div>
+            <div id="namespace-1017650689" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.CallFinished.html">CallFinished</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.TextNotification.html">TextNotification</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-751637899"></a>
+                                <a href="../namespaces/CallFire.Common.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-751637899" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Action.html">Action</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.InboundConfig.html">InboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.LocalTimeZoneRestriction.html">LocalTimeZoneRestriction</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.UsageStats.html">UsageStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Region.html">Region</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.SoundMeta.html">SoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastConfig.html">BroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Fulfilled.html">Fulfilled</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextToSpeech.html">TextToSpeech</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.AbstractResource.html">AbstractResource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactHistory.html">ContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ResultStat.html">ResultStat</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.AutoReply.html">AutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.InboundCallConfiguration.html">InboundCallConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.IvrBroadcastConfig.html">IvrBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Contact.html">Contact</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RetryConfig.html">RetryConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.QuestionResponse.html">QuestionResponse</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastSchedule.html">BroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.DaysOfWeek.html">DaysOfWeek</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextRecord.html">TextRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextBroadcastConfig.html">TextBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.IvrInboundConfig.html">IvrInboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TransferNumber.html">TransferNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberConfiguration.html">NumberConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastStats.html">BroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.VoiceBroadcastConfig.html">VoiceBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.SubscriptionFilter.html">SubscriptionFilter</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RecordingMeta.html">RecordingMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.LeaseInfo.html">LeaseInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ToNumber.html">ToNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberOrder.html">NumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactBatch.html">ContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ActionRecord.html">ActionRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberOrderItem.html">NumberOrderItem</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.CallRecord.html">CallRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactList.html">ContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RetryResults.html">RetryResults</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Keyword.html">Keyword</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.CallTrackingConfig.html">CallTrackingConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1088323945"></a>
+                                <a href="../namespaces/CallFire.Common.Hydrator.html" style="margin-left: 30px; padding-left: 0">Hydrator</a>
+            </div>
+            <div id="namespace-1088323945" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Hydrator.DOM.html">DOM</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.html">Subscription</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/CallFire.Api.Rest.Client.html">\CallFire\Api\Rest\Client</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\CallFire\Api\Rest\Client</small>Subscription</h1>
+                    <p><em></em></p>
+                    
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CallFire.Api.Rest.Client.Subscription.html#method_CreateSubscription" class="">CreateSubscription()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.Client.Subscription.html#method_QuerySubscriptions" class="">QuerySubscriptions()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.Client.Subscription.html#method_GetSubscription" class="">GetSubscription()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.Client.Subscription.html#method_UpdateSubscription" class="">UpdateSubscription()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.Client.Subscription.html#method_DeleteSubscription" class="">DeleteSubscription()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_ns" class="">ns()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_request" class="">request()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_response" class="">response()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_get" class="">get()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_post" class="">post()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_put" class="">put()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_buildQuery" class="">buildQuery()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_buildPostData" class="">buildPostData()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_getBasePath" class="">getBasePath()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_setBasePath" class="">setBasePath()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_getUsername" class="">getUsername()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_setUsername" class="">setUsername()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_getPassword" class="">getPassword()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_setPassword" class="">setPassword()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_getHttpClone" class="">getHttpClone()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_getHttp" class="">getHttp()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_setHttp" class="">setHttp()</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_getUri" class="">getUri()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_AMCONFIG_AM_ONLY" class="">AMCONFIG_AM_ONLY</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_AMCONFIG_AM_AND_LIVE" class="">AMCONFIG_AM_AND_LIVE</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_AMCONFIG_LIVE_WITH_AMD" class="">AMCONFIG_LIVE_WITH_AMD</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_AMCONFIG_LIVE_IMMEDIATE" class="">AMCONFIG_LIVE_IMMEDIATE</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_BROADCAST_VOICE" class="">BROADCAST_VOICE</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_BROADCAST_IVR" class="">BROADCAST_IVR</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_BROADCAST_TEXT" class="">BROADCAST_TEXT</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_COMMAND_START" class="">COMMAND_START</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_COMMAND_STOP" class="">COMMAND_STOP</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_COMMAND_ARCHIVE" class="">COMMAND_ARCHIVE</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_EVENT_UNDEFINED_EVENT" class="">EVENT_UNDEFINED_EVENT</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_EVENT_INBOUND_CALL_FINISHED" class="">EVENT_INBOUND_CALL_FINISHED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_EVENT_INBOUND_TEXT_FINISHED" class="">EVENT_INBOUND_TEXT_FINISHED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_EVENT_OUTBOUND_CALL_FINISHED" class="">EVENT_OUTBOUND_CALL_FINISHED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_EVENT_OUTBOUND_TEXT_FINISHED" class="">EVENT_OUTBOUND_TEXT_FINISHED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_EVENT_CAMPAIGN_STARTED" class="">EVENT_CAMPAIGN_STARTED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_EVENT_CAMPAIGN_STOPPED" class="">EVENT_CAMPAIGN_STOPPED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_EVENT_CAMPAIGN_FINISHED" class="">EVENT_CAMPAIGN_FINISHED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_FEATURE_UNSUPPORTED" class="">FEATURE_UNSUPPORTED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_FEATURE_PENDING" class="">FEATURE_PENDING</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_FEATURE_DISABLED" class="">FEATURE_DISABLED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_FEATURE_ENABLED" class="">FEATURE_ENABLED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_FORMAT_XML" class="">FORMAT_XML</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_FORMAT_JSON" class="">FORMAT_JSON</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_FORMAT_SOAP" class="">FORMAT_SOAP</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_FORMAT_EMAIL" class="">FORMAT_EMAIL</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_INBOUND_TRACKING" class="">INBOUND_TRACKING</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_INBOUND_IVR" class="">INBOUND_IVR</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_ANSWER_MACHINE" class="">RESULT_ANSWER_MACHINE</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_BUSY" class="">RESULT_BUSY</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_DO_NOT_CALL" class="">RESULT_DO_NOT_CALL</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_TRANSFER" class="">RESULT_TRANSFER</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_TRANSFER_LEG" class="">RESULT_TRANSFER_LEG</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_NO_ANSWER" class="">RESULT_NO_ANSWER</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_UNDIALED" class="">RESULT_UNDIALED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_SENT" class="">RESULT_SENT</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_RECEIVED" class="">RESULT_RECEIVED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_DID_NOT_TRY" class="">RESULT_DID_NOT_TRY</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_TOO_BIG" class="">RESULT_TOO_BIG</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_INTERNAL_ERROR" class="">RESULT_INTERNAL_ERROR</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_CARRIER_ERROR" class="">RESULT_CARRIER_ERROR</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_RESULT_CARRIER_TEMP_ERROR" class="">RESULT_CARRIER_TEMP_ERROR</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STATE_READY" class="">STATE_READY</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STATE_SELECTED" class="">STATE_SELECTED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STATE_FINISHED" class="">STATE_FINISHED</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STATE_DO_NOT_CALL" class="">STATE_DO_NOT_CALL</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STATE_DUPLICATE" class="">STATE_DUPLICATE</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STATE_INVALID" class="">STATE_INVALID</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STATE_TIMEOUT" class="">STATE_TIMEOUT</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STRATEGY_SEND_MULTIPLE" class="">STRATEGY_SEND_MULTIPLE</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STRATEGY_DO_NOT_SEND" class="">STRATEGY_DO_NOT_SEND</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#constant_STRATEGY_TRIM" class="">STRATEGY_TRIM</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#method_updateCredentials" class="">updateCredentials()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#property_basePath" class="">$basePath</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#property_username" class="">$username</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#property_password" class="">$password</a><br />
+                                                                    <a href="../classes/CallFire.Api.Rest.AbstractClient.html#property_http" class="">$http</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Api.Rest.Client.Subscription.php.html"><div class="path-wrapper">Api/Rest/Client/Subscription.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/CallFire.Api.Rest.AbstractClient.html">\CallFire\Api\Rest\AbstractClient</a></div>
+                                                                                                    <div class="namespace-wrapper">\CallFire\Api\Rest\Client\Subscription</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_AMCONFIG_AM_ONLY" name="constant_AMCONFIG_AM_ONLY" class="anchor"></a>
+            <article id="constant_AMCONFIG_AM_ONLY" class="constant">
+                <h3 class="">AMCONFIG_AM_ONLY</h3>
+                <pre class="signature">AMCONFIG_AM_ONLY</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_AMCONFIG_AM_AND_LIVE" name="constant_AMCONFIG_AM_AND_LIVE" class="anchor"></a>
+            <article id="constant_AMCONFIG_AM_AND_LIVE" class="constant">
+                <h3 class="">AMCONFIG_AM_AND_LIVE</h3>
+                <pre class="signature">AMCONFIG_AM_AND_LIVE</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_AMCONFIG_LIVE_WITH_AMD" name="constant_AMCONFIG_LIVE_WITH_AMD" class="anchor"></a>
+            <article id="constant_AMCONFIG_LIVE_WITH_AMD" class="constant">
+                <h3 class="">AMCONFIG_LIVE_WITH_AMD</h3>
+                <pre class="signature">AMCONFIG_LIVE_WITH_AMD</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_AMCONFIG_LIVE_IMMEDIATE" name="constant_AMCONFIG_LIVE_IMMEDIATE" class="anchor"></a>
+            <article id="constant_AMCONFIG_LIVE_IMMEDIATE" class="constant">
+                <h3 class="">AMCONFIG_LIVE_IMMEDIATE</h3>
+                <pre class="signature">AMCONFIG_LIVE_IMMEDIATE</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BROADCAST_VOICE" name="constant_BROADCAST_VOICE" class="anchor"></a>
+            <article id="constant_BROADCAST_VOICE" class="constant">
+                <h3 class="">BROADCAST_VOICE</h3>
+                <pre class="signature">BROADCAST_VOICE</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BROADCAST_IVR" name="constant_BROADCAST_IVR" class="anchor"></a>
+            <article id="constant_BROADCAST_IVR" class="constant">
+                <h3 class="">BROADCAST_IVR</h3>
+                <pre class="signature">BROADCAST_IVR</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BROADCAST_TEXT" name="constant_BROADCAST_TEXT" class="anchor"></a>
+            <article id="constant_BROADCAST_TEXT" class="constant">
+                <h3 class="">BROADCAST_TEXT</h3>
+                <pre class="signature">BROADCAST_TEXT</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_COMMAND_START" name="constant_COMMAND_START" class="anchor"></a>
+            <article id="constant_COMMAND_START" class="constant">
+                <h3 class="">COMMAND_START</h3>
+                <pre class="signature">COMMAND_START</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_COMMAND_STOP" name="constant_COMMAND_STOP" class="anchor"></a>
+            <article id="constant_COMMAND_STOP" class="constant">
+                <h3 class="">COMMAND_STOP</h3>
+                <pre class="signature">COMMAND_STOP</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_COMMAND_ARCHIVE" name="constant_COMMAND_ARCHIVE" class="anchor"></a>
+            <article id="constant_COMMAND_ARCHIVE" class="constant">
+                <h3 class="">COMMAND_ARCHIVE</h3>
+                <pre class="signature">COMMAND_ARCHIVE</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EVENT_UNDEFINED_EVENT" name="constant_EVENT_UNDEFINED_EVENT" class="anchor"></a>
+            <article id="constant_EVENT_UNDEFINED_EVENT" class="constant">
+                <h3 class="">EVENT_UNDEFINED_EVENT</h3>
+                <pre class="signature">EVENT_UNDEFINED_EVENT</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EVENT_INBOUND_CALL_FINISHED" name="constant_EVENT_INBOUND_CALL_FINISHED" class="anchor"></a>
+            <article id="constant_EVENT_INBOUND_CALL_FINISHED" class="constant">
+                <h3 class="">EVENT_INBOUND_CALL_FINISHED</h3>
+                <pre class="signature">EVENT_INBOUND_CALL_FINISHED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EVENT_INBOUND_TEXT_FINISHED" name="constant_EVENT_INBOUND_TEXT_FINISHED" class="anchor"></a>
+            <article id="constant_EVENT_INBOUND_TEXT_FINISHED" class="constant">
+                <h3 class="">EVENT_INBOUND_TEXT_FINISHED</h3>
+                <pre class="signature">EVENT_INBOUND_TEXT_FINISHED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EVENT_OUTBOUND_CALL_FINISHED" name="constant_EVENT_OUTBOUND_CALL_FINISHED" class="anchor"></a>
+            <article id="constant_EVENT_OUTBOUND_CALL_FINISHED" class="constant">
+                <h3 class="">EVENT_OUTBOUND_CALL_FINISHED</h3>
+                <pre class="signature">EVENT_OUTBOUND_CALL_FINISHED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EVENT_OUTBOUND_TEXT_FINISHED" name="constant_EVENT_OUTBOUND_TEXT_FINISHED" class="anchor"></a>
+            <article id="constant_EVENT_OUTBOUND_TEXT_FINISHED" class="constant">
+                <h3 class="">EVENT_OUTBOUND_TEXT_FINISHED</h3>
+                <pre class="signature">EVENT_OUTBOUND_TEXT_FINISHED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EVENT_CAMPAIGN_STARTED" name="constant_EVENT_CAMPAIGN_STARTED" class="anchor"></a>
+            <article id="constant_EVENT_CAMPAIGN_STARTED" class="constant">
+                <h3 class="">EVENT_CAMPAIGN_STARTED</h3>
+                <pre class="signature">EVENT_CAMPAIGN_STARTED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EVENT_CAMPAIGN_STOPPED" name="constant_EVENT_CAMPAIGN_STOPPED" class="anchor"></a>
+            <article id="constant_EVENT_CAMPAIGN_STOPPED" class="constant">
+                <h3 class="">EVENT_CAMPAIGN_STOPPED</h3>
+                <pre class="signature">EVENT_CAMPAIGN_STOPPED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EVENT_CAMPAIGN_FINISHED" name="constant_EVENT_CAMPAIGN_FINISHED" class="anchor"></a>
+            <article id="constant_EVENT_CAMPAIGN_FINISHED" class="constant">
+                <h3 class="">EVENT_CAMPAIGN_FINISHED</h3>
+                <pre class="signature">EVENT_CAMPAIGN_FINISHED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FEATURE_UNSUPPORTED" name="constant_FEATURE_UNSUPPORTED" class="anchor"></a>
+            <article id="constant_FEATURE_UNSUPPORTED" class="constant">
+                <h3 class="">FEATURE_UNSUPPORTED</h3>
+                <pre class="signature">FEATURE_UNSUPPORTED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FEATURE_PENDING" name="constant_FEATURE_PENDING" class="anchor"></a>
+            <article id="constant_FEATURE_PENDING" class="constant">
+                <h3 class="">FEATURE_PENDING</h3>
+                <pre class="signature">FEATURE_PENDING</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FEATURE_DISABLED" name="constant_FEATURE_DISABLED" class="anchor"></a>
+            <article id="constant_FEATURE_DISABLED" class="constant">
+                <h3 class="">FEATURE_DISABLED</h3>
+                <pre class="signature">FEATURE_DISABLED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FEATURE_ENABLED" name="constant_FEATURE_ENABLED" class="anchor"></a>
+            <article id="constant_FEATURE_ENABLED" class="constant">
+                <h3 class="">FEATURE_ENABLED</h3>
+                <pre class="signature">FEATURE_ENABLED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FORMAT_XML" name="constant_FORMAT_XML" class="anchor"></a>
+            <article id="constant_FORMAT_XML" class="constant">
+                <h3 class="">FORMAT_XML</h3>
+                <pre class="signature">FORMAT_XML</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FORMAT_JSON" name="constant_FORMAT_JSON" class="anchor"></a>
+            <article id="constant_FORMAT_JSON" class="constant">
+                <h3 class="">FORMAT_JSON</h3>
+                <pre class="signature">FORMAT_JSON</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FORMAT_SOAP" name="constant_FORMAT_SOAP" class="anchor"></a>
+            <article id="constant_FORMAT_SOAP" class="constant">
+                <h3 class="">FORMAT_SOAP</h3>
+                <pre class="signature">FORMAT_SOAP</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FORMAT_EMAIL" name="constant_FORMAT_EMAIL" class="anchor"></a>
+            <article id="constant_FORMAT_EMAIL" class="constant">
+                <h3 class="">FORMAT_EMAIL</h3>
+                <pre class="signature">FORMAT_EMAIL</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_INBOUND_TRACKING" name="constant_INBOUND_TRACKING" class="anchor"></a>
+            <article id="constant_INBOUND_TRACKING" class="constant">
+                <h3 class="">INBOUND_TRACKING</h3>
+                <pre class="signature">INBOUND_TRACKING</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_INBOUND_IVR" name="constant_INBOUND_IVR" class="anchor"></a>
+            <article id="constant_INBOUND_IVR" class="constant">
+                <h3 class="">INBOUND_IVR</h3>
+                <pre class="signature">INBOUND_IVR</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_ANSWER_MACHINE" name="constant_RESULT_ANSWER_MACHINE" class="anchor"></a>
+            <article id="constant_RESULT_ANSWER_MACHINE" class="constant">
+                <h3 class="">RESULT_ANSWER_MACHINE</h3>
+                <pre class="signature">RESULT_ANSWER_MACHINE</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_BUSY" name="constant_RESULT_BUSY" class="anchor"></a>
+            <article id="constant_RESULT_BUSY" class="constant">
+                <h3 class="">RESULT_BUSY</h3>
+                <pre class="signature">RESULT_BUSY</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_DO_NOT_CALL" name="constant_RESULT_DO_NOT_CALL" class="anchor"></a>
+            <article id="constant_RESULT_DO_NOT_CALL" class="constant">
+                <h3 class="">RESULT_DO_NOT_CALL</h3>
+                <pre class="signature">RESULT_DO_NOT_CALL</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_TRANSFER" name="constant_RESULT_TRANSFER" class="anchor"></a>
+            <article id="constant_RESULT_TRANSFER" class="constant">
+                <h3 class="">RESULT_TRANSFER</h3>
+                <pre class="signature">RESULT_TRANSFER</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_TRANSFER_LEG" name="constant_RESULT_TRANSFER_LEG" class="anchor"></a>
+            <article id="constant_RESULT_TRANSFER_LEG" class="constant">
+                <h3 class="">RESULT_TRANSFER_LEG</h3>
+                <pre class="signature">RESULT_TRANSFER_LEG</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_NO_ANSWER" name="constant_RESULT_NO_ANSWER" class="anchor"></a>
+            <article id="constant_RESULT_NO_ANSWER" class="constant">
+                <h3 class="">RESULT_NO_ANSWER</h3>
+                <pre class="signature">RESULT_NO_ANSWER</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_UNDIALED" name="constant_RESULT_UNDIALED" class="anchor"></a>
+            <article id="constant_RESULT_UNDIALED" class="constant">
+                <h3 class="">RESULT_UNDIALED</h3>
+                <pre class="signature">RESULT_UNDIALED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_SENT" name="constant_RESULT_SENT" class="anchor"></a>
+            <article id="constant_RESULT_SENT" class="constant">
+                <h3 class="">RESULT_SENT</h3>
+                <pre class="signature">RESULT_SENT</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_RECEIVED" name="constant_RESULT_RECEIVED" class="anchor"></a>
+            <article id="constant_RESULT_RECEIVED" class="constant">
+                <h3 class="">RESULT_RECEIVED</h3>
+                <pre class="signature">RESULT_RECEIVED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_DID_NOT_TRY" name="constant_RESULT_DID_NOT_TRY" class="anchor"></a>
+            <article id="constant_RESULT_DID_NOT_TRY" class="constant">
+                <h3 class="">RESULT_DID_NOT_TRY</h3>
+                <pre class="signature">RESULT_DID_NOT_TRY</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_TOO_BIG" name="constant_RESULT_TOO_BIG" class="anchor"></a>
+            <article id="constant_RESULT_TOO_BIG" class="constant">
+                <h3 class="">RESULT_TOO_BIG</h3>
+                <pre class="signature">RESULT_TOO_BIG</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_INTERNAL_ERROR" name="constant_RESULT_INTERNAL_ERROR" class="anchor"></a>
+            <article id="constant_RESULT_INTERNAL_ERROR" class="constant">
+                <h3 class="">RESULT_INTERNAL_ERROR</h3>
+                <pre class="signature">RESULT_INTERNAL_ERROR</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_CARRIER_ERROR" name="constant_RESULT_CARRIER_ERROR" class="anchor"></a>
+            <article id="constant_RESULT_CARRIER_ERROR" class="constant">
+                <h3 class="">RESULT_CARRIER_ERROR</h3>
+                <pre class="signature">RESULT_CARRIER_ERROR</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_CARRIER_TEMP_ERROR" name="constant_RESULT_CARRIER_TEMP_ERROR" class="anchor"></a>
+            <article id="constant_RESULT_CARRIER_TEMP_ERROR" class="constant">
+                <h3 class="">RESULT_CARRIER_TEMP_ERROR</h3>
+                <pre class="signature">RESULT_CARRIER_TEMP_ERROR</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATE_READY" name="constant_STATE_READY" class="anchor"></a>
+            <article id="constant_STATE_READY" class="constant">
+                <h3 class="">STATE_READY</h3>
+                <pre class="signature">STATE_READY</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATE_SELECTED" name="constant_STATE_SELECTED" class="anchor"></a>
+            <article id="constant_STATE_SELECTED" class="constant">
+                <h3 class="">STATE_SELECTED</h3>
+                <pre class="signature">STATE_SELECTED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATE_FINISHED" name="constant_STATE_FINISHED" class="anchor"></a>
+            <article id="constant_STATE_FINISHED" class="constant">
+                <h3 class="">STATE_FINISHED</h3>
+                <pre class="signature">STATE_FINISHED</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATE_DO_NOT_CALL" name="constant_STATE_DO_NOT_CALL" class="anchor"></a>
+            <article id="constant_STATE_DO_NOT_CALL" class="constant">
+                <h3 class="">STATE_DO_NOT_CALL</h3>
+                <pre class="signature">STATE_DO_NOT_CALL</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATE_DUPLICATE" name="constant_STATE_DUPLICATE" class="anchor"></a>
+            <article id="constant_STATE_DUPLICATE" class="constant">
+                <h3 class="">STATE_DUPLICATE</h3>
+                <pre class="signature">STATE_DUPLICATE</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATE_INVALID" name="constant_STATE_INVALID" class="anchor"></a>
+            <article id="constant_STATE_INVALID" class="constant">
+                <h3 class="">STATE_INVALID</h3>
+                <pre class="signature">STATE_INVALID</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATE_TIMEOUT" name="constant_STATE_TIMEOUT" class="anchor"></a>
+            <article id="constant_STATE_TIMEOUT" class="constant">
+                <h3 class="">STATE_TIMEOUT</h3>
+                <pre class="signature">STATE_TIMEOUT</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STRATEGY_SEND_MULTIPLE" name="constant_STRATEGY_SEND_MULTIPLE" class="anchor"></a>
+            <article id="constant_STRATEGY_SEND_MULTIPLE" class="constant">
+                <h3 class="">STRATEGY_SEND_MULTIPLE</h3>
+                <pre class="signature">STRATEGY_SEND_MULTIPLE</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STRATEGY_DO_NOT_SEND" name="constant_STRATEGY_DO_NOT_SEND" class="anchor"></a>
+            <article id="constant_STRATEGY_DO_NOT_SEND" class="constant">
+                <h3 class="">STRATEGY_DO_NOT_SEND</h3>
+                <pre class="signature">STRATEGY_DO_NOT_SEND</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STRATEGY_TRIM" name="constant_STRATEGY_TRIM" class="anchor"></a>
+            <article id="constant_STRATEGY_TRIM" class="constant">
+                <h3 class="">STRATEGY_TRIM</h3>
+                <pre class="signature">STRATEGY_TRIM</pre>
+                <p><em></em></p>
+                
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_basePath" name="property_basePath" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$basePath</h3>
+                <pre class="signature">$basePath</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_username" name="property_username" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$username</h3>
+                <pre class="signature">$username</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_password" name="property_password" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$password</h3>
+                <pre class="signature">$password</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_http" name="property_http" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$http</h3>
+                <pre class="signature">$http</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_CreateSubscription" name="method_CreateSubscription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">CreateSubscription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">CreateSubscription(\CallFire\Api\Rest\Request\CreateSubscription <span class="argument">$CreateSubscription</span>)</pre>
+                <p><em>Creates a new subscription for CallFire event notifications</em></p>
+                <p>CreateSubscription registers a URI endpoint to start receiving CallFire
+notification events on. Returned is the subscriptionId that can be used later to
+query, update, or delete the subscription. The subscriptionId is also returned
+as part of all notification events as 'subscriptionId'.  A URI endpoint will
+need to be provided that can handle the HTTP notification events coming from
+CallFire.com.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Rest.Request.CreateSubscription.html">\CallFire\Api\Rest\Request\CreateSubscription</a></td>
+                                <td>$CreateSubscription</td>
+                                <td><p>= null</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_QuerySubscriptions" name="method_QuerySubscriptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">QuerySubscriptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">QuerySubscriptions(\CallFire\Api\Rest\Request\QuerySubscriptions <span class="argument">$QuerySubscriptions</span>)</pre>
+                <p><em>Get a list of registered subscriptions</em></p>
+                <p>Return a list of all subscriptions registered to an account. Subscriptions
+returned contain info like id, enabled, endpoint, filter, etc...</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Rest.Request.QuerySubscriptions.html">\CallFire\Api\Rest\Request\QuerySubscriptions</a></td>
+                                <td>$QuerySubscriptions</td>
+                                <td><p>= null</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_GetSubscription" name="method_GetSubscription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">GetSubscription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">GetSubscription(int <span class="argument">$Id</span>)</pre>
+                <p><em>Gets an existing individual subscription by ID</em></p>
+                <p>Return a subscription registered to an account using subscriptionId returned
+from CreateSubscription request. Subscription returned contain info like id,
+enabled, endpoint, filter, etc...</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$Id</td>
+                                <td><p>Unique ID of resource</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_UpdateSubscription" name="method_UpdateSubscription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">UpdateSubscription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">UpdateSubscription(int <span class="argument">$Id</span>, \CallFire\Api\Rest\Request\UpdateSubscription <span class="argument">$UpdateSubscription</span>)</pre>
+                <p><em>Updates an existing subscription</em></p>
+                <p>Update existing subscription by ID Use this to enable or disable notification
+events, change the notification endpoint URI, or change the filtering so only
+receive notification for a subset of events.  UpdateSubscription service call
+returns no response.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$Id</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Rest.Request.UpdateSubscription.html">\CallFire\Api\Rest\Request\UpdateSubscription</a></td>
+                                <td>$UpdateSubscription</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_DeleteSubscription" name="method_DeleteSubscription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">DeleteSubscription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">DeleteSubscription(int <span class="argument">$Id</span>)</pre>
+                <p><em>Deletes a subscription by ID</em></p>
+                <p>Delete subscription to stop receiving CallFire notification events at the
+registered URI postback endpoint.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$Id</td>
+                                <td><p>Unique ID of resource</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ns" name="method_ns" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ns()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ns()</pre>
+                <p><em></em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_request" name="method_request" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">request()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">request(string <span class="argument">$type</span>) : mixed</pre>
+                <p><em>Instantiate a request object of the given type</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type</td>
+                                <td><p>Request type</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>Request object</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_response" name="method_response" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">response()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">response(string <span class="argument">$data</span>, string <span class="argument">$type</span>) : mixed</pre>
+                <p><em>Parse a response into a response type</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$data</td>
+                                <td><p>Response data to be parsed</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type</td>
+                                <td><p>= 'xml' Response format</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>Response object</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            static
+                        </th>
+                        <td>
+                                                            
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get" name="method_get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get(string <span class="argument">$uri</span>, \CallFire\Api\Rest\Request <span class="argument">$request</span>) : string</pre>
+                <p><em>Execute a GET request against an API endpoint,
+optionally with a given Request object as parameters</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$uri</td>
+                                <td><p>Endpoint URL</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Rest.Request.html">\CallFire\Api\Rest\Request</a></td>
+                                <td>$request</td>
+                                <td><p>= null Request object for parameters</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Response data</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_post" name="method_post" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">post()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">post(string <span class="argument">$uri</span>, \CallFire\Api\Rest\Request <span class="argument">$request</span>) : string</pre>
+                <p><em>Execute a POST request against an API endpoint,
+optionally with a given Request object as parameters</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$uri</td>
+                                <td><p>Endpoint URL</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Rest.Request.html">\CallFire\Api\Rest\Request</a></td>
+                                <td>$request</td>
+                                <td><p>= null Request object for parameters</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Response data</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_put" name="method_put" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">put()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">put(string <span class="argument">$uri</span>, \CallFire\Api\Rest\Request <span class="argument">$request</span>) : string</pre>
+                <p><em>Execute a PUT request against an API endpoint,
+optionally with a given Request object as parameters</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$uri</td>
+                                <td><p>Endpoint URL</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Rest.Request.html">\CallFire\Api\Rest\Request</a></td>
+                                <td>$request</td>
+                                <td><p>= null Request object for parameters</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Response data</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete(string <span class="argument">$uri</span>, \CallFire\Api\Rest\Request <span class="argument">$request</span>) : string</pre>
+                <p><em>Execute a DELETE request again an API endpoint,
+optionally with a given Request object as parameters</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$uri</td>
+                                <td><p>Endpoint URL</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Rest.Request.html">\CallFire\Api\Rest\Request</a></td>
+                                <td>$request</td>
+                                <td><p>= null Request object for parameters</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Response data</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_buildQuery" name="method_buildQuery" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">buildQuery()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">buildQuery(string <span class="argument">$uri</span>, array <span class="argument">$parameters</span>) : string</pre>
+                <p><em>Build a request URI for a GET request</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$uri</td>
+                                <td><p>Endpoint URI</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$parameters</td>
+                                <td><p>Key-value query parameters</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The resulting URL</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_buildPostData" name="method_buildPostData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">buildPostData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">buildPostData(array <span class="argument">$parameters</span>) : string</pre>
+                <p><em>Construct the POST fields data for a POST/PUT
+request, according to CallFire conventions</em></p>
+                <p>Reformats any array parameters to be a
+space-concatenated list of items. Any object
+parameters will be casted to a string, as
+possible.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$parameters</td>
+                                <td><p>POST data</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Encoded POST data</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getBasePath" name="method_getBasePath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getBasePath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getBasePath()</pre>
+                <p><em></em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setBasePath" name="method_setBasePath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setBasePath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setBasePath( <span class="argument">$basePath</span>)</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$basePath</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUsername" name="method_getUsername" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getUsername()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUsername()</pre>
+                <p><em></em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setUsername" name="method_setUsername" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setUsername()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setUsername( <span class="argument">$username</span>)</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$username</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPassword" name="method_getPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPassword()</pre>
+                <p><em></em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPassword" name="method_setPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPassword( <span class="argument">$password</span>)</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$password</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHttpClone" name="method_getHttpClone" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getHttpClone()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHttpClone()</pre>
+                <p><em></em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHttp" name="method_getHttp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getHttp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHttp()</pre>
+                <p><em></em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setHttp" name="method_setHttp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setHttp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setHttp(\CallFire\Api\Rest\Http\Request <span class="argument">$http</span>)</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/CallFire.Api.Rest.Http.Request.html">\CallFire\Api\Rest\Http\Request</a></td>
+                                <td>$http</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUri" name="method_getUri" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getUri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUri( <span class="argument">$path</span>,  <span class="argument">$parameters</span>)</pre>
+                <p><em></em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$path</td>
+                                <td>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$parameters</td>
+                                <td>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_updateCredentials" name="method_updateCredentials" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">updateCredentials()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">updateCredentials() : void</pre>
+                <p><em>Rehashes the HTTP Basic Authentication on the HTTP
+client</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/CallFire.Api.Rest.AbstractClient.html"><div class="path-wrapper">\CallFire\Api\Rest\AbstractClient</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Subscription.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Api/Rest/Client/Subscription.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/CallFire.html">\CallFire</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 15th, 2013 at 19:06.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

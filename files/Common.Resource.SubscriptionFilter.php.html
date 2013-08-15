@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/CallFire.html">\CallFire</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1839644077"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1839644077" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1231136761"></a>
+                                <a href="../namespaces/CallFire.html" style="margin-left: 30px; padding-left: 0">CallFire</a>
+            </div>
+            <div id="namespace-1231136761" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1220101"></a>
+                                <a href="../namespaces/CallFire.Api.html" style="margin-left: 30px; padding-left: 0">Api</a>
+            </div>
+            <div id="namespace-1220101" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1259087818"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.html" style="margin-left: 30px; padding-left: 0">Rest</a>
+            </div>
+            <div id="namespace-1259087818" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-858646474"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-858646474" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceException.html">ResourceException</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.Resource.html">Resource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceReference.html">ResourceReference</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.ResourceList.html">ResourceList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1567223860"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-1567223860" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateSound.html">CreateSound</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryBroadcasts.html">QueryBroadcasts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContactLists.html">QueryContactLists</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UpdateSubscription.html">UpdateSubscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ControlContactBatch.html">ControlContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateBroadcastSchedule.html">CreateBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SearchAvailableKeywords.html">SearchAvailableKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateContactBatch.html">CreateContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryNumbers.html">QueryNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.AddContactsToList.html">AddContactsToList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateBroadcast.html">CreateBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateContactList.html">CreateContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryBroadcastSchedule.html">QueryBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryAutoReplies.html">QueryAutoReplies</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UnlabelBroadcast.html">UnlabelBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContactBatches.html">QueryContactBatches</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SendCall.html">SendCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.Release.html">Release</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ConfigureNumber.html">ConfigureNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateSubscription.html">CreateSubscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.RemoveContactsFromList.html">RemoveContactsFromList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryRegions.html">QueryRegions</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SearchAvailableNumbers.html">SearchAvailableNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UpdateBroadcast.html">UpdateBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryTexts.html">QueryTexts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QuerySoundMeta.html">QuerySoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryLabels.html">QueryLabels</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateNumberOrder.html">CreateNumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.SendText.html">SendText</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetNumber.html">GetNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.UnlabelNumber.html">UnlabelNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QuerySubscriptions.html">QuerySubscriptions</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryKeywords.html">QueryKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryContacts.html">QueryContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.QueryCalls.html">QueryCalls</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.CreateAutoReply.html">CreateAutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetBroadcastStats.html">GetBroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.RemoveContacts.html">RemoveContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.GetContactHistory.html">GetContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.ControlBroadcast.html">ControlBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.LabelBroadcast.html">LabelBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.DeleteLabel.html">DeleteLabel</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.LabelNumber.html">LabelNumber</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-821060754"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Client.html" style="margin-left: 30px; padding-left: 0">Client</a>
+            </div>
+            <div id="namespace-821060754" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Client.Contact.html">Contact</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1837302836"></a>
+                                <a href="../namespaces/CallFire.Api.Rest.Http.html" style="margin-left: 30px; padding-left: 0">Http</a>
+            </div>
+            <div id="namespace-1837302836" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/CallFire.Api.Rest.Http.Request.html">Request</a></li>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Http.Curl.html">Curl</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.Response.html">Response</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Rest.AbstractClient.html">AbstractClient</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-241317834"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.html" style="margin-left: 30px; padding-left: 0">Soap</a>
+            </div>
+            <div id="namespace-241317834" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1710991182"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Structure.html" style="margin-left: 30px; padding-left: 0">Structure</a>
+            </div>
+            <div id="namespace-1710991182" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.InboundConfig.html">InboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.TextBroadcastConfig.html">TextBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.QueryResult.html">QueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RetryConfig.html">RetryConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ServiceFaultInfo.html">ServiceFaultInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Region.html">Region</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ToNumber.html">ToNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ContactSource.html">ContactSource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.NumberOrderItem.html">NumberOrderItem</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.IvrBroadcastConfig.html">IvrBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ResultStat.html">ResultStat</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.VoiceBroadcastConfig.html">VoiceBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ActionRecord.html">ActionRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.UsageStats.html">UsageStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BulkTollFree.html">BulkTollFree</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BroadcastConfig.html">BroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.NumberConfiguration.html">NumberConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Keyword.html">Keyword</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RecordingCall.html">RecordingCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.LeaseInfo.html">LeaseInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.IvrInboundConfig.html">IvrInboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.QuestionResponse.html">QuestionResponse</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.description.html">description</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.restOperation.html">restOperation</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.ContactList.html">ContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.SubscriptionFilter.html">SubscriptionFilter</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.CallTrackingConfig.html">CallTrackingConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.InboundCallConfiguration.html">InboundCallConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.CallRecord.html">CallRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Action.html">Action</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.docGeneration.html">docGeneration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.LocalTimeZoneRestriction.html">LocalTimeZoneRestriction</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.TextRecord.html">TextRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.SendRequest.html">SendRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.Numbers.html">Numbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.RecordingMeta.html">RecordingMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.BulkLocal.html">BulkLocal</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Structure.condition.html">condition</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-651233767"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-651233767" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateBroadcastSchedule.html">CreateBroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.UpdateContacts.html">UpdateContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.BroadcastRequest.html">BroadcastRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ControlContactBatch.html">ControlContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.IdLabelRequest.html">IdLabelRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.NumberLabelRequest.html">NumberLabelRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.RemoveContacts.html">RemoveContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.RegionQuery.html">RegionQuery</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ControlBroadcast.html">ControlBroadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryBroadcastSchedules.html">QueryBroadcastSchedules</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ActionQuery.html">ActionQuery</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SendCall.html">SendCall</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetBroadcastStats.html">GetBroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetSoundData.html">GetSoundData</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryAutoReplies.html">QueryAutoReplies</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ConfigureNumber.html">ConfigureNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SendText.html">SendText</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateSound.html">CreateSound</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryNumbers.html">QueryNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.ContactListRequest.html">ContactListRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SubscriptionRequest.html">SubscriptionRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetRecordingData.html">GetRecordingData</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryContactBatches.html">QueryContactBatches</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryBroadcasts.html">QueryBroadcasts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.Query.html">Query</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SearchAvailableKeywords.html">SearchAvailableKeywords</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.Release.html">Release</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.QueryContacts.html">QueryContacts</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.GetNumber.html">GetNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateContactBatch.html">CreateContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateAutoReply.html">CreateAutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.SearchAvailableNumbers.html">SearchAvailableNumbers</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.IdRequest.html">IdRequest</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.DeleteLabel.html">DeleteLabel</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateNumberOrder.html">CreateNumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Request.CreateContactList.html">CreateContactList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-318874950"></a>
+                                <a href="../namespaces/CallFire.Api.Soap.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-318874950" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.NumberQueryResult.html">NumberQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactBatchQueryResult.html">ContactBatchQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactBatch.html">ContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SoundMetaQueryResult.html">SoundMetaQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactHistory.html">ContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactListQueryResult.html">ContactListQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.AutoReplyQueryResult.html">AutoReplyQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.RegionQueryResult.html">RegionQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastScheduleQueryResult.html">BroadcastScheduleQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SoundMeta.html">SoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastSchedule.html">BroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastStats.html">BroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.KeywordQueryResult.html">KeywordQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Contact.html">Contact</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.SubscriptionQueryResult.html">SubscriptionQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.LabelQueryResult.html">LabelQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.NumberOrder.html">NumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.AutoReply.html">AutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.ContactQueryResult.html">ContactQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.TextQueryResult.html">TextQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.CallQueryResult.html">CallQueryResult</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Response.BroadcastQueryResult.html">BroadcastQueryResult</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Soap.Client.html">Client</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Api.Client.html">Client</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1180841175"></a>
+                                <a href="../namespaces/CallFire.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
+            </div>
+            <div id="namespace-1180841175" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-928467301"></a>
+                                <a href="../namespaces/CallFire.Common.Subscription.html" style="margin-left: 30px; padding-left: 0">Subscription</a>
+            </div>
+            <div id="namespace-928467301" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.CallFinished.html">CallFinished</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.TextNotification.html">TextNotification</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1061799153"></a>
+                                <a href="../namespaces/CallFire.Common.Resource.html" style="margin-left: 30px; padding-left: 0">Resource</a>
+            </div>
+            <div id="namespace-1061799153" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Action.html">Action</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.InboundConfig.html">InboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.LocalTimeZoneRestriction.html">LocalTimeZoneRestriction</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.UsageStats.html">UsageStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Region.html">Region</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.SoundMeta.html">SoundMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastConfig.html">BroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Fulfilled.html">Fulfilled</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextToSpeech.html">TextToSpeech</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.AbstractResource.html">AbstractResource</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactHistory.html">ContactHistory</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Call.html">Call</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ResultStat.html">ResultStat</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.AutoReply.html">AutoReply</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Subscription.html">Subscription</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.InboundCallConfiguration.html">InboundCallConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.IvrBroadcastConfig.html">IvrBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Contact.html">Contact</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RetryConfig.html">RetryConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.QuestionResponse.html">QuestionResponse</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastSchedule.html">BroadcastSchedule</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.DaysOfWeek.html">DaysOfWeek</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextRecord.html">TextRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Broadcast.html">Broadcast</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TextBroadcastConfig.html">TextBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.IvrInboundConfig.html">IvrInboundConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.TransferNumber.html">TransferNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberConfiguration.html">NumberConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.BroadcastStats.html">BroadcastStats</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.VoiceBroadcastConfig.html">VoiceBroadcastConfig</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.SubscriptionFilter.html">SubscriptionFilter</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RecordingMeta.html">RecordingMeta</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Number.html">Number</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.LeaseInfo.html">LeaseInfo</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ToNumber.html">ToNumber</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberOrder.html">NumberOrder</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactBatch.html">ContactBatch</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ActionRecord.html">ActionRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.NumberOrderItem.html">NumberOrderItem</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.CallRecord.html">CallRecord</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.ContactList.html">ContactList</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.RetryResults.html">RetryResults</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.Keyword.html">Keyword</a></li>
+                                                    <li class="class"><a href="../classes/CallFire.Common.Resource.CallTrackingConfig.html">CallTrackingConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-468818938"></a>
+                                <a href="../namespaces/CallFire.Common.Hydrator.html" style="margin-left: 30px; padding-left: 0">Hydrator</a>
+            </div>
+            <div id="namespace-468818938" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Hydrator.DOM.html">DOM</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/CallFire.Common.Subscription.html">Subscription</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
+
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small>Common/Resource</small>SubscriptionFilter.php</h1>
+                    <p><em></em></p>
+                    
+
+
+                    
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CallFire.Common.Resource.SubscriptionFilter.html">SubscriptionFilter</a></td>
+                            <td><em></em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                        
+                        
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Common/Resource/SubscriptionFilter.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/CallFire.html">\CallFire</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 15th, 2013 at 19:06.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

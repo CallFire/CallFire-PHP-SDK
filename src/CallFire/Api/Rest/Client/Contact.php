@@ -42,6 +42,20 @@ class Contact extends AbstractClient
     }
 
     /**
+     * Removes contacts
+     *
+     *
+     *
+     * @param Request\RemoveContacts $RemoveContacts = null
+     */
+    public function RemoveContacts(Request\RemoveContacts $RemoveContacts = null)
+    {
+        $uri = $this->getUri('/contact', array());
+
+        return $this->delete($uri, $RemoveContacts);
+    }
+
+    /**
      * Gets the contact by ID
      *
      *
@@ -107,6 +121,20 @@ class Contact extends AbstractClient
         $uri = $this->getUri('/contact/list', array());
 
         return $this->get($uri, $QueryContactLists);
+    }
+
+    /**
+     * Deletes a contact list by ID
+     *
+     *
+     *
+     * @param int $Id Unique ID of resource
+     */
+    public function DeleteContactList($Id)
+    {
+        $uri = $this->getUri('/contact/list/%s', array($Id));
+
+        return $this->delete($uri);
     }
 
     /**

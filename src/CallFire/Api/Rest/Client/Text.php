@@ -111,4 +111,18 @@ class Text extends AbstractClient
         return $this->get($uri);
     }
 
+    /**
+     * Deletes an auto-reply by ID
+     *
+     * Delete autoreply by id if exists. Returns error if doesn't exist
+     *
+     * @param int $Id Unique ID of resource
+     */
+    public function DeleteAutoReply($Id)
+    {
+        $uri = $this->getUri('/text/auto-reply/%s', array($Id));
+
+        return $this->delete($uri);
+    }
+
 }

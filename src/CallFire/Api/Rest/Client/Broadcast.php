@@ -207,6 +207,20 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * Deletes a BroadcastSchedule by ID
+     *
+     * Delete BroadcastSchedule associated with a Broadcast.
+     *
+     * @param int $Id Unique ID of resource
+     */
+    public function DeleteBroadcastSchedule($Id)
+    {
+        $uri = $this->getUri('/broadcast/schedule/%s', array($Id));
+
+        return $this->delete($uri);
+    }
+
+    /**
      * Creates a new ContactBatch
      *
      * Contact Batch is a list of contacts to associate with a broadcast. Use this

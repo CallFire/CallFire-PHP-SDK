@@ -79,4 +79,19 @@ class Subscription extends AbstractClient
         return $this->put($uri, $UpdateSubscription);
     }
 
+    /**
+     * Deletes a subscription by ID
+     *
+     * Delete subscription to stop receiving CallFire notification events at the
+     * registered URI postback endpoint.
+     *
+     * @param int $Id Unique ID of resource
+     */
+    public function DeleteSubscription($Id)
+    {
+        $uri = $this->getUri('/subscription/%s', array($Id));
+
+        return $this->delete($uri);
+    }
+
 }

@@ -11,6 +11,20 @@ class Label extends AbstractClient
     public $basePath = 'https://www.callfire.com/api/1.1/rest';
 
     /**
+     * Removes a label from all labeled objects and deletes it
+     *
+     *
+     *
+     * @param Request\DeleteLabel $DeleteLabel = null
+     */
+    public function DeleteLabel(Request\DeleteLabel $DeleteLabel = null)
+    {
+        $uri = $this->getUri('/label', array());
+
+        return $this->delete($uri, $DeleteLabel);
+    }
+
+    /**
      * Returns all defined labels
      *
      *
@@ -39,6 +53,21 @@ class Label extends AbstractClient
     }
 
     /**
+     * Removes a label from a single broadcast
+     *
+     *
+     *
+     * @param int                      $Id               Unique ID of resource
+     * @param Request\UnlabelBroadcast $UnlabelBroadcast
+     */
+    public function UnlabelBroadcast($Id, Request\UnlabelBroadcast $UnlabelBroadcast)
+    {
+        $uri = $this->getUri('/label/broadcast/%s', array($Id));
+
+        return $this->delete($uri, $UnlabelBroadcast);
+    }
+
+    /**
      * Adds a label to a single number
      *
      *
@@ -50,6 +79,20 @@ class Label extends AbstractClient
         $uri = $this->getUri('/label/number/%s', array());
 
         return $this->post($uri, $LabelNumber);
+    }
+
+    /**
+     * Removes a label from a single number
+     *
+     *
+     *
+     * @param Request\UnlabelNumber $UnlabelNumber = null
+     */
+    public function UnlabelNumber(Request\UnlabelNumber $UnlabelNumber = null)
+    {
+        $uri = $this->getUri('/label/number/%s', array());
+
+        return $this->delete($uri, $UnlabelNumber);
     }
 
 }

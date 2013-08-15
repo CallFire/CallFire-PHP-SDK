@@ -116,6 +116,27 @@ abstract class AbstractClient
 
         return $http->execute();
     }
+    
+    /**
+     * Execute a DELETE request again an API endpoint,
+     * optionally with a given Request object as parameters
+     *
+     * @param string $uri Endpoint URL
+     * @param AbstractRequest $request = null Request object for parameters
+     * @return string Response data
+     */
+    public function delete($uri, AbstractRequest $request = null)
+    {
+        $http = $this->getHttpClone();
+
+        $http->setOption(CURLOPT_CUSTOMREQUEST, 'DELETE');
+        $http->setOption(CURLOPT_URL, $uri);
+        if ($request) {
+            $http->setOption(CURLOPT_POSTFIELDS, $this->buildPostData($request->getQuery()));
+        }
+
+        return $http->execute();
+    }
 
     /**
      * Build a request URI for a GET request

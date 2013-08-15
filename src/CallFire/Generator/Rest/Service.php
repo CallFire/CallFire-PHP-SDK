@@ -50,6 +50,9 @@ class Service
             case SwaggerOperation::METHOD_PUT:
                 $function = new Action\Put;
                 break;
+            case SwaggerOperation::METHOD_DELETE:
+                $function = new Action\Delete;
+                break;
             default:
                 return false;
         }

@@ -4,7 +4,7 @@ namespace CallFire\Api;
 use CallFire\Api\Rest\AbstractClient as RestClient;
 use CallFire\Api\Soap\Client as SoapClient;
 
-class Client
+abstract class Client
 {
     /**
      * Create one or more REST service clients
@@ -76,10 +76,5 @@ class Client
         $client = new SoapClient($wsdl, $options);
 
         return $client;
-    }
-
-    public function __construct()
-    {
-        throw new \BadMethodCallException('The API client cannot be instantiated directly');
     }
 }

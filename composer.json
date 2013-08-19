@@ -1,11 +1,14 @@
 {
     "name": "callfire/php-sdk",
+    "description": "PHP SDK for integrating with the CallFire API",
+    "homepage": "http://www.callfire.com/",
     "authors": [
         {
             "name": "Justin Martin",
             "email": "justin@roave.com"
         }
     ],
+    "license": "MIT",
     "require": {
         "php": ">=5.3.3",
         "ext-curl": "*",

@@ -1,4 +1,5 @@
 language: php
+script: "phpunit --verbose"
 php:
   - 5.5
   - 5.4

@@ -4,6 +4,7 @@ CallFire PHP SDK
 [![Build Status](https://travis-ci.org/CallFire/CallFire-PHP-SDK.png)](https://travis-ci.org/CallFire/CallFire-PHP-SDK)
 
 * [Getting Started](/docs/en/00.getting.started.md)
+    * [Without Composer](/docs/en/getting-started/01.without-composer.md)
 * [Reference Documentation](http://callfire.github.io/CallFire-PHP-SDK/)
 * [Composer Package](https://packagist.org/packages/callfire/php-sdk)
 * Examples

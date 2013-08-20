@@ -52,17 +52,6 @@ class ClientTest extends TestCase
         Client::Rest(static::$credentials[0], static::$credentials[1], true);
     }
 
-    /**
-     * Test instantiation of the Soap client
-     */
-    public function testSoap()
-    {
-        list($username, $password) = static::$credentials;
-
-        $client = Client::Soap($username, $password);
-        $this->assertInstanceOf("CallFire\Api\Soap\Client", $client);
-    }
-
     public function restProvider()
     {
         $data = array();

@@ -14,9 +14,6 @@
         "ext-curl": "*",
         "zendframework/zend-stdlib": "~2.2.2"
     },
-    "suggest": {
-        "ext-soap": "*"
-    },
     "require-dev": {
         "zendframework/zend-stdlib": "~2.2.1",
         "zendframework/zend-code": "~2.2.1",

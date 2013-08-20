@@ -8,6 +8,23 @@ use InvalidArgumentException;
 
 abstract class Client
 {
+    protected static $sdkVersion;
+    
+    public static function getSdkVersion() {
+        if(!static::$sdkVersion) {
+            $versionFile = __DIR__.'/../../VERSION';
+            if(is_readable($versionFile)) {
+                static::$sdkVersion = file_get_contents($versionFile);
+            }
+        }
+        return static::$sdkVersion;
+    }
+    
+    public static function setSdkVersion($sdkVersion) {
+        static::$sdkVersion = $sdkVersion;
+        return $this;
+    }
+
     /**
      * Create one or more REST service clients
      *

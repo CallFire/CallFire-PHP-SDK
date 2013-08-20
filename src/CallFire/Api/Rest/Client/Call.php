@@ -8,7 +8,7 @@ use CallFire\Api\Rest\Request as Request;
 class Call extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+    public $basePath = 'https://www.callfire.com/api/1.0/rest';
 
     /**
      * Creates a call broadcast, adds numbers to it, and sends it immediately

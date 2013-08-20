@@ -8,7 +8,7 @@ use CallFire\Api\Rest\Request as Request;
 class Contact extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+    public $basePath = 'https://www.callfire.com/api/1.0/rest';
 
     /**
      * Lists existing contacts

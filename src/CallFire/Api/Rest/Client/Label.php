@@ -8,7 +8,7 @@ use CallFire\Api\Rest\Request as Request;
 class Label extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+    public $basePath = 'https://www.callfire.com/api/1.0/rest';
 
     /**
      * Removes a label from all labeled objects and deletes it

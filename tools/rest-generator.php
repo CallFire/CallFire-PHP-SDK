@@ -10,7 +10,7 @@ $name = "Client";
 $namespace = "CallFire\Api";
 $restNamespace = "Rest";
 $extendedClass = "AbstractClient";
-$swaggerUrl = 'https://www.callfire.com/api/1.1/wsdl/swagger';
+$swaggerUrl = 'https://www.callfire.com/api/1.0/wsdl/swagger';
 
 $requestNamespacePart = RestGenerator::REQUEST_NAMESPACE_ALIAS;
 $requestNamespace = "{$namespace}\Rest\\{$requestNamespacePart}";

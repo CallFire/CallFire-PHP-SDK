@@ -12,7 +12,7 @@ require __DIR__."/../vendor/autoload.php";
 
 $namespace = "CallFire\Common\Resource";
 $extendedClass = "AbstractResource";
-$xsdUrl = 'https://www.callfire.com/api/1.1/wsdl/callfire-data.xsd';
+$xsdUrl = 'https://www.callfire.com/api/1.0/wsdl/callfire-data.xsd';
 
 $sourceDirectory = realpath(__DIR__."/../src").'/'.str_replace('\\', '/', $namespace);
 $queryMapPath = realpath(__DIR__."/../src").'/CallFire/Api/Rest/querymap.php';

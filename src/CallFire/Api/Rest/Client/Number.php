@@ -9,7 +9,7 @@ use CallFire\Api\Rest\Response as Response;
 class Number extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+    public $basePath = 'https://www.callfire.com/api/1.0/rest';
 
     /**
      * Queries regions for use in subsequent searches and purchase requests

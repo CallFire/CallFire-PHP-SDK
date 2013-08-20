@@ -9,7 +9,7 @@ use CallFire\Api\Rest\Response as Response;
 class Subscription extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.1/rest';
+    public $basePath = 'https://www.callfire.com/api/1.0/rest';
 
     /**
      * Creates a new subscription for CallFire event notifications

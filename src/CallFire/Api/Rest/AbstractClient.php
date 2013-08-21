@@ -60,6 +60,24 @@ abstract class AbstractClient
         }
         throw new InvalidArgumentException("Type must be 'xml' or 'json'");
     }
+    
+    public function call($operation)
+    {
+        $args = func_get_args();
+        if($operation instanceof AbstractRequest) {
+            // Derive operation name
+            $operation = substr(get_class($operation), strrpos(get_class($operation), '\\') + 1);
+        } else {
+            // Discard operation parameter
+            array_shift($args);
+        }
+        
+        $result = call_user_func_array(array($this, $operation), $args);
+        
+        $responseFormat = $this->getLastResponseFormat();
+        
+        return static::response($result, $responseFormat);
+    }
 
     /**
      * Execute a GET request against an API endpoint,
@@ -271,6 +289,30 @@ abstract class AbstractClient
             )));
         }
     }
+    
+    protected function getLastResponseFormat()
+    {
+        $http = $this->getHttp();
+        $contentType = $http->getInfo(CURLINFO_CONTENT_TYPE);
+        
+        $formatMap = static::getFormatMap();
+        if(isset($formatMap[$contentType])) {
+            return $formatMap[$contentType];
+        }
+    }
+    
+    public static function getFormatMap() {
+        return static::$formatMap;
+    }
+    
+    public static function setFormatMap($formatMap) {
+        static::$formatMap = $formatMap;
+    }
+    
+    protected static $formatMap = array(
+        'application/xml' => self::FORMAT_XML,
+        'application/json' => self::FORMAT_JSON
+    );
 
     const AMCONFIG_AM_ONLY = 'AM_ONLY';
     const AMCONFIG_AM_AND_LIVE = 'AM_AND_LIVE';

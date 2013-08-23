@@ -1,6 +1,9 @@
 <?php
 namespace CallFire\Common\Ivr\Dialplan;
 
+use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\Stdlib\Hydrator\Filter;
+
 use InvalidArgumentException;
 
 use DOMElement;
@@ -8,6 +11,8 @@ use DOMElement;
 abstract class AbstractTag extends DOMElement
 {
     const NAME_ATTR = 'name';
+    
+    protected $hydrator;
 
     public static function ns()
     {
@@ -32,11 +37,33 @@ abstract class AbstractTag extends DOMElement
         return $this;
     }
     
+    public function getHydrator() {
+        if(!$this->hydrator) {
+            $hydrator = new ClassMethods;
+            
+            $hydrator->addFilter('getHydrator', new Filter\MethodMatchFilter('getHydrator'), Filter\FilterComposite::CONDITION_AND);
+            foreach(get_class_methods(get_parent_class()) as $parentMethod) {
+                if(!preg_match('/^get/', $parentMethod) && !preg_match('/^has/', $parentMethod)) {
+                    continue;
+                }
+                $hydrator->addFilter($parentMethod, new Filter\MethodMatchFilter($parentMethod), Filter\FilterComposite::CONDITION_AND);
+            }
+            
+            $this->hydrator = $hydrator;
+        }
+        return $this->hydrator;
+    }
+    
+    public function setHydrator($hydrator) {
+        $this->hydrator = $hydrator;
+        return $this;
+    }
+    
     public function __call($name, $arguments)
     {
         $tagName = self::ns()."\\{$name}Tag";
         if(!class_exists($tagName)) {
-            throw new InvalidArgumentException('Tag type does not exist');
+            throw new InvalidArgumentException('Tag type '. $tagName .' does not exist');
         }
         
         if(!empty($arguments)) {

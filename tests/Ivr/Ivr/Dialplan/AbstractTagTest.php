@@ -27,6 +27,33 @@ class AbstractTagTest extends TestCase
         $this->assertInstanceOf($dialplan::ns()."\\{$tagName}Tag", $tag);
     }
     
+    /**
+     * Test hydration of each tag type
+     *
+     * @dataProvider provideTagNames
+     * 
+     * @param string $tagName
+     */
+    public function testHydration($tagName)
+    {
+        $ivr = new Ivr;
+        $dialplan = $ivr->getDialplan();
+        $tag = $dialplan->$tagName();
+    
+        $hydrator = $tag->getHydrator();
+        $fields = $hydrator->extract($tag);
+        
+        foreach($fields as &$value) {
+            $value = ' ';
+        }
+        
+        $hydrator->hydrate($fields, $tag);
+        
+        $idempotentFields = $hydrator->extract($tag);
+        
+        $this->assertEquals($fields, $idempotentFields);
+    }
+    
     public function provideTagNames()
     {
         $data = array();

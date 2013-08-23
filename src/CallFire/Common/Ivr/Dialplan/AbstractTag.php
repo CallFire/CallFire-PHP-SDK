@@ -7,6 +7,8 @@ use DOMElement;
 
 abstract class AbstractTag extends DOMElement
 {
+    const NAME_ATTR = 'name';
+
     public static function ns()
     {
         $ns = explode('\\', __CLASS__);
@@ -19,6 +21,15 @@ abstract class AbstractTag extends DOMElement
     public function __construct($name = null, $value = null, $namespaceURI = null)
     {
         parent::__construct($name?:static::NODE_NAME, $value, $namespaceURI);
+    }
+    
+    public function getName() {
+        return $this->getAttribute(static::NAME_ATTR);
+    }
+    
+    public function setName($name) {
+        $this->setAttribute(static::NAME_ATTR, $name);
+        return $this;
     }
     
     public function __call($name, $arguments)

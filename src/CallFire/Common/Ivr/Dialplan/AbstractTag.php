@@ -34,7 +34,7 @@ abstract class AbstractTag extends DOMElement
     
     public function __call($name, $arguments)
     {
-        $tagName = self::ns().'\\'.$name;
+        $tagName = self::ns()."\\{$name}Tag";
         if(!class_exists($tagName)) {
             throw new InvalidArgumentException('Tag type does not exist');
         }

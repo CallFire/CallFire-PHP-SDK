@@ -24,15 +24,15 @@ class AbstractTagTest extends TestCase
         $dialplan = $ivr->getDialplan();
         
         $tag = $dialplan->$tagName();
-        $this->assertInstanceOf($dialplan::ns().'\\'.$tagName, $tag);
+        $this->assertInstanceOf($dialplan::ns()."\\{$tagName}Tag", $tag);
     }
     
     public function provideTagNames()
     {
         $data = array();
         foreach(glob(__DIR__.'/../../../../src/CallFire/Common/Ivr/Dialplan/*.php') as $filename) {
-            $tagName = basename($filename, '.php');
-            if($tagName == 'AbstractTag') {
+            $tagName = basename($filename, 'Tag.php');
+            if($tagName == 'Abstract') {
                 continue;
             }
             $data[] = array($tagName);

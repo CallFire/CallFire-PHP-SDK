@@ -1,7 +1,7 @@
 <?php
 namespace CallFire\Common\Ivr\Dialplan;
 
-class StashTag extends AbstractTag
+class StashTag extends SetVarTag
 {
     const NODE_NAME = 'stash';
 }

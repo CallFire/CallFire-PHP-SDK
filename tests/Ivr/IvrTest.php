@@ -36,6 +36,51 @@ class IvrTest extends TestCase
         $xpath = new DOMXPath($ivr);
         $blindTag = $xpath->query($tag::NODE_NAME, $dialplan)->item(0);
         
-        $this->assertInstanceOf(get_clasS($tag), $blindTag);
+        $this->assertInstanceOf(get_class($tag), $blindTag);
+    }
+    
+    public function testTagTypeLostOnClone()
+    {
+        $ivr = new Ivr;
+        $dialplan = $ivr->getDialplan();
+        $tag = $dialplan->Amd();
+        
+        $cloneTag = $tag->cloneNode();
+        
+        $this->assertNotInstanceOf(get_class($tag), $cloneTag);
+    }
+    
+    /**
+     * Test loading an existing IVR
+     *
+     * @dataProvider provideIvrFixtures
+     * 
+     * @param string filename
+     */
+    public function testLoad($filename)
+    {
+        $this->expectOutputString('');
+        $ivr = new Ivr;
+        $ivr->load($filename);
+        
+        $result = $ivr->saveXML();
+        $this->assertXmlStringEqualsXmlFile($filename, $result);
+        
+        $tagList = $ivr->getTagList();
+        $xpath = new DOMXPath($ivr);
+        foreach($xpath->query('//*') as $tag) {
+            if($tagName = array_search($tag->nodeName, $tagList)) {
+                $this->assertInstanceOf(Ivr\Dialplan::ns().'\\'.$tagName, $tag);
+            }
+        }
+    }
+    
+    public function provideIvrFixtures()
+    {
+        $data = array();
+        foreach(glob(__DIR__.'/fixtures/*.ivr.xml') as $filename) {
+            $data[] = array($filename);
+        }
+        return $data;
     }
 }

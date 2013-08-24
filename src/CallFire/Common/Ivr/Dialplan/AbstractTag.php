@@ -37,6 +37,15 @@ abstract class AbstractTag extends DOMElement
         return $this;
     }
     
+    public function getContent() {
+        return $this->nodeValue;
+    }
+    
+    public function setContent($content) {
+        $this->nodeValue = $content;
+        return $this;
+    }
+    
     public function getHydrator() {
         if(!$this->hydrator) {
             $hydrator = new ClassMethods;

@@ -2,11 +2,12 @@
 namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
+use CallFire\Common\Response\ResourceReferenceInterface;
 
 use DOMDocument;
 use DOMNode;
 
-class ResourceReference extends AbstractResponse
+class ResourceReference extends AbstractResponse implements ResourceReferenceInterface
 {
     protected $id;
 

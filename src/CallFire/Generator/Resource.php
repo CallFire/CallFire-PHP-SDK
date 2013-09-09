@@ -71,9 +71,16 @@ class Resource
         $map = array();
 
         $isComplexType = ($element->nodeName == 'complexType');
-        $extensionNode = $xpath->query('_:complexType/_:complexContent/_:extension[@base]', $element)->item(0);
-        $isSubclass = (bool) $extensionNode;
-        $extendedClass = $isSubclass?substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4):null;
+        $isSubclass = false;
+        $extendedClass = null;
+        
+        if($extensionNode = $xpath->query('_:complexType/_:complexContent/_:extension[@base]', $element)->item(0)) {
+            $isSubclass = true;
+            $extendedClass = substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4);
+        } elseif(($typeNode = $xpath->query('@type', $element)->item(0)) && $typeNode->textContent !== "base64Binary") {
+            $isSubclass = true;
+            $extendedClass = substr($typeNode->textContent, 4);
+        }
 
         $resourceName = $xpath->query('@name', $element)->item(0)->textContent;
 
@@ -117,7 +124,7 @@ class Resource
         $this->handleChoiceElements($classGenerator, $map, $choiceElements, $element, $xpath);
 
         // Complex second-class types (e.g. question-response, broadcast result statistics)
-        $secondClassElementsQuery = $isComplexType?'_:sequence/_:element[@name][not(@type)]':'_:complexType/_:sequence/_:element[@name][not(@type)]';
+        $secondClassElementsQuery = $isComplexType?'_:sequence/_:element[@name or @ref][not(@type)]':'_:complexType/_:sequence/_:element[@name][not(@type)]';
         if ($isSubclass) {
             $secondClassElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][not(@type)]';
         }
@@ -270,7 +277,11 @@ class Resource
             } else {
                 $secondClassElementNameNode = $xpath->query('@ref', $secondClassElement)->item(0);
                 if ($secondClassElementNameNode) {
-                    $secondClassElementName = substr($secondClassElementNameNode->textContent, 4);
+                    if(substr($secondClassElementNameNode->textContent, 0, 4) == "tns:") {
+                        $secondClassElementName = substr($secondClassElementNameNode->textContent, 4);
+                    } elseif(substr($secondClassElementNameNode->textContent, 0, 5) == "data:") {
+                        $secondClassElementName = substr($secondClassElementNameNode->textContent, 5);
+                    }
                 }
             }
             if (!$secondClassElementName) {
@@ -349,16 +360,22 @@ class Resource
     }
 
     public function transformResource($resourceName, $classGenerator, &$map)
-    {
+    {    
         $transformName = "CallFire\Generator\Resource\Transform\\{$resourceName}";
-        if (!class_exists($transformName)) {
-            return;
+        if (class_exists($transformName)) {
+            $transform = new $transformName($classGenerator, $map);
+            $transform->setPropertyGenerator($this->getPropertyGenerator());
+            $transform->transform();
         }
-
-        $transform = new $transformName($classGenerator, $map);
-        $transform->setPropertyGenerator($this->getPropertyGenerator());
-
-        return $transform->transform();
+        
+        if($extendedResourceName = $classGenerator->getExtendedClass()) {
+            $extendedTransformName = "CallFire\Generator\Resource\Transform\\{$extendedResourceName}";
+            if(class_exists($extendedTransformName) && method_exists($extendedTransformName, "transformDescendent")) {
+                $transform = new $extendedTransformName($classGenerator, $map);
+                $transform->setPropertyGenerator($this->getPropertyGenerator());
+                $transform->transformDescendent();
+            }
+        }
     }
 
     public function getResources()

@@ -3,13 +3,13 @@ namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
 use CallFire\Common\Resource\AbstractResource;
+use CallFire\Common\Response\ResourceListInterface;
 
 use DOMDocument;
 use DOMNode;
 use ArrayIterator;
-use IteratorAggregate;
 
-class ResourceList extends AbstractResponse implements IteratorAggregate
+class ResourceList extends AbstractResponse implements ResourceListInterface
 {
     protected $totalResults = 0;
 

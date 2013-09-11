@@ -133,7 +133,7 @@ abstract class Subscription
         $subscriptionId = $xpath->query('n:SubscriptionId', $contextNode)->item(0)->textContent;
         $this->setSubscriptionId($subscriptionId);
 
-        $resourceNode = $xpath->query('*[1]', $contextNode)->item(0);
+        $resourceNode = $xpath->query('_:*[1]', $contextNode)->item(0);
         if ($resourceNode instanceof DOMNode) {
             $resource = $this->parseResourceNode($resourceNode);
             if ($resource instanceof AbstractResource) {

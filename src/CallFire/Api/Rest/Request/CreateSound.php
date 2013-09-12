@@ -8,14 +8,10 @@ class CreateSound extends AbstractRequest
 {
 
     /**
-     * The name of your sound.
+     * The name of your sound. This name is included in SoundMeta and shown in the web
+     * interface.
      */
     protected $name = null;
-
-    /**
-     * MP3 or WAV bytes.
-     */
-    protected $data = null;
 
     /**
      * E.164 11 digit number to call to record a new sound.
@@ -32,18 +28,6 @@ class CreateSound extends AbstractRequest
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    public function setData($data)
-    {
-        $this->data = $data;
 
         return $this;
     }

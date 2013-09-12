@@ -18,9 +18,9 @@ class RemoveContactsFromList extends AbstractRequest
     protected $contactId = null;
 
     /**
-     * Csv file attachment containing list of contacts or numbers
+     * List E.164 11 digit numbers space or comma seperated
      */
-    protected $file = null;
+    protected $numbers = null;
 
     public function getContactListId()
     {
@@ -46,14 +46,14 @@ class RemoveContactsFromList extends AbstractRequest
         return $this;
     }
 
-    public function getFile()
+    public function getNumbers()
     {
-        return $this->file;
+        return $this->numbers;
     }
 
-    public function setFile($file)
+    public function setNumbers($numbers)
     {
-        $this->file = $file;
+        $this->numbers = $numbers;
 
         return $this;
     }

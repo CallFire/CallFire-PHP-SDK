@@ -122,21 +122,21 @@ abstract class Response
         $resourceData = $hydrator->extract($resourceNode);
         $resource = $methodsHydrator->hydrate($resourceData, $resource);
         foreach ($childResourceMap as $key => $query) {
-            if(substr($key, 0, 1) == '@') {
+            if (substr($key, 0, 1) == '@') {
                 $key = substr($key, 1);
                 $unbounded = true;
             } else {
                 $unbounded = false;
             }
-            
+
             $childResourceNodes = $xpath->query($query, $resourceNode);
             if (!$childResourceNodes || $childResourceNodes->length == 0) {
                 continue;
             }
-            
-            if($unbounded) {
+
+            if ($unbounded) {
                 $childValue = array();
-                foreach($childResourceNodes as $childResourceNode) {
+                foreach ($childResourceNodes as $childResourceNode) {
                     $childResource = $this->parseResourceNode($childResourceNode);
                     if (!$childResource) {
                         continue;

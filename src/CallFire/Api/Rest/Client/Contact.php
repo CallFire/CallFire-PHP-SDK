@@ -4,6 +4,7 @@ namespace CallFire\Api\Rest\Client;
 
 use CallFire\Api\Rest\AbstractClient;
 use CallFire\Api\Rest\Request as Request;
+use CallFire\Api\Rest\Response as Response;
 
 class Contact extends AbstractClient
 {
@@ -13,7 +14,9 @@ class Contact extends AbstractClient
     /**
      * Lists existing contacts
      *
-     *
+     * Query for existing contacts using optional filters such as ContactListId, Field,
+     * etc... Returns a list of contacts and all associated info. See GetContact to
+     * return just a single contact by id.
      *
      * @api
      * @param Request\QueryContacts $QueryContacts = null
@@ -28,17 +31,19 @@ class Contact extends AbstractClient
     /**
      * Updates existing contacts
      *
-     * REST service parameters:Accepts string of the form-encoded key-value contact
+     * REST service parameters: Accepts string of the form-encoded key-value contact
      * pairs. Each contact's value contains URL-encoded (using UTF-8 encoding)
      * attribute name and value separated by collon. Each attribute pair separated by
-     * semicolon.Format:contact=attributeName:attributeValue[;attributeName:attributeValue;...][&contact=attributeName:attributeValue[;attributeName:attributeValue;...]&...]Example:contact=id:1;firstName:John;customAttribute:value&contact=id:2;secondName:Doe
+     * semicolon. Format:
+     * contact=attributeName:attributeValue[;attributeName:attributeValue;...][&amp;contact=attributeName:attributeValue[;attributeName:attributeValue;...]&amp;...]
+     * Example:
+     * contact=id:1;firstName:John;customAttribute:value&amp;contact=id:2;secondName:Doe
      *
      * @api
-     * @param int $Id
      */
-    public function UpdateContacts($Id)
+    public function UpdateContacts()
     {
-        $uri = $this->getUri('/contact', array($Id));
+        $uri = $this->getUri('/contact', array());
 
         return $this->put($uri);
     }
@@ -46,7 +51,8 @@ class Contact extends AbstractClient
     /**
      * Removes contacts
      *
-     *
+     * Delete contacts identified by contactIds from system. If id points to
+     * non-existent contact the id will be ignored and processing will continue.
      *
      * @api
      * @param Request\RemoveContacts $RemoveContacts = null
@@ -61,7 +67,12 @@ class Contact extends AbstractClient
     /**
      * Gets the contact by ID
      *
-     *
+     * Return individual contact by ID. See QueryContacts to return a list of contacts
+     * and determine individual contactIds.  Note: GetContact returns all contact
+     * fields however when using PHP SoapClient only the predifined fields (lastName,
+     * mobileNumber, firstName, homePhone, workPhone, and zipcode) will show in
+     * $response. This is problem with SoapClient, not the underlying Soap message. Use
+     * our PHP REST API or another PHP SOAP client to work around the problem.
      *
      * @api
      * @param int $Id Unique ID of resource
@@ -76,7 +87,7 @@ class Contact extends AbstractClient
     /**
      * Gets a contact's history by contact ID
      *
-     *
+     * List all calls and texts associated with a contact.
      *
      * @api
      * @param Request\GetContactHistory $GetContactHistory = null
@@ -118,7 +129,8 @@ class Contact extends AbstractClient
     /**
      * Lists existing contact lists
      *
-     *
+     * Query for existing contact lists. Currently does no filtering and returns all
+     * contact lists.
      *
      * @api
      * @param Request\QueryContactLists $QueryContactLists = null
@@ -133,7 +145,7 @@ class Contact extends AbstractClient
     /**
      * Deletes a contact list by ID
      *
-     *
+     * Delete contact list identified by id.
      *
      * @api
      * @param int $Id Unique ID of resource
@@ -164,9 +176,7 @@ class Contact extends AbstractClient
     /**
      * Removes contacts from a list without deleting the contacts
      *
-     * Currently only supports removing contacts by ContactSource numbers, not contact
-     * lists, contactId lists, or csv files. Just specify the contact list ID and the
-     * numbers to remove from list.
+     *
      *
      * @api
      * @param Request\RemoveContactsFromList $RemoveContactsFromList = null

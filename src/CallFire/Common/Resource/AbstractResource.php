@@ -8,6 +8,7 @@ abstract class AbstractResource
         $ns = explode('\\', __CLASS__);
         array_pop($ns);
         $ns = implode('\\', $ns);
+
         return $ns;
     }
 }

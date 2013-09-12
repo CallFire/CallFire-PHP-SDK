@@ -185,22 +185,42 @@ abstract class Subscription
                 $resourceMap += $queryMap[$parentClass];
             }
         }
+        $hydrator->setQueryMap($resourceMap);
 
         $resourceData = $hydrator->extract($resourceNode);
         $resource = $methodsHydrator->hydrate($resourceData, $resource);
         foreach ($childResourceMap as $key => $query) {
-            $childResourceNode = $xpath->query($query, $resourceNode)->item(0);
-            if (!$childResourceNode) {
+            if(substr($key, 0, 1) == '@') {
+                $key = substr($key, 1);
+                $unbounded = true;
+            } else {
+                $unbounded = false;
+            }
+            
+            $childResourceNodes = $xpath->query($query, $resourceNode);
+            if (!$childResourceNodes || $childResourceNodes->length == 0) {
                 continue;
             }
-
-            $childResource = $this->parseResourceNode($childResourceNode);
-            if (!$childResource) {
-                continue;
+            
+            if($unbounded) {
+                $childValue = array();
+                foreach($childResourceNodes as $childResourceNode) {
+                    $childResource = $this->parseResourceNode($childResourceNode);
+                    if (!$childResource) {
+                        continue;
+                    }
+                    $childValue[] = $childResource;
+                }
+            } else {
+                $childResourceNode = $childResourceNodes->item(0);
+                $childValue = $this->parseResourceNode($childResourceNode);
+                if (!$childValue) {
+                    continue;
+                }
             }
 
             $methodsHydrator->hydrate(array(
-                $key => $childResource
+                $key => $childValue
             ), $resource);
         }
 

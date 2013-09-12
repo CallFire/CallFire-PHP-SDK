@@ -15,6 +15,11 @@ class BroadcastStats extends AbstractResource
      */
     protected $resultStats = array();
 
+    /**
+     * @var ActionStatistics
+     */
+    protected $actionStatistics = null;
+
     public function getUsageStats()
     {
         return $this->usageStats;
@@ -35,6 +40,18 @@ class BroadcastStats extends AbstractResource
     public function setResultStats($resultStats)
     {
         $this->resultStats = $resultStats;
+
+        return $this;
+    }
+
+    public function getActionStatistics()
+    {
+        return $this->actionStatistics;
+    }
+
+    public function setActionStatistics($actionStatistics)
+    {
+        $this->actionStatistics = $actionStatistics;
 
         return $this;
     }

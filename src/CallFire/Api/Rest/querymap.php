@@ -3,17 +3,10 @@
 return array(
         'TextToSpeech' => array(),
         'InboundConfig' => array('id' => '@id'),
-        'RetryResults' => array(),
-        'RetryConfig' => array(
-            'MaxAttempts' => '_:MaxAttempts',
-            'MinutesBetweenAttempts' => '_:MinutesBetweenAttempts',
-            '#RetryResults' => '_:RetryResults'
-            ),
         'BroadcastConfig' => array(
             'id' => '@id',
             'Created' => '_:Created',
-            'FromNumber' => '_:FromNumber',
-            '#RetryConfig' => '_:RetryConfig'
+            'FromNumber' => '_:FromNumber'
             ),
         'ToNumber' => array(),
         'QuestionResponse' => array(
@@ -174,7 +167,6 @@ return array(
             'Enabled' => '_:Enabled',
             'Endpoint' => '_:Endpoint',
             'NotificationFormat' => '_:NotificationFormat',
-            'TriggerEvent' => '_:TriggerEvent',
             '#SubscriptionFilter' => '_:SubscriptionFilter'
             ),
         'Contact' => array(

@@ -26,11 +26,6 @@ class Subscription extends AbstractResource
     protected $notificationFormat = null;
 
     /**
-     * @var string
-     */
-    protected $triggerEvent = null;
-
-    /**
      * @var SubscriptionFilter
      */
     protected $subscriptionFilter = null;
@@ -79,18 +74,6 @@ class Subscription extends AbstractResource
     public function setNotificationFormat($notificationFormat)
     {
         $this->notificationFormat = $notificationFormat;
-
-        return $this;
-    }
-
-    public function getTriggerEvent()
-    {
-        return $this->triggerEvent;
-    }
-
-    public function setTriggerEvent($triggerEvent)
-    {
-        $this->triggerEvent = $triggerEvent;
 
         return $this;
     }

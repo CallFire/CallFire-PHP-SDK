@@ -20,11 +20,6 @@ abstract class BroadcastConfig extends AbstractResource
      */
     protected $fromNumber = null;
 
-    /**
-     * @var RetryConfig
-     */
-    protected $retryConfig = null;
-
     public function getId()
     {
         return $this->id;
@@ -57,18 +52,6 @@ abstract class BroadcastConfig extends AbstractResource
     public function setFromNumber($fromNumber)
     {
         $this->fromNumber = $fromNumber;
-
-        return $this;
-    }
-
-    public function getRetryConfig()
-    {
-        return $this->retryConfig;
-    }
-
-    public function setRetryConfig($retryConfig)
-    {
-        $this->retryConfig = $retryConfig;
 
         return $this;
     }

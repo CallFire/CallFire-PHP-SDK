@@ -25,7 +25,7 @@ return array(
             'Result' => '_:Result',
             'FinishTime' => '_:FinishTime',
             'BilledAmount' => '_:BilledAmount',
-            '#QuestionResponse' => '_:QuestionResponse'
+            '#@QuestionResponses' => '_:QuestionResponse'
             ),
         'Action' => array(
             'id' => '@id',
@@ -120,17 +120,23 @@ return array(
             'Attempts' => '_:Attempts',
             'Actions' => '_:Actions'
             ),
+        'ActionStatistics' => array(
+            'Unattempted' => '_:Unattempted',
+            'RetryWait' => '_:RetryWait',
+            'Finished' => '_:Finished'
+            ),
         'BroadcastStats' => array(
             '#UsageStats' => '_:UsageStats',
-            '#ResultStat' => '_:ResultStat'
+            '#@ResultStats' => '_:ResultStat',
+            '#ActionStatistics' => '_:ActionStatistics'
             ),
         'CallRecord' => array(
             'OriginateTime' => '_:OriginateTime',
             'AnswerTime' => '_:AnswerTime',
             'Duration' => '_:Duration',
-            '#RecordingMeta' => '_:RecordingMeta'
+            '#@RecordingMetas' => '_:RecordingMeta'
             ),
-        'Call' => array('#CallRecord' => '_:CallRecord'),
+        'Call' => array('#@CallRecords' => '_:CallRecord'),
         'SoundMeta' => array(
             'id' => '@id',
             'Status' => '_:Status',
@@ -147,7 +153,7 @@ return array(
         'TextRecord' => array('Message' => '_:Message'),
         'Text' => array(
             'Message' => '_:Message',
-            '#TextRecord' => '_:TextRecord'
+            '#@TextRecords' => '_:TextRecord'
             ),
         'AutoReply' => array(
             'id' => '@id',

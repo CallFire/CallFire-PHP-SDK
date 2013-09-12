@@ -260,6 +260,7 @@ class Resource
             $maxOccursNode = $xpath->query('@maxOccurs', $secondClassElement)->item(0);
             $maxOccurs = $maxOccursNode?$maxOccursNode->textContent:null;
             $unbounded = ($maxOccurs == 'unbounded');
+            $hydrationModifier = '#';
 
             $secondClassElementName = null;
             $secondClassElementNameNode = $xpath->query('@name', $secondClassElement)->item(0);
@@ -291,6 +292,10 @@ class Resource
                 $secondClassElementProperty->setDefaultValue(
                     new CodeGenerator\PropertyValueGenerator(array())
                 );
+                $hydrationModifier .= '@';
+                $mapKeyName = "{$secondClassElementName}s";
+            } else {
+                $mapKeyName = $secondClassElementName;
             }
 
             if ($secondClassElementType) {
@@ -311,7 +316,7 @@ class Resource
                 $setterGenerator
             ));
 
-            $map["#{$secondClassElementName}"] = "_:{$secondClassElementName}";
+            $map["{$hydrationModifier}{$mapKeyName}"] = "_:{$secondClassElementName}";
         }
     }
 

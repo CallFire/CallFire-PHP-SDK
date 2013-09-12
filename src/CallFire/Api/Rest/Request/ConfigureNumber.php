@@ -34,8 +34,6 @@ class ConfigureNumber extends AbstractRequest
 
     protected $whisperSoundId = null;
 
-    protected $dialplanXml = null;
-
     public function getNumber()
     {
         return $this->number;
@@ -140,18 +138,6 @@ class ConfigureNumber extends AbstractRequest
     public function setWhisperSoundId($whisperSoundId)
     {
         $this->whisperSoundId = $whisperSoundId;
-
-        return $this;
-    }
-
-    public function getDialplanXml()
-    {
-        return $this->dialplanXml;
-    }
-
-    public function setDialplanXml($dialplanXml)
-    {
-        $this->dialplanXml = $dialplanXml;
 
         return $this;
     }

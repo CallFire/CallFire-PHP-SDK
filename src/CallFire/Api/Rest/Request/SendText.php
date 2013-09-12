@@ -34,6 +34,9 @@ class SendText extends AbstractRequest
      */
     protected $scrubBroadcastDuplicates = null;
 
+    /**
+     * E.164 11 digit number or short code
+     */
     protected $from = null;
 
     /**
@@ -59,6 +62,8 @@ class SendText extends AbstractRequest
     protected $minutesBetweenAttempts = null;
 
     /**
+     * Conditions to retry on
+     *
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
      * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
      */

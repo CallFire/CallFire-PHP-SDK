@@ -34,6 +34,9 @@ class SendCall extends AbstractRequest
      */
     protected $scrubBroadcastDuplicates = null;
 
+    /**
+     * E.164 11 digit number or short code
+     */
     protected $from = null;
 
     /**
@@ -59,6 +62,8 @@ class SendCall extends AbstractRequest
     protected $minutesBetweenAttempts = null;
 
     /**
+     * Conditions to retry on
+     *
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
      * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
      */
@@ -118,11 +123,6 @@ class SendCall extends AbstractRequest
      * Max Transfers
      */
     protected $maxActiveTransfers = null;
-
-    /**
-     * IVR xml document describing dialplan
-     */
-    protected $dialplanXml = null;
 
     public function getRequestId()
     {
@@ -408,18 +408,6 @@ class SendCall extends AbstractRequest
     public function setMaxActiveTransfers($maxActiveTransfers)
     {
         $this->maxActiveTransfers = $maxActiveTransfers;
-
-        return $this;
-    }
-
-    public function getDialplanXml()
-    {
-        return $this->dialplanXml;
-    }
-
-    public function setDialplanXml($dialplanXml)
-    {
-        $this->dialplanXml = $dialplanXml;
 
         return $this;
     }

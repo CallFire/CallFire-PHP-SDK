@@ -24,6 +24,9 @@ class UpdateBroadcast extends AbstractRequest
      */
     protected $type = null;
 
+    /**
+     * E.164 11 digit number or short code
+     */
     protected $from = null;
 
     /**
@@ -49,6 +52,8 @@ class UpdateBroadcast extends AbstractRequest
     protected $minutesBetweenAttempts = null;
 
     /**
+     * Conditions to retry on
+     *
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
      * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
      */
@@ -121,11 +126,6 @@ class UpdateBroadcast extends AbstractRequest
      * Allowable values: [SEND_MULTIPLE, DO_NOT_SEND, TRIM]
      */
     protected $bigMessageStrategy = null;
-
-    /**
-     * IVR xml document describing dialplan
-     */
-    protected $dialplanXml = null;
 
     public function getRequestId()
     {
@@ -411,18 +411,6 @@ class UpdateBroadcast extends AbstractRequest
     public function setBigMessageStrategy($bigMessageStrategy)
     {
         $this->bigMessageStrategy = $bigMessageStrategy;
-
-        return $this;
-    }
-
-    public function getDialplanXml()
-    {
-        return $this->dialplanXml;
-    }
-
-    public function setDialplanXml($dialplanXml)
-    {
-        $this->dialplanXml = $dialplanXml;
 
         return $this;
     }

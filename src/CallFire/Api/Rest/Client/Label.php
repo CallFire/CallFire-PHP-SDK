@@ -13,7 +13,8 @@ class Label extends AbstractClient
     /**
      * Removes a label from all labeled objects and deletes it
      *
-     *
+     * Delete label identified by name. All broadcasts and numbers currently containing
+     * the label will have the label association removed.
      *
      * @api
      * @param Request\DeleteLabel $DeleteLabel = null
@@ -28,7 +29,8 @@ class Label extends AbstractClient
     /**
      * Returns all defined labels
      *
-     *
+     * Return list of all defined label names. The labels may be associated with
+     * broadcasts or numbers.
      *
      * @api
      * @param Request\QueryLabels $QueryLabels = null
@@ -43,7 +45,8 @@ class Label extends AbstractClient
     /**
      * Adds a label to a broadcast, creating the label if it doesn't already exist
      *
-     *
+     * Label broadcast (Voice, Text, or IVR) by specifying broadcastId and label name.
+     * If label name doesn't currently exist on system it will be created and saved.
      *
      * @api
      * @param Request\LabelBroadcast $LabelBroadcast = null
@@ -58,7 +61,8 @@ class Label extends AbstractClient
     /**
      * Removes a label from a single broadcast
      *
-     *
+     * Remove label from broadcast. This doesn't remove label from system, it just
+     * removes association between broadcast and label.
      *
      * @api
      * @param int                      $Id               Unique ID of resource
@@ -74,7 +78,8 @@ class Label extends AbstractClient
     /**
      * Adds a label to a single number
      *
-     *
+     * Label number by specifying E.164 11 digit number identifier and label name. If
+     * label name doesn't currently exist on system it will be created and saved.
      *
      * @api
      * @param Request\LabelNumber $LabelNumber = null
@@ -89,7 +94,8 @@ class Label extends AbstractClient
     /**
      * Removes a label from a single number
      *
-     *
+     * Remove label from number. This doesn't remove label from system, it just removes
+     * association between number and label.
      *
      * @api
      * @param Request\UnlabelNumber $UnlabelNumber = null

@@ -16,11 +16,6 @@ class CreateContactList extends AbstractRequest
      */
     protected $contactId = null;
 
-    /**
-     * Csv file attachment containing list of contacts or numbers
-     */
-    protected $file = null;
-
     public function getRequestId()
     {
         return $this->requestId;
@@ -53,18 +48,6 @@ class CreateContactList extends AbstractRequest
     public function setContactId($contactId)
     {
         $this->contactId = $contactId;
-
-        return $this;
-    }
-
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    public function setFile($file)
-    {
-        $this->file = $file;
 
         return $this;
     }

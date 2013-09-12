@@ -69,12 +69,11 @@ class Number extends AbstractClient
      * using 11 diget E.164 format to select number. No response is returned.
      *
      * @api
-     * @param int                     $Id
-     * @param Request\ConfigureNumber $ConfigureNumber
+     * @param Request\ConfigureNumber $ConfigureNumber = null
      */
-    public function ConfigureNumber($Id, Request\ConfigureNumber $ConfigureNumber)
+    public function ConfigureNumber(Request\ConfigureNumber $ConfigureNumber = null)
     {
-        $uri = $this->getUri('/number/%s', array($Id));
+        $uri = $this->getUri('/number/%s', array());
 
         return $this->put($uri, $ConfigureNumber);
     }
@@ -185,12 +184,11 @@ class Number extends AbstractClient
      * until May 29th. Therefore, please be sure of your decision before releasing.
      *
      * @api
-     * @param int             $Id
-     * @param Request\Release $Release
+     * @param Request\Release $Release = null
      */
-    public function Release($Id, Request\Release $Release)
+    public function Release(Request\Release $Release = null)
     {
-        $uri = $this->getUri('/number/release', array($Id));
+        $uri = $this->getUri('/number/release', array());
 
         return $this->put($uri, $Release);
     }

@@ -16,7 +16,7 @@ abstract class AbstractResource
 
         return $ns;
     }
-    
+
     public function __set($name, $value)
     {
         $hydrator = $this->getHydrator();
@@ -25,7 +25,7 @@ abstract class AbstractResource
             "{$name}s" => $value
         ), $this);
     }
-    
+
     public function getHydrator()
     {
         if (!$this->hydrator) {

@@ -13,6 +13,7 @@ return array(
             'id' => '@id',
             'Created' => '_:Created',
             'FromNumber' => '_:FromNumber',
+            '#LocalTimeZoneRestriction' => '_:LocalTimeZoneRestriction',
             '#RetryConfig' => '_:RetryConfig'
             ),
         'ToNumber' => array(),

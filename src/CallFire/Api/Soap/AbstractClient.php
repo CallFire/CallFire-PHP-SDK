@@ -7,8 +7,6 @@ use CallFire\Common\Resource\AbstractResource;
 use SoapClient;
 use SoapFault;
 
-use stdClass;
-
 abstract class AbstractClient extends SoapClient implements ClientInterface
 {
     public static function ns()
@@ -42,11 +40,11 @@ abstract class AbstractClient extends SoapClient implements ClientInterface
 
             $result = $exception;
         }
-        
+
         if ($result instanceof AbstractResource) {
             $resource = new Response\Resource;
             $resource->setResource($result);
-            
+
             $result = $resource;
         }
 

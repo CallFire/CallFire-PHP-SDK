@@ -96,6 +96,7 @@ return array(
         'AbstractResource' => 'CallFire\Common\Resource\AbstractResource',
         'Action' => 'CallFire\Common\Resource\Action',
         'ActionRecord' => 'CallFire\Common\Resource\ActionRecord',
+        'ActionStatistics' => 'CallFire\Common\Resource\ActionStatistics',
         'AutoReply' => 'CallFire\Common\Resource\AutoReply',
         'Broadcast' => 'CallFire\Common\Resource\Broadcast',
         'BroadcastConfig' => 'CallFire\Common\Resource\BroadcastConfig',

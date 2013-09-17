@@ -30,7 +30,7 @@ abstract class Client
 
             return $services;
         }
-        
+
         throw new InvalidArgumentException('Client::Rest accepts either a service name, or an array of service names');
     }
 
@@ -76,7 +76,7 @@ abstract class Client
         if (is_array($classmap)) {
             $options['classmap'] = $classmap;
         }
-        
+
         if (is_string($service)) {
             return static::createSoapClient($username, $password, $service, $wsdl, $options);
         } elseif (is_array($service)) {
@@ -88,14 +88,15 @@ abstract class Client
 
             return $services;
         }
-        
+
         throw new InvalidArgumentException('Client::Rest accepts either a service name, or an array of service names');
     }
-    
-    protected static function createSoapClient($username, $password, $service, $wsdl, $options) {
+
+    protected static function createSoapClient($username, $password, $service, $wsdl, $options)
+    {
         $serviceClass = SoapClient::ns()."\\{$service}";
         $client = new $serviceClass($wsdl, $options);
-        
+
         return $client;
     }
 }

@@ -73,11 +73,11 @@ class Resource
         $isComplexType = ($element->nodeName == 'complexType');
         $isSubclass = false;
         $extendedClass = null;
-        
-        if($extensionNode = $xpath->query('_:complexType/_:complexContent/_:extension[@base]', $element)->item(0)) {
+
+        if ($extensionNode = $xpath->query('_:complexType/_:complexContent/_:extension[@base]', $element)->item(0)) {
             $isSubclass = true;
             $extendedClass = substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4);
-        } elseif(($typeNode = $xpath->query('@type', $element)->item(0)) && $typeNode->textContent !== "base64Binary") {
+        } elseif (($typeNode = $xpath->query('@type', $element)->item(0)) && $typeNode->textContent !== "base64Binary") {
             $isSubclass = true;
             $extendedClass = substr($typeNode->textContent, 4);
         }
@@ -277,9 +277,9 @@ class Resource
             } else {
                 $secondClassElementNameNode = $xpath->query('@ref', $secondClassElement)->item(0);
                 if ($secondClassElementNameNode) {
-                    if(substr($secondClassElementNameNode->textContent, 0, 4) == "tns:") {
+                    if (substr($secondClassElementNameNode->textContent, 0, 4) == "tns:") {
                         $secondClassElementName = substr($secondClassElementNameNode->textContent, 4);
-                    } elseif(substr($secondClassElementNameNode->textContent, 0, 5) == "data:") {
+                    } elseif (substr($secondClassElementNameNode->textContent, 0, 5) == "data:") {
                         $secondClassElementName = substr($secondClassElementNameNode->textContent, 5);
                     }
                 }
@@ -360,17 +360,17 @@ class Resource
     }
 
     public function transformResource($resourceName, $classGenerator, &$map)
-    {    
+    {
         $transformName = "CallFire\Generator\Resource\Transform\\{$resourceName}";
         if (class_exists($transformName)) {
             $transform = new $transformName($classGenerator, $map);
             $transform->setPropertyGenerator($this->getPropertyGenerator());
             $transform->transform();
         }
-        
-        if($extendedResourceName = $classGenerator->getExtendedClass()) {
+
+        if ($extendedResourceName = $classGenerator->getExtendedClass()) {
             $extendedTransformName = "CallFire\Generator\Resource\Transform\\{$extendedResourceName}";
-            if(class_exists($extendedTransformName) && method_exists($extendedTransformName, "transformDescendent")) {
+            if (class_exists($extendedTransformName) && method_exists($extendedTransformName, "transformDescendent")) {
                 $transform = new $extendedTransformName($classGenerator, $map);
                 $transform->setPropertyGenerator($this->getPropertyGenerator());
                 $transform->transformDescendent();

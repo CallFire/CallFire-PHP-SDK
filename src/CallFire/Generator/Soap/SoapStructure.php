@@ -8,9 +8,9 @@ use Zend\Code\Generator as CodeGenerator;
 class SoapStructure
 {
     protected $classGenerator;
-    
+
     protected $propertyGetterGenerator;
-    
+
     protected $propertySetterGenerator;
 
     protected $isStructure = false;
@@ -29,7 +29,7 @@ class SoapStructure
         $lines = explode(PHP_EOL, $description);
         list(,$structName) = explode(" ", array_shift($lines));
         array_pop($lines); // Closing brace
-        
+
         $classGenerator = $this->getClassGenerator();
         $classGenerator->setName($structName);
 
@@ -38,7 +38,7 @@ class SoapStructure
             list($propertyType, $propertyName) = explode(" ", $property);
             $propertyGenerator = $this->generateProperty($propertyType, $propertyName);
             $this->addProperty($propertyGenerator);
-            
+
             $classGenerator->addMethodFromGenerator($this->generatePropertyGetter($propertyName));
             $classGenerator->addMethodFromGenerator($this->generatePropertySetter($propertyName));
         }
@@ -83,31 +83,39 @@ class SoapStructure
     {
         $this->properties[] = $property;
     }
-    
-    public function getPropertyGetterGenerator() {
-        if(!$this->propertyGetterGenerator) {
+
+    public function getPropertyGetterGenerator()
+    {
+        if (!$this->propertyGetterGenerator) {
             $this->propertyGetterGenerator = new CodeGenerator\MethodGenerator;
         }
+
         return $this->propertyGetterGenerator;
     }
-    
-    public function setPropertyGetterGenerator($propertyGetterGenerator) {
+
+    public function setPropertyGetterGenerator($propertyGetterGenerator)
+    {
         $this->propertyGetterGenerator = $propertyGetterGenerator;
+
         return $this;
     }
-    
-    public function getPropertySetterGenerator() {
-        if(!$this->propertySetterGenerator) {
+
+    public function getPropertySetterGenerator()
+    {
+        if (!$this->propertySetterGenerator) {
             $this->propertySetterGenerator = new CodeGenerator\MethodGenerator;
         }
+
         return $this->propertySetterGenerator;
     }
-    
-    public function setPropertySetterGenerator($propertySetterGenerator) {
+
+    public function setPropertySetterGenerator($propertySetterGenerator)
+    {
         $this->propertySetterGenerator = $propertySetterGenerator;
+
         return $this;
     }
-    
+
     public function generatePropertyGetter($property)
     {
         $property = lcfirst($property);
@@ -137,7 +145,7 @@ class SoapStructure
 
         return $setterGenerator;
     }
-    
+
     protected function generateProperty($type, $name)
     {
         $property = new CodeGenerator\PropertyGenerator;

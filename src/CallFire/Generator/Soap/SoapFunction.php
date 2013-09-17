@@ -15,9 +15,9 @@ class SoapFunction
         "long" => "int",
         "base64Binary" => "string"
     );
-    
+
     protected $operation;
-    
+
     protected $xpath;
 
     protected $methodGenerator;
@@ -29,44 +29,45 @@ class SoapFunction
     protected $requestNamespace;
 
     protected $requestStructure;
-    
+
     protected $responseStructure;
-    
-    public function __construct(DOMNode $operation, DOMXPath $xpath) {
+
+    public function __construct(DOMNode $operation, DOMXPath $xpath)
+    {
         $this->setOperation($operation);
         $this->setXPath($xpath);
     }
-    
+
     public function generate()
     {
         $operation = $this->getOperation();
         $xpath = $this->getXPath();
-        
+
         $operationInput = $xpath->query('_:input', $operation)->item(0);
         $operationOutput = $xpath->query('_:output', $operation)->item(0);
-        
+
         $methodName = $operation->getAttribute('name');
-        if($operationInput) {
+        if ($operationInput) {
             $requestParameterName = $operationInput->getAttribute('name');
-            if(!($requestTypeName = substr($operationInput->getAttribute('message'), 4))) {
+            if (!($requestTypeName = substr($operationInput->getAttribute('message'), 4))) {
                 $requestTypeName = $requestParameterName;
             }
         } else {
             $requestTypeName = 'void';
         }
         $responseTypeName = $operationOutput?$operationOutput->getAttribute('name'):'void';
-        
+
         $methodGenerator = $this->getMethodGenerator();
         $methodGenerator->setName($methodName);
-        
+
         $parameter = $this->generateParameter($requestParameterName, $requestTypeName);
         $methodGenerator->setParameter($parameter->getParameterGenerator());
         $this->setRequestStructure($requestTypeName);
         $this->setResponseStructure($responseTypeName);
-        
+
         $body = $this->generateBody();
         $methodGenerator->setBody($body->generate());
-        
+
         $docblock = $this->generateDocblock($requestTypeName, $methodName, $responseTypeName);
         $methodGenerator->setDocBlock($docblock);
     }
@@ -82,22 +83,28 @@ class SoapFunction
 
         return $this;
     }
-    
-    public function getOperation() {
+
+    public function getOperation()
+    {
         return $this->operation;
     }
-    
-    public function setOperation($operation) {
+
+    public function setOperation($operation)
+    {
         $this->operation = $operation;
+
         return $this;
     }
-    
-    public function getXPath() {
+
+    public function getXPath()
+    {
         return $this->xPath;
     }
-    
-    public function setXPath($xPath) {
+
+    public function setXPath($xPath)
+    {
         $this->xPath = $xPath;
+
         return $this;
     }
 
@@ -172,13 +179,16 @@ class SoapFunction
 
         return $this;
     }
-    
-    public function getResponseStructure() {
+
+    public function getResponseStructure()
+    {
         return $this->responseStructure;
     }
-    
-    public function setResponseStructure($responseStructure) {
+
+    public function setResponseStructure($responseStructure)
+    {
         $this->responseStructure = $responseStructure;
+
         return $this;
     }
 

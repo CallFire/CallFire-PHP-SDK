@@ -5,40 +5,39 @@ use CallFire\Generator\Soap;
 
 use CallFire\Generator\Soap\SoapService;
 use CallFire\Generator\Soap\SoapFunction;
-use CallFire\Generator\Soap\SoapStructure;
 
 use Zend\Code\Generator as CodeGenerator;
 
 use SoapClient;
-use DOMDocument;
 
 class SoapService
 {
     protected $requestNamespace;
-    
+
     protected $wsdl;
 
     protected $xPath;
 
     protected $binding;
-    
+
     protected $bindingName;
-    
+
     protected $soapClient;
-    
+
     protected $functions = array();
-    
+
     protected $requestStructures = array();
-    
+
     protected $responseStructures = array();
-    
+
     protected $constructorGenerator;
-    
+
     protected $classGenerator;
 
     protected $fileGenerator;
-    
-    public function __construct($xpath, $binding, $soapClient) {
+
+    public function __construct($xpath, $binding, $soapClient)
+    {
         $this->setXPath($xpath);
         $this->setBinding($binding);
         $this->setSoapClient($soapClient);
@@ -49,7 +48,7 @@ class SoapService
         $xpath = $this->getXPath();
         $binding = $this->getBinding();
         $soapClient = $this->getSoapClient();
-        
+
         $operations = $xpath->query('_:operation', $binding);
         foreach ($operations as $operation) {
             $soapFunction = new SoapFunction($operation, $xpath);
@@ -63,11 +62,12 @@ class SoapService
             }
             $this->addFunction($soapFunction);
         }
-        
+
         return $this->getFunctions();
     }
-    
-    public function generateClass($requestNamespace = null, $responseNamespace = null, $structureNamespace = null) {
+
+    public function generateClass($requestNamespace = null, $responseNamespace = null, $structureNamespace = null)
+    {
         $classGenerator = $this->getClassGenerator();
         if ($requestNamespace) {
             $classGenerator->addUse($requestNamespace, Soap::REQUEST_NAMESPACE_ALIAS);
@@ -78,82 +78,101 @@ class SoapService
         if ($structureNamespace) {
             $classGenerator->addUse($structureNamespace, Soap::STRUCTURE_NAMESPACE_ALIAS);
         }
-        
+
         $classGenerator->setName($this->getBindingName());
         $classGenerator->addMethodFromGenerator($this->getConstructorGenerator());
-        
+
         foreach ($this->getFunctions() as $function) {
             $classGenerator->addMethodFromGenerator($function->getMethodGenerator());
         }
-        
+
         return $classGenerator;
     }
-    
-    public function getRequestNamespace() {
+
+    public function getRequestNamespace()
+    {
         return $this->requestNamespace;
     }
-    
-    public function setRequestNamespace($requestNamespace) {
+
+    public function setRequestNamespace($requestNamespace)
+    {
         $this->requestNamespace = $requestNamespace;
+
         return $this;
     }
-    
-    public function getWsdl() {
+
+    public function getWsdl()
+    {
         return $this->wsdl;
     }
-    
-    public function setWsdl($wsdl) {
+
+    public function setWsdl($wsdl)
+    {
         $this->wsdl = $wsdl;
+
         return $this;
     }
-    
-    public function getXPath() {
+
+    public function getXPath()
+    {
         return $this->xPath;
     }
-    
-    public function setXPath($xPath) {
+
+    public function setXPath($xPath)
+    {
         $this->xPath = $xPath;
+
         return $this;
     }
-    
-    public function getBinding() {
+
+    public function getBinding()
+    {
         return $this->binding;
     }
-    
-    public function setBinding($binding) {
+
+    public function setBinding($binding)
+    {
         $this->binding = $binding;
+
         return $this;
     }
-    
-    public function getBindingName() {
-        if(!$this->bindingName) {
+
+    public function getBindingName()
+    {
+        if (!$this->bindingName) {
             $binding = $this->getBinding();
-            if($binding) {
+            if ($binding) {
                 $bindingName = $binding->getAttribute('name');
-                if(substr($bindingName, -15, 15) == 'ServicePortType') {
+                if (substr($bindingName, -15, 15) == 'ServicePortType') {
                     $bindingName = substr($bindingName, 0, strlen($bindingName)-15);
                 }
-                
+
                 $this->bindingName = $bindingName;
             }
         }
+
         return $this->bindingName;
     }
-    
-    public function setBindingName($bindingName) {
+
+    public function setBindingName($bindingName)
+    {
         $this->bindingName = $bindingName;
+
         return $this;
     }
-    
-    public function getSoapClient() {
+
+    public function getSoapClient()
+    {
         return $this->soapClient;
     }
-    
-    public function setSoapClient($soapClient) {
+
+    public function setSoapClient($soapClient)
+    {
         $this->soapClient = $soapClient;
+
         return $this;
     }
-    
+
     public function getFunctions()
     {
         return $this->functions;
@@ -170,7 +189,7 @@ class SoapService
     {
         $this->functions[] = $function;
     }
-    
+
     public function getRequestStructures()
     {
         return $this->requestStructures;
@@ -187,21 +206,26 @@ class SoapService
     {
         $this->requestStructures[] = $structureName;
     }
-    
-    public function getResponseStructures() {
+
+    public function getResponseStructures()
+    {
         return $this->responseStructures;
     }
-    
-    public function setResponseStructures($responseStructures) {
+
+    public function setResponseStructures($responseStructures)
+    {
         $this->responseStructures = $responseStructures;
+
         return $this;
     }
-    
-    public function addResponseStructure($responseStructure) {
+
+    public function addResponseStructure($responseStructure)
+    {
         $this->responseStructures[] = $responseStructure;
+
         return $this;
     }
-    
+
     public function getConstructorGenerator()
     {
         if (!$this->constructorGenerator && ($extendedClass = $this->getClassGenerator()->getExtendedClass())) {
@@ -232,7 +256,7 @@ class SoapService
 
         return $this;
     }
-    
+
     public function getClassGenerator()
     {
         if (!$this->classGenerator) {

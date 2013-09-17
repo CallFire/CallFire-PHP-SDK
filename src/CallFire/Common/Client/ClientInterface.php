@@ -4,11 +4,11 @@ namespace CallFire\Common\Client;
 interface ClientInterface
 {
     public static function ns();
-    
+
     public static function request($type);
-    
+
     public static function response($data);
-    
+
     const AMCONFIG_AM_ONLY = 'AM_ONLY';
     const AMCONFIG_AM_AND_LIVE = 'AM_AND_LIVE';
     const AMCONFIG_LIVE_WITH_AMD = 'LIVE_WITH_AMD';

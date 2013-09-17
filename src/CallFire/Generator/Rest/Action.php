@@ -332,7 +332,7 @@ abstract class Action
 
         return $this;
     }
-    
+
     protected function isDocBlockEmpty(CodeGenerator\DocBlockGenerator $docblock)
     {
         if(

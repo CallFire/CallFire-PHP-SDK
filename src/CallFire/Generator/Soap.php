@@ -2,7 +2,6 @@
 namespace CallFire\Generator;
 
 use CallFire\Generator\Soap\SoapService;
-use CallFire\Generator\Soap\SoapFunction;
 use CallFire\Generator\Soap\SoapStructure;
 
 use Zend\Code\Generator as CodeGenerator;
@@ -20,11 +19,11 @@ class Soap
     const RESPONSE_NAMESPACE_ALIAS = "Result";
 
     const STRUCTURE_NAMESPACE_ALIAS = "Structure";
-    
+
     const ABSTRACT_REQUEST_ALIAS = "AbstractRequest";
-    
+
     const ABSTRACT_RESPONSE_ALIAS = "AbstractResponse";
-    
+
     protected static $wsdlNamespaces = array(
         '_' => 'http://schemas.xmlsoap.org/wsdl/',
         'svc' => 'http://api.callfire.com/service/wsdl',
@@ -34,15 +33,15 @@ class Soap
     );
 
     protected $wsdl;
-    
+
     protected $fullWsdl;
-    
+
     protected $wsdlDocument;
-    
+
     protected $wsdlXPath;
 
     protected $soapClient;
-    
+
     protected $services = array();
 
     protected $structures = array();
@@ -56,23 +55,23 @@ class Soap
         if ($wsdl) {
             $this->setWsdl($wsdl);
         }
-        if($fullWsdl) {
+        if ($fullWsdl) {
             $this->setFullWsdl($fullWsdl);
         }
     }
-    
+
     public function generateServices($requestNamespace = null)
     {
         $xpath = $this->getWsdlXPath();
         $soapClient = $this->getSoapClient();
-    
-        foreach($xpath->query('_:portType') as $binding) {
+
+        foreach ($xpath->query('_:portType') as $binding) {
             $service = new SoapService($xpath, $binding, $soapClient);
             $service->setWsdl($this->getWsdl());
             $service->setClassGenerator(clone $this->getClassGenerator());
             $service->setRequestNamespace($requestNamespace);
             $service->generateFunctions($requestNamespace);
-            
+
             $this->addService($service);
         }
     }
@@ -119,39 +118,45 @@ class Soap
 
         return $files;
     }
-    
-    public function getRequestStructures() {
+
+    public function getRequestStructures()
+    {
         $structures = array();
-        
+
         foreach ($this->getServices() as $service) {
             $serviceStructures = $service->getRequestStructures();
             $structures = array_merge($structures, $serviceStructures);
         }
-        
+
         return $structures;
     }
-    
-    public function getResponseStructures() {
+
+    public function getResponseStructures()
+    {
         $structures = array();
-        
+
         foreach ($this->getServices() as $service) {
             $serviceStructures = $service->getResponseStructures();
             $structures = array_merge($structures, $serviceStructures);
         }
-        
+
         return $structures;
     }
-    
-    public static function getWsdlNamespaces() {
+
+    public static function getWsdlNamespaces()
+    {
         return static::$wsdlNamespaces;
     }
-    
-    public static function setWsdlNamespaces($wsdlNamespaces) {
+
+    public static function setWsdlNamespaces($wsdlNamespaces)
+    {
         static::$wsdlNamespaces = $wsdlNamespaces;
+
         return $this;
     }
-    
-    public static function addWsdlNamespace($wsdlNamespace) {
+
+    public static function addWsdlNamespace($wsdlNamespace)
+    {
         static::$wsdlNamespaces[] = $wsdlNamespace;
     }
 
@@ -167,46 +172,57 @@ class Soap
 
         return $this;
     }
-    
-    public function getFullWsdl() {
+
+    public function getFullWsdl()
+    {
         return $this->fullWsdl;
     }
-    
-    public function setFullWsdl($fullWsdl) {
+
+    public function setFullWsdl($fullWsdl)
+    {
         $this->fullWsdl = $fullWsdl;
+
         return $this;
     }
-    
-    public function getWsdlDocument() {
-        if(!$this->wsdlDocument) {
+
+    public function getWsdlDocument()
+    {
+        if (!$this->wsdlDocument) {
             $document = new DOMDocument;
             $document->load($this->getFullWsdl());
-            
+
             $this->wsdlDocument = $document;
         }
+
         return $this->wsdlDocument;
     }
-    
-    public function setWsdlDocument($wsdlDocument) {
+
+    public function setWsdlDocument($wsdlDocument)
+    {
         $this->wsdlDocument = $wsdlDocument;
+
         return $this;
     }
-    
-    public function getWsdlXPath() {
-        if(!$this->wsdlXPath) {
+
+    public function getWsdlXPath()
+    {
+        if (!$this->wsdlXPath) {
             $xpath = new DOMXPath($this->getWsdlDocument());
-            
-            foreach(static::getWsdlNamespaces() as $prefix => $uri) {
+
+            foreach (static::getWsdlNamespaces() as $prefix => $uri) {
                 $xpath->registerNamespace($prefix, $uri);
             }
-            
+
             $this->wsdlXPath = $xpath;
         }
+
         return $this->wsdlXPath;
     }
-    
-    public function setWsdlXPath($wsdlXPath) {
+
+    public function setWsdlXPath($wsdlXPath)
+    {
         $this->wsdlXPath = $wsdlXPath;
+
         return $this;
     }
 
@@ -225,18 +241,23 @@ class Soap
 
         return $this;
     }
-    
-    public function getServices() {
+
+    public function getServices()
+    {
         return $this->services;
     }
-    
-    public function setServices($services) {
+
+    public function setServices($services)
+    {
         $this->services = $services;
+
         return $this;
     }
-    
-    public function addService($service) {
+
+    public function addService($service)
+    {
         $this->services[] = $service;
+
         return $this;
     }
 

@@ -6,6 +6,6 @@ use IteratorAggregate;
 interface ResourceListInterface extends IteratorAggregate
 {
     public function getTotalResults();
-    
+
     public function getResources();
 }

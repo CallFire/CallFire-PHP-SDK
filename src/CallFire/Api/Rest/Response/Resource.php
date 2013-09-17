@@ -3,11 +3,12 @@ namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
 use CallFire\Common\Resource\AbstractResource;
+use CallFire\Common\Response\ResourceInterface;
 
 use DOMDocument;
 use DOMNode;
 
-class Resource extends AbstractResponse
+class Resource extends AbstractResponse implements ResourceInterface
 {
     protected $resource;
 

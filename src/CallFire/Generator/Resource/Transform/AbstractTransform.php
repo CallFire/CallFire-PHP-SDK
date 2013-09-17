@@ -25,9 +25,11 @@ abstract class AbstractTransform
 
     abstract public function transform();
 
-    public function generatePropertyGetter($propertyName)
+    public function generatePropertyGetter($propertyName, $proxyPropertyName = null)
     {
-        $methodName = 'get'.ucfirst($propertyName);
+        $proxyPropertyName = $proxyPropertyName?:$propertyName;
+
+        $methodName = $this->generatePropertyGetterName($proxyPropertyName);
 
         $getterGenerator = clone $this->getPropertyGetterGenerator();
         $getterGenerator->setName($methodName);
@@ -37,42 +39,76 @@ abstract class AbstractTransform
         return $getterGenerator;
     }
 
-    public function generatePropertySetter($propertyName)
+    public function generatePropertySetter($propertyName, $proxyPropertyName = null)
     {
-        $methodName = 'set'.ucfirst($propertyName);
+        $proxyPropertyName = $proxyPropertyName?:$propertyName;
+
+        $methodName = $this->generatePropertySetterName($proxyPropertyName);
 
         $setterGenerator = clone $this->getPropertySetterGenerator();
         $setterGenerator->setName($methodName);
 
         $parameter = new CodeGenerator\ParameterGenerator;
-        $parameter->setName($propertyName);
+        $parameter->setName($proxyPropertyName);
         $setterGenerator->setParameter($parameter);
 
-        $setterGenerator->setBody("\$this->{$propertyName} = \${$propertyName};\nreturn \$this;");
+        $setterGenerator->setBody("\$this->{$propertyName} = \${$proxyPropertyName};\nreturn \$this;");
 
         return $setterGenerator;
     }
 
-    public function generatePropertyAdder($propertyName)
+    public function generatePropertyAdder($propertyName, $withIndex = true, $proxyPropertyName = null)
     {
-        $parameterName = rtrim($propertyName, 's');
+        $proxyPropertyName = $proxyPropertyName?:$propertyName;
 
-        $methodName = 'add'.ucfirst($parameterName);
+        list($parameterName, $methodName) = $this->generatePropertyAdderName($proxyPropertyName);
 
         $setterGenerator = clone $this->getPropertySetterGenerator();
         $setterGenerator->setName($methodName);
 
-        $parameter = new CodeGenerator\ParameterGenerator;
-        $parameter->setName($parameterName);
-        $setterGenerator->setParameter($parameter);
+        if ($withIndex) {
+            $parameter = new CodeGenerator\ParameterGenerator;
+            $parameter->setName($parameterName);
+            $setterGenerator->setParameter($parameter);
+        }
 
         $valueParameter = new CodeGenerator\ParameterGenerator;
         $valueParameter->setName('value');
         $setterGenerator->setParameter($valueParameter);
 
-        $setterGenerator->setBody("\$this->{$propertyName}[\${$parameterName}] = \$value;\nreturn \$this;");
+        if ($withIndex) {
+            $setterGenerator->setBody("\$this->{$propertyName}[\${$parameterName}] = \$value;\nreturn \$this;");
+        } else {
+            $setterGenerator->setBody("\$this->{$propertyName}[] = \$value;\nreturn \$this;");
+        }
 
         return $setterGenerator;
+    }
+
+    public function generatePropertyGetterName($propertyName)
+    {
+        $methodName = 'get'.ucfirst($propertyName);
+
+        return $methodName;
+    }
+
+    public function generatePropertySetterName($propertyName)
+    {
+        $methodName = 'set'.ucfirst($propertyName);
+
+        return $methodName;
+    }
+
+    public function generatePropertyAdderName($propertyName)
+    {
+        $parameterName = rtrim($propertyName, 's');
+
+        $methodName = 'add'.ucfirst($parameterName);
+
+        return array(
+            $parameterName,
+            $methodName
+        );
     }
 
     public function getClassGenerator()

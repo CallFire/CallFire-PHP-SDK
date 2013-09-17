@@ -21,6 +21,11 @@ abstract class BroadcastConfig extends AbstractResource
     protected $fromNumber = null;
 
     /**
+     * @var LocalTimeZoneRestriction
+     */
+    protected $localTimeZoneRestriction = null;
+
+    /**
      * @var RetryConfig
      */
     protected $retryConfig = null;
@@ -57,6 +62,18 @@ abstract class BroadcastConfig extends AbstractResource
     public function setFromNumber($fromNumber)
     {
         $this->fromNumber = $fromNumber;
+
+        return $this;
+    }
+
+    public function getLocalTimeZoneRestriction()
+    {
+        return $this->localTimeZoneRestriction;
+    }
+
+    public function setLocalTimeZoneRestriction($localTimeZoneRestriction)
+    {
+        $this->localTimeZoneRestriction = $localTimeZoneRestriction;
 
         return $this;
     }

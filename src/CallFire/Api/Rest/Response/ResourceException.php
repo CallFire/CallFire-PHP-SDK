@@ -2,11 +2,12 @@
 namespace CallFire\Api\Rest\Response;
 
 use CallFire\Api\Rest\Response as AbstractResponse;
+use CallFire\Common\Response\ResourceExceptionInterface;
 
 use DOMDocument;
 use DOMNode;
 
-class ResourceException extends AbstractResponse
+class ResourceException extends AbstractResponse implements ResourceExceptionInterface
 {
     protected $httpStatus;
 

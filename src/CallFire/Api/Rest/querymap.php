@@ -6,7 +6,8 @@ return array(
         'BroadcastConfig' => array(
             'id' => '@id',
             'Created' => '_:Created',
-            'FromNumber' => '_:FromNumber'
+            'FromNumber' => '_:FromNumber',
+            '#LocalTimeZoneRestriction' => '_:LocalTimeZoneRestriction'
             ),
         'ToNumber' => array(),
         'QuestionResponse' => array(

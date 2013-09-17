@@ -71,12 +71,6 @@ class BroadcastTest extends TestCase
                 $this->assertInstanceOf('CallFire\Common\Resource\IvrBroadcastConfig', $ivrBroadcastConfig);
                 $this->assertNotEmpty($ivrBroadcastConfig->getFromNumber());
                 $this->assertNotEmpty($ivrBroadcastConfig->getDialplanXml());
-
-                if ($retryConfig = $ivrBroadcastConfig->getRetryConfig()) {
-                    $this->assertInstanceOf('CallFire\Common\Resource\RetryConfig', $retryConfig);
-                    $this->assertNotEmpty($retryConfig->getMaxAttempts());
-                    $this->assertNotEmpty($retryConfig->getMinutesBetweenAttempts());
-                }
             }
         }
     }

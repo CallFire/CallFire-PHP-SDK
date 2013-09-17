@@ -1,0 +1,73 @@
+<?php
+namespace CallFire\Common\Client;
+
+interface ClientInterface
+{
+    public static function ns();
+
+    public static function request($type);
+
+    public static function response($data);
+
+    const AMCONFIG_AM_ONLY = 'AM_ONLY';
+    const AMCONFIG_AM_AND_LIVE = 'AM_AND_LIVE';
+    const AMCONFIG_LIVE_WITH_AMD = 'LIVE_WITH_AMD';
+    const AMCONFIG_LIVE_IMMEDIATE = 'LIVE_IMMEDIATE';
+
+    const BROADCAST_VOICE = 'VOICE';
+    const BROADCAST_IVR = 'IVR';
+    const BROADCAST_TEXT = 'TEXT';
+
+    const COMMAND_START = 'START';
+    const COMMAND_STOP = 'STOP';
+    const COMMAND_ARCHIVE = 'ARCHIVE';
+
+    const EVENT_UNDEFINED_EVENT = 'UNDEFINED_EVENT';
+    const EVENT_INBOUND_CALL_FINISHED = 'INBOUND_CALL_FINISHED';
+    const EVENT_INBOUND_TEXT_FINISHED = 'INBOUND_TEXT_FINISHED';
+    const EVENT_OUTBOUND_CALL_FINISHED = 'OUTBOUND_CALL_FINISHED';
+    const EVENT_OUTBOUND_TEXT_FINISHED = 'OUTBOUND_TEXT_FINISHED';
+    const EVENT_CAMPAIGN_STARTED = 'CAMPAIGN_STARTED';
+    const EVENT_CAMPAIGN_STOPPED = 'CAMPAIGN_STOPPED';
+    const EVENT_CAMPAIGN_FINISHED = 'CAMPAIGN_FINISHED';
+
+    const FEATURE_UNSUPPORTED = 'UNSUPPORTED';
+    const FEATURE_PENDING = 'PENDING';
+    const FEATURE_DISABLED = 'DISABLED';
+    const FEATURE_ENABLED = 'ENABLED';
+
+    const FORMAT_XML = 'XML';
+    const FORMAT_JSON = 'JSON';
+    const FORMAT_SOAP = 'SOAP';
+    const FORMAT_EMAIL = 'EMAIL';
+
+    const INBOUND_TRACKING = 'TRACKING';
+    const INBOUND_IVR = 'IVR';
+
+    const RESULT_ANSWER_MACHINE = "AM";
+    const RESULT_BUSY = "BUSY";
+    const RESULT_DO_NOT_CALL = "DNC";
+    const RESULT_TRANSFER = "XFER";
+    const RESULT_TRANSFER_LEG = "XFER_LEG";
+    const RESULT_NO_ANSWER = "NO_ANS";
+    const RESULT_UNDIALED = "UNDIALED";
+    const RESULT_SENT = "SENT";
+    const RESULT_RECEIVED = "RECEIVED";
+    const RESULT_DID_NOT_TRY = "DNT";
+    const RESULT_TOO_BIG = "TOO_BIG";
+    const RESULT_INTERNAL_ERROR = "INTERNAL_ERROR";
+    const RESULT_CARRIER_ERROR = "CARRIER_ERROR";
+    const RESULT_CARRIER_TEMP_ERROR = "CARRIER_TEMP_ERROR";
+
+    const STATE_READY = "READY";
+    const STATE_SELECTED = "SELECTED";
+    const STATE_FINISHED = "FINISHED";
+    const STATE_DO_NOT_CALL = "DNC";
+    const STATE_DUPLICATE = "DUP";
+    const STATE_INVALID = "INVALID";
+    const STATE_TIMEOUT = "TIMEOUT";
+
+    const STRATEGY_SEND_MULTIPLE = 'SEND_MULTIPLE';
+    const STRATEGY_DO_NOT_SEND = 'DO_NOT_SEND';
+    const STRATEGY_TRIM = 'TRIM';
+}

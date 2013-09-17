@@ -6,6 +6,9 @@
         <testsuite name="Rest">
             <directory>tests/Api/Rest</directory>
         </testsuite>
+        <testsuite name="Soap">
+            <directory>tests/Api/Soap</directory>
+        </testsuite>
         <testsuite name="Common">
             <directory>tests/Common</directory>
         </testsuite>

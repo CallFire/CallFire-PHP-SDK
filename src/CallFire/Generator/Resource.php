@@ -77,6 +77,9 @@ class Resource
         if ($extensionNode = $xpath->query('_:complexType/_:complexContent/_:extension[@base]', $element)->item(0)) {
             $isSubclass = true;
             $extendedClass = substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4);
+        } elseif ($isComplexType && $extensionNode = $xpath->query('_:complexContent/_:extension[@base]', $element)->item(0)) {
+            $isSubclass = true;
+            $extendedClass = substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4);
         } elseif (($typeNode = $xpath->query('@type', $element)->item(0)) && $typeNode->textContent !== "base64Binary") {
             $isSubclass = true;
             $extendedClass = substr($typeNode->textContent, 4);

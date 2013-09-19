@@ -8,7 +8,7 @@ class SearchAvailableKeywords extends AbstractRequest
 {
 
     /**
-     * @var data:KeywordList
+     * @var string
      */
     protected $keywords = null;
 

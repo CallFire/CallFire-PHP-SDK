@@ -13,7 +13,7 @@ abstract class SendRequest extends AbstractRequest
     protected $requestId = null;
 
     /**
-     * @var data:BroadcastType
+     * @var string
      */
     protected $type = null;
 
@@ -23,7 +23,7 @@ abstract class SendRequest extends AbstractRequest
     protected $broadcastName = null;
 
     /**
-     * @var data:ToNumber
+     * @var string[]
      */
     protected $toNumber = null;
 

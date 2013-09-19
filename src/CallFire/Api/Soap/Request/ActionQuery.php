@@ -31,12 +31,12 @@ class ActionQuery extends Query
     protected $intervalEnd = null;
 
     /**
-     * @var data:PhoneNumber
+     * @var string
      */
     protected $fromNumber = null;
 
     /**
-     * @var data:PhoneNumber
+     * @var string
      */
     protected $toNumber = null;
 

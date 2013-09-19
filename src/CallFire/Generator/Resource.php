@@ -109,7 +109,9 @@ class Resource
         // Second-class attributes of the resource (e.g. name, description)
         $sequenceElementsQuery = $isComplexType?'_:sequence/_:element[@name][@type]':'_:complexType/_:sequence/_:element[@name][@type]';
         if ($isSubclass) {
-            $sequenceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
+            $sequenceElementsQuery = $isComplexType?
+                '_:complexContent/_:extension/_:sequence/_:element[@name][@type]'
+                :'_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
         }
 
         $sequenceElements = $xpath->query($sequenceElementsQuery, $element);

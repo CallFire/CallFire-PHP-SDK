@@ -110,7 +110,7 @@ class Resource
         $sequenceElementsQuery = $isComplexType?'_:sequence/_:element[@name][@type]':'_:complexType/_:sequence/_:element[@name][@type]';
         if ($isSubclass) {
             $sequenceElementsQuery = $isComplexType?
-                '_:complexContent/_:extension/_:sequence/_:element[@name][@type]'
+                '_:complexContent/_:extension/_:sequence/_:element[@ref or (@name and @type)]'
                 :'_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
         }
 
@@ -200,9 +200,18 @@ class Resource
     protected function handleSecondClassAttributes(CodeGenerator\ClassGenerator $classGenerator, array &$map, DOMNodeList $sequenceElements, DOMNode $element, DOMXPath $xpath)
     {
         foreach ($sequenceElements as $sequenceElement) {
-            $sequenceElementName = $xpath->query('@name', $sequenceElement)->item(0)->textContent;
-            $sequenceElementTypeNode = $xpath->query('@type', $sequenceElement)->item(0);
-            $sequenceElementType = $sequenceElementTypeNode?$sequenceElementTypeNode->textContent:'';
+            if($refNode = $xpath->query('@ref', $sequenceElement)->item(0)) {
+                if(substr($refNode->textContent, 0, 4) == 'tns:') {
+                    $sequenceElementName = substr($refNode->textContent, 4);
+                } elseif(substr($refNode->textContent, 0, 5) == 'data:') {
+                    $sequenceElementName = substr($refNode->textContent, 5);
+                }
+                $sequenceElementType = $sequenceElementName;
+            } else {
+                $sequenceElementName = $xpath->query('@name', $sequenceElement)->item(0)->textContent;
+                $sequenceElementTypeNode = $xpath->query('@type', $sequenceElement)->item(0);
+                $sequenceElementType = $sequenceElementTypeNode?$sequenceElementTypeNode->textContent:'';
+            }
             
             $maxOccursNode = $xpath->query('@maxOccurs', $sequenceElement)->item(0);
             $maxOccurs = $maxOccursNode?$maxOccursNode->textContent:null;

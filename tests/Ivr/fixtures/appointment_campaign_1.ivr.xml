@@ -1,0 +1,44 @@
+<!--(c) copyright 2010 CallFire.com -->
+<!--Author: Bill Hughes-->
+<!--Revisions: Jeff Spisak-->
+<!--For information support@callfire.com-->
+<!--This sample script is provided as is-->
+<!--with no warranties of applicability expressed or implied-->
+<dialplan name="SimpleApptIVR1">
+  <amd>
+    <live>
+      <play type="tts" voice="female2">
+        This is A B C Taxes calling to remind ${contact.b} 
+        of a tax preparation appointment scheduled for
+        ${contact.c} at ${contact.d}. 
+        The appointment is located at ${call.field.e},
+        ${contact.f} in ${contact.g}. 
+        If you need to cancel or reschedule this appointment, 
+        please press 1 now, or call back at 2 1 3, 
+        5 5 5, 1 2 1 2 for assistance.
+      </play>
+      <!--NOTE: The above TTS statement requires the following -->
+      <!--data columns: B=First and Last Name; -->
+      <!--C=Date such as March First -->
+      <!--(could also be Day of Week, like Monday); -->
+      <!--D=Time, as in 2 P M or 3 45 P M; E=Address Number; -->
+      <!--F=Address Street; and G=City -->
+      <transfer callerid="${call.callerid}">
+        2135551212
+      </transfer>
+      <hangup />
+    </live>
+    <machine>
+      <play type="tts" voice="female2">
+      This is A B C Taxes calling to remind ${contact.b} 
+      of a tax preparation appointment scheduled for
+      ${contact.g} at ${contact.h}. 
+      The appointment is located at ${call.field.d}, 
+      ${contact.e} in ${contact.f}.                     
+      If you need to cancel or reschedule this appointment, 
+      please call back at 2 1 3, 5 5 5, 1 2 1 2 for assistance.
+      </play>
+      <hangup />
+    </machine>
+  </amd>
+</dialplan>

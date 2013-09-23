@@ -6,7 +6,7 @@ class QueryAutoReplies extends Query
 {
 
     /**
-     * @var data:PhoneNumber
+     * @var string
      */
     protected $number = null;
 

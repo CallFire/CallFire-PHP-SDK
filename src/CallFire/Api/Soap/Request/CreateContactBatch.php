@@ -27,6 +27,16 @@ class CreateContactBatch extends AbstractRequest
      */
     protected $scrubBroadcastDuplicates = null;
 
+    /**
+     * @var string[]
+     */
+    protected $toNumber = null;
+
+    /**
+     * @var long
+     */
+    protected $contactListId = null;
+
     public function getRequestId()
     {
         return $this->requestId;
@@ -71,6 +81,30 @@ class CreateContactBatch extends AbstractRequest
     public function setScrubBroadcastDuplicates($scrubBroadcastDuplicates)
     {
         $this->scrubBroadcastDuplicates = $scrubBroadcastDuplicates;
+
+        return $this;
+    }
+
+    public function getToNumber()
+    {
+        return $this->toNumber;
+    }
+
+    public function setToNumber($toNumber)
+    {
+        $this->toNumber = $toNumber;
+
+        return $this;
+    }
+
+    public function getContactListId()
+    {
+        return $this->contactListId;
+    }
+
+    public function setContactListId($contactListId)
+    {
+        $this->contactListId = $contactListId;
 
         return $this;
     }

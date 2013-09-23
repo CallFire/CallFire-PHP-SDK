@@ -17,6 +17,10 @@ class BroadcastTest extends TestCase
 
         $broadcasts = $client::response($response);
         $this->assertInstanceOf('CallFire\Api\Soap\Response\ResourceList', $broadcasts);
+        
+        if(!$broadcasts->getTotalResults()) {
+            $this->markTestIncomplete('No resources to validate');
+        }
 
         $this->validateBroadcasts($broadcasts);
     }
@@ -24,11 +28,7 @@ class BroadcastTest extends TestCase
     public function testGetBroadcast()
     {
         $client = $this->getBroadcastClient();
-
-        $request = new Request\QueryBroadcasts;
-        $response = $client->QueryBroadcasts($request);
-        $broadcasts = $client::response($response)->getResources();
-        $knownBroadcast = reset($broadcasts);
+        $knownBroadcast = $this->getKnownBroadcast();
 
         if ($knownBroadcast instanceof Resource\Broadcast) {
             $request = new Request\GetBroadcast;
@@ -48,13 +48,6 @@ class BroadcastTest extends TestCase
         } else {
             $this->markTestSkipped('No broadcasts available to test with.');
         }
-    }
-
-    public function getBroadcastClient()
-    {
-        $client = Client::Soap($this->getUsername(), $this->getPassword(), 'Broadcast');
-
-        return $client;
     }
 
     protected function validateBroadcasts($broadcasts)

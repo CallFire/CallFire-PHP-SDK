@@ -8,12 +8,12 @@ class CreateNumberOrder extends AbstractRequest
 {
 
     /**
-     * @var data:PhoneNumberList
+     * @var string
      */
     protected $numbers = null;
 
     /**
-     * @var data:KeywordList
+     * @var string
      */
     protected $keywords = null;
 

@@ -12,6 +12,16 @@ class RemoveContactsFromList extends AbstractRequest
      */
     protected $contactListId = null;
 
+    /**
+     * @var string
+     */
+    protected $contactId = null;
+
+    /**
+     * @var string
+     */
+    protected $numbers = null;
+
     public function getContactListId()
     {
         return $this->contactListId;
@@ -20,6 +30,30 @@ class RemoveContactsFromList extends AbstractRequest
     public function setContactListId($contactListId)
     {
         $this->contactListId = $contactListId;
+
+        return $this;
+    }
+
+    public function getContactId()
+    {
+        return $this->contactId;
+    }
+
+    public function setContactId($contactId)
+    {
+        $this->contactId = $contactId;
+
+        return $this;
+    }
+
+    public function getNumbers()
+    {
+        return $this->numbers;
+    }
+
+    public function setNumbers($numbers)
+    {
+        $this->numbers = $numbers;
 
         return $this;
     }

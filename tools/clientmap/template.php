@@ -15,7 +15,7 @@ foreach($restClients as $clientName => $client):
             continue;
         $methodFileName = substr($method->getFileName(), $trimLength);
 ?>
-    * [<?=$method->getName()?>](<?=$methodFileName?>#<?=$method->getStartLine()?>)
+    * [<?=$method->getName()?>](<?=$methodFileName?>#l<?=$method->getStartLine()?>)
 <?php endforeach; ?>
 <?php
 endforeach;

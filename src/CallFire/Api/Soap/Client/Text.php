@@ -15,6 +15,7 @@ class Text extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\SendText   $sendText
      * @return Result\BroadcastId
      */
@@ -26,6 +27,7 @@ class Text extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryTexts     $queryTexts
      * @return Result\TextQueryResult
      */
@@ -37,6 +39,7 @@ class Text extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetText $getText
      * @return Result\Text
      */
@@ -48,6 +51,7 @@ class Text extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\CreateAutoReply $createAutoReply
      * @return Result\AutoReplyId
      */
@@ -59,6 +63,7 @@ class Text extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryAutoReplies    $queryAutoReplies
      * @return Result\AutoReplyQueryResult
      */
@@ -70,6 +75,7 @@ class Text extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetAutoReply $getAutoReply
      * @return Result\AutoReply
      */
@@ -81,6 +87,7 @@ class Text extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\DeleteAutoReply $deleteAutoReply
      * @return Result\Empty
      */

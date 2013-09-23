@@ -15,6 +15,7 @@ class Label extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\DeleteLabel   $deleteLabel
      * @return Result\DeleteResponse
      */
@@ -26,6 +27,7 @@ class Label extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryLabels $queryLabels
      * @return Result\QueryResult
      */
@@ -37,6 +39,7 @@ class Label extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\LabelBroadcast $labelBroadcast
      * @return Result\Result
      */
@@ -48,6 +51,7 @@ class Label extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\UnlabelBroadcast $unlabelBroadcast
      * @return Result\Result
      */
@@ -59,6 +63,7 @@ class Label extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\LabelNumber $labelNumber
      * @return Result\Result
      */
@@ -70,6 +75,7 @@ class Label extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\UnlabelNumber $unlabelNumber
      * @return Result\Result
      */

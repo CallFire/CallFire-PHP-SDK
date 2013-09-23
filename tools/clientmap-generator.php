@@ -5,7 +5,7 @@ use ReflectionClass;
 
 include __DIR__.'/../vendor/autoload.php';
 
-$mapPath = __DIR__.'/../docs/en/06.client-map.md';
+$mapPath = __DIR__.'/../client-map.md';
 
 $restGlob = __DIR__.'/../src/CallFire/Api/Rest/Client/*.php';
 $soapGlob = __DIR__.'/../src/CallFire/Api/Soap/Client/*.php';

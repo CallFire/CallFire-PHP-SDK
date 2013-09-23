@@ -8,7 +8,7 @@ class GetNumber extends AbstractRequest
 {
 
     /**
-     * @var data:PhoneNumber
+     * @var string
      */
     protected $number = null;
 

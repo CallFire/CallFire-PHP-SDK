@@ -12,6 +12,11 @@ class GetRecordingData extends AbstractRequest
      */
     protected $format = null;
 
+    /**
+     * @var long
+     */
+    protected $recordingId = null;
+
     public function getFormat()
     {
         return $this->format;
@@ -20,6 +25,18 @@ class GetRecordingData extends AbstractRequest
     public function setFormat($format)
     {
         $this->format = $format;
+
+        return $this;
+    }
+
+    public function getRecordingId()
+    {
+        return $this->recordingId;
+    }
+
+    public function setRecordingId($recordingId)
+    {
+        $this->recordingId = $recordingId;
 
         return $this;
     }

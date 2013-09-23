@@ -2,9 +2,24 @@
 
 namespace CallFire\Api\Soap\Request;
 
-use CallFire\Api\Soap\AbstractRequest as AbstractRequest;
-
-class RegionQuery extends AbstractRequest
+class RegionQuery extends Query
 {
+
+    /**
+     * @var Region
+     */
+    protected $region = null;
+
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    public function setRegion($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
 
 }

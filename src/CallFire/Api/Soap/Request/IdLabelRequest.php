@@ -2,9 +2,24 @@
 
 namespace CallFire\Api\Soap\Request;
 
-use CallFire\Api\Soap\AbstractRequest as AbstractRequest;
-
-class IdLabelRequest extends AbstractRequest
+class IdLabelRequest extends IdRequest
 {
+
+    /**
+     * @var string
+     */
+    protected $labelName = null;
+
+    public function getLabelName()
+    {
+        return $this->labelName;
+    }
+
+    public function setLabelName($labelName)
+    {
+        $this->labelName = $labelName;
+
+        return $this;
+    }
 
 }

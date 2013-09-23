@@ -77,6 +77,9 @@ class Resource
         if ($extensionNode = $xpath->query('_:complexType/_:complexContent/_:extension[@base]', $element)->item(0)) {
             $isSubclass = true;
             $extendedClass = substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4);
+        } elseif ($isComplexType && $extensionNode = $xpath->query('_:complexContent/_:extension[@base]', $element)->item(0)) {
+            $isSubclass = true;
+            $extendedClass = substr($xpath->query('@base', $extensionNode)->item(0)->textContent, 4);
         } elseif (($typeNode = $xpath->query('@type', $element)->item(0)) && $typeNode->textContent !== "base64Binary") {
             $isSubclass = true;
             $extendedClass = substr($typeNode->textContent, 4);
@@ -106,17 +109,22 @@ class Resource
         // Second-class attributes of the resource (e.g. name, description)
         $sequenceElementsQuery = $isComplexType?'_:sequence/_:element[@name][@type]':'_:complexType/_:sequence/_:element[@name][@type]';
         if ($isSubclass) {
-            $sequenceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
+            $sequenceElementsQuery = $isComplexType?
+                '_:complexContent/_:extension/_:sequence/_:element[@ref or (@name and @type)]'
+                :'_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][@type]';
         }
 
         $sequenceElements = $xpath->query($sequenceElementsQuery, $element);
         $this->handleSecondClassAttributes($classGenerator, $map, $sequenceElements, $element, $xpath);
-
+        
+        // Second-class choice attributes of the resource (e.g. ToNumber, ContactListId)
+        $sequenceChoiceElementsQuery = '_:complexType/_:sequence/_:choice/_:element[@name][@type]';
         if ($isSubclass) {
             $sequenceChoiceElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:choice/_:element[@name][@type]';
-            $sequenceChoiceElements = $xpath->query($sequenceChoiceElementsQuery, $element);
-            $this->handleSecondClassAttributes($classGenerator, $map, $sequenceChoiceElements, $element, $xpath);
         }
+        
+        $sequenceChoiceElements = $xpath->query($sequenceChoiceElementsQuery, $element);
+        $this->handleSecondClassAttributes($classGenerator, $map, $sequenceChoiceElements, $element, $xpath);
 
         // Second-class object attributes of the resource (e.g. IvrBroadcastConfig for Broadcast)
         $choicesQuery = '_:complexType/_:sequence/_:choice/_:element[@ref]';
@@ -192,12 +200,31 @@ class Resource
     protected function handleSecondClassAttributes(CodeGenerator\ClassGenerator $classGenerator, array &$map, DOMNodeList $sequenceElements, DOMNode $element, DOMXPath $xpath)
     {
         foreach ($sequenceElements as $sequenceElement) {
-            $sequenceElementName = $xpath->query('@name', $sequenceElement)->item(0)->textContent;
-            $sequenceElementTypeNode = $xpath->query('@type', $sequenceElement)->item(0);
-            $sequenceElementType = $sequenceElementTypeNode?$sequenceElementTypeNode->textContent:'';
+            if($refNode = $xpath->query('@ref', $sequenceElement)->item(0)) {
+                if(substr($refNode->textContent, 0, 4) == 'tns:') {
+                    $sequenceElementName = substr($refNode->textContent, 4);
+                } elseif(substr($refNode->textContent, 0, 5) == 'data:') {
+                    $sequenceElementName = substr($refNode->textContent, 5);
+                }
+                $sequenceElementType = $sequenceElementName;
+            } else {
+                $sequenceElementName = $xpath->query('@name', $sequenceElement)->item(0)->textContent;
+                $sequenceElementTypeNode = $xpath->query('@type', $sequenceElement)->item(0);
+                $sequenceElementType = $sequenceElementTypeNode?$sequenceElementTypeNode->textContent:'';
+            }
+            
+            $maxOccursNode = $xpath->query('@maxOccurs', $sequenceElement)->item(0);
+            $maxOccurs = $maxOccursNode?$maxOccursNode->textContent:null;
+            $unbounded = ($maxOccurs == 'unbounded');
 
             if (substr($sequenceElementType, 0, 4) == 'tns:') {
                 $sequenceElementType = 'string';
+            } elseif(substr($sequenceElementType, 0, 5) == 'data:') {
+                $sequenceElementType = 'string';
+            }
+            
+            if($unbounded) {
+                $sequenceElementType .= '[]';
             }
 
             $propertyName = lcfirst($sequenceElementName);

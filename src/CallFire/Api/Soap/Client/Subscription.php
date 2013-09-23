@@ -15,6 +15,7 @@ class Subscription extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\CreateSubscription $createSubscription
      * @return Result\SubscriptionId
      */
@@ -26,6 +27,7 @@ class Subscription extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QuerySubscriptions     $querySubscriptions
      * @return Result\SubscriptionQueryResult
      */
@@ -37,6 +39,7 @@ class Subscription extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetSubscription $getSubscription
      * @return Result\Response
      */
@@ -48,6 +51,7 @@ class Subscription extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\UpdateSubscription        $updateSubscription
      * @return Result\UpdateSubscriptionResponse
      */
@@ -59,6 +63,7 @@ class Subscription extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\DeleteSubscription        $deleteSubscription
      * @return Result\DeleteSubscriptionResponse
      */

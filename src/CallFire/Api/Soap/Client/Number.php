@@ -15,6 +15,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryRegions $queryRegions
      * @return Result\Response
      */
@@ -26,6 +27,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryNumbers     $queryNumbers
      * @return Result\NumberQueryResult
      */
@@ -37,6 +39,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetNumber $getNumber
      * @return Result\Number
      */
@@ -48,6 +51,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\ConfigureNumber        $configureNumber
      * @return Result\ConfigureNumberResponse
      */
@@ -59,6 +63,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\SearchAvailableNumbers $searchAvailableNumbers
      * @return Result\AvailableNumbers
      */
@@ -70,6 +75,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryKeywords     $queryKeywords
      * @return Result\KeywordQueryResult
      */
@@ -81,6 +87,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\SearchAvailableKeywords $searchAvailableKeywords
      * @return Result\AvailableKeywordList
      */
@@ -92,6 +99,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\CreateNumberOrder $createNumberOrder
      * @return Result\NumberOrderId
      */
@@ -103,6 +111,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetNumberOrder $getNumberOrder
      * @return Result\NumberOrder
      */
@@ -114,6 +123,7 @@ class Number extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\Release        $release
      * @return Result\ReleaseResponse
      */

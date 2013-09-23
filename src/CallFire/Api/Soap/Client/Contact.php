@@ -15,6 +15,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryContacts     $queryContacts
      * @return Result\ContactQueryResult
      */
@@ -26,6 +27,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\UpdateContacts        $updateContacts
      * @return Result\UpdateContactsResponse
      */
@@ -37,6 +39,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\RemoveContacts        $removeContacts
      * @return Result\RemoveContactsResponse
      */
@@ -48,6 +51,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetContact $getContact
      * @return Result\Contact
      */
@@ -59,6 +63,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetContactHistory $getContactHistory
      * @return Result\ContactHistory
      */
@@ -70,6 +75,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\CreateContactList $createContactList
      * @return Result\ContactListId
      */
@@ -81,6 +87,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryContactLists     $queryContactLists
      * @return Result\ContactListQueryResult
      */
@@ -92,6 +99,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\DeleteContactList        $deleteContactList
      * @return Result\DeleteContactListResponse
      */
@@ -103,6 +111,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\AddContactsToList        $addContactsToList
      * @return Result\AddContactsToListResponse
      */
@@ -114,6 +123,7 @@ class Contact extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\RemoveContactsFromList        $removeContactsFromList
      * @return Result\RemoveContactsFromListResponse
      */

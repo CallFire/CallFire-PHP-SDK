@@ -15,6 +15,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\CreateBroadcast $createBroadcast
      * @return Result\BroadcastId
      */
@@ -26,6 +27,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryBroadcasts     $queryBroadcasts
      * @return Result\BroadcastQueryResult
      */
@@ -37,6 +39,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetBroadcast $getBroadcast
      * @return Result\Broadcast
      */
@@ -48,6 +51,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\UpdateBroadcast        $updateBroadcast
      * @return Result\UpdateBroadcastResponse
      */
@@ -59,6 +63,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetBroadcastStats $getBroadcastStats
      * @return Result\BroadcastStats
      */
@@ -70,6 +75,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\ControlBroadcast        $controlBroadcast
      * @return Result\ControlBroadcastResponse
      */
@@ -81,6 +87,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\CreateContactBatch $createContactBatch
      * @return Result\ContactBatchId
      */
@@ -92,6 +99,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryContactBatches $queryContactBatches
      * @return Result\ContactBatches
      */
@@ -103,6 +111,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetContactBatch     $getContactBatch
      * @return Result\ContactBatchResponse
      */
@@ -114,6 +123,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\ControlContactBatch        $controlContactBatch
      * @return Result\ControlContactBatchResponse
      */
@@ -125,6 +135,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\CreateBroadcastSchedule $createBroadcastSchedule
      * @return Result\BroadcastScheduleId
      */
@@ -136,6 +147,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryBroadcastSchedule $queryBroadcastSchedules
      * @return Result\BroadcastSchedules
      */
@@ -147,6 +159,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetBroadcastSchedule     $getBroadcastSchedule
      * @return Result\BroadcastScheduleResponse
      */
@@ -158,6 +171,7 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\DeleteBroadcastSchedule       $deleteBroadcastSchedule
      * @return Result\DeleteBroadcastServiceResponse
      */

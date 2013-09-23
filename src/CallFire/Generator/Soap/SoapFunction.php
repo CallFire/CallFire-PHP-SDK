@@ -247,6 +247,10 @@ class SoapFunction
                 $returnType = Soap::RESPONSE_NAMESPACE_ALIAS.'\\'.$returnType;
             }
         }
+        
+        $apiTag = new CodeGenerator\DocBlock\Tag;
+        $apiTag->setName('api');
+        $docblock->setTag($apiTag);
 
         $parameterTag = new CodeGenerator\DocBlock\Tag\ParamTag;
         $parameterTag->setDataType($requestType);

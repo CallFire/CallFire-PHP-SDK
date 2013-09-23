@@ -15,6 +15,7 @@ class Call extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\SendCall   $sendCall
      * @return Result\BroadcastId
      */
@@ -26,6 +27,7 @@ class Call extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QueryCalls     $queryCalls
      * @return Result\CallQueryResult
      */
@@ -37,6 +39,7 @@ class Call extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetCall $getCall
      * @return Result\Call
      */
@@ -48,6 +51,7 @@ class Call extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\CreateSound $createSound
      * @return Result\SoundMetaId
      */
@@ -59,6 +63,7 @@ class Call extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\QuerySoundMeta      $querySoundMeta
      * @return Result\SoundMetaQueryResult
      */
@@ -70,6 +75,7 @@ class Call extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetSoundMeta $getSoundMeta
      * @return Result\SoundMeta
      */
@@ -81,6 +87,7 @@ class Call extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetSoundData $getSoundData
      * @return Result\SoundData
      */
@@ -92,6 +99,7 @@ class Call extends AbstractClient
     }
 
     /**
+     * @api
      * @param  Request\GetRecordingData $getRecordingData
      * @return Result\RecordingData
      */

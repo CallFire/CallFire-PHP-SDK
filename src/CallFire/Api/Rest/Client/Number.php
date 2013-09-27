@@ -57,7 +57,7 @@ class Number extends AbstractClient
      */
     public function GetNumber(Request\GetNumber $GetNumber = null)
     {
-        $uri = $this->getUri('/number/%s', array());
+        $uri = $this->getUri('/number/%s', array($GetNumber->getNumber()));
 
         return $this->get($uri, $GetNumber);
     }

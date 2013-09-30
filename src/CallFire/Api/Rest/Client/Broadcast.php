@@ -128,11 +128,12 @@ class Broadcast extends AbstractClient
      * or delete the individual Batches.
      *
      * @api
+     * @param int                         $Id                  Unique ID of resource
      * @param Request\QueryContactBatches $QueryContactBatches = null
      */
-    public function QueryContactBatches(Request\QueryContactBatches $QueryContactBatches = null)
+    public function QueryContactBatches($Id, Request\QueryContactBatches $QueryContactBatches = null)
     {
-        $uri = $this->getUri('/broadcast/%s/batch', array());
+        $uri = $this->getUri('/broadcast/%s/batch', array($Id));
 
         return $this->get($uri, $QueryContactBatches);
     }

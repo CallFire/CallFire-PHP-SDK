@@ -46,11 +46,12 @@ class Label extends AbstractClient
      *
      *
      * @api
+     * @param int                    $Id             Unique ID of resource
      * @param Request\LabelBroadcast $LabelBroadcast = null
      */
-    public function LabelBroadcast(Request\LabelBroadcast $LabelBroadcast = null)
+    public function LabelBroadcast($Id, Request\LabelBroadcast $LabelBroadcast = null)
     {
-        $uri = $this->getUri('/label/broadcast/%s', array());
+        $uri = $this->getUri('/label/broadcast/%s', array($Id));
 
         return $this->post($uri, $LabelBroadcast);
     }
@@ -77,11 +78,12 @@ class Label extends AbstractClient
      *
      *
      * @api
+     * @param string              $Number      11 digit telephone number
      * @param Request\LabelNumber $LabelNumber = null
      */
-    public function LabelNumber(Request\LabelNumber $LabelNumber = null)
+    public function LabelNumber($Number, Request\LabelNumber $LabelNumber = null)
     {
-        $uri = $this->getUri('/label/number/%s', array());
+        $uri = $this->getUri('/label/number/%s', array($Number));
 
         return $this->post($uri, $LabelNumber);
     }
@@ -92,11 +94,12 @@ class Label extends AbstractClient
      *
      *
      * @api
+     * @param string                $Number        11 digit telephone number
      * @param Request\UnlabelNumber $UnlabelNumber = null
      */
-    public function UnlabelNumber(Request\UnlabelNumber $UnlabelNumber = null)
+    public function UnlabelNumber($Number, Request\UnlabelNumber $UnlabelNumber = null)
     {
-        $uri = $this->getUri('/label/number/%s', array());
+        $uri = $this->getUri('/label/number/%s', array($Number));
 
         return $this->delete($uri, $UnlabelNumber);
     }

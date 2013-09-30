@@ -53,11 +53,12 @@ class Number extends AbstractClient
      * configuration, etc...
      *
      * @api
+     * @param string               $Number    11 digit telephone number
      * @param Request\GetNumber $GetNumber = null
      */
-    public function GetNumber(Request\GetNumber $GetNumber = null)
+    public function GetNumber($Number, Request\GetNumber $GetNumber = null)
     {
-        $uri = $this->getUri('/number/%s', array());
+        $uri = $this->getUri('/number/%s', array($Number));
 
         return $this->get($uri, $GetNumber);
     }
@@ -69,11 +70,12 @@ class Number extends AbstractClient
      * using 11 diget E.164 format to select number. No response is returned.
      *
      * @api
+     * @param string                  $Number          11 digit telephone number
      * @param Request\ConfigureNumber $ConfigureNumber = null
      */
-    public function ConfigureNumber(Request\ConfigureNumber $ConfigureNumber = null)
+    public function ConfigureNumber($Number, Request\ConfigureNumber $ConfigureNumber = null)
     {
-        $uri = $this->getUri('/number/%s', array());
+        $uri = $this->getUri('/number/%s', array($Number));
 
         return $this->put($uri, $ConfigureNumber);
     }

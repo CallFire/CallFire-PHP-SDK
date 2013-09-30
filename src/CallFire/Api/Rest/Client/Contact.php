@@ -90,11 +90,12 @@ class Contact extends AbstractClient
      * List all calls and texts associated with a contact.
      *
      * @api
+     * @param int                       $ContactId         Contact to get history
      * @param Request\GetContactHistory $GetContactHistory = null
      */
-    public function GetContactHistory(Request\GetContactHistory $GetContactHistory = null)
+    public function GetContactHistory($ContactId, Request\GetContactHistory $GetContactHistory = null)
     {
-        $uri = $this->getUri('/contact/%s/history', array());
+        $uri = $this->getUri('/contact/%s/history', array($ContactId));
 
         return $this->get($uri, $GetContactHistory);
     }
@@ -164,11 +165,12 @@ class Contact extends AbstractClient
      * contact lists, contactId lists, or csv files.
      *
      * @api
+     * @param int                       $ContactListId     Unique ID of ContactList
      * @param Request\AddContactsToList $AddContactsToList = null
      */
-    public function AddContactsToList(Request\AddContactsToList $AddContactsToList = null)
+    public function AddContactsToList($ContactListId, Request\AddContactsToList $AddContactsToList = null)
     {
-        $uri = $this->getUri('/contact/list/%s/add', array());
+        $uri = $this->getUri('/contact/list/%s/add', array($ContactListId));
 
         return $this->post($uri, $AddContactsToList);
     }
@@ -179,11 +181,12 @@ class Contact extends AbstractClient
      *
      *
      * @api
+     * @param int                            $ContactListId          Unique ID of ContactList
      * @param Request\RemoveContactsFromList $RemoveContactsFromList = null
      */
-    public function RemoveContactsFromList(Request\RemoveContactsFromList $RemoveContactsFromList = null)
+    public function RemoveContactsFromList($ContactListId, Request\RemoveContactsFromList $RemoveContactsFromList = null)
     {
-        $uri = $this->getUri('/contact/list/%s/remove', array());
+        $uri = $this->getUri('/contact/list/%s/remove', array($ContactListId));
 
         return $this->post($uri, $RemoveContactsFromList);
     }

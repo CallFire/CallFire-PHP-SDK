@@ -14,6 +14,7 @@ CallFire PHP SDK
         * [IVR Broadcasts](/docs/en/broadcasts/01.ivr.md)
         * [Voice Broadcasts](/docs/en/broadcasts/02.voice.md)
         * [Text Broadcasts](/docs/en/broadcasts/03.text.md)
+        * [Broadcast CDR](/docs/en/broadcasts/04.cdr.md)
     * [Subscriptions (Postbacks)](/docs/en/02.subscriptions.md)
     * [Texts](/docs/en/03.texts.md)
     * [Calls](/docs/en/04.calls.md)

@@ -31,21 +31,16 @@ class Contact extends AbstractClient
     /**
      * Updates existing contacts
      *
-     * REST service parameters: Accepts string of the form-encoded key-value contact
-     * pairs. Each contact's value contains URL-encoded (using UTF-8 encoding)
-     * attribute name and value separated by collon. Each attribute pair separated by
-     * semicolon. Format:
-     * contact=attributeName:attributeValue[;attributeName:attributeValue;...][&amp;contact=attributeName:attributeValue[;attributeName:attributeValue;...]&amp;...]
-     * Example:
-     * contact=id:1;firstName:John;customAttribute:value&amp;contact=id:2;secondName:Doe
+     *
      *
      * @api
+     * @param Request\UpdateContacts $UpdateContacts = null
      */
-    public function UpdateContacts()
+    public function UpdateContacts(Request\UpdateContacts $UpdateContacts = null)
     {
         $uri = $this->getUri('/contact', array());
 
-        return $this->put($uri);
+        return $this->put($uri, $UpdateContacts);
     }
 
     /**
@@ -91,9 +86,9 @@ class Contact extends AbstractClient
      *
      * @api
      * @param int                       $ContactId         Contact to get history
-     * @param Request\GetContactHistory $GetContactHistory = null
+     * @param Request\GetContactHistory $GetContactHistory
      */
-    public function GetContactHistory($ContactId, Request\GetContactHistory $GetContactHistory = null)
+    public function GetContactHistory($ContactId, Request\GetContactHistory $GetContactHistory)
     {
         $uri = $this->getUri('/contact/%s/history', array($ContactId));
 
@@ -166,13 +161,29 @@ class Contact extends AbstractClient
      *
      * @api
      * @param int                       $ContactListId     Unique ID of ContactList
-     * @param Request\AddContactsToList $AddContactsToList = null
+     * @param Request\AddContactsToList $AddContactsToList
      */
-    public function AddContactsToList($ContactListId, Request\AddContactsToList $AddContactsToList = null)
+    public function AddContactsToList($ContactListId, Request\AddContactsToList $AddContactsToList)
     {
         $uri = $this->getUri('/contact/list/%s/add', array($ContactListId));
 
         return $this->post($uri, $AddContactsToList);
+    }
+
+    /**
+     * Gets the contact list by ID
+     *
+     * Return individual contact list by ID. See QueryContactLists to return a list of
+     * contact lists and determine individual contactListIds.
+     *
+     * @api
+     * @param int $Id Unique ID of resource
+     */
+    public function GetContactList($Id)
+    {
+        $uri = $this->getUri('/contact/list/%s', array($Id));
+
+        return $this->get($uri);
     }
 
     /**
@@ -182,9 +193,9 @@ class Contact extends AbstractClient
      *
      * @api
      * @param int                            $ContactListId          Unique ID of ContactList
-     * @param Request\RemoveContactsFromList $RemoveContactsFromList = null
+     * @param Request\RemoveContactsFromList $RemoveContactsFromList
      */
-    public function RemoveContactsFromList($ContactListId, Request\RemoveContactsFromList $RemoveContactsFromList = null)
+    public function RemoveContactsFromList($ContactListId, Request\RemoveContactsFromList $RemoveContactsFromList)
     {
         $uri = $this->getUri('/contact/list/%s/remove', array($ContactListId));
 

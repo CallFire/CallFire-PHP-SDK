@@ -73,12 +73,11 @@ class Subscription extends AbstractClient
      * returns no response.
      *
      * @api
-     * @param int                        $Id
-     * @param Request\UpdateSubscription $UpdateSubscription
+     * @param Request\UpdateSubscription $UpdateSubscription = null
      */
-    public function UpdateSubscription($Id, Request\UpdateSubscription $UpdateSubscription)
+    public function UpdateSubscription(Request\UpdateSubscription $UpdateSubscription = null)
     {
-        $uri = $this->getUri('/subscription/%s', array($Id));
+        $uri = $this->getUri('/subscription/%s', array());
 
         return $this->put($uri, $UpdateSubscription);
     }

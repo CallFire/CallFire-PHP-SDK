@@ -50,9 +50,9 @@ class Label extends AbstractClient
      *
      * @api
      * @param int                    $Id             Unique ID of resource
-     * @param Request\LabelBroadcast $LabelBroadcast = null
+     * @param Request\LabelBroadcast $LabelBroadcast
      */
-    public function LabelBroadcast($Id, Request\LabelBroadcast $LabelBroadcast = null)
+    public function LabelBroadcast($Id, Request\LabelBroadcast $LabelBroadcast)
     {
         $uri = $this->getUri('/label/broadcast/%s', array($Id));
 
@@ -83,10 +83,11 @@ class Label extends AbstractClient
      * label name doesn't currently exist on system it will be created and saved.
      *
      * @api
-     * @param string              $Number      11 digit telephone number
-     * @param Request\LabelNumber $LabelNumber = null
+     * @param string $Number List of E.164 11 digit numbers space seperated and
+     * optional fieldName
+     * @param Request\LabelNumber $LabelNumber
      */
-    public function LabelNumber($Number, Request\LabelNumber $LabelNumber = null)
+    public function LabelNumber($Number, Request\LabelNumber $LabelNumber)
     {
         $uri = $this->getUri('/label/number/%s', array($Number));
 
@@ -100,10 +101,11 @@ class Label extends AbstractClient
      * association between number and label.
      *
      * @api
-     * @param string                $Number        11 digit telephone number
-     * @param Request\UnlabelNumber $UnlabelNumber = null
+     * @param string $Number List of E.164 11 digit numbers space seperated and
+     * optional fieldName
+     * @param Request\UnlabelNumber $UnlabelNumber
      */
-    public function UnlabelNumber($Number, Request\UnlabelNumber $UnlabelNumber = null)
+    public function UnlabelNumber($Number, Request\UnlabelNumber $UnlabelNumber)
     {
         $uri = $this->getUri('/label/number/%s', array($Number));
 

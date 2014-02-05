@@ -20,6 +20,11 @@ class RetryConfig extends AbstractResource
      */
     protected $retryResults = null;
 
+    /**
+     * @var RetryPhoneTypes
+     */
+    protected $retryPhoneTypes = null;
+
     public function getMaxAttempts()
     {
         return $this->maxAttempts;
@@ -52,6 +57,18 @@ class RetryConfig extends AbstractResource
     public function setRetryResults($retryResults)
     {
         $this->retryResults = $retryResults;
+
+        return $this;
+    }
+
+    public function getRetryPhoneTypes()
+    {
+        return $this->retryPhoneTypes;
+    }
+
+    public function setRetryPhoneTypes($retryPhoneTypes)
+    {
+        $this->retryPhoneTypes = $retryPhoneTypes;
 
         return $this;
     }

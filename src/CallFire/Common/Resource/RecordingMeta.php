@@ -25,6 +25,11 @@ class RecordingMeta extends AbstractResource
      */
     protected $lengthInSeconds = null;
 
+    /**
+     * @var string
+     */
+    protected $link = null;
+
     public function getId()
     {
         return $this->id;
@@ -69,6 +74,18 @@ class RecordingMeta extends AbstractResource
     public function setLengthInSeconds($lengthInSeconds)
     {
         $this->lengthInSeconds = $lengthInSeconds;
+
+        return $this;
+    }
+
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    public function setLink($link)
+    {
+        $this->link = $link;
 
         return $this;
     }

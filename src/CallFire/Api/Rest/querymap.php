@@ -1,7 +1,6 @@
 <?php
 
 return array(
-        'TextToSpeech' => array(),
         'InboundConfig' => array('id' => '@id'),
         'BroadcastConfig' => array(
             'id' => '@id',
@@ -32,7 +31,8 @@ return array(
             'Inbound' => '_:Inbound',
             'Created' => '_:Created',
             'Modified' => '_:Modified',
-            'FinalResult' => '_:FinalResult'
+            'FinalResult' => '_:FinalResult',
+            '#@Labels' => '_:Label'
             ),
         'Fulfilled' => array(),
         'NumberOrderItem' => array(
@@ -52,8 +52,12 @@ return array(
             ),
         'VoiceBroadcastConfig' => array(
             'AnsweringMachineConfig' => '_:AnsweringMachineConfig',
+            'LiveSoundTextVoice' => '_:LiveSoundTextVoice',
+            'MachineSoundTextVoice' => '_:MachineSoundTextVoice',
+            'TransferSoundTextVoice' => '_:TransferSoundTextVoice',
             'TransferDigit' => '_:TransferDigit',
             'TransferNumber' => '_:TransferNumber',
+            'DncSoundTextVoice' => '_:DncSoundTextVoice',
             'DncDigit' => '_:DncDigit',
             'MaxActiveTransfers' => '_:MaxActiveTransfers',
             'LiveSoundText' => '_:LiveSoundText',
@@ -142,7 +146,8 @@ return array(
             'id' => '@id',
             'Name' => '_:Name',
             'Created' => '_:Created',
-            'LengthInSeconds' => '_:LengthInSeconds'
+            'LengthInSeconds' => '_:LengthInSeconds',
+            'Link' => '_:Link'
             ),
         'TextRecord' => array('Message' => '_:Message'),
         'Text' => array(
@@ -177,7 +182,9 @@ return array(
             'zipcode' => '@zipcode',
             'homePhone' => '@homePhone',
             'workPhone' => '@workPhone',
-            'mobilePhone' => '@mobilePhone'
+            'mobilePhone' => '@mobilePhone',
+            'externalId' => '@externalId',
+            'externalSystem' => '@externalSystem'
             ),
         'ContactHistory' => array(),
         'ContactList' => array(

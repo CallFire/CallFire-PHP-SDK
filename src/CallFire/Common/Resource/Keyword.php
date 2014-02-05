@@ -20,6 +20,11 @@ class Keyword extends AbstractResource
      */
     protected $status = null;
 
+    /**
+     * @var LeaseInfo
+     */
+    protected $leaseInfo = null;
+
     public function getShortCode()
     {
         return $this->shortCode;
@@ -52,6 +57,18 @@ class Keyword extends AbstractResource
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getLeaseInfo()
+    {
+        return $this->leaseInfo;
+    }
+
+    public function setLeaseInfo($leaseInfo)
+    {
+        $this->leaseInfo = $leaseInfo;
 
         return $this;
     }

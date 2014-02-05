@@ -214,7 +214,10 @@ return array(
             'Number' => '_:Number',
             'NationalFormat' => '_:NationalFormat',
             'TollFree' => '_:TollFree',
-            'Status' => '_:Status'
+            'Status' => '_:Status',
+            '#Region' => '_:Region',
+            '#LeaseInfo' => '_:LeaseInfo',
+            '#NumberConfiguration' => '_:NumberConfiguration'
             ),
         'InboundCallConfiguration' => array(),
         'NumberConfiguration' => array(
@@ -226,7 +229,8 @@ return array(
         'Keyword' => array(
             'ShortCode' => '_:ShortCode',
             'Keyword' => '_:Keyword',
-            'Status' => '_:Status'
+            'Status' => '_:Status',
+            '#LeaseInfo' => '_:LeaseInfo'
             ),
         'NumberOrder' => array(
             'id' => '@id',

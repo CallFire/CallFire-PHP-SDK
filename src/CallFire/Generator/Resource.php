@@ -132,7 +132,7 @@ class Resource
         $this->handleChoiceElements($classGenerator, $map, $choiceElements, $element, $xpath);
 
         // Complex second-class types (e.g. question-response, broadcast result statistics)
-        $secondClassElementsQuery = $isComplexType?'_:sequence/_:element[@name or @ref][not(@type)]':'_:complexType/_:sequence/_:element[@name][not(@type)]';
+        $secondClassElementsQuery = $isComplexType?'_:sequence/_:element[@name or @ref][not(@type)]':'_:complexType/_:sequence/_:element[@name or @ref][not(@type)]';
         if ($isSubclass) {
             $secondClassElementsQuery = '_:complexType/_:complexContent/_:extension/_:sequence/_:element[@name][not(@type)]';
         }

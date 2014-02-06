@@ -245,13 +245,12 @@ class Broadcast extends AbstractClient
      * ControlContactBatch to enable or disable this batch.
      *
      * @api
-     * @param int                        $BroadcastId        Id of Broadcast
-     * @param Request\CreateContactBatch $CreateContactBatch
      * @param int                        $id
+     * @param Request\CreateContactBatch $CreateContactBatch
      */
     public function CreateContactBatch($id, Request\CreateContactBatch $CreateContactBatch)
     {
-        $uri = $this->getUri('/broadcast/%s/batch', array($BroadcastId));
+        $uri = $this->getUri('/broadcast/%s/batch', array($id));
 
         return $this->post($uri, $CreateContactBatch);
     }

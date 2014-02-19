@@ -18,6 +18,9 @@
         <testsuite name="Ivr">
             <directory>tests/Ivr</directory>
         </testsuite>
+        <testsuite name="Docs">
+            <directory>tests/Docs</directory>
+        </testsuite>
     </testsuites>
     <php>
         <env name="API_Username" value="" />

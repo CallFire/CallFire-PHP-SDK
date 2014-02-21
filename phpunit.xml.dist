@@ -19,7 +19,7 @@
             <directory>tests/Ivr</directory>
         </testsuite>
         <testsuite name="Docs">
-            <directory>tests/Docs</directory>
+            <directory phpVersion="5.4.0" phpVersionOperator=">=">tests/Docs</directory>
         </testsuite>
     </testsuites>
     <php>

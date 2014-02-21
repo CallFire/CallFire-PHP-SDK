@@ -18,6 +18,9 @@
         <testsuite name="Ivr">
             <directory>tests/Ivr</directory>
         </testsuite>
+        <testsuite name="Docs">
+            <directory phpVersion="5.4.0" phpVersionOperator=">=">tests/Docs</directory>
+        </testsuite>
     </testsuites>
     <php>
         <env name="API_Username" value="" />

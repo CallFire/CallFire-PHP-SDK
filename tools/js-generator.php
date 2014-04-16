@@ -25,12 +25,16 @@ foreach(glob($clientPath.'/*.php') as $clientFile) {
 var Client = require('../Client'),
     util = require('util');
 
-var <?=$reflector->getShortName()?> = function() {
-    Client.apply(this, arguments);
-}
-util.inherits(<?=$reflector->getShortName()?>, Client);
-module.exports = <?=$reflector->getShortName()?>;
-with({proto: <?=$reflector->getShortName()?>.prototype}) {
+(function() {
+    'use strict';
+    
+    var <?=$reflector->getShortName()?> = function() {
+        Client.apply(this, arguments);
+    };
+    module.exports = <?=$reflector->getShortName()?>;
+    util.inherits(<?=$reflector->getShortName()?>, Client);
+    var proto = <?=$reflector->getShortName()?>.prototype;
+
 <?php
 foreach($reflector->getMethods() as $method) {
     if($method->class == $reflector->name) {
@@ -67,13 +71,13 @@ foreach($reflector->getMethods() as $method) {
     proto.<?=$method->getName()?> = function(<?=$newParameters?>callback) {
         var uri = this.get_uri('<?=$uri?>'<?=$pathParameters?>);
         return this.<?=$requestMethod?>(uri, <?=$requestType?:'{}'?>, callback);
-    }
+    };
 
 <?php
     }
 }
 ?>
-}
+}) ();
 <?php
     $code = ob_get_clean();
     
@@ -117,12 +121,16 @@ var Resource = require('../Resource');
 <?php
 }
 ?>
-var <?=$reflector->getShortName()?> = function() {
-    <?=$isChildResource?$parentReflector->getShortName():'Resource'?>.apply(this, arguments);
-}
-util.inherits(<?=$reflector->getShortName()?>, <?=$isChildResource?$parentReflector->getShortName():'Resource'?>);
-module.exports = <?=$reflector->getShortName()?>;
-with({proto: <?=$reflector->getShortName()?>.prototype}) {
+(function() {
+    'use strict';
+    
+    var <?=$reflector->getShortName()?> = function() {
+        <?=$isChildResource?$parentReflector->getShortName():'Resource'?>.apply(this, arguments);
+    };
+    module.exports = <?=$reflector->getShortName()?>;
+    util.inherits(<?=$reflector->getShortName()?>, <?=$isChildResource?$parentReflector->getShortName():'Resource'?>);
+    var proto = <?=$reflector->getShortName()?>.prototype;
+    
     proto.types = [
 <?php
 $ancestor = $reflector;
@@ -134,7 +142,7 @@ while($ancestor->getShortName() != 'AbstractResource') {
     $ancestor = $ancestor->getParentClass();
 }
 ?>
-    ]
+    ];
 
 <?php
 foreach($reflector->getProperties() as $property) {
@@ -147,7 +155,7 @@ foreach($reflector->getProperties() as $property) {
 <?php
 }
 ?>
-}
+}) ();
 <?php
     $code = ob_get_clean();
     
@@ -168,10 +176,15 @@ foreach(glob($requestPath.'/*.php') as $requestFile) {
     
     ob_start();
 ?>
-var <?=$reflector->getShortName()?> = function() {
-}
-module.exports = <?=$reflector->getShortName()?>;
-with({proto: <?=$reflector->getShortName()?>.prototype}) {
+(function() {
+    'use strict';
+    
+    var <?=$reflector->getShortName()?> = function() {
+        
+    };
+    module.exports = <?=$reflector->getShortName()?>;
+    var proto = <?=$reflector->getShortName()?>.prototype;
+
 <?php
 foreach($reflector->getProperties() as $property) {
     if($property->getName() == 'hydrator') {
@@ -184,7 +197,7 @@ foreach($reflector->getProperties() as $property) {
 <?php
 }
 ?>
-}
+}) ();
 <?php
     $code = ob_get_clean();
     

@@ -1,9 +1,6 @@
 CallFire PHP SDK
 ================
 
-[![Build Status](https://travis-ci.org/CallFire/CallFire-PHP-SDK.png?branch=1.1)](https://travis-ci.org/CallFire/CallFire-PHP-SDK)
-[![Coverage Status](https://coveralls.io/repos/CallFire/CallFire-PHP-SDK/badge.png)](https://coveralls.io/r/CallFire/CallFire-PHP-SDK)
-
 * [Getting Started](/docs/en/00.getting.started.md)
     * [Without Composer](/docs/en/getting-started/01.without-composer.md)
 * [Client Reference](/client-map.md)

@@ -17,6 +17,11 @@ class SearchAvailableNumbers extends AbstractRequest
      */
     protected $count = null;
 
+    /**
+     * @var Region
+     */
+    protected $region = null;
+
     public function getTollFree()
     {
         return $this->tollFree;
@@ -37,6 +42,18 @@ class SearchAvailableNumbers extends AbstractRequest
     public function setCount($count)
     {
         $this->count = $count;
+
+        return $this;
+    }
+
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    public function setRegion($region)
+    {
+        $this->region = $region;
 
         return $this;
     }

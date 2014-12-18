@@ -17,6 +17,16 @@ class CreateContactList extends AbstractRequest
      */
     protected $name = null;
 
+    /**
+     * @var boolean
+     */
+    protected $validate = null;
+
+    /**
+     * @var ContactSource
+     */
+    protected $contactSource = null;
+
     public function getRequestId()
     {
         return $this->requestId;
@@ -37,6 +47,30 @@ class CreateContactList extends AbstractRequest
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getValidate()
+    {
+        return $this->validate;
+    }
+
+    public function setValidate($validate)
+    {
+        $this->validate = $validate;
+
+        return $this;
+    }
+
+    public function getContactSource()
+    {
+        return $this->contactSource;
+    }
+
+    public function setContactSource($contactSource)
+    {
+        $this->contactSource = $contactSource;
 
         return $this;
     }

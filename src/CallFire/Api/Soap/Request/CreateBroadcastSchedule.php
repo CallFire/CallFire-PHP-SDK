@@ -17,6 +17,11 @@ class CreateBroadcastSchedule extends AbstractRequest
      */
     protected $broadcastId = null;
 
+    /**
+     * @var BroadcastSchedule
+     */
+    protected $broadcastSchedule = null;
+
     public function getRequestId()
     {
         return $this->requestId;
@@ -37,6 +42,18 @@ class CreateBroadcastSchedule extends AbstractRequest
     public function setBroadcastId($broadcastId)
     {
         $this->broadcastId = $broadcastId;
+
+        return $this;
+    }
+
+    public function getBroadcastSchedule()
+    {
+        return $this->broadcastSchedule;
+    }
+
+    public function setBroadcastSchedule($broadcastSchedule)
+    {
+        $this->broadcastSchedule = $broadcastSchedule;
 
         return $this;
     }

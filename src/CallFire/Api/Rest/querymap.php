@@ -1,6 +1,12 @@
 <?php
 
 return array(
+        'Question' => array(
+            'id' => '@id',
+            'Label' => '_:Label',
+            'ResponseType' => '_:ResponseType',
+            'Choices' => '_:Choices'
+            ),
         'InboundConfig' => array('id' => '@id'),
         'RetryResults' => array(),
         'RetryPhoneTypes' => array(),
@@ -57,7 +63,8 @@ return array(
             'Type' => '_:Type',
             '#VoiceBroadcastConfig' => 'VoiceBroadcastConfig',
             '#TextBroadcastConfig' => 'TextBroadcastConfig',
-            '#IvrBroadcastConfig' => 'IvrBroadcastConfig'
+            '#IvrBroadcastConfig' => 'IvrBroadcastConfig',
+            '#CccBroadcastConfig' => 'CccBroadcastConfig'
             ),
         'VoiceBroadcastConfig' => array(
             'AnsweringMachineConfig' => '_:AnsweringMachineConfig',
@@ -77,6 +84,15 @@ return array(
             'TransferSoundId' => '_:TransferSoundId',
             'DncSoundText' => '_:DncSoundText',
             'DncSoundId' => '_:DncSoundId'
+            ),
+        'CccBroadcastConfig' => array(
+            'AgentGroupId' => '_:AgentGroupId',
+            'SmartDropSoundId' => '_:SmartDropSoundId',
+            'ScriptId' => '_:ScriptId',
+            'TransferNumberIdList' => '_:TransferNumberIdList',
+            'PowerDialingRatio' => '_:PowerDialingRatio',
+            'AllowAnyTransfer' => '_:AllowAnyTransfer',
+            'Recorded' => '_:Recorded'
             ),
         'TextBroadcastConfig' => array(
             'Message' => '_:Message',
@@ -201,7 +217,8 @@ return array(
             'id' => '@id',
             'Name' => '_:Name',
             'Size' => '_:Size',
-            'Created' => '_:Created'
+            'Created' => '_:Created',
+            'Status' => '_:Status'
             ),
         'Region' => array(
             'Prefix' => '_:Prefix',
@@ -219,6 +236,18 @@ return array(
             'LeaseBegin' => '_:LeaseBegin',
             'LeaseEnd' => '_:LeaseEnd',
             'AutoRenew' => '_:AutoRenew'
+            ),
+        'DncList' => array(
+            'id' => '@id',
+            'CampaignId' => '_:CampaignId',
+            'Name' => '_:Name',
+            'Size' => '_:Size'
+            ),
+        'DncNumber' => array(
+            'Number' => '_:Number',
+            'DncListId' => '_:DncListId',
+            'CallDnc' => '_:CallDnc',
+            'TextDnc' => '_:TextDnc'
             ),
         'Number' => array(
             'Number' => '_:Number',
@@ -251,5 +280,76 @@ return array(
             'TollFreeNumbers' => '_:TollFreeNumbers',
             'Keywords' => '_:Keywords'
             ),
-        'Label' => array('Name' => '_:Name')
+        'Label' => array('Name' => '_:Name'),
+        'CccCampaign' => array(
+            'id' => '@id',
+            'Name' => '_:Name',
+            'Status' => '_:Status',
+            'Created' => '_:Created',
+            'LastModified' => '_:LastModified',
+            'LocalRestrictBegin' => '_:LocalRestrictBegin',
+            'LocalRestrictEnd' => '_:LocalRestrictEnd',
+            'ConfigUpdated' => '_:ConfigUpdated',
+            'FromNumber' => '_:FromNumber',
+            'RetryConfig' => '_:RetryConfig',
+            'AgentGroupId' => '_:AgentGroupId',
+            'AgentGroupName' => '_:AgentGroupName',
+            'SmartDropSoundId' => '_:SmartDropSoundId',
+            'SmartDropSoundRef' => '_:SmartDropSoundRef',
+            'PowerDialingRatio' => '_:PowerDialingRatio',
+            'AllowAnyTransfer' => '_:AllowAnyTransfer',
+            'Recorded' => '_:Recorded'
+            ),
+        'CccCampaignStats' => array(
+            'AgentCount' => '_:AgentCount',
+            'ActiveAgentCount' => '_:ActiveAgentCount',
+            'CallsAttempted' => '_:CallsAttempted',
+            'CallsPlaced' => '_:CallsPlaced',
+            'CallsDuration' => '_:CallsDuration',
+            'BilledDuration' => '_:BilledDuration',
+            'BilledAmount' => '_:BilledAmount',
+            'CallsRemaining' => '_:CallsRemaining',
+            'CallsAwaitingRedial' => '_:CallsAwaitingRedial',
+            'CallsLiveAnswer' => '_:CallsLiveAnswer',
+            'ResponseRatePercent' => '_:ResponseRatePercent',
+            '#@ResultStats' => '_:ResultStat'
+            ),
+        'CccQuestion' => array(),
+        'CccScript' => array(
+            'id' => '@id',
+            'Content' => '_:Content',
+            'Question' => '_:Question'
+            ),
+        'Callback' => array(
+            'id' => '@id',
+            'UserId' => '_:UserId',
+            'OutboundCallId' => '_:OutboundCallId',
+            'NotificationSent' => '_:NotificationSent'
+            ),
+        'Agent' => array(
+            'id' => '@id',
+            'Enabled' => '_:Enabled',
+            'Name' => '_:Name',
+            'Email' => '_:Email',
+            'LastLogin' => '_:LastLogin',
+            'CampaignIds' => '_:CampaignIds',
+            'GroupIds' => '_:GroupIds',
+            'ActiveSessionId' => '_:ActiveSessionId'
+            ),
+        'AgentGroup' => array(
+            'id' => '@id',
+            'Name' => '_:Name',
+            'CampaignIds' => '_:CampaignIds',
+            'AgentIds' => '_:AgentIds',
+            'AgentEmails' => '_:AgentEmails'
+            ),
+        'AgentSession' => array(
+            'id' => '@id',
+            'AgentId' => '_:AgentId',
+            'CampaignId' => '_:CampaignId',
+            'AgentState' => '_:AgentState',
+            'CallCount' => '_:CallCount',
+            'Start' => '_:Start',
+            'LastUpdate' => '_:LastUpdate'
+            )
         );

@@ -8,11 +8,6 @@ class RemoveContactsFromList extends AbstractRequest
 {
 
     /**
-     * Unique ID of ContactList
-     */
-    protected $contactListId = null;
-
-    /**
      * List of existing contact ids
      */
     protected $contactId = null;
@@ -21,18 +16,6 @@ class RemoveContactsFromList extends AbstractRequest
      * List E.164 11 digit numbers space or comma seperated
      */
     protected $numbers = null;
-
-    public function getContactListId()
-    {
-        return $this->contactListId;
-    }
-
-    public function setContactListId($contactListId)
-    {
-        $this->contactListId = $contactListId;
-
-        return $this;
-    }
 
     public function getContactId()
     {

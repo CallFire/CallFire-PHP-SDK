@@ -81,6 +81,13 @@ abstract class Action
                 case self::PARAM_TYPE_QUERY:
                 case self::PARAM_TYPE_FORM:
                     $propertyName = lcfirst($swaggerParameter->getName());
+                    
+                    if(($postParamStart = strpos($propertyName, '[')) !== false) {
+                        $propertyPostParams = substr($propertyName, $postParamStart);
+                        $propertyName = substr($propertyName, 0, $postParamStart);
+                        
+                        echo "{$method->getName()}::\${$propertyName} has: {$propertyPostParams}".PHP_EOL;
+                    }
 
                     if ($parameterClassGenerator->hasProperty($propertyName)) {
                         continue;

@@ -76,6 +76,31 @@ class Ccc extends AbstractClient
 
     /**
      * @api
+     * @param Request\DeleteCccCampaignTransferNumbers
+     * $deleteCccCampaignTransferNumbersRequest
+     * @return Result\DeleteCccCampaignTransferNumbersResponse
+     */
+    public function DeleteCccCampaignTransferNumbers(Request\DeleteCccCampaignTransferNumbersRequest $deleteCccCampaignTransferNumbersRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($deleteCccCampaignTransferNumbersRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\DeleteCccCampaignQuestions        $deleteCccCampaignQuestionsRequest
+     * @return Result\DeleteCccCampaignQuestionsResponse
+     */
+    public function DeleteCccCampaignQuestions(Request\DeleteCccCampaignQuestionsRequest $deleteCccCampaignQuestionsRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($deleteCccCampaignQuestionsRequest);
+    }
+
+    /**
+     * @api
      * @param  Request\ControlCccCampaign        $controlCccCampaignRequest
      * @return Result\ControlCccCampaignResponse
      */
@@ -96,126 +121,6 @@ class Ccc extends AbstractClient
         $method = __FUNCTION__;
 
         return parent::$method($deleteCccCampaignRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\GetCccScript $getCccScriptRequest
-     * @return Result\CccScript
-     */
-    public function GetCccScript(Request\GetCccScriptRequest $getCccScriptRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($getCccScriptRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\UpdateCccScriptContent        $updateCccScriptContentRequest
-     * @return Result\UpdateCccScriptContentResponse
-     */
-    public function UpdateCccScriptContent(Request\UpdateCccScriptContentRequest $updateCccScriptContentRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($updateCccScriptContentRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\AddCccScriptQuestion $addCccScriptQuestionRequest
-     * @return Result\QuestionId
-     */
-    public function AddCccScriptQuestion(Request\AddCccScriptQuestionRequest $addCccScriptQuestionRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($addCccScriptQuestionRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\UpdateCccScriptQuestionLabel        $updateCccScriptQuestionLabelRequest
-     * @return Result\UpdateCccScriptQuestionLabelResponse
-     */
-    public function UpdateCccScriptQuestionLabel(Request\UpdateCccScriptQuestionLabelRequest $updateCccScriptQuestionLabelRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($updateCccScriptQuestionLabelRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\RemoveCccScriptQuestion        $removeCccScriptQuestionRequest
-     * @return Result\RemoveCccScriptQuestionResponse
-     */
-    public function RemoveCccScriptQuestion(Request\RemoveCccScriptQuestionRequest $removeCccScriptQuestionRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($removeCccScriptQuestionRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\GetCccTransferNumber $getCccTransferNumberRequest
-     * @return Result\CccTransferNumber
-     */
-    public function GetCccTransferNumber(Request\GetCccTransferNumberRequest $getCccTransferNumbersRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($getCccTransferNumbersRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\GetCccTransferNumbers        $getCccTransferNumbersRequest
-     * @return Result\GetCccTransferNumbersResponse
-     */
-    public function GetCccTransferNumbers(Request\GetCccTransferNumbersRequest $getCccTransferNumbersRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($getCccTransferNumbersRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\AddCccTransferNumber $addCccTransferNumberRequest
-     * @return Result\TransferNumberId
-     */
-    public function AddCccTransferNumber(Request\AddCccTransferNumberRequest $addCccTransferNumberRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($addCccTransferNumberRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\UpdateCccTransferNumber        $updateCccTransferNumberRequest
-     * @return Result\UpdateCccTransferNumberResponse
-     */
-    public function UpdateCccTransferNumber(Request\UpdateCccTransferNumberRequest $updateCccTransferNumberRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($updateCccTransferNumberRequest);
-    }
-
-    /**
-     * @api
-     * @param  Request\RemoveCccTransferNumber        $removeCccTransferNumberRequest
-     * @return Result\RemoveCccTransferNumberResponse
-     */
-    public function RemoveCccTransferNumber(Request\RemoveCccTransferNumberRequest $removeCccTransferNumberRequest)
-    {
-        $method = __FUNCTION__;
-
-        return parent::$method($removeCccTransferNumberRequest);
     }
 
     /**
@@ -408,6 +313,18 @@ class Ccc extends AbstractClient
         $method = __FUNCTION__;
 
         return parent::$method($sendAgentInvitesRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\GetAgentInviteUri        $getAgentInviteUriRequest
+     * @return Result\GetAgentInviteUriResponse
+     */
+    public function GetAgentInviteUri(Request\GetAgentInviteUriRequest $getAgentInviteUriRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($getAgentInviteUriRequest);
     }
 
 }

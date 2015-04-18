@@ -17,11 +17,6 @@ class QueryBroadcastSchedule extends AbstractRequest
      */
     protected $firstResult = null;
 
-    /**
-     * Unique ID of Broadcast
-     */
-    protected $broadcastId = null;
-
     public function getMaxResults()
     {
         return $this->maxResults;
@@ -42,18 +37,6 @@ class QueryBroadcastSchedule extends AbstractRequest
     public function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
-
-        return $this;
-    }
-
-    public function getBroadcastId()
-    {
-        return $this->broadcastId;
-    }
-
-    public function setBroadcastId($broadcastId)
-    {
-        $this->broadcastId = $broadcastId;
 
         return $this;
     }

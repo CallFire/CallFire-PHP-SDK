@@ -8,26 +8,9 @@ class LabelBroadcast extends AbstractRequest
 {
 
     /**
-     * Unique ID of resource
-     */
-    protected $id = null;
-
-    /**
      * Label name
      */
     protected $labelName = null;
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     public function getLabelName()
     {

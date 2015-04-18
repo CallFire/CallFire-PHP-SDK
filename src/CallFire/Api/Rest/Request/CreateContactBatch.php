@@ -9,14 +9,17 @@ class CreateContactBatch extends AbstractRequest
 
     protected $requestId = null;
 
-    protected $broadcastId = null;
-
     protected $name = null;
 
     /**
      * List of E.164 11 digit numbers space or comma separated
      */
     protected $to = null;
+
+    /**
+     * PhoneNumber 'To' param represents (default: homePhone)
+     */
+    protected $toNumber = null;
 
     protected $contactListId = null;
 
@@ -30,18 +33,6 @@ class CreateContactBatch extends AbstractRequest
     public function setRequestId($requestId)
     {
         $this->requestId = $requestId;
-
-        return $this;
-    }
-
-    public function getBroadcastId()
-    {
-        return $this->broadcastId;
-    }
-
-    public function setBroadcastId($broadcastId)
-    {
-        $this->broadcastId = $broadcastId;
 
         return $this;
     }
@@ -66,6 +57,18 @@ class CreateContactBatch extends AbstractRequest
     public function setTo($to)
     {
         $this->to = $to;
+
+        return $this;
+    }
+
+    public function getToNumber()
+    {
+        return $this->toNumber;
+    }
+
+    public function setToNumber($toNumber)
+    {
+        $this->toNumber = $toNumber;
 
         return $this;
     }

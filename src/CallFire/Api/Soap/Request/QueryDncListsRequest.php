@@ -6,7 +6,7 @@ class QueryDncListsRequest extends Query
 {
 
     /**
-     * @var string
+     * @var long
      */
     protected $campaignId = null;
 

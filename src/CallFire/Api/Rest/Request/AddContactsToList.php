@@ -8,23 +8,42 @@ class AddContactsToList extends AbstractRequest
 {
 
     /**
-     * Unique ID of ContactList
+     * Turn off list validation (default: true)
      */
-    protected $contactListId = null;
+    protected $validate = null;
+
+    /**
+     * Unique ID of Contact
+     */
+    protected $contact = null;
 
     /**
      * List of existing contact ids
      */
     protected $contactId = null;
 
-    public function getContactListId()
+    protected $numbers = null;
+
+    public function getValidate()
     {
-        return $this->contactListId;
+        return $this->validate;
     }
 
-    public function setContactListId($contactListId)
+    public function setValidate($validate)
     {
-        $this->contactListId = $contactListId;
+        $this->validate = $validate;
+
+        return $this;
+    }
+
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
 
         return $this;
     }
@@ -37,6 +56,18 @@ class AddContactsToList extends AbstractRequest
     public function setContactId($contactId)
     {
         $this->contactId = $contactId;
+
+        return $this;
+    }
+
+    public function getNumbers()
+    {
+        return $this->numbers;
+    }
+
+    public function setNumbers($numbers)
+    {
+        $this->numbers = $numbers;
 
         return $this;
     }

@@ -26,11 +26,6 @@ class CccBroadcastConfig extends BroadcastConfig
     protected $transferNumberIdList = null;
 
     /**
-     * @var decimal
-     */
-    protected $powerDialingRatio = null;
-
-    /**
      * @var boolean
      */
     protected $allowAnyTransfer = null;
@@ -84,18 +79,6 @@ class CccBroadcastConfig extends BroadcastConfig
     public function setTransferNumberIdList($transferNumberIdList)
     {
         $this->transferNumberIdList = $transferNumberIdList;
-
-        return $this;
-    }
-
-    public function getPowerDialingRatio()
-    {
-        return $this->powerDialingRatio;
-    }
-
-    public function setPowerDialingRatio($powerDialingRatio)
-    {
-        $this->powerDialingRatio = $powerDialingRatio;
 
         return $this;
     }

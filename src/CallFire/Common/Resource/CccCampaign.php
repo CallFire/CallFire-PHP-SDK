@@ -48,6 +48,11 @@ class CccCampaign extends AbstractResource
     /**
      * @var string
      */
+    protected $script = null;
+
+    /**
+     * @var string
+     */
     protected $fromNumber = null;
 
     /**
@@ -76,11 +81,6 @@ class CccCampaign extends AbstractResource
     protected $smartDropSoundRef = null;
 
     /**
-     * @var decimal
-     */
-    protected $powerDialingRatio = null;
-
-    /**
      * @var boolean
      */
     protected $allowAnyTransfer = null;
@@ -89,6 +89,21 @@ class CccCampaign extends AbstractResource
      * @var boolean
      */
     protected $recorded = null;
+
+    /**
+     * @var int
+     */
+    protected $scrubLevel = null;
+
+    /**
+     * @var Question[]
+     */
+    protected $questions = array();
+
+    /**
+     * @var TransferNumber[]
+     */
+    protected $transferNumbers = array();
 
     public function getId()
     {
@@ -186,6 +201,18 @@ class CccCampaign extends AbstractResource
         return $this;
     }
 
+    public function getScript()
+    {
+        return $this->script;
+    }
+
+    public function setScript($script)
+    {
+        $this->script = $script;
+
+        return $this;
+    }
+
     public function getFromNumber()
     {
         return $this->fromNumber;
@@ -258,18 +285,6 @@ class CccCampaign extends AbstractResource
         return $this;
     }
 
-    public function getPowerDialingRatio()
-    {
-        return $this->powerDialingRatio;
-    }
-
-    public function setPowerDialingRatio($powerDialingRatio)
-    {
-        $this->powerDialingRatio = $powerDialingRatio;
-
-        return $this;
-    }
-
     public function getAllowAnyTransfer()
     {
         return $this->allowAnyTransfer;
@@ -290,6 +305,42 @@ class CccCampaign extends AbstractResource
     public function setRecorded($recorded)
     {
         $this->recorded = $recorded;
+
+        return $this;
+    }
+
+    public function getScrubLevel()
+    {
+        return $this->scrubLevel;
+    }
+
+    public function setScrubLevel($scrubLevel)
+    {
+        $this->scrubLevel = $scrubLevel;
+
+        return $this;
+    }
+
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+
+    public function setQuestions($questions)
+    {
+        $this->questions = $questions;
+
+        return $this;
+    }
+
+    public function getTransferNumbers()
+    {
+        return $this->transferNumbers;
+    }
+
+    public function setTransferNumbers($transferNumbers)
+    {
+        $this->transferNumbers = $transferNumbers;
 
         return $this;
     }

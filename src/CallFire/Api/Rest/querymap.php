@@ -1,12 +1,6 @@
 <?php
 
 return array(
-        'Question' => array(
-            'id' => '@id',
-            'Label' => '_:Label',
-            'ResponseType' => '_:ResponseType',
-            'Choices' => '_:Choices'
-            ),
         'InboundConfig' => array('id' => '@id'),
         'RetryResults' => array(),
         'RetryPhoneTypes' => array(),
@@ -90,7 +84,6 @@ return array(
             'SmartDropSoundId' => '_:SmartDropSoundId',
             'ScriptId' => '_:ScriptId',
             'TransferNumberIdList' => '_:TransferNumberIdList',
-            'PowerDialingRatio' => '_:PowerDialingRatio',
             'AllowAnyTransfer' => '_:AllowAnyTransfer',
             'Recorded' => '_:Recorded'
             ),
@@ -281,6 +274,11 @@ return array(
             'Keywords' => '_:Keywords'
             ),
         'Label' => array('Name' => '_:Name'),
+        'Question' => array(
+            'Label' => '_:Label',
+            'ResponseType' => '_:ResponseType',
+            'Choices' => '_:Choices'
+            ),
         'CccCampaign' => array(
             'id' => '@id',
             'Name' => '_:Name',
@@ -290,15 +288,18 @@ return array(
             'LocalRestrictBegin' => '_:LocalRestrictBegin',
             'LocalRestrictEnd' => '_:LocalRestrictEnd',
             'ConfigUpdated' => '_:ConfigUpdated',
+            'Script' => '_:Script',
             'FromNumber' => '_:FromNumber',
             'RetryConfig' => '_:RetryConfig',
             'AgentGroupId' => '_:AgentGroupId',
             'AgentGroupName' => '_:AgentGroupName',
             'SmartDropSoundId' => '_:SmartDropSoundId',
             'SmartDropSoundRef' => '_:SmartDropSoundRef',
-            'PowerDialingRatio' => '_:PowerDialingRatio',
             'AllowAnyTransfer' => '_:AllowAnyTransfer',
-            'Recorded' => '_:Recorded'
+            'Recorded' => '_:Recorded',
+            'ScrubLevel' => '_:ScrubLevel',
+            '#@Questions' => '_:Question',
+            '#@TransferNumbers' => '_:TransferNumber'
             ),
         'CccCampaignStats' => array(
             'AgentCount' => '_:AgentCount',
@@ -313,12 +314,6 @@ return array(
             'CallsLiveAnswer' => '_:CallsLiveAnswer',
             'ResponseRatePercent' => '_:ResponseRatePercent',
             '#@ResultStats' => '_:ResultStat'
-            ),
-        'CccQuestion' => array(),
-        'CccScript' => array(
-            'id' => '@id',
-            'Content' => '_:Content',
-            'Question' => '_:Question'
             ),
         'Callback' => array(
             'id' => '@id',

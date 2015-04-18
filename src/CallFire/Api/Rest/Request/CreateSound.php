@@ -20,6 +20,8 @@ class CreateSound extends AbstractRequest
 
     protected $soundText = null;
 
+    protected $soundTextVoice = null;
+
     public function getName()
     {
         return $this->name;
@@ -52,6 +54,18 @@ class CreateSound extends AbstractRequest
     public function setSoundText($soundText)
     {
         $this->soundText = $soundText;
+
+        return $this;
+    }
+
+    public function getSoundTextVoice()
+    {
+        return $this->soundTextVoice;
+    }
+
+    public function setSoundTextVoice($soundTextVoice)
+    {
+        $this->soundTextVoice = $soundTextVoice;
 
         return $this;
     }

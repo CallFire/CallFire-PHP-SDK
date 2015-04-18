@@ -72,7 +72,9 @@ class Broadcast extends AbstractClient
      * retry logic. Currently all fields from config are updated so the 'Message' field
      * needs to be populated just like in CreateBroadcast operation.  Use unique ID to
      * specify broadcast. Need to provide dummy 'Name' field Broadcast even though the
-     * field will not be overwritten.
+     * field will not be overwritten.  Testing this method using swagger doc REST
+     * interface (Try Me! button) does not work correctly. Please use curl or other
+     * rest client to test api call.
      *
      * @api
      * @param Request\UpdateBroadcast $UpdateBroadcast = null
@@ -245,12 +247,12 @@ class Broadcast extends AbstractClient
      * ControlContactBatch to enable or disable this batch.
      *
      * @api
-     * @param int                        $id
+     * @param int                        $BroadcastId        Id of Broadcast
      * @param Request\CreateContactBatch $CreateContactBatch
      */
-    public function CreateContactBatch($id, Request\CreateContactBatch $CreateContactBatch)
+    public function CreateContactBatch($BroadcastId, Request\CreateContactBatch $CreateContactBatch)
     {
-        $uri = $this->getUri('/broadcast/%s/batch', array($id));
+        $uri = $this->getUri('/broadcast/%s/batch', array($BroadcastId));
 
         return $this->post($uri, $CreateContactBatch);
     }

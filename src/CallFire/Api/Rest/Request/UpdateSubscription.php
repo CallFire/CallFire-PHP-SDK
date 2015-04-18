@@ -23,7 +23,7 @@ class UpdateSubscription extends AbstractRequest
     protected $endpoint = null;
 
     /**
-     * Allowable values: [XML, JSON, SOAP, EMAIL]
+     * Allowable values: [XML, JSON, SOAP, EMAIL, LEGACY]
      */
     protected $notificationFormat = null;
 
@@ -60,6 +60,11 @@ class UpdateSubscription extends AbstractRequest
      * Deprecated, use TriggerEvent
      */
     protected $inbound = null;
+
+    /**
+     * Unique ID of Subscription
+     */
+    protected $subscription = null;
 
     public function getRequestId()
     {
@@ -177,6 +182,18 @@ class UpdateSubscription extends AbstractRequest
     public function setInbound($inbound)
     {
         $this->inbound = $inbound;
+
+        return $this;
+    }
+
+    public function getSubscription()
+    {
+        return $this->subscription;
+    }
+
+    public function setSubscription($subscription)
+    {
+        $this->subscription = $subscription;
 
         return $this;
     }

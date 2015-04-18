@@ -31,7 +31,7 @@ class Contact extends AbstractClient
     /**
      * Updates existing contacts
      *
-     *
+     * Update existing contacts.
      *
      * @api
      * @param Request\UpdateContacts $UpdateContacts = null
@@ -189,7 +189,7 @@ class Contact extends AbstractClient
     /**
      * Removes contacts from a list without deleting the contacts
      *
-     *
+     * Removes contacts from a list without deleting the contacts.
      *
      * @api
      * @param int                            $ContactListId          Unique ID of ContactList
@@ -200,6 +200,129 @@ class Contact extends AbstractClient
         $uri = $this->getUri('/contact/list/%s/remove', array($ContactListId));
 
         return $this->post($uri, $RemoveContactsFromList);
+    }
+
+    /**
+     * Query for existing do not contact (DNC) numbers
+     *
+     * Query for existing do not contact (DNC) numbers.
+     *
+     * @api
+     * @param Request\QueryDncNumbers $QueryDncNumbers = null
+     */
+    public function QueryDncNumbers(Request\QueryDncNumbers $QueryDncNumbers = null)
+    {
+        $uri = $this->getUri('/contact/dnc', array());
+
+        return $this->get($uri, $QueryDncNumbers);
+    }
+
+    /**
+     * Update existing do not contact (DNC) number
+     *
+     * Update existing do not contact (DNC) numbers.
+     *
+     * @api
+     * @param string                  $Number          Do not call number to update
+     * @param Request\UpdateDncNumber $UpdateDncNumber
+     */
+    public function UpdateDncNumber($Number, Request\UpdateDncNumber $UpdateDncNumber)
+    {
+        $uri = $this->getUri('/contact/dnc/%s', array($Number));
+
+        return $this->put($uri, $UpdateDncNumber);
+    }
+
+    /**
+     * Query for existing do not contact (DNC) lists
+     *
+     * Query for existing do not contact (DNC) lists.
+     *
+     * @api
+     * @param Request\QueryDncLists $QueryDncLists = null
+     */
+    public function QueryDncLists(Request\QueryDncLists $QueryDncLists = null)
+    {
+        $uri = $this->getUri('/contact/dnc/list', array());
+
+        return $this->get($uri, $QueryDncLists);
+    }
+
+    /**
+     * Create do not contact (DNC) list
+     *
+     * Create do not contact (DNC) list.
+     *
+     * @api
+     * @param Request\CreateDncList $CreateDncList = null
+     */
+    public function CreateDncList(Request\CreateDncList $CreateDncList = null)
+    {
+        $uri = $this->getUri('/contact/dnc/list', array());
+
+        return $this->post($uri, $CreateDncList);
+    }
+
+    /**
+     * Get do not contact (DNC) list
+     *
+     * Get do not contact (DNC) list by id.
+     *
+     * @api
+     * @param int $Id Unique ID of resource
+     */
+    public function GetDncList($Id)
+    {
+        $uri = $this->getUri('/contact/dnc/list/%s', array($Id));
+
+        return $this->get($uri);
+    }
+
+    /**
+     * Delete do not contact (DNC) list
+     *
+     * Delete do not contact (DNC) list by id.
+     *
+     * @api
+     * @param int $Id Unique ID of resource
+     */
+    public function DeleteDncList($Id)
+    {
+        $uri = $this->getUri('/contact/dnc/list/%s', array($Id));
+
+        return $this->delete($uri);
+    }
+
+    /**
+     * Add numbers to do not contact (DNC) list
+     *
+     * Add numbers to do not contact (DNC) list.
+     *
+     * @api
+     * @param int                         $Id                  DNC List ID
+     * @param Request\AddNumbersToDncList $AddNumbersToDncList
+     */
+    public function AddNumbersToDncList($Id, Request\AddNumbersToDncList $AddNumbersToDncList)
+    {
+        $uri = $this->getUri('/contact/dnc/list/%s/add', array($Id));
+
+        return $this->post($uri, $AddNumbersToDncList);
+    }
+
+    /**
+     * Removes number from do not contact (DNC) list
+     *
+     * Remove numbers from do not contact (DNC) list.
+     *
+     * @api
+     * @param int                              $Id                       DNC List ID
+     * @param Request\RemoveNumbersFromDncList $RemoveNumbersFromDncList
+     */
+    public function RemoveNumbersFromDncList($Id, Request\RemoveNumbersFromDncList $RemoveNumbersFromDncList)
+    {
+        $uri = $this->getUri('/contact/dnc/list/%s/remove', array($Id));
+
+        return $this->post($uri, $RemoveNumbersFromDncList);
     }
 
 }

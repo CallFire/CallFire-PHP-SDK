@@ -6,11 +6,6 @@ class Question extends AbstractResource
 {
 
     /**
-     * @var long
-     */
-    protected $id = null;
-
-    /**
      * @var string
      */
     protected $label = null;
@@ -21,21 +16,9 @@ class Question extends AbstractResource
     protected $responseType = null;
 
     /**
-     * @var string
+     * @var string[]
      */
     protected $choices = null;
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     public function getLabel()
     {

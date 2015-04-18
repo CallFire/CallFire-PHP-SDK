@@ -18,11 +18,28 @@ class UpdateBroadcast extends AbstractRequest
     protected $name = null;
 
     /**
+     * Status of Broadcast (response only)
+     *
+     * Allowable values: [START_PENDING, RUNNING, STOPPED, FINISHED, ARCHIVED]
+     */
+    protected $status = null;
+
+    /**
+     * Last Modified 'CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]'
+     */
+    protected $lastModified = null;
+
+    /**
      * Type of Broadcast
      *
-     * Allowable values: [VOICE, IVR, TEXT]
+     * Allowable values: [VOICE, IVR, TEXT, CCC]
      */
     protected $type = null;
+
+    /**
+     * DateTime Broadcast was created 'CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]'
+     */
+    protected $created = null;
 
     /**
      * E.164 11 digit number or short code
@@ -55,9 +72,17 @@ class UpdateBroadcast extends AbstractRequest
      * Conditions to retry on
      *
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
-     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
+     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR, SD,
+     * POSTPONED, ABANDONED]
      */
     protected $retryResults = null;
+
+    /**
+     * Phone types to call in retry
+     *
+     * Allowable values: [FIRST_NUMBER, HOME_PHONE, WORK_PHONE, MOBILE_PHONE]
+     */
+    protected $retryPhoneTypes = null;
 
     /**
      * Action to take if machine answers
@@ -73,6 +98,8 @@ class UpdateBroadcast extends AbstractRequest
      */
     protected $liveSoundId = null;
 
+    protected $liveSoundTextVoice = null;
+
     protected $machineSoundText = null;
 
     /**
@@ -80,12 +107,16 @@ class UpdateBroadcast extends AbstractRequest
      */
     protected $machineSoundId = null;
 
+    protected $machineSoundTextVoice = null;
+
     protected $transferSoundText = null;
 
     /**
      * ID of Sound to play if call transfered
      */
     protected $transferSoundId = null;
+
+    protected $transferSoundTextVoice = null;
 
     /**
      * Phone digit call transfers on if pressed
@@ -103,6 +134,8 @@ class UpdateBroadcast extends AbstractRequest
      * Do Not Call unique ID of sound
      */
     protected $dncSoundId = null;
+
+    protected $dncSoundTextVoice = null;
 
     /**
      * Do Not Call Digit
@@ -126,6 +159,41 @@ class UpdateBroadcast extends AbstractRequest
      * Allowable values: [SEND_MULTIPLE, DO_NOT_SEND, TRIM]
      */
     protected $bigMessageStrategy = null;
+
+    /**
+     * Unique ID of AgentGroup
+     */
+    protected $agentGroupId = null;
+
+    /**
+     * Unique ID of SmartDropSound
+     */
+    protected $smartDropSoundId = null;
+
+    /**
+     * Unique ID of Script
+     */
+    protected $scriptId = null;
+
+    /**
+     * ID List of TransferNumbers
+     */
+    protected $transferNumberIdList = null;
+
+    /**
+     * Allow any transfer
+     */
+    protected $allowAnyTransfer = null;
+
+    /**
+     * Recorded
+     */
+    protected $recorded = null;
+
+    /**
+     * Unique ID of Broadcast
+     */
+    protected $broadcast = null;
 
     public function getRequestId()
     {
@@ -151,6 +219,30 @@ class UpdateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getLastModified()
+    {
+        return $this->lastModified;
+    }
+
+    public function setLastModified($lastModified)
+    {
+        $this->lastModified = $lastModified;
+
+        return $this;
+    }
+
     public function getType()
     {
         return $this->type;
@@ -159,6 +251,18 @@ class UpdateBroadcast extends AbstractRequest
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated($created)
+    {
+        $this->created = $created;
 
         return $this;
     }
@@ -235,6 +339,18 @@ class UpdateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getRetryPhoneTypes()
+    {
+        return $this->retryPhoneTypes;
+    }
+
+    public function setRetryPhoneTypes($retryPhoneTypes)
+    {
+        $this->retryPhoneTypes = $retryPhoneTypes;
+
+        return $this;
+    }
+
     public function getAnsweringMachineConfig()
     {
         return $this->answeringMachineConfig;
@@ -271,6 +387,18 @@ class UpdateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getLiveSoundTextVoice()
+    {
+        return $this->liveSoundTextVoice;
+    }
+
+    public function setLiveSoundTextVoice($liveSoundTextVoice)
+    {
+        $this->liveSoundTextVoice = $liveSoundTextVoice;
+
+        return $this;
+    }
+
     public function getMachineSoundText()
     {
         return $this->machineSoundText;
@@ -295,6 +423,18 @@ class UpdateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getMachineSoundTextVoice()
+    {
+        return $this->machineSoundTextVoice;
+    }
+
+    public function setMachineSoundTextVoice($machineSoundTextVoice)
+    {
+        $this->machineSoundTextVoice = $machineSoundTextVoice;
+
+        return $this;
+    }
+
     public function getTransferSoundText()
     {
         return $this->transferSoundText;
@@ -315,6 +455,18 @@ class UpdateBroadcast extends AbstractRequest
     public function setTransferSoundId($transferSoundId)
     {
         $this->transferSoundId = $transferSoundId;
+
+        return $this;
+    }
+
+    public function getTransferSoundTextVoice()
+    {
+        return $this->transferSoundTextVoice;
+    }
+
+    public function setTransferSoundTextVoice($transferSoundTextVoice)
+    {
+        $this->transferSoundTextVoice = $transferSoundTextVoice;
 
         return $this;
     }
@@ -367,6 +519,18 @@ class UpdateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getDncSoundTextVoice()
+    {
+        return $this->dncSoundTextVoice;
+    }
+
+    public function setDncSoundTextVoice($dncSoundTextVoice)
+    {
+        $this->dncSoundTextVoice = $dncSoundTextVoice;
+
+        return $this;
+    }
+
     public function getDncDigit()
     {
         return $this->dncDigit;
@@ -411,6 +575,90 @@ class UpdateBroadcast extends AbstractRequest
     public function setBigMessageStrategy($bigMessageStrategy)
     {
         $this->bigMessageStrategy = $bigMessageStrategy;
+
+        return $this;
+    }
+
+    public function getAgentGroupId()
+    {
+        return $this->agentGroupId;
+    }
+
+    public function setAgentGroupId($agentGroupId)
+    {
+        $this->agentGroupId = $agentGroupId;
+
+        return $this;
+    }
+
+    public function getSmartDropSoundId()
+    {
+        return $this->smartDropSoundId;
+    }
+
+    public function setSmartDropSoundId($smartDropSoundId)
+    {
+        $this->smartDropSoundId = $smartDropSoundId;
+
+        return $this;
+    }
+
+    public function getScriptId()
+    {
+        return $this->scriptId;
+    }
+
+    public function setScriptId($scriptId)
+    {
+        $this->scriptId = $scriptId;
+
+        return $this;
+    }
+
+    public function getTransferNumberIdList()
+    {
+        return $this->transferNumberIdList;
+    }
+
+    public function setTransferNumberIdList($transferNumberIdList)
+    {
+        $this->transferNumberIdList = $transferNumberIdList;
+
+        return $this;
+    }
+
+    public function getAllowAnyTransfer()
+    {
+        return $this->allowAnyTransfer;
+    }
+
+    public function setAllowAnyTransfer($allowAnyTransfer)
+    {
+        $this->allowAnyTransfer = $allowAnyTransfer;
+
+        return $this;
+    }
+
+    public function getRecorded()
+    {
+        return $this->recorded;
+    }
+
+    public function setRecorded($recorded)
+    {
+        $this->recorded = $recorded;
+
+        return $this;
+    }
+
+    public function getBroadcast()
+    {
+        return $this->broadcast;
+    }
+
+    public function setBroadcast($broadcast)
+    {
+        $this->broadcast = $broadcast;
 
         return $this;
     }

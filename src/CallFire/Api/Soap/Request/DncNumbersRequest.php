@@ -10,7 +10,7 @@ class DncNumbersRequest extends AbstractRequest
     /**
      * @var long
      */
-    protected $dncListId = null;
+    protected $id = null;
 
     /**
      * @var boolean
@@ -27,14 +27,14 @@ class DncNumbersRequest extends AbstractRequest
      */
     protected $numbers = null;
 
-    public function getDncListId()
+    public function getId()
     {
-        return $this->dncListId;
+        return $this->id;
     }
 
-    public function setDncListId($dncListId)
+    public function setId($id)
     {
-        $this->dncListId = $dncListId;
+        $this->id = $id;
 
         return $this;
     }

@@ -10,6 +10,11 @@ class AddAgentsRequest extends CampaignIdRequest
      */
     protected $agentIds = null;
 
+    /**
+     * @var string
+     */
+    protected $agentEmails = null;
+
     public function getAgentIds()
     {
         return $this->agentIds;
@@ -18,6 +23,18 @@ class AddAgentsRequest extends CampaignIdRequest
     public function setAgentIds($agentIds)
     {
         $this->agentIds = $agentIds;
+
+        return $this;
+    }
+
+    public function getAgentEmails()
+    {
+        return $this->agentEmails;
+    }
+
+    public function setAgentEmails($agentEmails)
+    {
+        $this->agentEmails = $agentEmails;
 
         return $this;
     }

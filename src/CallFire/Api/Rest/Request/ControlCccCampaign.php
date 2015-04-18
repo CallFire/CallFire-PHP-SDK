@@ -4,7 +4,7 @@ namespace CallFire\Api\Rest\Request;
 
 use CallFire\Api\Rest\Request as AbstractRequest;
 
-class ControlBroadcast extends AbstractRequest
+class ControlCccCampaign extends AbstractRequest
 {
 
     protected $requestId = null;

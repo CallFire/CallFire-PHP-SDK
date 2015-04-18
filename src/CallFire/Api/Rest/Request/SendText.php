@@ -15,7 +15,7 @@ class SendText extends AbstractRequest
     /**
      * Type of Broadcast
      *
-     * Allowable values: [VOICE, IVR, TEXT]
+     * Allowable values: [VOICE, IVR, TEXT, CCC]
      */
     protected $type = null;
 
@@ -30,10 +30,23 @@ class SendText extends AbstractRequest
     protected $to = null;
 
     /**
+     * PhoneNumber 'To' param represents (default: homePhone)
+     */
+    protected $toNumber = null;
+
+    /**
      * Scrub duplicates (default: false)
      */
     protected $scrubBroadcastDuplicates = null;
 
+    /**
+     * DateTime Broadcast was created 'CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]'
+     */
+    protected $created = null;
+
+    /**
+     * E.164 11 digit number or short code
+     */
     protected $from = null;
 
     /**
@@ -59,10 +72,20 @@ class SendText extends AbstractRequest
     protected $minutesBetweenAttempts = null;
 
     /**
+     * Conditions to retry on
+     *
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
-     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
+     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR, SD,
+     * POSTPONED, ABANDONED]
      */
     protected $retryResults = null;
+
+    /**
+     * Phone types to call in retry
+     *
+     * Allowable values: [FIRST_NUMBER, HOME_PHONE, WORK_PHONE, MOBILE_PHONE]
+     */
+    protected $retryPhoneTypes = null;
 
     /**
      * 160 char or less message to be sent in text broadcast. Use rented 'keyword' in
@@ -76,6 +99,16 @@ class SendText extends AbstractRequest
      * Allowable values: [SEND_MULTIPLE, DO_NOT_SEND, TRIM]
      */
     protected $bigMessageStrategy = null;
+
+    /**
+     * BroadcastId to send message from
+     */
+    protected $broadcastId = null;
+
+    /**
+     * If true send text through existing default broadcast (default: false)
+     */
+    protected $useDefaultBroadcast = null;
 
     public function getRequestId()
     {
@@ -125,6 +158,18 @@ class SendText extends AbstractRequest
         return $this;
     }
 
+    public function getToNumber()
+    {
+        return $this->toNumber;
+    }
+
+    public function setToNumber($toNumber)
+    {
+        $this->toNumber = $toNumber;
+
+        return $this;
+    }
+
     public function getScrubBroadcastDuplicates()
     {
         return $this->scrubBroadcastDuplicates;
@@ -133,6 +178,18 @@ class SendText extends AbstractRequest
     public function setScrubBroadcastDuplicates($scrubBroadcastDuplicates)
     {
         $this->scrubBroadcastDuplicates = $scrubBroadcastDuplicates;
+
+        return $this;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated($created)
+    {
+        $this->created = $created;
 
         return $this;
     }
@@ -209,6 +266,18 @@ class SendText extends AbstractRequest
         return $this;
     }
 
+    public function getRetryPhoneTypes()
+    {
+        return $this->retryPhoneTypes;
+    }
+
+    public function setRetryPhoneTypes($retryPhoneTypes)
+    {
+        $this->retryPhoneTypes = $retryPhoneTypes;
+
+        return $this;
+    }
+
     public function getMessage()
     {
         return $this->message;
@@ -229,6 +298,30 @@ class SendText extends AbstractRequest
     public function setBigMessageStrategy($bigMessageStrategy)
     {
         $this->bigMessageStrategy = $bigMessageStrategy;
+
+        return $this;
+    }
+
+    public function getBroadcastId()
+    {
+        return $this->broadcastId;
+    }
+
+    public function setBroadcastId($broadcastId)
+    {
+        $this->broadcastId = $broadcastId;
+
+        return $this;
+    }
+
+    public function getUseDefaultBroadcast()
+    {
+        return $this->useDefaultBroadcast;
+    }
+
+    public function setUseDefaultBroadcast($useDefaultBroadcast)
+    {
+        $this->useDefaultBroadcast = $useDefaultBroadcast;
 
         return $this;
     }

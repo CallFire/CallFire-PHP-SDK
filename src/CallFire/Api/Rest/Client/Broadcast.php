@@ -72,15 +72,16 @@ class Broadcast extends AbstractClient
      * retry logic. Currently all fields from config are updated so the 'Message' field
      * needs to be populated just like in CreateBroadcast operation.  Use unique ID to
      * specify broadcast. Need to provide dummy 'Name' field Broadcast even though the
-     * field will not be overwritten.
+     * field will not be overwritten.  Testing this method using swagger doc REST
+     * interface (Try Me! button) does not work correctly. Please use curl or other
+     * rest client to test api call.
      *
      * @api
-     * @param int                     $Id
-     * @param Request\UpdateBroadcast $UpdateBroadcast
+     * @param Request\UpdateBroadcast $UpdateBroadcast = null
      */
-    public function UpdateBroadcast($Id, Request\UpdateBroadcast $UpdateBroadcast)
+    public function UpdateBroadcast(Request\UpdateBroadcast $UpdateBroadcast = null)
     {
-        $uri = $this->getUri('/broadcast/%s', array($Id));
+        $uri = $this->getUri('/broadcast/%s', array());
 
         return $this->put($uri, $UpdateBroadcast);
     }
@@ -110,7 +111,7 @@ class Broadcast extends AbstractClient
      * active count of Broadcast.
      *
      * @api
-     * @param int                      $Id
+     * @param int                      $Id               Unique ID of resource
      * @param Request\ControlBroadcast $ControlBroadcast
      */
     public function ControlBroadcast($Id, Request\ControlBroadcast $ControlBroadcast)
@@ -128,12 +129,12 @@ class Broadcast extends AbstractClient
      * or delete the individual Batches.
      *
      * @api
-     * @param int                         $Id                  Unique ID of resource
-     * @param Request\QueryContactBatches $QueryContactBatches = null
+     * @param int                         $BroadcastId         Unique ID of Broadcast
+     * @param Request\QueryContactBatches $QueryContactBatches
      */
-    public function QueryContactBatches($Id, Request\QueryContactBatches $QueryContactBatches = null)
+    public function QueryContactBatches($BroadcastId, Request\QueryContactBatches $QueryContactBatches)
     {
-        $uri = $this->getUri('/broadcast/%s/batch', array($Id));
+        $uri = $this->getUri('/broadcast/%s/batch', array($BroadcastId));
 
         return $this->get($uri, $QueryContactBatches);
     }
@@ -161,7 +162,7 @@ class Broadcast extends AbstractClient
      * of contacts associated with a ContactBatch.
      *
      * @api
-     * @param int                         $Id
+     * @param int                         $Id                  Unique ID of resource
      * @param Request\ControlContactBatch $ControlContactBatch
      */
     public function ControlContactBatch($Id, Request\ControlContactBatch $ControlContactBatch)
@@ -180,11 +181,12 @@ class Broadcast extends AbstractClient
      * DeleteBroadcastSchedule
      *
      * @api
-     * @param Request\CreateBroadcastSchedule $CreateBroadcastSchedule = null
+     * @param int                             $BroadcastId
+     * @param Request\CreateBroadcastSchedule $CreateBroadcastSchedule
      */
-    public function CreateBroadcastSchedule(Request\CreateBroadcastSchedule $CreateBroadcastSchedule = null)
+    public function CreateBroadcastSchedule($BroadcastId, Request\CreateBroadcastSchedule $CreateBroadcastSchedule)
     {
-        $uri = $this->getUri('/broadcast/schedule', array());
+        $uri = $this->getUri('/broadcast/%s/schedule', array($BroadcastId));
 
         return $this->post($uri, $CreateBroadcastSchedule);
     }
@@ -195,11 +197,12 @@ class Broadcast extends AbstractClient
      * List information about Broadcast Schedules attached to a Broadcast.
      *
      * @api
-     * @param Request\QueryBroadcastSchedule $QueryBroadcastSchedule = null
+     * @param int                            $BroadcastId            Unique ID of Broadcast
+     * @param Request\QueryBroadcastSchedule $QueryBroadcastSchedule
      */
-    public function QueryBroadcastSchedule(Request\QueryBroadcastSchedule $QueryBroadcastSchedule = null)
+    public function QueryBroadcastSchedule($BroadcastId, Request\QueryBroadcastSchedule $QueryBroadcastSchedule)
     {
-        $uri = $this->getUri('/broadcast/schedule', array());
+        $uri = $this->getUri('/broadcast/%s/schedule', array($BroadcastId));
 
         return $this->get($uri, $QueryBroadcastSchedule);
     }
@@ -244,12 +247,13 @@ class Broadcast extends AbstractClient
      * ControlContactBatch to enable or disable this batch.
      *
      * @api
-     * @param Request\CreateContactBatch $CreateContactBatch = null
+     * @param int                        $BroadcastId        Id of Broadcast
+     * @param Request\CreateContactBatch $CreateContactBatch
      * @param int                        $id
      */
-    public function CreateContactBatch($id, Request\CreateContactBatch $CreateContactBatch = null)
+    public function CreateContactBatch($id, Request\CreateContactBatch $CreateContactBatch)
     {
-        $uri = $this->getUri('/broadcast/%s/batch', array($id));
+        $uri = $this->getUri('/broadcast/%s/batch', array($BroadcastId));
 
         return $this->post($uri, $CreateContactBatch);
     }

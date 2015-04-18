@@ -4,7 +4,7 @@ namespace CallFire\Api\Rest\Request;
 
 use CallFire\Api\Rest\Request as AbstractRequest;
 
-class QueryBroadcasts extends AbstractRequest
+class QueryCccCampaigns extends AbstractRequest
 {
 
     /**
@@ -18,14 +18,14 @@ class QueryBroadcasts extends AbstractRequest
     protected $firstResult = null;
 
     /**
-     * Allowable values: [VOICE, IVR, TEXT, CCC]
-     */
-    protected $type = null;
-
-    /**
-     * Filter on running Broadcasts
+     * Filter on running CCC Campaigns
      */
     protected $running = null;
+
+    /**
+     * Name of Campaign
+     */
+    protected $name = null;
 
     /**
      * Label that result must have to be included
@@ -56,18 +56,6 @@ class QueryBroadcasts extends AbstractRequest
         return $this;
     }
 
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     public function getRunning()
     {
         return $this->running;
@@ -76,6 +64,18 @@ class QueryBroadcasts extends AbstractRequest
     public function setRunning($running)
     {
         $this->running = $running;
+
+        return $this;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
 
         return $this;
     }

@@ -20,10 +20,13 @@ class CreateBroadcast extends AbstractRequest
     /**
      * Type of Broadcast
      *
-     * Allowable values: [VOICE, IVR, TEXT]
+     * Allowable values: [VOICE, IVR, TEXT, CCC]
      */
     protected $type = null;
 
+    /**
+     * E.164 11 digit number or short code
+     */
     protected $from = null;
 
     /**
@@ -49,10 +52,20 @@ class CreateBroadcast extends AbstractRequest
     protected $minutesBetweenAttempts = null;
 
     /**
+     * Conditions to retry on
+     *
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
-     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
+     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR, SD,
+     * POSTPONED, ABANDONED]
      */
     protected $retryResults = null;
+
+    /**
+     * Phone types to call in retry
+     *
+     * Allowable values: [FIRST_NUMBER, HOME_PHONE, WORK_PHONE, MOBILE_PHONE]
+     */
+    protected $retryPhoneTypes = null;
 
     /**
      * Action to take if machine answers
@@ -68,6 +81,8 @@ class CreateBroadcast extends AbstractRequest
      */
     protected $liveSoundId = null;
 
+    protected $liveSoundTextVoice = null;
+
     protected $machineSoundText = null;
 
     /**
@@ -75,12 +90,16 @@ class CreateBroadcast extends AbstractRequest
      */
     protected $machineSoundId = null;
 
+    protected $machineSoundTextVoice = null;
+
     protected $transferSoundText = null;
 
     /**
      * ID of Sound to play if call transfered
      */
     protected $transferSoundId = null;
+
+    protected $transferSoundTextVoice = null;
 
     /**
      * Phone digit call transfers on if pressed
@@ -98,6 +117,8 @@ class CreateBroadcast extends AbstractRequest
      * Do Not Call unique ID of sound
      */
     protected $dncSoundId = null;
+
+    protected $dncSoundTextVoice = null;
 
     /**
      * Do Not Call Digit
@@ -123,9 +144,34 @@ class CreateBroadcast extends AbstractRequest
     protected $bigMessageStrategy = null;
 
     /**
-     * IVR xml document describing dialplan
+     * Unique ID of AgentGroup
      */
-    protected $dialplanXml = null;
+    protected $agentGroupId = null;
+
+    /**
+     * Unique ID of SmartDropSound
+     */
+    protected $smartDropSoundId = null;
+
+    /**
+     * Unique ID of Script
+     */
+    protected $scriptId = null;
+
+    /**
+     * ID List of TransferNumbers
+     */
+    protected $transferNumberIdList = null;
+
+    /**
+     * Allow any transfer
+     */
+    protected $allowAnyTransfer = null;
+
+    /**
+     * Recorded
+     */
+    protected $recorded = null;
 
     public function getRequestId()
     {
@@ -235,6 +281,18 @@ class CreateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getRetryPhoneTypes()
+    {
+        return $this->retryPhoneTypes;
+    }
+
+    public function setRetryPhoneTypes($retryPhoneTypes)
+    {
+        $this->retryPhoneTypes = $retryPhoneTypes;
+
+        return $this;
+    }
+
     public function getAnsweringMachineConfig()
     {
         return $this->answeringMachineConfig;
@@ -271,6 +329,18 @@ class CreateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getLiveSoundTextVoice()
+    {
+        return $this->liveSoundTextVoice;
+    }
+
+    public function setLiveSoundTextVoice($liveSoundTextVoice)
+    {
+        $this->liveSoundTextVoice = $liveSoundTextVoice;
+
+        return $this;
+    }
+
     public function getMachineSoundText()
     {
         return $this->machineSoundText;
@@ -295,6 +365,18 @@ class CreateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getMachineSoundTextVoice()
+    {
+        return $this->machineSoundTextVoice;
+    }
+
+    public function setMachineSoundTextVoice($machineSoundTextVoice)
+    {
+        $this->machineSoundTextVoice = $machineSoundTextVoice;
+
+        return $this;
+    }
+
     public function getTransferSoundText()
     {
         return $this->transferSoundText;
@@ -315,6 +397,18 @@ class CreateBroadcast extends AbstractRequest
     public function setTransferSoundId($transferSoundId)
     {
         $this->transferSoundId = $transferSoundId;
+
+        return $this;
+    }
+
+    public function getTransferSoundTextVoice()
+    {
+        return $this->transferSoundTextVoice;
+    }
+
+    public function setTransferSoundTextVoice($transferSoundTextVoice)
+    {
+        $this->transferSoundTextVoice = $transferSoundTextVoice;
 
         return $this;
     }
@@ -367,6 +461,18 @@ class CreateBroadcast extends AbstractRequest
         return $this;
     }
 
+    public function getDncSoundTextVoice()
+    {
+        return $this->dncSoundTextVoice;
+    }
+
+    public function setDncSoundTextVoice($dncSoundTextVoice)
+    {
+        $this->dncSoundTextVoice = $dncSoundTextVoice;
+
+        return $this;
+    }
+
     public function getDncDigit()
     {
         return $this->dncDigit;
@@ -415,14 +521,74 @@ class CreateBroadcast extends AbstractRequest
         return $this;
     }
 
-    public function getDialplanXml()
+    public function getAgentGroupId()
     {
-        return $this->dialplanXml;
+        return $this->agentGroupId;
     }
 
-    public function setDialplanXml($dialplanXml)
+    public function setAgentGroupId($agentGroupId)
     {
-        $this->dialplanXml = $dialplanXml;
+        $this->agentGroupId = $agentGroupId;
+
+        return $this;
+    }
+
+    public function getSmartDropSoundId()
+    {
+        return $this->smartDropSoundId;
+    }
+
+    public function setSmartDropSoundId($smartDropSoundId)
+    {
+        $this->smartDropSoundId = $smartDropSoundId;
+
+        return $this;
+    }
+
+    public function getScriptId()
+    {
+        return $this->scriptId;
+    }
+
+    public function setScriptId($scriptId)
+    {
+        $this->scriptId = $scriptId;
+
+        return $this;
+    }
+
+    public function getTransferNumberIdList()
+    {
+        return $this->transferNumberIdList;
+    }
+
+    public function setTransferNumberIdList($transferNumberIdList)
+    {
+        $this->transferNumberIdList = $transferNumberIdList;
+
+        return $this;
+    }
+
+    public function getAllowAnyTransfer()
+    {
+        return $this->allowAnyTransfer;
+    }
+
+    public function setAllowAnyTransfer($allowAnyTransfer)
+    {
+        $this->allowAnyTransfer = $allowAnyTransfer;
+
+        return $this;
+    }
+
+    public function getRecorded()
+    {
+        return $this->recorded;
+    }
+
+    public function setRecorded($recorded)
+    {
+        $this->recorded = $recorded;
 
         return $this;
     }

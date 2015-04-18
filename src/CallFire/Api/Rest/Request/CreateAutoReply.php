@@ -9,6 +9,9 @@ class CreateAutoReply extends AbstractRequest
 
     protected $requestId = null;
 
+    /**
+     * Phone number to configure an auto reply message
+     */
     protected $number = null;
 
     protected $keyword = null;

@@ -7,19 +7,32 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class CreateContactList extends AbstractRequest
 {
 
+    /**
+     * Unique ID, used to de-dup requests and make sure request is not processed twice
+     */
     protected $requestId = null;
 
+    /**
+     * Name of contact list
+     */
     protected $name = null;
+
+    /**
+     * Turn off list validation (default: true)
+     */
+    protected $validate = null;
+
+    /**
+     * First name
+     */
+    protected $contact = null;
 
     /**
      * List of existing contact ids
      */
     protected $contactId = null;
 
-    /**
-     * Csv file attachment containing list of contacts or numbers
-     */
-    protected $file = null;
+    protected $numbers = null;
 
     public function getRequestId()
     {
@@ -45,6 +58,30 @@ class CreateContactList extends AbstractRequest
         return $this;
     }
 
+    public function getValidate()
+    {
+        return $this->validate;
+    }
+
+    public function setValidate($validate)
+    {
+        $this->validate = $validate;
+
+        return $this;
+    }
+
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
     public function getContactId()
     {
         return $this->contactId;
@@ -57,14 +94,14 @@ class CreateContactList extends AbstractRequest
         return $this;
     }
 
-    public function getFile()
+    public function getNumbers()
     {
-        return $this->file;
+        return $this->numbers;
     }
 
-    public function setFile($file)
+    public function setNumbers($numbers)
     {
-        $this->file = $file;
+        $this->numbers = $numbers;
 
         return $this;
     }

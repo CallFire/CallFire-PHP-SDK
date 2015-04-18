@@ -4,7 +4,7 @@ namespace CallFire\Api\Rest\Request;
 
 use CallFire\Api\Rest\Request as AbstractRequest;
 
-class QueryBroadcastSchedule extends AbstractRequest
+class GetCallerIds extends AbstractRequest
 {
 
     /**

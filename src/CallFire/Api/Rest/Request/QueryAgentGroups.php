@@ -4,7 +4,7 @@ namespace CallFire\Api\Rest\Request;
 
 use CallFire\Api\Rest\Request as AbstractRequest;
 
-class QueryBroadcasts extends AbstractRequest
+class QueryAgentGroups extends AbstractRequest
 {
 
     /**
@@ -18,19 +18,24 @@ class QueryBroadcasts extends AbstractRequest
     protected $firstResult = null;
 
     /**
-     * Allowable values: [VOICE, IVR, TEXT, CCC]
+     * Unique ID of CCC Campaign
      */
-    protected $type = null;
+    protected $campaignId = null;
 
     /**
-     * Filter on running Broadcasts
+     * AgentGroup name
      */
-    protected $running = null;
+    protected $name = null;
 
     /**
-     * Label that result must have to be included
+     * Unique ID of agent
      */
-    protected $labelName = null;
+    protected $agentId = null;
+
+    /**
+     * Unique email of agent
+     */
+    protected $agentEmail = null;
 
     public function getMaxResults()
     {
@@ -56,38 +61,50 @@ class QueryBroadcasts extends AbstractRequest
         return $this;
     }
 
-    public function getType()
+    public function getCampaignId()
     {
-        return $this->type;
+        return $this->campaignId;
     }
 
-    public function setType($type)
+    public function setCampaignId($campaignId)
     {
-        $this->type = $type;
+        $this->campaignId = $campaignId;
 
         return $this;
     }
 
-    public function getRunning()
+    public function getName()
     {
-        return $this->running;
+        return $this->name;
     }
 
-    public function setRunning($running)
+    public function setName($name)
     {
-        $this->running = $running;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getLabelName()
+    public function getAgentId()
     {
-        return $this->labelName;
+        return $this->agentId;
     }
 
-    public function setLabelName($labelName)
+    public function setAgentId($agentId)
     {
-        $this->labelName = $labelName;
+        $this->agentId = $agentId;
+
+        return $this;
+    }
+
+    public function getAgentEmail()
+    {
+        return $this->agentEmail;
+    }
+
+    public function setAgentEmail($agentEmail)
+    {
+        $this->agentEmail = $agentEmail;
 
         return $this;
     }

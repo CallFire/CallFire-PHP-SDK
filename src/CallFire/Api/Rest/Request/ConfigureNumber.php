@@ -7,8 +7,6 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class ConfigureNumber extends AbstractRequest
 {
 
-    protected $number = null;
-
     /**
      * Allowable values: [UNSUPPORTED, PENDING, DISABLED, ENABLED]
      */
@@ -24,6 +22,11 @@ class ConfigureNumber extends AbstractRequest
      */
     protected $inboundCallConfigurationType = null;
 
+    /**
+     * Unique ID of InboundConfig
+     */
+    protected $callTrackingConfig = null;
+
     protected $transferNumber = null;
 
     protected $screen = null;
@@ -34,19 +37,10 @@ class ConfigureNumber extends AbstractRequest
 
     protected $whisperSoundId = null;
 
-    protected $dialplanXml = null;
-
-    public function getNumber()
-    {
-        return $this->number;
-    }
-
-    public function setNumber($number)
-    {
-        $this->number = $number;
-
-        return $this;
-    }
+    /**
+     * Unique ID of InboundConfig
+     */
+    protected $ivrInboundConfig = null;
 
     public function getCallFeature()
     {
@@ -80,6 +74,18 @@ class ConfigureNumber extends AbstractRequest
     public function setInboundCallConfigurationType($inboundCallConfigurationType)
     {
         $this->inboundCallConfigurationType = $inboundCallConfigurationType;
+
+        return $this;
+    }
+
+    public function getCallTrackingConfig()
+    {
+        return $this->callTrackingConfig;
+    }
+
+    public function setCallTrackingConfig($callTrackingConfig)
+    {
+        $this->callTrackingConfig = $callTrackingConfig;
 
         return $this;
     }
@@ -144,14 +150,14 @@ class ConfigureNumber extends AbstractRequest
         return $this;
     }
 
-    public function getDialplanXml()
+    public function getIvrInboundConfig()
     {
-        return $this->dialplanXml;
+        return $this->ivrInboundConfig;
     }
 
-    public function setDialplanXml($dialplanXml)
+    public function setIvrInboundConfig($ivrInboundConfig)
     {
-        $this->dialplanXml = $dialplanXml;
+        $this->ivrInboundConfig = $ivrInboundConfig;
 
         return $this;
     }

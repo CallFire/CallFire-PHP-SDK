@@ -23,7 +23,7 @@ class CreateSubscription extends AbstractRequest
     protected $endpoint = null;
 
     /**
-     * Allowable values: [XML, JSON, SOAP, EMAIL]
+     * Allowable values: [XML, JSON, SOAP, EMAIL, LEGACY]
      */
     protected $notificationFormat = null;
 

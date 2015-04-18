@@ -9,8 +9,6 @@ class CreateBroadcastSchedule extends AbstractRequest
 
     protected $requestId = null;
 
-    protected $broadcastId = null;
-
     /**
      * Earliest time a client can be contacted in the timezone associated with the
      * number's NPA/NXX
@@ -52,18 +50,6 @@ class CreateBroadcastSchedule extends AbstractRequest
     public function setRequestId($requestId)
     {
         $this->requestId = $requestId;
-
-        return $this;
-    }
-
-    public function getBroadcastId()
-    {
-        return $this->broadcastId;
-    }
-
-    public function setBroadcastId($broadcastId)
-    {
-        $this->broadcastId = $broadcastId;
 
         return $this;
     }

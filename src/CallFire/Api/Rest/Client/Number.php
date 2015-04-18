@@ -53,14 +53,13 @@ class Number extends AbstractClient
      * configuration, etc...
      *
      * @api
-     * @param string               $Number    11 digit telephone number
-     * @param Request\GetNumber $GetNumber = null
+     * @param string $Number 11 digit telephone number
      */
-    public function GetNumber($Number, Request\GetNumber $GetNumber = null)
+    public function GetNumber($Number)
     {
         $uri = $this->getUri('/number/%s', array($Number));
 
-        return $this->get($uri, $GetNumber);
+        return $this->get($uri);
     }
 
     /**
@@ -70,7 +69,7 @@ class Number extends AbstractClient
      * using 11 diget E.164 format to select number. No response is returned.
      *
      * @api
-     * @param string                  $Number          11 digit telephone number
+     * @param string                  $Number
      * @param Request\ConfigureNumber $ConfigureNumber
      */
     public function ConfigureNumber($Number, Request\ConfigureNumber $ConfigureNumber)
@@ -186,12 +185,11 @@ class Number extends AbstractClient
      * until May 29th. Therefore, please be sure of your decision before releasing.
      *
      * @api
-     * @param int             $Id
-     * @param Request\Release $Release
+     * @param Request\Release $Release = null
      */
-    public function Release($Id, Request\Release $Release)
+    public function Release(Request\Release $Release = null)
     {
-        $uri = $this->getUri('/number/release', array($Id));
+        $uri = $this->getUri('/number/release', array());
 
         return $this->put($uri, $Release);
     }

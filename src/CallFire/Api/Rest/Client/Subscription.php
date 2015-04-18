@@ -70,15 +70,16 @@ class Subscription extends AbstractClient
      * Update existing subscription by ID Use this to enable or disable notification
      * events, change the notification endpoint URI, or change the filtering so only
      * receive notification for a subset of events.  UpdateSubscription service call
-     * returns no response.
+     * returns no response. Testing this method using swagger doc REST interface (Try
+     * Me! button) does not work correctly. Please use curl or other rest client to
+     * test api call.
      *
      * @api
-     * @param int                        $Id
-     * @param Request\UpdateSubscription $UpdateSubscription
+     * @param Request\UpdateSubscription $UpdateSubscription = null
      */
-    public function UpdateSubscription($Id, Request\UpdateSubscription $UpdateSubscription)
+    public function UpdateSubscription(Request\UpdateSubscription $UpdateSubscription = null)
     {
-        $uri = $this->getUri('/subscription/%s', array($Id));
+        $uri = $this->getUri('/subscription/%s', array());
 
         return $this->put($uri, $UpdateSubscription);
     }

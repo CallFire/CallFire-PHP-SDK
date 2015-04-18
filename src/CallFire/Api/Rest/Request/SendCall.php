@@ -15,7 +15,7 @@ class SendCall extends AbstractRequest
     /**
      * Type of Broadcast
      *
-     * Allowable values: [VOICE, IVR, TEXT]
+     * Allowable values: [VOICE, IVR, TEXT, CCC]
      */
     protected $type = null;
 
@@ -30,10 +30,28 @@ class SendCall extends AbstractRequest
     protected $to = null;
 
     /**
+     * PhoneNumber 'To' param represents (default: homePhone)
+     */
+    protected $toNumber = null;
+
+    /**
      * Scrub duplicates (default: false)
      */
     protected $scrubBroadcastDuplicates = null;
 
+    /**
+     * Max simultaneous calls
+     */
+    protected $maxActive = null;
+
+    /**
+     * DateTime Broadcast was created 'CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]'
+     */
+    protected $created = null;
+
+    /**
+     * E.164 11 digit number or short code
+     */
     protected $from = null;
 
     /**
@@ -59,10 +77,20 @@ class SendCall extends AbstractRequest
     protected $minutesBetweenAttempts = null;
 
     /**
+     * Conditions to retry on
+     *
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
-     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
+     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR, SD,
+     * POSTPONED, ABANDONED]
      */
     protected $retryResults = null;
+
+    /**
+     * Phone types to call in retry
+     *
+     * Allowable values: [FIRST_NUMBER, HOME_PHONE, WORK_PHONE, MOBILE_PHONE]
+     */
+    protected $retryPhoneTypes = null;
 
     /**
      * Action to take if machine answers
@@ -78,6 +106,8 @@ class SendCall extends AbstractRequest
      */
     protected $liveSoundId = null;
 
+    protected $liveSoundTextVoice = null;
+
     protected $machineSoundText = null;
 
     /**
@@ -85,12 +115,16 @@ class SendCall extends AbstractRequest
      */
     protected $machineSoundId = null;
 
+    protected $machineSoundTextVoice = null;
+
     protected $transferSoundText = null;
 
     /**
      * ID of Sound to play if call transfered
      */
     protected $transferSoundId = null;
+
+    protected $transferSoundTextVoice = null;
 
     /**
      * Phone digit call transfers on if pressed
@@ -109,6 +143,8 @@ class SendCall extends AbstractRequest
      */
     protected $dncSoundId = null;
 
+    protected $dncSoundTextVoice = null;
+
     /**
      * Do Not Call Digit
      */
@@ -118,11 +154,6 @@ class SendCall extends AbstractRequest
      * Max Transfers
      */
     protected $maxActiveTransfers = null;
-
-    /**
-     * IVR xml document describing dialplan
-     */
-    protected $dialplanXml = null;
 
     public function getRequestId()
     {
@@ -172,6 +203,18 @@ class SendCall extends AbstractRequest
         return $this;
     }
 
+    public function getToNumber()
+    {
+        return $this->toNumber;
+    }
+
+    public function setToNumber($toNumber)
+    {
+        $this->toNumber = $toNumber;
+
+        return $this;
+    }
+
     public function getScrubBroadcastDuplicates()
     {
         return $this->scrubBroadcastDuplicates;
@@ -180,6 +223,30 @@ class SendCall extends AbstractRequest
     public function setScrubBroadcastDuplicates($scrubBroadcastDuplicates)
     {
         $this->scrubBroadcastDuplicates = $scrubBroadcastDuplicates;
+
+        return $this;
+    }
+
+    public function getMaxActive()
+    {
+        return $this->maxActive;
+    }
+
+    public function setMaxActive($maxActive)
+    {
+        $this->maxActive = $maxActive;
+
+        return $this;
+    }
+
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    public function setCreated($created)
+    {
+        $this->created = $created;
 
         return $this;
     }
@@ -256,6 +323,18 @@ class SendCall extends AbstractRequest
         return $this;
     }
 
+    public function getRetryPhoneTypes()
+    {
+        return $this->retryPhoneTypes;
+    }
+
+    public function setRetryPhoneTypes($retryPhoneTypes)
+    {
+        $this->retryPhoneTypes = $retryPhoneTypes;
+
+        return $this;
+    }
+
     public function getAnsweringMachineConfig()
     {
         return $this->answeringMachineConfig;
@@ -292,6 +371,18 @@ class SendCall extends AbstractRequest
         return $this;
     }
 
+    public function getLiveSoundTextVoice()
+    {
+        return $this->liveSoundTextVoice;
+    }
+
+    public function setLiveSoundTextVoice($liveSoundTextVoice)
+    {
+        $this->liveSoundTextVoice = $liveSoundTextVoice;
+
+        return $this;
+    }
+
     public function getMachineSoundText()
     {
         return $this->machineSoundText;
@@ -316,6 +407,18 @@ class SendCall extends AbstractRequest
         return $this;
     }
 
+    public function getMachineSoundTextVoice()
+    {
+        return $this->machineSoundTextVoice;
+    }
+
+    public function setMachineSoundTextVoice($machineSoundTextVoice)
+    {
+        $this->machineSoundTextVoice = $machineSoundTextVoice;
+
+        return $this;
+    }
+
     public function getTransferSoundText()
     {
         return $this->transferSoundText;
@@ -336,6 +439,18 @@ class SendCall extends AbstractRequest
     public function setTransferSoundId($transferSoundId)
     {
         $this->transferSoundId = $transferSoundId;
+
+        return $this;
+    }
+
+    public function getTransferSoundTextVoice()
+    {
+        return $this->transferSoundTextVoice;
+    }
+
+    public function setTransferSoundTextVoice($transferSoundTextVoice)
+    {
+        $this->transferSoundTextVoice = $transferSoundTextVoice;
 
         return $this;
     }
@@ -388,6 +503,18 @@ class SendCall extends AbstractRequest
         return $this;
     }
 
+    public function getDncSoundTextVoice()
+    {
+        return $this->dncSoundTextVoice;
+    }
+
+    public function setDncSoundTextVoice($dncSoundTextVoice)
+    {
+        $this->dncSoundTextVoice = $dncSoundTextVoice;
+
+        return $this;
+    }
+
     public function getDncDigit()
     {
         return $this->dncDigit;
@@ -408,18 +535,6 @@ class SendCall extends AbstractRequest
     public function setMaxActiveTransfers($maxActiveTransfers)
     {
         $this->maxActiveTransfers = $maxActiveTransfers;
-
-        return $this;
-    }
-
-    public function getDialplanXml()
-    {
-        return $this->dialplanXml;
-    }
-
-    public function setDialplanXml($dialplanXml)
-    {
-        $this->dialplanXml = $dialplanXml;
 
         return $this;
     }

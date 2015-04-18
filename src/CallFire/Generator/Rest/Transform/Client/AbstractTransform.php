@@ -48,13 +48,13 @@ abstract class AbstractTransform
             $newMethod->setParameter($newParameter);
 
             $newParameterSpec[$name] = $newParameter;
-
-            $body = str_replace('array()', "array(\${$name})", $body);
         }
 
         $newMethod->setParameters(array_merge($newParameterSpec, array(
             $method => $parameters[$method],
         )));
+
+        $body = str_replace('array()', 'array($'.implode(', $', array_keys($newParameters)).')', $body);
 
         $newMethod->setDocBlock($docblock);
         $newMethod->setBody($body);

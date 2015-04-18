@@ -72,7 +72,7 @@ class RequestTest extends TestCase
             return;
         }
         
-        $pathParamCount = count($matches) - 1;
+        $pathParamCount = count($matches[1]);
         
         $methodParamCount = 0;
         foreach($method->getParameters() as $parameter) {

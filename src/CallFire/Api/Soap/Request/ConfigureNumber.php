@@ -12,6 +12,11 @@ class ConfigureNumber extends AbstractRequest
      */
     protected $number = null;
 
+    /**
+     * @var NumberConfiguration
+     */
+    protected $numberConfiguration = null;
+
     public function getNumber()
     {
         return $this->number;
@@ -20,6 +25,18 @@ class ConfigureNumber extends AbstractRequest
     public function setNumber($number)
     {
         $this->number = $number;
+
+        return $this;
+    }
+
+    public function getNumberConfiguration()
+    {
+        return $this->numberConfiguration;
+    }
+
+    public function setNumberConfiguration($numberConfiguration)
+    {
+        $this->numberConfiguration = $numberConfiguration;
 
         return $this;
     }

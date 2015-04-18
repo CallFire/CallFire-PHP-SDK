@@ -124,6 +124,18 @@ class Contact extends AbstractClient
 
     /**
      * @api
+     * @param  Request\GetContactList $getContactList
+     * @return Result\ContactList
+     */
+    public function GetContactList(Request\GetContactList $getContactList)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($getContactList);
+    }
+
+    /**
+     * @api
      * @param  Request\RemoveContactsFromList        $removeContactsFromList
      * @return Result\RemoveContactsFromListResponse
      */
@@ -132,6 +144,102 @@ class Contact extends AbstractClient
         $method = __FUNCTION__;
 
         return parent::$method($removeContactsFromList);
+    }
+
+    /**
+     * @api
+     * @param  Request\QueryDncNumbers        $queryDncNumbersRequest
+     * @return Result\QueryDncNumbersResponse
+     */
+    public function QueryDncNumbers(Request\QueryDncNumbersRequest $queryDncNumbersRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($queryDncNumbersRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\UpdateDncNumber        $updateDncNumberRequest
+     * @return Result\UpdateDncNumberResponse
+     */
+    public function UpdateDncNumber(Request\UpdateDncNumberRequest $updateDncNumberRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($updateDncNumberRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\QueryDncLists        $queryDncListsRequest
+     * @return Result\QueryDncListsResponse
+     */
+    public function QueryDncLists(Request\QueryDncListsRequest $queryDncListsRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($queryDncListsRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\CreateDncList $createDncListRequest
+     * @return Result\DncListId
+     */
+    public function CreateDncList(Request\CreateDncListRequest $createDncListRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($createDncListRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\GetDncList $getDncListRequest
+     * @return Result\DncList
+     */
+    public function GetDncList(Request\GetDncListRequest $getDncListRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($getDncListRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\DeleteDncList        $deleteDncListRequest
+     * @return Result\DeleteDncListResponse
+     */
+    public function DeleteDncList(Request\DeleteDncListRequest $deleteDncListRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($deleteDncListRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\AddNumbersToDncList        $addNumbersToDncListRequest
+     * @return Result\AddNumbersToDncListResponse
+     */
+    public function AddNumbersToDncList(Request\AddNumbersToDncListRequest $addNumbersToDncListRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($addNumbersToDncListRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\RemoveNumbersFromDncList        $removeNumbersFromDncListRequest
+     * @return Result\RemoveNumbersFromDncListResponse
+     */
+    public function RemoveNumbersFromDncList(Request\RemoveNumbersFromDncListRequest $removeNumbersFromDncListRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($removeNumbersFromDncListRequest);
     }
 
 }

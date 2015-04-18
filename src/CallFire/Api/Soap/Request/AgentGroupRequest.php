@@ -4,7 +4,7 @@ namespace CallFire\Api\Soap\Request;
 
 use CallFire\Api\Soap\AbstractRequest as AbstractRequest;
 
-class CreateAutoReply extends AbstractRequest
+class AgentGroupRequest extends AbstractRequest
 {
 
     /**
@@ -13,9 +13,9 @@ class CreateAutoReply extends AbstractRequest
     protected $requestId = null;
 
     /**
-     * @var AutoReply
+     * @var AgentGroup
      */
-    protected $autoReply = null;
+    protected $agentGroup = null;
 
     public function getRequestId()
     {
@@ -29,14 +29,14 @@ class CreateAutoReply extends AbstractRequest
         return $this;
     }
 
-    public function getAutoReply()
+    public function getAgentGroup()
     {
-        return $this->autoReply;
+        return $this->agentGroup;
     }
 
-    public function setAutoReply($autoReply)
+    public function setAgentGroup($agentGroup)
     {
-        $this->autoReply = $autoReply;
+        $this->agentGroup = $agentGroup;
 
         return $this;
     }

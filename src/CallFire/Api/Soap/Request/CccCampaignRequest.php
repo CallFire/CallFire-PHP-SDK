@@ -4,7 +4,7 @@ namespace CallFire\Api\Soap\Request;
 
 use CallFire\Api\Soap\AbstractRequest as AbstractRequest;
 
-class CreateAutoReply extends AbstractRequest
+class CccCampaignRequest extends AbstractRequest
 {
 
     /**
@@ -13,9 +13,9 @@ class CreateAutoReply extends AbstractRequest
     protected $requestId = null;
 
     /**
-     * @var AutoReply
+     * @var CccCampaign
      */
-    protected $autoReply = null;
+    protected $cccCampaign = null;
 
     public function getRequestId()
     {
@@ -29,14 +29,14 @@ class CreateAutoReply extends AbstractRequest
         return $this;
     }
 
-    public function getAutoReply()
+    public function getCccCampaign()
     {
-        return $this->autoReply;
+        return $this->cccCampaign;
     }
 
-    public function setAutoReply($autoReply)
+    public function setCccCampaign($cccCampaign)
     {
-        $this->autoReply = $autoReply;
+        $this->cccCampaign = $cccCampaign;
 
         return $this;
     }

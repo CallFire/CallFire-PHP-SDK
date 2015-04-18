@@ -13,6 +13,11 @@ class CreateSound extends AbstractRequest
     protected $name = null;
 
     /**
+     * @var string
+     */
+    protected $soundTextVoice = null;
+
+    /**
      * @var base64Binary
      */
     protected $data = null;
@@ -30,6 +35,18 @@ class CreateSound extends AbstractRequest
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSoundTextVoice()
+    {
+        return $this->soundTextVoice;
+    }
+
+    public function setSoundTextVoice($soundTextVoice)
+    {
+        $this->soundTextVoice = $soundTextVoice;
 
         return $this;
     }

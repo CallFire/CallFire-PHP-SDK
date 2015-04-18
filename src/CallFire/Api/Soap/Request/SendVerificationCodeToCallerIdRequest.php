@@ -4,7 +4,7 @@ namespace CallFire\Api\Soap\Request;
 
 use CallFire\Api\Soap\AbstractRequest as AbstractRequest;
 
-class CreateAutoReply extends AbstractRequest
+class SendVerificationCodeToCallerIdRequest extends AbstractRequest
 {
 
     /**
@@ -13,9 +13,9 @@ class CreateAutoReply extends AbstractRequest
     protected $requestId = null;
 
     /**
-     * @var AutoReply
+     * @var string
      */
-    protected $autoReply = null;
+    protected $callerId = null;
 
     public function getRequestId()
     {
@@ -29,14 +29,14 @@ class CreateAutoReply extends AbstractRequest
         return $this;
     }
 
-    public function getAutoReply()
+    public function getCallerId()
     {
-        return $this->autoReply;
+        return $this->callerId;
     }
 
-    public function setAutoReply($autoReply)
+    public function setCallerId($callerId)
     {
-        $this->autoReply = $autoReply;
+        $this->callerId = $callerId;
 
         return $this;
     }

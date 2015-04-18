@@ -60,6 +60,11 @@ class Action extends AbstractResource
      */
     protected $finalResult = null;
 
+    /**
+     * @var Label[]
+     */
+    protected $labels = array();
+
     public function getId()
     {
         return $this->id;
@@ -188,6 +193,18 @@ class Action extends AbstractResource
     public function setFinalResult($finalResult)
     {
         $this->finalResult = $finalResult;
+
+        return $this;
+    }
+
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    public function setLabels($labels)
+    {
+        $this->labels = $labels;
 
         return $this;
     }

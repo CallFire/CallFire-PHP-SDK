@@ -13,12 +13,32 @@ class VoiceBroadcastConfig extends BroadcastConfig
     /**
      * @var string
      */
+    protected $liveSoundTextVoice = null;
+
+    /**
+     * @var string
+     */
+    protected $machineSoundTextVoice = null;
+
+    /**
+     * @var string
+     */
+    protected $transferSoundTextVoice = null;
+
+    /**
+     * @var string
+     */
     protected $transferDigit = null;
 
     /**
      * @var string
      */
     protected $transferNumber = null;
+
+    /**
+     * @var string
+     */
+    protected $dncSoundTextVoice = null;
 
     /**
      * @var string
@@ -82,6 +102,42 @@ class VoiceBroadcastConfig extends BroadcastConfig
         return $this;
     }
 
+    public function getLiveSoundTextVoice()
+    {
+        return $this->liveSoundTextVoice;
+    }
+
+    public function setLiveSoundTextVoice($liveSoundTextVoice)
+    {
+        $this->liveSoundTextVoice = $liveSoundTextVoice;
+
+        return $this;
+    }
+
+    public function getMachineSoundTextVoice()
+    {
+        return $this->machineSoundTextVoice;
+    }
+
+    public function setMachineSoundTextVoice($machineSoundTextVoice)
+    {
+        $this->machineSoundTextVoice = $machineSoundTextVoice;
+
+        return $this;
+    }
+
+    public function getTransferSoundTextVoice()
+    {
+        return $this->transferSoundTextVoice;
+    }
+
+    public function setTransferSoundTextVoice($transferSoundTextVoice)
+    {
+        $this->transferSoundTextVoice = $transferSoundTextVoice;
+
+        return $this;
+    }
+
     public function getTransferDigit()
     {
         return $this->transferDigit;
@@ -102,6 +158,18 @@ class VoiceBroadcastConfig extends BroadcastConfig
     public function setTransferNumber($transferNumber)
     {
         $this->transferNumber = $transferNumber;
+
+        return $this;
+    }
+
+    public function getDncSoundTextVoice()
+    {
+        return $this->dncSoundTextVoice;
+    }
+
+    public function setDncSoundTextVoice($dncSoundTextVoice)
+    {
+        $this->dncSoundTextVoice = $dncSoundTextVoice;
 
         return $this;
     }

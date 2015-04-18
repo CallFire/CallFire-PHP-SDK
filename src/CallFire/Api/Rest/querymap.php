@@ -1,13 +1,14 @@
 <?php
 
 return array(
-        'TextToSpeech' => array(),
         'InboundConfig' => array('id' => '@id'),
         'RetryResults' => array(),
+        'RetryPhoneTypes' => array(),
         'RetryConfig' => array(
             'MaxAttempts' => '_:MaxAttempts',
             'MinutesBetweenAttempts' => '_:MinutesBetweenAttempts',
-            '#RetryResults' => '_:RetryResults'
+            '#RetryResults' => '_:RetryResults',
+            '#RetryPhoneTypes' => '_:RetryPhoneTypes'
             ),
         'BroadcastConfig' => array(
             'id' => '@id',
@@ -39,7 +40,8 @@ return array(
             'Inbound' => '_:Inbound',
             'Created' => '_:Created',
             'Modified' => '_:Modified',
-            'FinalResult' => '_:FinalResult'
+            'FinalResult' => '_:FinalResult',
+            '#@Labels' => '_:Label'
             ),
         'Fulfilled' => array(),
         'NumberOrderItem' => array(
@@ -55,12 +57,17 @@ return array(
             'Type' => '_:Type',
             '#VoiceBroadcastConfig' => 'VoiceBroadcastConfig',
             '#TextBroadcastConfig' => 'TextBroadcastConfig',
-            '#IvrBroadcastConfig' => 'IvrBroadcastConfig'
+            '#IvrBroadcastConfig' => 'IvrBroadcastConfig',
+            '#CccBroadcastConfig' => 'CccBroadcastConfig'
             ),
         'VoiceBroadcastConfig' => array(
             'AnsweringMachineConfig' => '_:AnsweringMachineConfig',
+            'LiveSoundTextVoice' => '_:LiveSoundTextVoice',
+            'MachineSoundTextVoice' => '_:MachineSoundTextVoice',
+            'TransferSoundTextVoice' => '_:TransferSoundTextVoice',
             'TransferDigit' => '_:TransferDigit',
             'TransferNumber' => '_:TransferNumber',
+            'DncSoundTextVoice' => '_:DncSoundTextVoice',
             'DncDigit' => '_:DncDigit',
             'MaxActiveTransfers' => '_:MaxActiveTransfers',
             'LiveSoundText' => '_:LiveSoundText',
@@ -71,6 +78,14 @@ return array(
             'TransferSoundId' => '_:TransferSoundId',
             'DncSoundText' => '_:DncSoundText',
             'DncSoundId' => '_:DncSoundId'
+            ),
+        'CccBroadcastConfig' => array(
+            'AgentGroupId' => '_:AgentGroupId',
+            'SmartDropSoundId' => '_:SmartDropSoundId',
+            'ScriptId' => '_:ScriptId',
+            'TransferNumberIdList' => '_:TransferNumberIdList',
+            'AllowAnyTransfer' => '_:AllowAnyTransfer',
+            'Recorded' => '_:Recorded'
             ),
         'TextBroadcastConfig' => array(
             'Message' => '_:Message',
@@ -149,7 +164,8 @@ return array(
             'id' => '@id',
             'Name' => '_:Name',
             'Created' => '_:Created',
-            'LengthInSeconds' => '_:LengthInSeconds'
+            'LengthInSeconds' => '_:LengthInSeconds',
+            'Link' => '_:Link'
             ),
         'TextRecord' => array('Message' => '_:Message'),
         'Text' => array(
@@ -185,14 +201,17 @@ return array(
             'zipcode' => '@zipcode',
             'homePhone' => '@homePhone',
             'workPhone' => '@workPhone',
-            'mobilePhone' => '@mobilePhone'
+            'mobilePhone' => '@mobilePhone',
+            'externalId' => '@externalId',
+            'externalSystem' => '@externalSystem'
             ),
         'ContactHistory' => array(),
         'ContactList' => array(
             'id' => '@id',
             'Name' => '_:Name',
             'Size' => '_:Size',
-            'Created' => '_:Created'
+            'Created' => '_:Created',
+            'Status' => '_:Status'
             ),
         'Region' => array(
             'Prefix' => '_:Prefix',
@@ -211,11 +230,26 @@ return array(
             'LeaseEnd' => '_:LeaseEnd',
             'AutoRenew' => '_:AutoRenew'
             ),
+        'DncList' => array(
+            'id' => '@id',
+            'CampaignId' => '_:CampaignId',
+            'Name' => '_:Name',
+            'Size' => '_:Size'
+            ),
+        'DncNumber' => array(
+            'Number' => '_:Number',
+            'DncListId' => '_:DncListId',
+            'CallDnc' => '_:CallDnc',
+            'TextDnc' => '_:TextDnc'
+            ),
         'Number' => array(
             'Number' => '_:Number',
             'NationalFormat' => '_:NationalFormat',
             'TollFree' => '_:TollFree',
-            'Status' => '_:Status'
+            'Status' => '_:Status',
+            '#Region' => '_:Region',
+            '#LeaseInfo' => '_:LeaseInfo',
+            '#NumberConfiguration' => '_:NumberConfiguration'
             ),
         'InboundCallConfiguration' => array(),
         'NumberConfiguration' => array(
@@ -227,7 +261,8 @@ return array(
         'Keyword' => array(
             'ShortCode' => '_:ShortCode',
             'Keyword' => '_:Keyword',
-            'Status' => '_:Status'
+            'Status' => '_:Status',
+            '#LeaseInfo' => '_:LeaseInfo'
             ),
         'NumberOrder' => array(
             'id' => '@id',
@@ -238,5 +273,78 @@ return array(
             'TollFreeNumbers' => '_:TollFreeNumbers',
             'Keywords' => '_:Keywords'
             ),
-        'Label' => array('Name' => '_:Name')
+        'Label' => array('Name' => '_:Name'),
+        'Question' => array(
+            'Label' => '_:Label',
+            'ResponseType' => '_:ResponseType',
+            'Choices' => '_:Choices'
+            ),
+        'CccCampaign' => array(
+            'id' => '@id',
+            'Name' => '_:Name',
+            'Status' => '_:Status',
+            'Created' => '_:Created',
+            'LastModified' => '_:LastModified',
+            'LocalRestrictBegin' => '_:LocalRestrictBegin',
+            'LocalRestrictEnd' => '_:LocalRestrictEnd',
+            'ConfigUpdated' => '_:ConfigUpdated',
+            'Script' => '_:Script',
+            'FromNumber' => '_:FromNumber',
+            'RetryConfig' => '_:RetryConfig',
+            'AgentGroupId' => '_:AgentGroupId',
+            'AgentGroupName' => '_:AgentGroupName',
+            'SmartDropSoundId' => '_:SmartDropSoundId',
+            'SmartDropSoundRef' => '_:SmartDropSoundRef',
+            'AllowAnyTransfer' => '_:AllowAnyTransfer',
+            'Recorded' => '_:Recorded',
+            'ScrubLevel' => '_:ScrubLevel',
+            '#@Questions' => '_:Question',
+            '#@TransferNumbers' => '_:TransferNumber'
+            ),
+        'CccCampaignStats' => array(
+            'AgentCount' => '_:AgentCount',
+            'ActiveAgentCount' => '_:ActiveAgentCount',
+            'CallsAttempted' => '_:CallsAttempted',
+            'CallsPlaced' => '_:CallsPlaced',
+            'CallsDuration' => '_:CallsDuration',
+            'BilledDuration' => '_:BilledDuration',
+            'BilledAmount' => '_:BilledAmount',
+            'CallsRemaining' => '_:CallsRemaining',
+            'CallsAwaitingRedial' => '_:CallsAwaitingRedial',
+            'CallsLiveAnswer' => '_:CallsLiveAnswer',
+            'ResponseRatePercent' => '_:ResponseRatePercent',
+            '#@ResultStats' => '_:ResultStat'
+            ),
+        'Callback' => array(
+            'id' => '@id',
+            'UserId' => '_:UserId',
+            'OutboundCallId' => '_:OutboundCallId',
+            'NotificationSent' => '_:NotificationSent'
+            ),
+        'Agent' => array(
+            'id' => '@id',
+            'Enabled' => '_:Enabled',
+            'Name' => '_:Name',
+            'Email' => '_:Email',
+            'LastLogin' => '_:LastLogin',
+            'CampaignIds' => '_:CampaignIds',
+            'GroupIds' => '_:GroupIds',
+            'ActiveSessionId' => '_:ActiveSessionId'
+            ),
+        'AgentGroup' => array(
+            'id' => '@id',
+            'Name' => '_:Name',
+            'CampaignIds' => '_:CampaignIds',
+            'AgentIds' => '_:AgentIds',
+            'AgentEmails' => '_:AgentEmails'
+            ),
+        'AgentSession' => array(
+            'id' => '@id',
+            'AgentId' => '_:AgentId',
+            'CampaignId' => '_:CampaignId',
+            'AgentState' => '_:AgentState',
+            'CallCount' => '_:CallCount',
+            'Start' => '_:Start',
+            'LastUpdate' => '_:LastUpdate'
+            )
         );

@@ -45,6 +45,11 @@ class Broadcast extends AbstractResource
      */
     protected $ivrBroadcastConfig = null;
 
+    /**
+     * @var CccBroadcastConfig
+     */
+    protected $cccBroadcastConfig = null;
+
     public function getId()
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Broadcast extends AbstractResource
     public function setIvrBroadcastConfig(IvrBroadcastConfig $ivrBroadcastConfig)
     {
         $this->ivrBroadcastConfig = $ivrBroadcastConfig;
+
+        return $this;
+    }
+
+    public function getCccBroadcastConfig()
+    {
+        return $this->cccBroadcastConfig;
+    }
+
+    public function setCccBroadcastConfig(CccBroadcastConfig $cccBroadcastConfig)
+    {
+        $this->cccBroadcastConfig = $cccBroadcastConfig;
 
         return $this;
     }

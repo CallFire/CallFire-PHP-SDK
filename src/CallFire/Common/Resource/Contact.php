@@ -40,6 +40,16 @@ class Contact extends AbstractResource
      */
     protected $mobilePhone = null;
 
+    /**
+     * @var string
+     */
+    protected $externalId = null;
+
+    /**
+     * @var string
+     */
+    protected $externalSystem = null;
+
     protected $attributes = array();
 
     public function getId()
@@ -122,6 +132,30 @@ class Contact extends AbstractResource
     public function setMobilePhone($mobilePhone)
     {
         $this->mobilePhone = $mobilePhone;
+
+        return $this;
+    }
+
+    public function getExternalId()
+    {
+        return $this->externalId;
+    }
+
+    public function setExternalId($externalId)
+    {
+        $this->externalId = $externalId;
+
+        return $this;
+    }
+
+    public function getExternalSystem()
+    {
+        return $this->externalSystem;
+    }
+
+    public function setExternalSystem($externalSystem)
+    {
+        $this->externalSystem = $externalSystem;
 
         return $this;
     }

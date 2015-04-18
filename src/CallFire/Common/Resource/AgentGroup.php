@@ -2,7 +2,7 @@
 
 namespace CallFire\Common\Resource;
 
-class ContactList extends AbstractResource
+class AgentGroup extends AbstractResource
 {
 
     /**
@@ -16,19 +16,19 @@ class ContactList extends AbstractResource
     protected $name = null;
 
     /**
-     * @var integer
+     * @var string
      */
-    protected $size = null;
-
-    /**
-     * @var dateTime
-     */
-    protected $created = null;
+    protected $campaignIds = null;
 
     /**
      * @var string
      */
-    protected $status = null;
+    protected $agentIds = null;
+
+    /**
+     * @var string
+     */
+    protected $agentEmails = null;
 
     public function getId()
     {
@@ -54,38 +54,38 @@ class ContactList extends AbstractResource
         return $this;
     }
 
-    public function getSize()
+    public function getCampaignIds()
     {
-        return $this->size;
+        return $this->campaignIds;
     }
 
-    public function setSize($size)
+    public function setCampaignIds($campaignIds)
     {
-        $this->size = $size;
+        $this->campaignIds = $campaignIds;
 
         return $this;
     }
 
-    public function getCreated()
+    public function getAgentIds()
     {
-        return $this->created;
+        return $this->agentIds;
     }
 
-    public function setCreated($created)
+    public function setAgentIds($agentIds)
     {
-        $this->created = $created;
+        $this->agentIds = $agentIds;
 
         return $this;
     }
 
-    public function getStatus()
+    public function getAgentEmails()
     {
-        return $this->status;
+        return $this->agentEmails;
     }
 
-    public function setStatus($status)
+    public function setAgentEmails($agentEmails)
     {
-        $this->status = $status;
+        $this->agentEmails = $agentEmails;
 
         return $this;
     }

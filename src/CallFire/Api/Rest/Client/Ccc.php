@@ -26,21 +26,6 @@ class Ccc extends AbstractClient
     }
 
     /**
-     * Get CCC Campaign statistics by campaign id
-     *
-     * Return campaign stats that includes call counts and billing amounts.
-     *
-     * @api
-     * @param Request\GetCccCampaignStats $GetCccCampaignStats = null
-     */
-    public function GetCccCampaignStats(Request\GetCccCampaignStats $GetCccCampaignStats = null)
-    {
-        $uri = $this->getUri('/ccc/%s/stats', array());
-
-        return $this->get($uri, $GetCccCampaignStats);
-    }
-
-    /**
      * Create CCC Campaign
      *
      * Create ccc campaign. Returns id of newly created ccc campaign.
@@ -70,25 +55,6 @@ class Ccc extends AbstractClient
         $uri = $this->getUri('/ccc', array());
 
         return $this->get($uri, $QueryCccCampaigns);
-    }
-
-    /**
-     * Updates an existing CCC Campaigns configuration
-     *
-     * Update existing campaign's configuration such as time zone restrictions or retry
-     * logic. Currently all fields from config are updated so the 'Message' field needs
-     * to be populated just like in CreateCccCampaign operation.  Use unique ID to
-     * specify campaign. Need to provide dummy 'Name' field Campaign even though the
-     * field will not be overwritten.
-     *
-     * @api
-     * @param Request\UpdateCccCampaign $UpdateCccCampaign = null
-     */
-    public function UpdateCccCampaign(Request\UpdateCccCampaign $UpdateCccCampaign = null)
-    {
-        $uri = $this->getUri('/ccc/%s', array());
-
-        return $this->put($uri, $UpdateCccCampaign);
     }
 
     /**
@@ -190,52 +156,6 @@ class Ccc extends AbstractClient
     }
 
     /**
-     * Add Agents to Campaign
-     *
-     * Add agents identified by id or email to existing ccc campaign.
-     *
-     * @api
-     * @param Request\AddAgents $AddAgents = null
-     */
-    public function AddAgents(Request\AddAgents $AddAgents = null)
-    {
-        $uri = $this->getUri('/ccc/%s/agent', array());
-
-        return $this->post($uri, $AddAgents);
-    }
-
-    /**
-     * Get Agents attached with Campaign
-     *
-     * Get list of agents attached to ccc campaign.
-     *
-     * @api
-     * @param Request\GetAgents $GetAgents = null
-     */
-    public function GetAgents(Request\GetAgents $GetAgents = null)
-    {
-        $uri = $this->getUri('/ccc/%s/agent', array());
-
-        return $this->get($uri, $GetAgents);
-    }
-
-    /**
-     * Remove Agents from CCC Campaign
-     *
-     * Remove individual agent identified by id from ccc campaign identified by
-     * campaign id.
-     *
-     * @api
-     * @param Request\RemoveAgent $RemoveAgent = null
-     */
-    public function RemoveAgent(Request\RemoveAgent $RemoveAgent = null)
-    {
-        $uri = $this->getUri('/ccc/%s/agent/%s', array());
-
-        return $this->delete($uri, $RemoveAgent);
-    }
-
-    /**
      * Get CCC AgentGroup by Id
      *
      * Return individual agent group by id. See QueryAgentGroups to return list of
@@ -285,51 +205,6 @@ class Ccc extends AbstractClient
     }
 
     /**
-     * Updates an existing CCC AgentGroup
-     *
-     * Update existing agent group identified by id. Change name, etc...
-     *
-     * @api
-     * @param Request\UpdateAgentGroup $UpdateAgentGroup = null
-     */
-    public function UpdateAgentGroup(Request\UpdateAgentGroup $UpdateAgentGroup = null)
-    {
-        $uri = $this->getUri('/ccc/agent-group/%s', array());
-
-        return $this->put($uri, $UpdateAgentGroup);
-    }
-
-    /**
-     * Add AgentGroups to Campaign
-     *
-     * Add agent groups identified by ids to campaign.
-     *
-     * @api
-     * @param Request\AddAgentGroups $AddAgentGroups = null
-     */
-    public function AddAgentGroups(Request\AddAgentGroups $AddAgentGroups = null)
-    {
-        $uri = $this->getUri('/ccc/%s/agent-group', array());
-
-        return $this->post($uri, $AddAgentGroups);
-    }
-
-    /**
-     * Get all AgentGroups attached to Campaign
-     *
-     * Returns a list of agent groups attached to campaign.
-     *
-     * @api
-     * @param Request\GetAgentGroups $GetAgentGroups = null
-     */
-    public function GetAgentGroups(Request\GetAgentGroups $GetAgentGroups = null)
-    {
-        $uri = $this->getUri('/ccc/%s/agent-group', array());
-
-        return $this->get($uri, $GetAgentGroups);
-    }
-
-    /**
      * Deletes a CCC AgentGroup by ID
      *
      * Delete agent group identified by id.
@@ -342,22 +217,6 @@ class Ccc extends AbstractClient
         $uri = $this->getUri('/ccc/agent-group/%s', array($Id));
 
         return $this->delete($uri);
-    }
-
-    /**
-     * Remove AgentGroup from Campaign
-     *
-     * Remove agent group identified by id from campaign. If id points to non-existent
-     * agent group then ServiceFault or 404 error will be thrown.
-     *
-     * @api
-     * @param Request\RemoveAgentGroup $RemoveAgentGroup = null
-     */
-    public function RemoveAgentGroup(Request\RemoveAgentGroup $RemoveAgentGroup = null)
-    {
-        $uri = $this->getUri('/ccc/%s/agent-group/%s', array());
-
-        return $this->delete($uri, $RemoveAgentGroup);
     }
 
     /**
@@ -426,6 +285,158 @@ class Ccc extends AbstractClient
         $uri = $this->getUri('/ccc/%s/agent-invite-uri', array($CampaignId));
 
         return $this->get($uri, $GetAgentInviteUri);
+    }
+
+    /**
+     * Get CCC Campaign statistics by campaign id
+     *
+     * Return campaign stats that includes call counts and billing amounts.
+     *
+     * @api
+     * @param Request\GetCccCampaignStats $GetCccCampaignStats = null
+     * @param int                         $CampaignId
+     */
+    public function GetCccCampaignStats($CampaignId, Request\GetCccCampaignStats $GetCccCampaignStats = null)
+    {
+        $uri = $this->getUri('/ccc/%s/stats', array($CampaignId));
+
+        return $this->get($uri, $GetCccCampaignStats);
+    }
+
+    /**
+     * Updates an existing CCC Campaigns configuration
+     *
+     * Update existing campaign's configuration such as time zone restrictions or retry
+     * logic. Currently all fields from config are updated so the 'Message' field needs
+     * to be populated just like in CreateCccCampaign operation.  Use unique ID to
+     * specify campaign. Need to provide dummy 'Name' field Campaign even though the
+     * field will not be overwritten.
+     *
+     * @api
+     * @param Request\UpdateCccCampaign $UpdateCccCampaign = null
+     * @param int                       $Id
+     */
+    public function UpdateCccCampaign($Id, Request\UpdateCccCampaign $UpdateCccCampaign = null)
+    {
+        $uri = $this->getUri('/ccc/%s', array($Id));
+
+        return $this->put($uri, $UpdateCccCampaign);
+    }
+
+    /**
+     * Add Agents to Campaign
+     *
+     * Add agents identified by id or email to existing ccc campaign.
+     *
+     * @api
+     * @param Request\AddAgents $AddAgents  = null
+     * @param int               $CampaignId
+     */
+    public function AddAgents($CampaignId, Request\AddAgents $AddAgents = null)
+    {
+        $uri = $this->getUri('/ccc/%s/agent', array($CampaignId));
+
+        return $this->post($uri, $AddAgents);
+    }
+
+    /**
+     * Get Agents attached with Campaign
+     *
+     * Get list of agents attached to ccc campaign.
+     *
+     * @api
+     * @param Request\GetAgents $GetAgents  = null
+     * @param int               $CampaignId
+     */
+    public function GetAgents($CampaignId, Request\GetAgents $GetAgents = null)
+    {
+        $uri = $this->getUri('/ccc/%s/agent', array($CampaignId));
+
+        return $this->get($uri, $GetAgents);
+    }
+
+    /**
+     * Remove Agents from CCC Campaign
+     *
+     * Remove individual agent identified by id from ccc campaign identified by
+     * campaign id.
+     *
+     * @api
+     * @param Request\RemoveAgent $RemoveAgent = null
+     * @param int                 $CampaignId
+     * @param int                 $Id
+     */
+    public function RemoveAgent($CampaignId, $Id, Request\RemoveAgent $RemoveAgent = null)
+    {
+        $uri = $this->getUri('/ccc/%s/agent/%s', array($CampaignId, $Id));
+
+        return $this->delete($uri, $RemoveAgent);
+    }
+
+    /**
+     * Updates an existing CCC AgentGroup
+     *
+     * Update existing agent group identified by id. Change name, etc...
+     *
+     * @api
+     * @param Request\UpdateAgentGroup $UpdateAgentGroup = null
+     * @param int                      $Id
+     */
+    public function UpdateAgentGroup($Id, Request\UpdateAgentGroup $UpdateAgentGroup = null)
+    {
+        $uri = $this->getUri('/ccc/agent-group/%s', array($Id));
+
+        return $this->put($uri, $UpdateAgentGroup);
+    }
+
+    /**
+     * Add AgentGroups to Campaign
+     *
+     * Add agent groups identified by ids to campaign.
+     *
+     * @api
+     * @param Request\AddAgentGroups $AddAgentGroups = null
+     * @param int                    $CampaignId
+     */
+    public function AddAgentGroups($CampaignId, Request\AddAgentGroups $AddAgentGroups = null)
+    {
+        $uri = $this->getUri('/ccc/%s/agent-group', array($CampaignId));
+
+        return $this->post($uri, $AddAgentGroups);
+    }
+
+    /**
+     * Get all AgentGroups attached to Campaign
+     *
+     * Returns a list of agent groups attached to campaign.
+     *
+     * @api
+     * @param Request\GetAgentGroups $GetAgentGroups = null
+     * @param int                    $CampaignId
+     */
+    public function GetAgentGroups($CampaignId, Request\GetAgentGroups $GetAgentGroups = null)
+    {
+        $uri = $this->getUri('/ccc/%s/agent-group', array($CampaignId));
+
+        return $this->get($uri, $GetAgentGroups);
+    }
+
+    /**
+     * Remove AgentGroup from Campaign
+     *
+     * Remove agent group identified by id from campaign. If id points to non-existent
+     * agent group then ServiceFault or 404 error will be thrown.
+     *
+     * @api
+     * @param Request\RemoveAgentGroup $RemoveAgentGroup = null
+     * @param int                      $CampaignId
+     * @param int                      $Id
+     */
+    public function RemoveAgentGroup($CampaignId, $Id, Request\RemoveAgentGroup $RemoveAgentGroup = null)
+    {
+        $uri = $this->getUri('/ccc/%s/agent-group/%s', array($CampaignId, $Id));
+
+        return $this->delete($uri, $RemoveAgentGroup);
     }
 
 }

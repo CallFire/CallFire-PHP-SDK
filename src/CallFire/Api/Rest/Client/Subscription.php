@@ -65,26 +65,6 @@ class Subscription extends AbstractClient
     }
 
     /**
-     * Updates an existing subscription
-     *
-     * Update existing subscription by ID Use this to enable or disable notification
-     * events, change the notification endpoint URI, or change the filtering so only
-     * receive notification for a subset of events.  UpdateSubscription service call
-     * returns no response. Testing this method using swagger doc REST interface (Try
-     * Me! button) does not work correctly. Please use curl or other rest client to
-     * test api call.
-     *
-     * @api
-     * @param Request\UpdateSubscription $UpdateSubscription = null
-     */
-    public function UpdateSubscription(Request\UpdateSubscription $UpdateSubscription = null)
-    {
-        $uri = $this->getUri('/subscription/%s', array());
-
-        return $this->put($uri, $UpdateSubscription);
-    }
-
-    /**
      * Deletes a subscription by ID
      *
      * Delete subscription to stop receiving CallFire notification events at the
@@ -98,6 +78,27 @@ class Subscription extends AbstractClient
         $uri = $this->getUri('/subscription/%s', array($Id));
 
         return $this->delete($uri);
+    }
+
+    /**
+     * Updates an existing subscription
+     *
+     * Update existing subscription by ID Use this to enable or disable notification
+     * events, change the notification endpoint URI, or change the filtering so only
+     * receive notification for a subset of events.  UpdateSubscription service call
+     * returns no response. Testing this method using swagger doc REST interface (Try
+     * Me! button) does not work correctly. Please use curl or other rest client to
+     * test api call.
+     *
+     * @api
+     * @param Request\UpdateSubscription $UpdateSubscription = null
+     * @param int                        $Id
+     */
+    public function UpdateSubscription($Id, Request\UpdateSubscription $UpdateSubscription = null)
+    {
+        $uri = $this->getUri('/subscription/%s', array($Id));
+
+        return $this->put($uri, $UpdateSubscription);
     }
 
 }

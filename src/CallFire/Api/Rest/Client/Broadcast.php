@@ -66,27 +66,6 @@ class Broadcast extends AbstractClient
     }
 
     /**
-     * Updates an existing Broadcast's configuration
-     *
-     * Update existing broadcast's configuration such as time zone restrictions or
-     * retry logic. Currently all fields from config are updated so the 'Message' field
-     * needs to be populated just like in CreateBroadcast operation.  Use unique ID to
-     * specify broadcast. Need to provide dummy 'Name' field Broadcast even though the
-     * field will not be overwritten.  Testing this method using swagger doc REST
-     * interface (Try Me! button) does not work correctly. Please use curl or other
-     * rest client to test api call.
-     *
-     * @api
-     * @param Request\UpdateBroadcast $UpdateBroadcast = null
-     */
-    public function UpdateBroadcast(Request\UpdateBroadcast $UpdateBroadcast = null)
-    {
-        $uri = $this->getUri('/broadcast/%s', array());
-
-        return $this->put($uri, $UpdateBroadcast);
-    }
-
-    /**
      * Gets performance and result statistics for a Broadcast
      *
      * Get broadcast stats by broadcastId or by interval range. Stats include
@@ -255,6 +234,28 @@ class Broadcast extends AbstractClient
         $uri = $this->getUri('/broadcast/schedule/%s', array($Id));
 
         return $this->delete($uri);
+    }
+
+    /**
+     * Updates an existing Broadcast's configuration
+     *
+     * Update existing broadcast's configuration such as time zone restrictions or
+     * retry logic. Currently all fields from config are updated so the 'Message' field
+     * needs to be populated just like in CreateBroadcast operation.  Use unique ID to
+     * specify broadcast. Need to provide dummy 'Name' field Broadcast even though the
+     * field will not be overwritten.  Testing this method using swagger doc REST
+     * interface (Try Me! button) does not work correctly. Please use curl or other
+     * rest client to test api call.
+     *
+     * @api
+     * @param Request\UpdateBroadcast $UpdateBroadcast = null
+     * @param int                     $id
+     */
+    public function UpdateBroadcast($id, Request\UpdateBroadcast $UpdateBroadcast = null)
+    {
+        $uri = $this->getUri('/broadcast/%s', array($id));
+
+        return $this->put($uri, $UpdateBroadcast);
     }
 
 }

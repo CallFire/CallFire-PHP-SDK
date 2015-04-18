@@ -122,6 +122,26 @@ class Broadcast extends AbstractClient
     }
 
     /**
+     * Creates a new ContactBatch
+     *
+     * Contact Batch is a list of contacts to associate with a broadcast. Use this
+     * operation to attach a list of contacts to an existing Campaign. A list of
+     * ToNumbers or an existing Contact List ID is required to create and attach the
+     * Contact List. Returned is the unique contactListId that can be used in
+     * ControlContactBatch to enable or disable this batch.
+     *
+     * @api
+     * @param int                        $BroadcastId        Id of Broadcast
+     * @param Request\CreateContactBatch $CreateContactBatch
+     */
+    public function CreateContactBatch($BroadcastId, Request\CreateContactBatch $CreateContactBatch)
+    {
+        $uri = $this->getUri('/broadcast/%s/batch', array($BroadcastId));
+
+        return $this->post($uri, $CreateContactBatch);
+    }
+
+    /**
      * Lists a Broadcast's ContactBatch
      *
      * Return list of Contact Batches associated with this Broadcast. The
@@ -235,26 +255,6 @@ class Broadcast extends AbstractClient
         $uri = $this->getUri('/broadcast/schedule/%s', array($Id));
 
         return $this->delete($uri);
-    }
-
-    /**
-     * Creates a new ContactBatch
-     *
-     * Contact Batch is a list of contacts to associate with a broadcast. Use this
-     * operation to attach a list of contacts to an existing Campaign. A list of
-     * ToNumbers or an existing Contact List ID is required to create and attach the
-     * Contact List. Returned is the unique contactListId that can be used in
-     * ControlContactBatch to enable or disable this batch.
-     *
-     * @api
-     * @param int                        $BroadcastId        Id of Broadcast
-     * @param Request\CreateContactBatch $CreateContactBatch
-     */
-    public function CreateContactBatch($BroadcastId, Request\CreateContactBatch $CreateContactBatch)
-    {
-        $uri = $this->getUri('/broadcast/%s/batch', array($BroadcastId));
-
-        return $this->post($uri, $CreateContactBatch);
     }
 
 }

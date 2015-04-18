@@ -166,6 +166,8 @@ return array(
         'CccBroadcastConfig' => 'CallFire\Common\Resource\CccBroadcastConfig',
         'CccCampaign' => 'CallFire\Common\Resource\CccCampaign',
         'CccCampaignStats' => 'CallFire\Common\Resource\CccCampaignStats',
+        'CccQuestion' => 'CallFire\Common\Resource\CccQuestion',
+        'CccScript' => 'CallFire\Common\Resource\CccScript',
         'Contact' => 'CallFire\Common\Resource\Contact',
         'ContactBatch' => 'CallFire\Common\Resource\ContactBatch',
         'ContactHistory' => 'CallFire\Common\Resource\ContactHistory',

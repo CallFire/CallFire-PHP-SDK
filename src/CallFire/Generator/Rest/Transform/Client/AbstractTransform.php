@@ -24,6 +24,45 @@ abstract class AbstractTransform
 
     abstract public function transform();
 
+    public function fixPathParameters($classGenerator, $method, $newParameters)
+    {
+        $oldMethod = $classGenerator->getMethod($method);
+
+        $newMethod = new CodeGenerator\MethodGenerator;
+        $newMethod->setName($oldMethod->getName());
+
+        $docblock = $oldMethod->getDocBlock();
+        $parameters = $oldMethod->getParameters();
+        $body = $oldMethod->getBody();
+
+        $newParameterSpec = array();
+
+        foreach ($newParameters as $name => $type) {
+            $docblock->setTag(
+                (new CodeGenerator\DocBlock\Tag\ParamTag)->setParamName($name)
+                    ->setDataType($type)
+            );
+
+            $newParameter = new CodeGenerator\ParameterGenerator;
+            $newParameter->setName($name);
+            $newMethod->setParameter($newParameter);
+
+            $newParameterSpec[$name] = $newParameter;
+        }
+
+        $newMethod->setParameters(array_merge($newParameterSpec, array(
+            $method => $parameters[$method],
+        )));
+        
+        $body = str_replace('array()', 'array($'.implode(', $', array_keys($newParameters)).')', $body);
+
+        $newMethod->setDocBlock($docblock);
+        $newMethod->setBody($body);
+
+        $classGenerator->removeMethod($method);
+        $classGenerator->addMethodFromGenerator($newMethod);
+    }
+
     public function generatePropertyGetter($propertyName)
     {
         $methodName = 'get'.ucfirst($propertyName);

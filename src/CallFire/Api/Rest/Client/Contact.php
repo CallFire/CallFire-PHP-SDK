@@ -156,8 +156,7 @@ class Contact extends AbstractClient
     /**
      * Adds contacts to an existing list
      *
-     * See CreateContactList. Currently only supports adding ContactSource numbers, not
-     * contact lists, contactId lists, or csv files.
+     * See CreateContactList.
      *
      * @api
      * @param int                       $ContactListId     Unique ID of ContactList

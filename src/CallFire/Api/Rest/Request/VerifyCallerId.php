@@ -13,7 +13,7 @@ class VerifyCallerId extends AbstractRequest
     protected $callerId = null;
 
     /**
-     * CallerId number to verify
+     * 4-digit verification code that was sent to phone number in CallerId
      */
     protected $verificationCode = null;
 

@@ -146,13 +146,22 @@ return array(
             '#@ResultStats' => '_:ResultStat',
             '#ActionStatistics' => '_:ActionStatistics'
             ),
+        'Note' => array(
+            'Text' => '_:Text',
+            'Created' => '_:Created'
+            ),
         'CallRecord' => array(
             'OriginateTime' => '_:OriginateTime',
             'AnswerTime' => '_:AnswerTime',
             'Duration' => '_:Duration',
-            '#@RecordingMetas' => '_:RecordingMeta'
+            '#@RecordingMetas' => '_:RecordingMeta',
+            '#@Notes' => '_:Note'
             ),
-        'Call' => array('#@CallRecords' => '_:CallRecord'),
+        'Call' => array(
+            'AgentCall' => '_:AgentCall',
+            '#@CallRecords' => '_:CallRecord',
+            '#@Notes' => '_:Note'
+            ),
         'SoundMeta' => array(
             'id' => '@id',
             'Status' => '_:Status',

@@ -12,11 +12,11 @@
     "require": {
         "php": ">=5.3.3",
         "ext-curl": "*",
-        "zendframework/zend-stdlib": "~2.2.2"
+        "zendframework/zend-stdlib": "^2.2.2"
     },
     "require-dev": {
-        "zendframework/zend-stdlib": "~2.2.1",
-        "zendframework/zend-code": "~2.2.1",
+        "zendframework/zend-stdlib": "^2.2.1",
+        "zendframework/zend-code": "^2.2.1",
         "fabpot/php-cs-fixer": "v0.2.0",
         "phpunit/phpunit": "~3.7.22",
         "phpdocumentor/phpdocumentor": "v2.0.1",

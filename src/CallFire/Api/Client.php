@@ -5,7 +5,7 @@ use Swagger\Client as SwaggerClient;
 
 class Client extends SwaggerClient
 {
-    public static $callFireSwaggerUrl = 'https://www.callfire.com/api/v2/api-docs/swagger.json';
+    public static $callFireSwaggerUrl = 'https://www.callfire.com/v2/api-docs/swagger.json';
 
     public static function createClient(
         $appLogin,

@@ -12,12 +12,11 @@
     "require": {
     },
     "require-dev": {
-        "thefrozenfire/swagger-client": "dev-master"
+        "thefrozenfire/swagger-client": "^2.0"
     },
     "autoload": {
         "psr-0": {
             "CallFire": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }

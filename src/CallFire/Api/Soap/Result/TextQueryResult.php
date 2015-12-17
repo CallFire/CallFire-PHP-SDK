@@ -8,7 +8,9 @@ class TextQueryResult extends QueryResult
     /**
      * @var Text[]
      */
-    protected $texts = array();
+    protected $texts = array(
+
+    );
 
     public function getTexts()
     {

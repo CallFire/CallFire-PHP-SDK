@@ -30,7 +30,8 @@ class QueryTexts extends AbstractRequest
     /**
      * List of Action States to query on
      *
-     * Allowable values: [READY, SELECTED, FINISHED, DNC, DUP, INVALID, TIMEOUT]
+     * Allowable values: [READY, SELECTED, CALLBACK, DISABLED, SKIPPED, FINISHED, DNC,
+     * DUP, INVALID, TIMEOUT, PERIOD_LIMIT]
      */
     protected $state = null;
 
@@ -38,7 +39,8 @@ class QueryTexts extends AbstractRequest
      * List of Results to query on
      *
      * Allowable values: [LA, AM, BUSY, DNC, XFER, XFER_LEG, NO_ANS, UNDIALED, SENT,
-     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR]
+     * RECEIVED, DNT, TOO_BIG, INTERNAL_ERROR, CARRIER_ERROR, CARRIER_TEMP_ERROR, SD,
+     * POSTPONED, ABANDONED, SKIPPED]
      */
     protected $result = null;
 

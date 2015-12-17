@@ -8,7 +8,9 @@ class LabelQueryResult extends QueryResult
     /**
      * @var Label[]
      */
-    protected $labels = array();
+    protected $labels = array(
+
+    );
 
     public function getLabels()
     {

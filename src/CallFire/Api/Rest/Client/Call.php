@@ -8,7 +8,7 @@ use CallFire\Api\Rest\Request as Request;
 class Call extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.0/rest';
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
 
     /**
      * Creates a call broadcast, adds numbers to it, and sends it immediately
@@ -122,6 +122,60 @@ class Call extends AbstractClient
         $uri = $this->getUri('/call/sound/%s', array($Id));
 
         return $this->get($uri);
+    }
+
+    /**
+     * Sends call to callerId number and voice verification code
+     *
+     * Creating broadcasts requires a verified callerId (FromNumber) as one of the
+     * mandatory parameters. This api method along with VerifyCallerIdRequest can be
+     * used to verify a callerId that can be used in subsequent create broadcast
+     * requests.
+     *
+     * @api
+     * @param Request\SendVerificationCodeToCallerId $SendVerificationCodeToCallerId =
+     * null
+     */
+    public function SendVerificationCodeToCallerId(Request\SendVerificationCodeToCallerId $SendVerificationCodeToCallerId = null)
+    {
+        $uri = $this->getUri('/call/callerid/send-verification', array());
+
+        return $this->post($uri, $SendVerificationCodeToCallerId);
+    }
+
+    /**
+     * Verify callerId by including verification code
+     *
+     * Verifying a callerId is a two step process. First a verification code must be
+     * sent to callerId SendVerificationCodeToCallerId. Then the verificationCode sent
+     * to callerId must be entered here to mark callerId as verified.
+     *
+     * @api
+     * @param Request\VerifyCallerId $VerifyCallerId = null
+     */
+    public function VerifyCallerId(Request\VerifyCallerId $VerifyCallerId = null)
+    {
+        $uri = $this->getUri('/call/callerid/verify', array());
+
+        return $this->post($uri, $VerifyCallerId);
+    }
+
+    /**
+     * Return list of verified callerIds
+     *
+     * Creating broadcasts requires verified callerId as FromNumber. This method
+     * returns the list of callerId numbers that have been verified and can be used to
+     * create broadcasts. See SendVerificationCodeToCallerId and VerifyCallerIdRequest
+     * for instructions on how to verify a callerId.
+     *
+     * @api
+     * @param Request\GetCallerIds $GetCallerIds = null
+     */
+    public function GetCallerIds(Request\GetCallerIds $GetCallerIds = null)
+    {
+        $uri = $this->getUri('/call/callerid', array());
+
+        return $this->get($uri, $GetCallerIds);
     }
 
 }

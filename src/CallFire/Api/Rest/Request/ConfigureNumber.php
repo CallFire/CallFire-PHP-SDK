@@ -7,8 +7,6 @@ use CallFire\Api\Rest\Request as AbstractRequest;
 class ConfigureNumber extends AbstractRequest
 {
 
-    protected $number = null;
-
     /**
      * Allowable values: [UNSUPPORTED, PENDING, DISABLED, ENABLED]
      */
@@ -24,6 +22,11 @@ class ConfigureNumber extends AbstractRequest
      */
     protected $inboundCallConfigurationType = null;
 
+    /**
+     * Unique ID of InboundConfig
+     */
+    protected $callTrackingConfig = null;
+
     protected $transferNumber = null;
 
     protected $screen = null;
@@ -34,17 +37,10 @@ class ConfigureNumber extends AbstractRequest
 
     protected $whisperSoundId = null;
 
-    public function getNumber()
-    {
-        return $this->number;
-    }
-
-    public function setNumber($number)
-    {
-        $this->number = $number;
-
-        return $this;
-    }
+    /**
+     * Unique ID of InboundConfig
+     */
+    protected $ivrInboundConfig = null;
 
     public function getCallFeature()
     {
@@ -78,6 +74,18 @@ class ConfigureNumber extends AbstractRequest
     public function setInboundCallConfigurationType($inboundCallConfigurationType)
     {
         $this->inboundCallConfigurationType = $inboundCallConfigurationType;
+
+        return $this;
+    }
+
+    public function getCallTrackingConfig()
+    {
+        return $this->callTrackingConfig;
+    }
+
+    public function setCallTrackingConfig($callTrackingConfig)
+    {
+        $this->callTrackingConfig = $callTrackingConfig;
 
         return $this;
     }
@@ -138,6 +146,18 @@ class ConfigureNumber extends AbstractRequest
     public function setWhisperSoundId($whisperSoundId)
     {
         $this->whisperSoundId = $whisperSoundId;
+
+        return $this;
+    }
+
+    public function getIvrInboundConfig()
+    {
+        return $this->ivrInboundConfig;
+    }
+
+    public function setIvrInboundConfig($ivrInboundConfig)
+    {
+        $this->ivrInboundConfig = $ivrInboundConfig;
 
         return $this;
     }

@@ -8,7 +8,7 @@ use CallFire\Api\Rest\Request as Request;
 class Broadcast extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.0/rest';
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
 
     /**
      * Creates a new Broadcast
@@ -72,7 +72,9 @@ class Broadcast extends AbstractClient
      * retry logic. Currently all fields from config are updated so the 'Message' field
      * needs to be populated just like in CreateBroadcast operation.  Use unique ID to
      * specify broadcast. Need to provide dummy 'Name' field Broadcast even though the
-     * field will not be overwritten.
+     * field will not be overwritten.  Testing this method using swagger doc REST
+     * interface (Try Me! button) does not work correctly. Please use curl or other
+     * rest client to test api call.
      *
      * @api
      * @param Request\UpdateBroadcast $UpdateBroadcast = null
@@ -117,6 +119,26 @@ class Broadcast extends AbstractClient
         $uri = $this->getUri('/broadcast/%s/control', array($Id));
 
         return $this->put($uri, $ControlBroadcast);
+    }
+
+    /**
+     * Creates a new ContactBatch
+     *
+     * Contact Batch is a list of contacts to associate with a broadcast. Use this
+     * operation to attach a list of contacts to an existing Campaign. A list of
+     * ToNumbers or an existing Contact List ID is required to create and attach the
+     * Contact List. Returned is the unique contactListId that can be used in
+     * ControlContactBatch to enable or disable this batch.
+     *
+     * @api
+     * @param int                        $BroadcastId        Id of Broadcast
+     * @param Request\CreateContactBatch $CreateContactBatch
+     */
+    public function CreateContactBatch($BroadcastId, Request\CreateContactBatch $CreateContactBatch)
+    {
+        $uri = $this->getUri('/broadcast/%s/batch', array($BroadcastId));
+
+        return $this->post($uri, $CreateContactBatch);
     }
 
     /**
@@ -233,27 +255,6 @@ class Broadcast extends AbstractClient
         $uri = $this->getUri('/broadcast/schedule/%s', array($Id));
 
         return $this->delete($uri);
-    }
-
-    /**
-     * Creates a new ContactBatch
-     *
-     * Contact Batch is a list of contacts to associate with a broadcast. Use this
-     * operation to attach a list of contacts to an existing Campaign. A list of
-     * ToNumbers or an existing Contact List ID is required to create and attach the
-     * Contact List. Returned is the unique contactListId that can be used in
-     * ControlContactBatch to enable or disable this batch.
-     *
-     * @api
-     * @param int                        $BroadcastId        Id of Broadcast
-     * @param Request\CreateContactBatch $CreateContactBatch
-     * @param int                        $id
-     */
-    public function CreateContactBatch($id, Request\CreateContactBatch $CreateContactBatch)
-    {
-        $uri = $this->getUri('/broadcast/%s/batch', array($BroadcastId));
-
-        return $this->post($uri, $CreateContactBatch);
     }
 
 }

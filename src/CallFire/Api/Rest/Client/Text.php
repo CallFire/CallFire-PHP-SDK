@@ -8,7 +8,7 @@ use CallFire\Api\Rest\Request as Request;
 class Text extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.0/rest';
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
 
     /**
      * Send text message and return broadcastId

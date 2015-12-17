@@ -17,11 +17,6 @@ class GetContactHistory extends AbstractRequest
      */
     protected $firstResult = null;
 
-    /**
-     * Contact to get history
-     */
-    protected $contactId = null;
-
     public function getMaxResults()
     {
         return $this->maxResults;
@@ -42,18 +37,6 @@ class GetContactHistory extends AbstractRequest
     public function setFirstResult($firstResult)
     {
         $this->firstResult = $firstResult;
-
-        return $this;
-    }
-
-    public function getContactId()
-    {
-        return $this->contactId;
-    }
-
-    public function setContactId($contactId)
-    {
-        $this->contactId = $contactId;
 
         return $this;
     }

@@ -9,8 +9,6 @@ class CreateContactBatch extends AbstractRequest
 
     protected $requestId = null;
 
-    protected $broadcastId = null;
-
     protected $name = null;
 
     /**
@@ -18,9 +16,16 @@ class CreateContactBatch extends AbstractRequest
      */
     protected $to = null;
 
+    /**
+     * PhoneNumber 'To' param represents (default: homePhone)
+     */
+    protected $toNumber = null;
+
     protected $contactListId = null;
 
     protected $scrubBroadcastDuplicates = null;
+
+    protected $start = null;
 
     public function getRequestId()
     {
@@ -30,18 +35,6 @@ class CreateContactBatch extends AbstractRequest
     public function setRequestId($requestId)
     {
         $this->requestId = $requestId;
-
-        return $this;
-    }
-
-    public function getBroadcastId()
-    {
-        return $this->broadcastId;
-    }
-
-    public function setBroadcastId($broadcastId)
-    {
-        $this->broadcastId = $broadcastId;
 
         return $this;
     }
@@ -70,6 +63,18 @@ class CreateContactBatch extends AbstractRequest
         return $this;
     }
 
+    public function getToNumber()
+    {
+        return $this->toNumber;
+    }
+
+    public function setToNumber($toNumber)
+    {
+        $this->toNumber = $toNumber;
+
+        return $this;
+    }
+
     public function getContactListId()
     {
         return $this->contactListId;
@@ -90,6 +95,18 @@ class CreateContactBatch extends AbstractRequest
     public function setScrubBroadcastDuplicates($scrubBroadcastDuplicates)
     {
         $this->scrubBroadcastDuplicates = $scrubBroadcastDuplicates;
+
+        return $this;
+    }
+
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    public function setStart($start)
+    {
+        $this->start = $start;
 
         return $this;
     }

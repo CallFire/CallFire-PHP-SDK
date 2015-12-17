@@ -13,7 +13,9 @@ class BroadcastStats extends AbstractResource
     /**
      * @var ResultStat[]
      */
-    protected $resultStats = array();
+    protected $resultStats = array(
+
+    );
 
     /**
      * @var ActionStatistics

@@ -25,6 +25,11 @@ class ContactList extends AbstractResource
      */
     protected $created = null;
 
+    /**
+     * @var string
+     */
+    protected $status = null;
+
     public function getId()
     {
         return $this->id;
@@ -69,6 +74,18 @@ class ContactList extends AbstractResource
     public function setCreated($created)
     {
         $this->created = $created;
+
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
         return $this;
     }

@@ -8,7 +8,9 @@ class ContactQueryResult extends QueryResult
     /**
      * @var Contact[]
      */
-    protected $contacts = array();
+    protected $contacts = array(
+
+    );
 
     public function getContacts()
     {

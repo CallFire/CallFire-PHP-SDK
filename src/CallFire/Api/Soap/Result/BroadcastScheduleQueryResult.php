@@ -8,7 +8,9 @@ class BroadcastScheduleQueryResult extends QueryResult
     /**
      * @var BroadcastSchedule[]
      */
-    protected $broadcastSchedules = array();
+    protected $broadcastSchedules = array(
+
+    );
 
     public function getBroadcastSchedules()
     {

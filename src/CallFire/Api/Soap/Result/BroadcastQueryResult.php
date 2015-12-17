@@ -8,7 +8,9 @@ class BroadcastQueryResult extends QueryResult
     /**
      * @var Broadcast[]
      */
-    protected $broadcasts = array();
+    protected $broadcasts = array(
+
+    );
 
     public function getBroadcasts()
     {

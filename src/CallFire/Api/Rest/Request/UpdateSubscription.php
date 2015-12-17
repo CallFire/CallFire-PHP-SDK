@@ -18,12 +18,18 @@ class UpdateSubscription extends AbstractRequest
     protected $enabled = null;
 
     /**
+     * Enable posting to unknown ssl endpoints (ssl certificate verification will be
+     * disabled)
+     */
+    protected $nonStrictSsl = null;
+
+    /**
      * Email or URI endpoint to publish notification event to.
      */
     protected $endpoint = null;
 
     /**
-     * Allowable values: [XML, JSON, SOAP, EMAIL]
+     * Allowable values: [XML, JSON, SOAP, EMAIL, LEGACY]
      */
     protected $notificationFormat = null;
 
@@ -61,6 +67,11 @@ class UpdateSubscription extends AbstractRequest
      */
     protected $inbound = null;
 
+    /**
+     * Unique ID of Subscription
+     */
+    protected $subscription = null;
+
     public function getRequestId()
     {
         return $this->requestId;
@@ -81,6 +92,18 @@ class UpdateSubscription extends AbstractRequest
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getNonStrictSsl()
+    {
+        return $this->nonStrictSsl;
+    }
+
+    public function setNonStrictSsl($nonStrictSsl)
+    {
+        $this->nonStrictSsl = $nonStrictSsl;
 
         return $this;
     }
@@ -177,6 +200,18 @@ class UpdateSubscription extends AbstractRequest
     public function setInbound($inbound)
     {
         $this->inbound = $inbound;
+
+        return $this;
+    }
+
+    public function getSubscription()
+    {
+        return $this->subscription;
+    }
+
+    public function setSubscription($subscription)
+    {
+        $this->subscription = $subscription;
 
         return $this;
     }

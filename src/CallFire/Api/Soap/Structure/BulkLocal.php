@@ -10,6 +10,11 @@ class BulkLocal
      */
     protected $count = null;
 
+    /**
+     * @var Region
+     */
+    protected $region = null;
+
     public function getCount()
     {
         return $this->count;
@@ -18,6 +23,18 @@ class BulkLocal
     public function setCount($count)
     {
         $this->count = $count;
+
+        return $this;
+    }
+
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    public function setRegion($region)
+    {
+        $this->region = $region;
 
         return $this;
     }

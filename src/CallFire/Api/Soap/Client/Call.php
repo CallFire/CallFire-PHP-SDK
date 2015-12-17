@@ -110,4 +110,41 @@ class Call extends AbstractClient
         return parent::$method($getRecordingData);
     }
 
+    /**
+     * @api
+     * @param Request\SendVerificationCodeToCallerId
+     * $sendVerificationCodeToCallerIdRequest
+     * @return Result\Empty
+     */
+    public function SendVerificationCodeToCallerId(Request\SendVerificationCodeToCallerIdRequest $sendVerificationCodeToCallerIdRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($sendVerificationCodeToCallerIdRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\VerifyCallerId        $verifyCallerIdRequest
+     * @return Result\VerifyCallerIdResponse
+     */
+    public function VerifyCallerId(Request\VerifyCallerIdRequest $verifyCallerIdRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($verifyCallerIdRequest);
+    }
+
+    /**
+     * @api
+     * @param  Request\GetCallerIds        $getCallerIdsRequest
+     * @return Result\GetCallerIdsResponse
+     */
+    public function GetCallerIds(Request\GetCallerIdsRequest $getCallerIdsRequest)
+    {
+        $method = __FUNCTION__;
+
+        return parent::$method($getCallerIdsRequest);
+    }
+
 }

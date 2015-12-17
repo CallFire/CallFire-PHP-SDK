@@ -9,7 +9,7 @@ use CallFire\Api\Rest\Response as Response;
 class Subscription extends AbstractClient
 {
 
-    public $basePath = 'https://www.callfire.com/api/1.0/rest';
+    public $basePath = 'https://www.callfire.com/api/1.1/rest';
 
     /**
      * Creates a new subscription for CallFire event notifications
@@ -70,7 +70,9 @@ class Subscription extends AbstractClient
      * Update existing subscription by ID Use this to enable or disable notification
      * events, change the notification endpoint URI, or change the filtering so only
      * receive notification for a subset of events.  UpdateSubscription service call
-     * returns no response.
+     * returns no response. Testing this method using swagger doc REST interface (Try
+     * Me! button) does not work correctly. Please use curl or other rest client to
+     * test api call.
      *
      * @api
      * @param Request\UpdateSubscription $UpdateSubscription = null

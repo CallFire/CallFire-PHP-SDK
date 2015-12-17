@@ -16,6 +16,11 @@ class Subscription extends AbstractResource
     protected $enabled = null;
 
     /**
+     * @var boolean
+     */
+    protected $nonStrictSsl = null;
+
+    /**
      * @var anyURI
      */
     protected $endpoint = null;
@@ -50,6 +55,18 @@ class Subscription extends AbstractResource
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getNonStrictSsl()
+    {
+        return $this->nonStrictSsl;
+    }
+
+    public function setNonStrictSsl($nonStrictSsl)
+    {
+        $this->nonStrictSsl = $nonStrictSsl;
 
         return $this;
     }

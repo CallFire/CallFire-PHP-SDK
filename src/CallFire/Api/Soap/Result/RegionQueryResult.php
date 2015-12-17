@@ -8,7 +8,9 @@ class RegionQueryResult extends QueryResult
     /**
      * @var Region[]
      */
-    protected $regions = array();
+    protected $regions = array(
+
+    );
 
     public function getRegions()
     {

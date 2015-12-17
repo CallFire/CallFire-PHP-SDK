@@ -13,6 +13,11 @@ class ContactListRequest extends AbstractRequest
     protected $contactListId = null;
 
     /**
+     * @var boolean
+     */
+    protected $validate = null;
+
+    /**
      * @var ContactSource
      */
     protected $contactSource = null;
@@ -25,6 +30,18 @@ class ContactListRequest extends AbstractRequest
     public function setContactListId($contactListId)
     {
         $this->contactListId = $contactListId;
+
+        return $this;
+    }
+
+    public function getValidate()
+    {
+        return $this->validate;
+    }
+
+    public function setValidate($validate)
+    {
+        $this->validate = $validate;
 
         return $this;
     }

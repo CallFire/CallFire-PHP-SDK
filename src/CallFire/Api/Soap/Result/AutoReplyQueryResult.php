@@ -8,7 +8,9 @@ class AutoReplyQueryResult extends QueryResult
     /**
      * @var AutoReply[]
      */
-    protected $autoReplys = array();
+    protected $autoReplys = array(
+
+    );
 
     public function getAutoReplys()
     {

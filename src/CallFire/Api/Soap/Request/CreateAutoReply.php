@@ -12,6 +12,11 @@ class CreateAutoReply extends AbstractRequest
      */
     protected $requestId = null;
 
+    /**
+     * @var AutoReply
+     */
+    protected $autoReply = null;
+
     public function getRequestId()
     {
         return $this->requestId;
@@ -20,6 +25,18 @@ class CreateAutoReply extends AbstractRequest
     public function setRequestId($requestId)
     {
         $this->requestId = $requestId;
+
+        return $this;
+    }
+
+    public function getAutoReply()
+    {
+        return $this->autoReply;
+    }
+
+    public function setAutoReply($autoReply)
+    {
+        $this->autoReply = $autoReply;
 
         return $this;
     }

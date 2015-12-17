@@ -8,7 +8,9 @@ class ContactBatchQueryResult extends QueryResult
     /**
      * @var ContactBatch[]
      */
-    protected $contactBatchs = array();
+    protected $contactBatchs = array(
+
+    );
 
     public function getContactBatchs()
     {

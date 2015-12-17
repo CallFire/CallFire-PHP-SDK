@@ -8,7 +8,9 @@ class SoundMetaQueryResult extends QueryResult
     /**
      * @var SoundMeta[]
      */
-    protected $soundMetas = array();
+    protected $soundMetas = array(
+
+    );
 
     public function getSoundMetas()
     {

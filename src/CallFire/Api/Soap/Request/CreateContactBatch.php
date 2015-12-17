@@ -28,6 +28,11 @@ class CreateContactBatch extends AbstractRequest
     protected $scrubBroadcastDuplicates = null;
 
     /**
+     * @var boolean
+     */
+    protected $start = null;
+
+    /**
      * @var string[]
      */
     protected $toNumber = null;
@@ -81,6 +86,18 @@ class CreateContactBatch extends AbstractRequest
     public function setScrubBroadcastDuplicates($scrubBroadcastDuplicates)
     {
         $this->scrubBroadcastDuplicates = $scrubBroadcastDuplicates;
+
+        return $this;
+    }
+
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    public function setStart($start)
+    {
+        $this->start = $start;
 
         return $this;
     }

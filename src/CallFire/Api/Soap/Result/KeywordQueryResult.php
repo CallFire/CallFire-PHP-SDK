@@ -8,7 +8,9 @@ class KeywordQueryResult extends QueryResult
     /**
      * @var Keyword[]
      */
-    protected $keywords = array();
+    protected $keywords = array(
+
+    );
 
     public function getKeywords()
     {

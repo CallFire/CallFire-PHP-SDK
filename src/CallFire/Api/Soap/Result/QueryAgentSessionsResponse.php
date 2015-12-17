@@ -8,7 +8,9 @@ class QueryAgentSessionsResponse extends QueryResult
     /**
      * @var AgentSession[]
      */
-    protected $agentSessions = array();
+    protected $agentSessions = array(
+
+    );
 
     public function getAgentSessions()
     {

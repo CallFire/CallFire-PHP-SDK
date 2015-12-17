@@ -28,7 +28,9 @@ abstract class ActionRecord extends AbstractResource
     /**
      * @var QuestionResponse[]
      */
-    protected $questionResponses = array();
+    protected $questionResponses = array(
+
+    );
 
     public function getId()
     {

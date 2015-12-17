@@ -8,7 +8,9 @@ class CallQueryResult extends QueryResult
     /**
      * @var Call[]
      */
-    protected $calls = array();
+    protected $calls = array(
+
+    );
 
     public function getCalls()
     {

@@ -50,7 +50,9 @@ class Contact extends AbstractResource
      */
     protected $externalSystem = null;
 
-    protected $attributes = array();
+    protected $attributes = array(
+
+    );
 
     public function getId()
     {

@@ -37,29 +37,12 @@ class CreateCccCampaign extends AbstractRequest
     /**
      * Question label
      */
-    protected $label = null;
+    protected $question = null;
 
     /**
-     * Question response type [STRING, CHOICE, NUMBERIC]
-     *
-     * Allowable values: [STRING, CHOICE, NUMERIC]
+     * Transfer Number name
      */
-    protected $responseType = null;
-
-    /**
-     * Choices available if ResponseType.CHOICE
-     */
-    protected $choices = null;
-
-    /**
-     * Transfer Number
-     */
-    protected $number = null;
-
-    /**
-     * Allow assisted transfer
-     */
-    protected $allowAssistedTransfer = null;
+    protected $transferNumber = null;
 
     /**
      * E.164 11 digit number or short code
@@ -128,6 +111,18 @@ class CreateCccCampaign extends AbstractRequest
     protected $recorded = null;
 
     /**
+     * Allow calling up to 4 lines at a time (default = 1). This feature will increase
+     * your abandoned rate.
+     */
+    protected $multilineDialingRatio = null;
+
+    /**
+     * Enable calling up to 4 lines at a time (MultilineDialingRatio default = 1).
+     * Enabling this feature will increase your abandoned rate.
+     */
+    protected $multilineDialingEnabled = null;
+
+    /**
      * Scrub level
      */
     protected $scrubLevel = null;
@@ -192,62 +187,26 @@ class CreateCccCampaign extends AbstractRequest
         return $this;
     }
 
-    public function getLabel()
+    public function getQuestion()
     {
-        return $this->label;
+        return $this->question;
     }
 
-    public function setLabel($label)
+    public function setQuestion($question)
     {
-        $this->label = $label;
+        $this->question = $question;
 
         return $this;
     }
 
-    public function getResponseType()
+    public function getTransferNumber()
     {
-        return $this->responseType;
+        return $this->transferNumber;
     }
 
-    public function setResponseType($responseType)
+    public function setTransferNumber($transferNumber)
     {
-        $this->responseType = $responseType;
-
-        return $this;
-    }
-
-    public function getChoices()
-    {
-        return $this->choices;
-    }
-
-    public function setChoices($choices)
-    {
-        $this->choices = $choices;
-
-        return $this;
-    }
-
-    public function getNumber()
-    {
-        return $this->number;
-    }
-
-    public function setNumber($number)
-    {
-        $this->number = $number;
-
-        return $this;
-    }
-
-    public function getAllowAssistedTransfer()
-    {
-        return $this->allowAssistedTransfer;
-    }
-
-    public function setAllowAssistedTransfer($allowAssistedTransfer)
-    {
-        $this->allowAssistedTransfer = $allowAssistedTransfer;
+        $this->transferNumber = $transferNumber;
 
         return $this;
     }
@@ -392,6 +351,30 @@ class CreateCccCampaign extends AbstractRequest
     public function setRecorded($recorded)
     {
         $this->recorded = $recorded;
+
+        return $this;
+    }
+
+    public function getMultilineDialingRatio()
+    {
+        return $this->multilineDialingRatio;
+    }
+
+    public function setMultilineDialingRatio($multilineDialingRatio)
+    {
+        $this->multilineDialingRatio = $multilineDialingRatio;
+
+        return $this;
+    }
+
+    public function getMultilineDialingEnabled()
+    {
+        return $this->multilineDialingEnabled;
+    }
+
+    public function setMultilineDialingEnabled($multilineDialingEnabled)
+    {
+        $this->multilineDialingEnabled = $multilineDialingEnabled;
 
         return $this;
     }

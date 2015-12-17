@@ -63,7 +63,9 @@ class Action extends AbstractResource
     /**
      * @var Label[]
      */
-    protected $labels = array();
+    protected $labels = array(
+
+    );
 
     public function getId()
     {

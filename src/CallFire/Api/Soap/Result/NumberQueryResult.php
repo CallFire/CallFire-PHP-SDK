@@ -8,7 +8,9 @@ class NumberQueryResult extends QueryResult
     /**
      * @var Number[]
      */
-    protected $numbers = array();
+    protected $numbers = array(
+
+    );
 
     public function getNumbers()
     {

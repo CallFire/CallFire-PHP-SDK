@@ -63,7 +63,9 @@ class CccCampaignStats extends AbstractResource
     /**
      * @var ResultStat[]
      */
-    protected $resultStats = array();
+    protected $resultStats = array(
+
+    );
 
     public function getAgentCount()
     {

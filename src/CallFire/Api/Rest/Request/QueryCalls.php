@@ -30,8 +30,8 @@ class QueryCalls extends AbstractRequest
     /**
      * List of Action States to query on
      *
-     * Allowable values: [READY, SELECTED, CALLBACK, DISABLED, FINISHED, DNC, DUP,
-     * INVALID, TIMEOUT]
+     * Allowable values: [READY, SELECTED, CALLBACK, DISABLED, SKIPPED, FINISHED, DNC,
+     * DUP, INVALID, TIMEOUT, PERIOD_LIMIT]
      */
     protected $state = null;
 

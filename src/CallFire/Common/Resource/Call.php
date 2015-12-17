@@ -13,12 +13,16 @@ class Call extends Action
     /**
      * @var CallRecord[]
      */
-    protected $callRecords = array();
+    protected $callRecords = array(
+
+    );
 
     /**
      * @var Note[]
      */
-    protected $notes = array();
+    protected $notes = array(
+
+    );
 
     public function getAgentCall()
     {

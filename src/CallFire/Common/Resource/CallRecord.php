@@ -23,12 +23,16 @@ class CallRecord extends ActionRecord
     /**
      * @var RecordingMeta[]
      */
-    protected $recordingMetas = array();
+    protected $recordingMetas = array(
+
+    );
 
     /**
      * @var Note[]
      */
-    protected $notes = array();
+    protected $notes = array(
+
+    );
 
     public function getOriginateTime()
     {

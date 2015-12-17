@@ -10,7 +10,9 @@ class UpdateContacts extends AbstractRequest
     /**
      * @var Contact[]
      */
-    protected $contacts = array();
+    protected $contacts = array(
+
+    );
 
     public function getContacts()
     {

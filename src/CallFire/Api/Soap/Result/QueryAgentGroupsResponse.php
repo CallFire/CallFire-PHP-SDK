@@ -8,7 +8,9 @@ class QueryAgentGroupsResponse extends QueryResult
     /**
      * @var AgentGroup[]
      */
-    protected $agentGroups = array();
+    protected $agentGroups = array(
+
+    );
 
     public function getAgentGroups()
     {

@@ -18,6 +18,12 @@ class UpdateSubscription extends AbstractRequest
     protected $enabled = null;
 
     /**
+     * Enable posting to unknown ssl endpoints (ssl certificate verification will be
+     * disabled)
+     */
+    protected $nonStrictSsl = null;
+
+    /**
      * Email or URI endpoint to publish notification event to.
      */
     protected $endpoint = null;
@@ -86,6 +92,18 @@ class UpdateSubscription extends AbstractRequest
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function getNonStrictSsl()
+    {
+        return $this->nonStrictSsl;
+    }
+
+    public function setNonStrictSsl($nonStrictSsl)
+    {
+        $this->nonStrictSsl = $nonStrictSsl;
 
         return $this;
     }

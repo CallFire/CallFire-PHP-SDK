@@ -8,7 +8,9 @@ class QueryDncNumbersResponse extends QueryResult
     /**
      * @var DncNumber[]
      */
-    protected $dncNumbers = array();
+    protected $dncNumbers = array(
+
+    );
 
     public function getDncNumbers()
     {

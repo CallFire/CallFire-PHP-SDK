@@ -8,7 +8,9 @@ class QueryDncListsResponse extends QueryResult
     /**
      * @var DncList[]
      */
-    protected $dncLists = array();
+    protected $dncLists = array(
+
+    );
 
     public function getDncLists()
     {

@@ -13,7 +13,9 @@ class Text extends Action
     /**
      * @var TextRecord[]
      */
-    protected $textRecords = array();
+    protected $textRecords = array(
+
+    );
 
     public function getMessage()
     {

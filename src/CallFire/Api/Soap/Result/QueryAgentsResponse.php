@@ -8,7 +8,9 @@ class QueryAgentsResponse extends QueryResult
     /**
      * @var Agent[]
      */
-    protected $agents = array();
+    protected $agents = array(
+
+    );
 
     public function getAgents()
     {

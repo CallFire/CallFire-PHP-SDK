@@ -8,7 +8,9 @@ class SubscriptionQueryResult extends QueryResult
     /**
      * @var Subscription[]
      */
-    protected $subscriptions = array();
+    protected $subscriptions = array(
+
+    );
 
     public function getSubscriptions()
     {

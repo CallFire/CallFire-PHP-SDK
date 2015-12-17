@@ -93,17 +93,31 @@ class CccCampaign extends AbstractResource
     /**
      * @var int
      */
+    protected $multilineDialingRatio = null;
+
+    /**
+     * @var boolean
+     */
+    protected $multilineDialingEnabled = null;
+
+    /**
+     * @var int
+     */
     protected $scrubLevel = null;
 
     /**
      * @var Question[]
      */
-    protected $questions = array();
+    protected $questions = array(
+
+    );
 
     /**
      * @var TransferNumber[]
      */
-    protected $transferNumbers = array();
+    protected $transferNumbers = array(
+
+    );
 
     public function getId()
     {
@@ -305,6 +319,30 @@ class CccCampaign extends AbstractResource
     public function setRecorded($recorded)
     {
         $this->recorded = $recorded;
+
+        return $this;
+    }
+
+    public function getMultilineDialingRatio()
+    {
+        return $this->multilineDialingRatio;
+    }
+
+    public function setMultilineDialingRatio($multilineDialingRatio)
+    {
+        $this->multilineDialingRatio = $multilineDialingRatio;
+
+        return $this;
+    }
+
+    public function getMultilineDialingEnabled()
+    {
+        return $this->multilineDialingEnabled;
+    }
+
+    public function setMultilineDialingEnabled($multilineDialingEnabled)
+    {
+        $this->multilineDialingEnabled = $multilineDialingEnabled;
 
         return $this;
     }

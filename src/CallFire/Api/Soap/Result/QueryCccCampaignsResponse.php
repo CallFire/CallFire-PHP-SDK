@@ -8,7 +8,9 @@ class QueryCccCampaignsResponse extends QueryResult
     /**
      * @var CccCampaign[]
      */
-    protected $cccCampaigns = array();
+    protected $cccCampaigns = array(
+
+    );
 
     public function getCccCampaigns()
     {

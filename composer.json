@@ -13,7 +13,8 @@
         "php": ">=5.3.3",
         "ext-curl": "*",
         "zendframework/zend-stdlib": "^2.2.2",
-        "zendframework/zend-filter": "^2.2.2"
+        "zendframework/zend-filter": "^2.2.2",
+        "zendframework/zend-servicemanager": "^2.2.2"
     },
     "require-dev": {
         "zendframework/zend-code": "^2.2.1",

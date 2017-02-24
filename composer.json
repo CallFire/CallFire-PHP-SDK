@@ -18,5 +18,10 @@
         "psr-0": {
             "CallFire": "src/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php codeHintsInstall.php"
+        ]
     }
 }

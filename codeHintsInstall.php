@@ -14,8 +14,7 @@ $docText =
  *
  * @package    Callfire
  * @subpackage Api
- * @author     Justin Martin <jmart@callfire.com>
- */';
+ * @author     Justin Martin <jmart@callfire.com>';
 
 $callFireSwaggerUrl = 'https://www.callfire.com/v2/api-docs/swagger.json';
 $spec = file_get_contents($callFireSwaggerUrl);
@@ -27,28 +26,26 @@ foreach ($paths as $apiBunch) {
         $docText .= "\n\n".loadDataToFile($apiInstance);
     }
 }
+$docText .= ' */';
 
 //UPDATING Client.php class to include documentation
-$file = './src/CallFire/Api/Client.php';
+$file = __DIR__.'/src/CallFire/Api/DocumentedClient.php';
 $classCode = file_get_contents($file);
 $lastLineForPackagesDefinitions = 'use Swagger\Client as SwaggerClient;';
 $packageInfo = substr($classCode, 0, strpos($classCode, $lastLineForPackagesDefinitions) + strlen($lastLineForPackagesDefinitions));
-$classDefinition = substr($classCode, strpos($classCode, "class Client extends SwaggerClient"));
+$classDefinition = substr($classCode, strpos($classCode, "class DocumentedClient extends Client"));
 $classCode = $packageInfo."\n\n".$docText."\n".$classDefinition;
 file_put_contents($file, $classCode);
-echo file_get_contents($file);
 //file has documentation inside
-
 
 function loadDataToFile($apiInstance)
 {
     $apiDoc =
-    '/**'."\n".
-    ' * @method SwaggerClient\\Request '.$apiInstance['operationId'].'()'."\n".
-    ' *'."\n".
-    ' * '.$apiInstance['operationId'].' example'."\n".
-    ' * '.'$client = Client::createClient("login", "password");'."\n".
-    ' * '.'$request = $client->'.$apiInstance['operationId'].'();';
+        ' * @method SwaggerClient\\Request '.$apiInstance['operationId'].'()'."\n".
+        ' *'."\n".
+        ' * '.$apiInstance['operationId'].' example'."\n".
+        ' * '.'$client = Client::createClient("login", "password");'."\n".
+        ' * '.'$request = $client->'.$apiInstance['operationId'].'();';
 
     $apiDoc.= getParametersPart($apiInstance['parameters'], postingFiles($apiInstance['consumes']));
 
@@ -58,7 +55,7 @@ function loadDataToFile($apiInstance)
         $apiDoc.= "\n".' * '.'$result = $client->execute($request);';
     }
 
-    $apiDoc.= "\n".' */';
+    $apiDoc.= "\n";
 
     return $apiDoc;
 }

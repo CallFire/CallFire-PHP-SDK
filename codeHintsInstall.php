@@ -22,8 +22,8 @@ $decodedSpec = json_decode($spec, true);
 $definitions = $decodedSpec['definitions'];
 $paths = $decodedSpec['paths'];
 foreach ($paths as $apiBunch) {
-    foreach ($apiBunch as $apiInstance) {
-        $docText .= "\n\n".loadDataToFile($apiInstance);
+    foreach ($apiBunch as $reqType => $apiInstance) {
+        $docText .= "\n\n".loadDataToFile($reqType, $apiInstance);
     }
 }
 $docText .= ' */';
@@ -38,7 +38,7 @@ $classCode = $packageInfo."\n\n".$docText."\n".$classDefinition;
 file_put_contents($file, $classCode);
 //file has documentation inside
 
-function loadDataToFile($apiInstance)
+function loadDataToFile($requestType, $apiInstance)
 {
     $apiDoc =
         ' * @method SwaggerClient\\Request '.$apiInstance['operationId'].'()'."\n".
@@ -46,6 +46,10 @@ function loadDataToFile($apiInstance)
         ' * '.$apiInstance['operationId'].' example'."\n".
         ' * '.'$client = Client::createClient("login", "password");'."\n".
         ' * '.'$request = $client->'.$apiInstance['operationId'].'();';
+
+    if (($requestType == 'put' || $requestType == 'post') && postingFiles($apiInstance['consumes']) != 1 ) {
+        $apiDoc.="\n".' * '.'$request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));';
+    }
 
     $apiDoc.= getParametersPart($apiInstance['parameters'], postingFiles($apiInstance['consumes']));
 

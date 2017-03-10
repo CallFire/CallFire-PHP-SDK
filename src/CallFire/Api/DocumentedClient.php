@@ -39,6 +39,7 @@ use Swagger\Client as SwaggerClient;
  * sendCalls example
  * $client = Client::createClient("login", "password");
  * $request = $client->sendCalls();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setQueryParameters(array("fields" => "string",
  *                                                          "campaignId" => integer,
  *                                                          "defaultLiveMessage" => "string",
@@ -85,6 +86,7 @@ use Swagger\Client as SwaggerClient;
  * createCallBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->createCallBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setQueryParameters(array("start" => boolean));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
@@ -178,6 +180,7 @@ use Swagger\Client as SwaggerClient;
  * updateCallBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateCallBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
@@ -261,6 +264,7 @@ use Swagger\Client as SwaggerClient;
  * archiveVoiceBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->archiveVoiceBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $result = $client->execute($request);
 
@@ -282,6 +286,7 @@ use Swagger\Client as SwaggerClient;
  * addCallBroadcastBatch example
  * $client = Client::createClient("login", "password");
  * $request = $client->addCallBroadcastBatch();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "name" : "string",
@@ -314,6 +319,7 @@ use Swagger\Client as SwaggerClient;
  * addCallBroadcastRecipients example
  * $client = Client::createClient("login", "password");
  * $request = $client->addCallBroadcastRecipients();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setQueryParameters(array("fields" => "string"));
  * $request->getOperationConfig()->setBodyParameter("[
@@ -331,6 +337,7 @@ use Swagger\Client as SwaggerClient;
  * startVoiceBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->startVoiceBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $result = $client->execute($request);
 
@@ -352,6 +359,7 @@ use Swagger\Client as SwaggerClient;
  * stopVoiceBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->stopVoiceBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $result = $client->execute($request);
 
@@ -431,6 +439,7 @@ use Swagger\Client as SwaggerClient;
  * updateCampaignBatch example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateCampaignBatch();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
@@ -465,6 +474,7 @@ use Swagger\Client as SwaggerClient;
  * postCallCampaignSound example
  * $client = Client::createClient("login", "password");
  * $request = $client->postCallCampaignSound();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setQueryParameters(array("fields" => "string"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "name" : "string",
@@ -488,6 +498,7 @@ use Swagger\Client as SwaggerClient;
  * postTTSCampaignSound example
  * $client = Client::createClient("login", "password");
  * $request = $client->postTTSCampaignSound();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setQueryParameters(array("fields" => "string"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "voice" : "string",
@@ -554,6 +565,7 @@ use Swagger\Client as SwaggerClient;
  * createContacts example
  * $client = Client::createClient("login", "password");
  * $request = $client->createContacts();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setBodyParameter("[
  *                                                     {
  *                                                        "id" : integer,
@@ -597,6 +609,7 @@ use Swagger\Client as SwaggerClient;
  * addDoNotContacts example
  * $client = Client::createClient("login", "password");
  * $request = $client->addDoNotContacts();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "source" : "string",
  *                                                      "call" : boolean,
@@ -640,6 +653,7 @@ use Swagger\Client as SwaggerClient;
  * updateDoNotContact example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateDoNotContact();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("number" => "string"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "number" : "string",
@@ -678,6 +692,7 @@ use Swagger\Client as SwaggerClient;
  * createContactList example
  * $client = Client::createClient("login", "password");
  * $request = $client->createContactList();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "contacts" : [{
  *                                                        "id" : integer,
@@ -727,6 +742,7 @@ use Swagger\Client as SwaggerClient;
  * updateContactList example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateContactList();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "name" : "string"
@@ -760,6 +776,7 @@ use Swagger\Client as SwaggerClient;
  * addContactListItems example
  * $client = Client::createClient("login", "password");
  * $request = $client->addContactListItems();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "contacts" : [{
@@ -820,6 +837,7 @@ use Swagger\Client as SwaggerClient;
  * updateContact example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateContact();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
@@ -896,6 +914,7 @@ use Swagger\Client as SwaggerClient;
  * updateKeywordLease example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateKeywordLease();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("keyword" => "string"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "shortCode" : "string",
@@ -941,6 +960,7 @@ use Swagger\Client as SwaggerClient;
  * createApiCredential example
  * $client = Client::createClient("login", "password");
  * $request = $client->createApiCredential();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
  *                                                      "name" : "string",
@@ -1001,6 +1021,7 @@ use Swagger\Client as SwaggerClient;
  * sendVerificationCodeToCallerId example
  * $client = Client::createClient("login", "password");
  * $request = $client->sendVerificationCodeToCallerId();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("callerid" => "string"));
  * $result = $client->execute($request);
 
@@ -1010,6 +1031,7 @@ use Swagger\Client as SwaggerClient;
  * verifyCallerId example
  * $client = Client::createClient("login", "password");
  * $request = $client->verifyCallerId();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("callerid" => "string"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "verificationCode" : "string"
@@ -1116,6 +1138,7 @@ use Swagger\Client as SwaggerClient;
  * updateNumberLeaseConfig example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateNumberLeaseConfig();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("number" => "string"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "number" : "string",
@@ -1171,6 +1194,7 @@ use Swagger\Client as SwaggerClient;
  * updateNumberLease example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateNumberLease();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("number" => "string"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "number" : "string",
@@ -1248,6 +1272,7 @@ use Swagger\Client as SwaggerClient;
  * orderKeywords example
  * $client = Client::createClient("login", "password");
  * $request = $client->orderKeywords();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "keywords" : [ "string" ]
  *                                                   }");
@@ -1259,6 +1284,7 @@ use Swagger\Client as SwaggerClient;
  * orderNumbers example
  * $client = Client::createClient("login", "password");
  * $request = $client->orderNumbers();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "tollFreeCount" : integer,
  *                                                      "localCount" : integer,
@@ -1310,6 +1336,7 @@ use Swagger\Client as SwaggerClient;
  * sendTexts example
  * $client = Client::createClient("login", "password");
  * $request = $client->sendTexts();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setQueryParameters(array("fields" => "string",
  *                                                          "campaignId" => integer,
  *                                                          "defaultMessage" => "string"));
@@ -1350,6 +1377,7 @@ use Swagger\Client as SwaggerClient;
  * createTextAutoReply example
  * $client = Client::createClient("login", "password");
  * $request = $client->createTextAutoReply();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
  *                                                      "number" : "string",
@@ -1398,6 +1426,7 @@ use Swagger\Client as SwaggerClient;
  * createTextBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->createTextBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setQueryParameters(array("start" => boolean));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
@@ -1486,6 +1515,7 @@ use Swagger\Client as SwaggerClient;
  * updateTextBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateTextBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
@@ -1564,6 +1594,7 @@ use Swagger\Client as SwaggerClient;
  * archiveTextBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->archiveTextBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $result = $client->execute($request);
 
@@ -1585,6 +1616,7 @@ use Swagger\Client as SwaggerClient;
  * addTextBroadcastBatch example
  * $client = Client::createClient("login", "password");
  * $request = $client->addTextBroadcastBatch();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "name" : "string",
@@ -1604,6 +1636,7 @@ use Swagger\Client as SwaggerClient;
  * addTextBroadcastRecipients example
  * $client = Client::createClient("login", "password");
  * $request = $client->addTextBroadcastRecipients();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setQueryParameters(array("fields" => "string"));
  * $request->getOperationConfig()->setBodyParameter("[
@@ -1631,6 +1664,7 @@ use Swagger\Client as SwaggerClient;
  * startTextBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->startTextBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $result = $client->execute($request);
 
@@ -1652,6 +1686,7 @@ use Swagger\Client as SwaggerClient;
  * stopTextBroadcast example
  * $client = Client::createClient("login", "password");
  * $request = $client->stopTextBroadcast();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $result = $client->execute($request);
 
@@ -1700,6 +1735,7 @@ use Swagger\Client as SwaggerClient;
  * createWebhook example
  * $client = Client::createClient("login", "password");
  * $request = $client->createWebhook();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,
  *                                                      "enabled" : boolean,
@@ -1751,6 +1787,7 @@ use Swagger\Client as SwaggerClient;
  * updateWebhook example
  * $client = Client::createClient("login", "password");
  * $request = $client->updateWebhook();
+ * $request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));
  * $request->getOperationConfig()->setPathParameters(array("id" => integer));
  * $request->getOperationConfig()->setBodyParameter("{
  *                                                      "id" : integer,

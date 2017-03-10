@@ -1,5 +1,4 @@
 vendor/
 test.php
-phpunit.xml
 phpdoc-data/
 swagger.json

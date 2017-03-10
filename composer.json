@@ -12,12 +12,16 @@
     "require": {
     },
     "require-dev": {
-        "thefrozenfire/swagger-client": "^2.0"
+        "thefrozenfire/swagger-client": "^2.0",
+        "phpunit/phpunit": "~4.8.28"
     },
     "autoload": {
         "psr-0": {
             "CallFire": "src/"
-        }
+        },
+        "classmap": [
+            "test/"
+        ]
     },
     "scripts": {
         "post-install-cmd": [

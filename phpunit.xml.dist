@@ -6,7 +6,7 @@
         </testsuite>
     </testsuites>
     <php>
-        <env name="API_Username" value="lkol" />
-        <env name="API_Password" value="dscfd" />
+        <env name="API_Username" value="" />
+        <env name="API_Password" value="" />
     </php>
 </phpunit>

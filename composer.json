@@ -22,10 +22,5 @@
         "classmap": [
             "test/"
         ]
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "php codeHintsInstall.php"
-        ]
     }
 }

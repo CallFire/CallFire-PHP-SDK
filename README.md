@@ -15,8 +15,13 @@ The preferred method of installing this library is through the
 Please refer to the [Composer intro](http://getcomposer.org/doc/00-intro.md)
 if you are unfamiliar with this tool.
 
-Note: Api client methods hints with examples will be generated after composer installation finished.
-You'll be able to use that hints from ide for easier coding of your integration.
-If you don't use composer - please run codeHintsInstall.php script to generate hints after manual sdk configuration.
-
+Note: Api client methods hints with examples can be generated.
 Each method hint also includes code sample how to configure api request and what parameters are available. 
+You'll be able to use that hints from ide for easier coding of your integration.
+To do that please run command:
+`php src/CallFire/CodeHint/CodeHintsGenerator.php generateCodeHints swaggerJsonUrl`
+`swaggerJsonUrl` last parameter can be skipped - default path (https://www.callfire.com/v2/api-docs/swagger.json) 
+will be used for getting swagger json.
+
+
+

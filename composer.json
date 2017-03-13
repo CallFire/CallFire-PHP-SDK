@@ -10,9 +10,9 @@
     ],
     "license": "MIT",
     "require": {
+        "thefrozenfire/swagger-client": "^2.0"
     },
     "require-dev": {
-        "thefrozenfire/swagger-client": "^2.0",
         "phpunit/phpunit": "~4.8.28"
     },
     "autoload": {
@@ -22,5 +22,8 @@
         "classmap": [
             "test/"
         ]
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }

@@ -10,7 +10,9 @@ class ClientTest extends AbstractTest
         $request = $this->client->findCallBroadcasts();
         $response = $this->client->request($request);
 
-        echo $response->getBody();
+        $json = json_decode($response->getBody());
+        $this->assertNotNull($json->items[0]->id);
+        $this->assertNotNull($json->items[0]->name);
     }
 
     //TO DO: uncomment when responses parsing issues will be fixed in php swagger client
@@ -27,12 +29,12 @@ class ClientTest extends AbstractTest
     public function testFindCalls()
     {
         $request = $this->client->findCalls();
-
         $queryParameters = array('fields' => 'items(id)', 'limit' => 1, 'offset' => 0);
         $request->getOperationConfig()->setQueryParameters($queryParameters);
-
         $response = $this->client->request($request);
-        echo $response->getBody();
+
+        $json = json_decode($response->getBody());
+        $this->assertNotNull($json->items[0]->id);
     }
 
     public function testCreateCallBroadcast()
@@ -65,7 +67,8 @@ class ClientTest extends AbstractTest
         $request->getOperationConfig()->setHeaderParameters(array('Content-Type' => 'application/json'));
 
         $response = $this->client->request($request);
-        echo $response->getBody();
+        $json = json_decode($response->getBody());
+        $this->assertNotNull($json->id);
     }
 
     public function testUploadSound()
@@ -73,7 +76,13 @@ class ClientTest extends AbstractTest
         $request = $this->client->postFileCampaignSound();
         $request->getOperationConfig()->setFileUpload(__dir__.'\train1.mp3', 'file');
         $response = $this->client->request($request);
-        echo $response->getBody();
+        $json = json_decode($response->getBody());
+        $this->assertNotNull($json->id);
+        $this->assertNotNull($json->name);
+        $this->assertNotNull($json->created);
+        $this->assertNotNull($json->lengthInSeconds);
+        $this->assertNotNull($json->status);
+        $this->assertTrue($json->duplicate);
     }
 
     public function testCreateAndDeleteContact()
@@ -89,21 +98,16 @@ class ClientTest extends AbstractTest
         $request->getOperationConfig()->setBodyParameter($body);
         $request->getOperationConfig()->setHeaderParameters(array('Content-Type' => 'application/json'));
         $response = $this->client->request($request);
-        echo $response->getBody();
+        $json = json_decode($response->getBody());
+        $this->assertNotNull($json->items[0]->id);
 
-        $contactId = $this->getCreatedContactId($response->getBody());
+        $contactId = $json->items[0]->id;
 
         $deleteRequest = $this->client->deleteContact();
         $deleteRequest->getOperationConfig()->setPathParameters(array('id' => $contactId));
         $deleteRequest->getOperationConfig()->setHeaderParameters(array('Content-Type' => 'application/json'));
         $response = $this->client->request($deleteRequest);
-        echo $response;
-    }
-
-    function getCreatedContactId($response) {
-        $firstPart = '{"items":[{"id":';
-        $remainedPart = substr($response, strlen($firstPart));
-        return substr($remainedPart, 0, strpos($remainedPart, '}]}'));
+        $this->assertEquals($response->getStatusCode(), 204);
     }
 
 }

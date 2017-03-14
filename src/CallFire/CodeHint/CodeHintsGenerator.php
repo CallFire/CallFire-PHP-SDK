@@ -81,7 +81,12 @@ class CodeHintsGenerator
         if ($this->receivingFiles($apiInstance['produces'])) {
             $apiDoc.= "\n".' * '.'$result = $client->request($request);';
         } else {
-            $apiDoc.= "\n".' * '.'$result = $client->execute($request);';
+            //TO DO: uncomment this to change to $client->execute($request) after all issues with responses parsing would be fixed
+            //$apiDoc.= "\n".' * '.'$result = $client->execute($request);';
+
+            $apiDoc.= "\n".' * '.'$result = $client->request($request);';
+            $apiDoc.= "\n".' * '.'$json = json_decode($result->getBody());';
+            $apiDoc.= "\n".' * '.'// You are now able to access json response object data like: $json->param1->param2[0]->param3 (check swagger scheme for available parameters)';
         }
 
         $apiDoc.= "\n";

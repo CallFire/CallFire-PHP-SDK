@@ -7,8 +7,7 @@ before_install:
 install:
   - composer clear-cache
   - composer install --prefer-source
-script: "composer test --verbose --coverage-clover ./build/logs/clover.xml"
-after_script:
-  - php vendor/bin/coveralls -v
+script:
+  - composer test --verbose
 notifications:
   email: vmalinovskiy@callfire.com

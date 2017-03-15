@@ -13,14 +13,11 @@ abstract class AbstractTest extends TestCase
 
     public function setUp()
     {
-        if (empty($_ENV['API_Username']) || empty($_ENV['API_Password'])) {
+        if (!$this->setUpCredentialsForTesting()) {
             $this->markTestSkipped(
                 'Integration testing requires API credentials'
             );
         }
-
-        $this->setUsername($_ENV['API_Username']);
-        $this->setPassword($_ENV['API_Password']);
 
         $this->client = \CallFire\Api\DocumentedClient::createClient($this->getUsername(), $this->getPassword());
     }
@@ -47,5 +44,24 @@ abstract class AbstractTest extends TestCase
         $this->password = $password;
 
         return $this;
+    }
+
+    private function setUpCredentialsForTesting()
+    {
+        if ((!empty(getenv('API_Username')) && !empty(getenv('API_Password'))))
+        {
+            $this->setUsername(getenv('API_Username'));
+            $this->setPassword(getenv('API_Password'));
+            return true;
+        }
+
+        if ((!empty($_ENV['API_Username']) && !empty($_ENV['API_Password'])))
+        {
+            $this->setUsername($_ENV['API_Username']);
+            $this->setPassword($_ENV['API_Password']);
+            return true;
+        }
+
+        return false;
     }
 }

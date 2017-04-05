@@ -7,5 +7,3 @@ before_install:
 install:
   - composer clear-cache
   - composer install --prefer-source
-notifications:
-  email: vmalinovskiy@callfire.com

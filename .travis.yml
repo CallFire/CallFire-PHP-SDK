@@ -1,10 +1,9 @@
 language: php
 php:
+  - 5.6
   - 5.5
-  - 5.4
-  - 5.3
-before_script:
-   - composer install
-script: "phpunit --verbose --coverage-clover ./build/logs/clover.xml"
-after_script:
-  - php vendor/bin/coveralls -v
+before_install:
+  - composer self-update
+install:
+  - composer clear-cache
+  - composer install --prefer-source

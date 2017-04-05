@@ -13,14 +13,14 @@ class Client extends SwaggerClient
     )
     {
         $client = static::create(static::$callFireSwaggerUrl);
-        
+
         $client->setDefaultSecurityCredential(
             $client->createBasicCredential(
                 $appLogin,
                 $appPassword
             )
         );
-        
+
         return $client;
     }
 }

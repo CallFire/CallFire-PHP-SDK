@@ -3,6 +3,7 @@ CallFire PHP SDK
 
 * [Getting Started](/docs/en/00.getting.started.md)
     * [Without Composer](/docs/en/getting-started/01.without-composer.md)
+    * [With Composer](/docs/en/getting-started/02.with-composer.md)
 * [Client Reference](/client-map.md)
 * [Reference Documentation](http://callfire.github.io/CallFire-PHP-SDK/)
 * [Composer Package](https://packagist.org/packages/callfire/php-sdk)

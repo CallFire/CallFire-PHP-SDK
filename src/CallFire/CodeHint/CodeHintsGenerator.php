@@ -53,7 +53,7 @@ class CodeHintsGenerator
         $docText.= ' */';
 
         //UPDATING DocumentedClient.php class to include documentation
-        $file = 'src\CallFire\Api\DocumentedClient.php';
+        $file = dirname(dirname(__FILE__)).'/Api/DocumentedClient.php';
         $classCode = file_get_contents($file);
         $lastLineForPackagesDefinitions = 'use Swagger\Client as SwaggerClient;';
         $packageInfo = substr($classCode, 0, strpos($classCode, $lastLineForPackagesDefinitions) + strlen($lastLineForPackagesDefinitions));

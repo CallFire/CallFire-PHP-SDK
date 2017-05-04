@@ -64,7 +64,6 @@ class ClientTest extends AbstractTest
                  }';
         $request->getOperationConfig()->setQueryParameters($queryParameters);
         $request->getOperationConfig()->setBodyParameter($body);
-        $request->getOperationConfig()->setHeaderParameters(array('Content-Type' => 'application/json'));
 
         $response = $this->client->request($request);
         $json = json_decode($response->getBody());
@@ -96,7 +95,6 @@ class ClientTest extends AbstractTest
                   "homePhone": "12132212384"
                  }]';
         $request->getOperationConfig()->setBodyParameter($body);
-        $request->getOperationConfig()->setHeaderParameters(array('Content-Type' => 'application/json'));
         $response = $this->client->request($request);
         $json = json_decode($response->getBody());
         $this->assertNotNull($json->items[0]->id);
@@ -105,7 +103,6 @@ class ClientTest extends AbstractTest
 
         $deleteRequest = $this->client->deleteContact();
         $deleteRequest->getOperationConfig()->setPathParameters(array('id' => $contactId));
-        $deleteRequest->getOperationConfig()->setHeaderParameters(array('Content-Type' => 'application/json'));
         $response = $this->client->request($deleteRequest);
         $this->assertEquals($response->getStatusCode(), 204);
     }

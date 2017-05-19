@@ -84,6 +84,15 @@ class ClientTest extends AbstractTest
         $this->assertTrue($json->duplicate);
     }
 
+    public function testUploadMedia()
+    {
+        $request = $this->client->createMedia();
+        $request->getOperationConfig()->setFileUpload(__dir__.'\train1.wav', 'file', null, 'audio/x-wav', 'TestMedia');
+        $result = $this->client->request($request);
+        $json = json_decode($result->getBody());
+        $this->assertNotNull($json->id);
+    }
+
     public function testCreateAndDeleteContact()
     {
         $request = $this->client->createContacts();

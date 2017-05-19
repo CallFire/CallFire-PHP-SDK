@@ -183,7 +183,7 @@ class CodeHintsGenerator
     }
 
     private function getFileUploadString() {
-        return ' * $request->getOperationConfig()->setFileUpload("fullFilePath", "fileName");';
+        return ' * $request->getOperationConfig()->setFileUpload("fullFileName", "file");';
     }
 
     private function isPropertySet($properties, $propertyName) {

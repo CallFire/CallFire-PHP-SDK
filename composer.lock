@@ -72,16 +72,16 @@
         },
         {
             "name": "thefrozenfire/swagger-client",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TheFrozenFire/PHP-Swagger-Client.git",
-                "reference": "20598b3fc2defce9f4674f9c4e8095688cc47304"
+                "reference": "8685ffa072fcf101485d9ccb0e3f2113dfe469c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TheFrozenFire/PHP-Swagger-Client/zipball/20598b3fc2defce9f4674f9c4e8095688cc47304",
-                "reference": "20598b3fc2defce9f4674f9c4e8095688cc47304",
+                "url": "https://api.github.com/repos/TheFrozenFire/PHP-Swagger-Client/zipball/8685ffa072fcf101485d9ccb0e3f2113dfe469c3",
+                "reference": "8685ffa072fcf101485d9ccb0e3f2113dfe469c3",
                 "shasum": ""
             },
             "require": {
@@ -108,7 +108,7 @@
                 }
             ],
             "description": "Swagger client for PHP",
-            "time": "2017-03-23T21:51:22+00:00"
+            "time": "2017-06-22T16:23:28+00:00"
         },
         {
             "name": "zendframework/zend-escaper",

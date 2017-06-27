@@ -15,6 +15,10 @@ The preferred method of installing this library is through the
 Please refer to the [Composer intro](http://getcomposer.org/doc/00-intro.md)
 if you are unfamiliar with this tool.
 
+Make sure you copied composer.lock file from repository before installation 
+to be sure that all downloaded dependencies versions are correct. 
+[composer.lock](https://github.com/CallFire/CallFire-PHP-SDK/blob/2.0/composer.lock)
+
 Note: Api client methods hints with examples can be generated.
 Each method hint also includes code sample how to configure api request and what parameters are available. 
 You'll be able to use that hints from ide for easier coding of your integration.

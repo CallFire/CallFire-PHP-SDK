@@ -72,10 +72,6 @@ class CodeHintsGenerator
             ' * '.'$client = Client::createClient("login", "password");'."\n".
             ' * '.'$request = $client->'.$apiInstance['operationId'].'();';
 
-        if (($requestType == 'put' || $requestType == 'post') && $this->postingFiles($apiInstance['consumes']) != 1 ) {
-            $apiDoc.="\n".' * '.'$request->getOperationConfig()->setHeaderParameters(array("Content-Type" => "application/json"));';
-        }
-
         $apiDoc.=$this->getParametersPart($apiInstance['parameters'], $this->postingFiles($apiInstance['consumes']));
 
         if ($this->receivingFiles($apiInstance['produces'])) {
@@ -187,7 +183,7 @@ class CodeHintsGenerator
     }
 
     private function getFileUploadString() {
-        return ' * $request->getOperationConfig()->setFileUpload("fullFilePath", "fileName");';
+        return ' * $request->getOperationConfig()->setFileUpload("fullFileName", "file");';
     }
 
     private function isPropertySet($properties, $propertyName) {
